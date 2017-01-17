@@ -10,6 +10,7 @@ git remote add origin git@github.com:Pitt05/DropZone.git
 git clean -dn
 git clean -df
 git pull origin master
+git config --global core.excludesfile ~/.gitignore_global
 ```
 2. Dans le fichier **_./config/app.php_**, changez les lignes suivantes:
 ```
