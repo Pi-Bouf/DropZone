@@ -3,6 +3,10 @@
   padding: 5px 10px 5px 10px;
 }
 
+.header .menu {
+  margin-top: 80px;
+}
+
 .header .menu a {
   color: #77B5FE;
 }
