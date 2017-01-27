@@ -1,20 +1,48 @@
-.header {
-    border-bottom: 1px solid #77B5FE;
-    padding: 5px 10px 5px 10px;
-    .menu {
-        margin-top: 80px;
-        a {
-            color: #77B5FE;
-        }
-        .parent {
-            height: 20px;
-            padding: 15px;
-            margin: 5px;
-            font-size: 18px;
+// @import 'flaticon';
+@font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#page {
+    height: 100vh;
+}
+
+#slideMenu {
+    height: 100vh;
+    background-color: #252526;
+    color: white;
+    padding-top: 10vh;
+    .parent a {
+        color: white;
+        font-size: 16px
+    }
+    .child a {
+        color: white;
+        margin-left: 14px;
+    }
+}
+
+#content {
+    padding-left: 0px;
+    height: 100vh;
+    overflow: hidden;
+    #header {
+        height: 10vh;
+        text-align: center;
+        border-bottom: 1px solid #2472fb;
+        .logo {
+            height: 90%;
         }
     }
-    img {
-        width: 100%;
-        max-height: 100px;
+    #pages {
+        .pages_item {
+            height: 90vh;
+        }
     }
 }

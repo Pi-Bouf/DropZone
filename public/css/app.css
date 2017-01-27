@@ -1,26 +1,52 @@
-.header {
-  border-bottom: 1px solid #77B5FE;
-  padding: 5px 10px 5px 10px;
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
 }
 
-.header .menu {
-  margin-top: 80px;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.header .menu a {
-  color: #77B5FE;
+#page {
+  height: 100vh;
 }
 
-.header .menu .parent {
-  height: 20px;
-  padding: 15px;
-  margin: 5px;
-  font-size: 18px;
+#slideMenu {
+  height: 100vh;
+  background-color: #252526;
+  color: white;
+  padding-top: 10vh;
 }
 
-.header img {
-  width: 100%;
-  max-height: 100px;
+#slideMenu .parent a {
+  color: white;
+  font-size: 16px;
+}
+
+#slideMenu .child a {
+  color: white;
+  margin-left: 14px;
+}
+
+#content {
+  padding-left: 0px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#content #header {
+  height: 10vh;
+  text-align: center;
+  border-bottom: 1px solid #2472fb;
+}
+
+#content #header .logo {
+  height: 90%;
+}
+
+#content #pages .pages_item {
+  height: 90vh;
 }
 
 /*# sourceMappingURL=app.css.map */
