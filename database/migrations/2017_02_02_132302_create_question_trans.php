@@ -20,8 +20,8 @@ class CreateQuestionTrans extends Migration
           $table->text('text');
           $table->datetime('date');
           $table->timestamps();
-          $table->foreign('transID')->references('transport')->on('transID');
-          $table->foreign('userID')->references('users')->on('userID');
+          $table->foreign('transID')->references('transID')->on('transport');
+          $table->foreign('userID')->references('userID')->on('users');
       });
     }
 

@@ -22,8 +22,8 @@ class CreateDemandeTransTable extends Migration
           //$table->boolean('demandeAccepte');
           $table->float('prix');
           $table->timestamps();
-          $table->foreign('transport_transID')->references('transport')->on('transID');
-          $table->foreign('utilisateur_userID')->references('utilisateur')->on('userID');
+          $table->foreign('transport_transID')->references('transID')->on('transport');
+          $table->foreign('utilisateur_userID')->references('userID')->on('users');
       });
     }
 

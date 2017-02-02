@@ -20,7 +20,7 @@ class CreateNotationTransport extends Migration
           $table->integer('idDemande');
           $table->boolean('transpOuUti');
           $table->timestamps();
-          $table->foreign('idDemande')->references('demande_trans')->on('idDemande');
+          $table->foreign('idDemande')->references('idDemande')->on('demande_trans');
       });
     }
 

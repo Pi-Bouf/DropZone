@@ -29,7 +29,7 @@ class CreateTransportTable extends Migration
           $table->integer('transporteur_userID');
           $table->timestamps();
           $table->foreign('vehiID')->references('vehiID')->on('vehicule');
-          $table->foreign('transporteur_userID')->references('userID')->on('utilisateur');
+          $table->foreign('transporteur_userID')->references('userID')->on('users');
       });
     }
 
