@@ -26,5 +26,17 @@ class VehiculeTypeSeeder extends Seeder
 			DB::table('vehicule_type')->insert([
                 'typeLib' => 'Bateau'
 				]);
+                
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Camion'
+				]);
+                
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Vélo'
+				]);
+                
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Moto'
+				]);
     }
 }
