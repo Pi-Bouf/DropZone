@@ -16,8 +16,8 @@ class UsersTableSeeder extends Seeder
 				'userNom'=> 'Bouffier',
 				'userPrenom'=> 'Pierre',
                 'userPassword'=> bcrypt('111'),
-				'userDateNaiss'=> '01/01/95',
-				'userSexe'=> 'Garçon',
+				'userDateNaiss'=> '1995-01-01',
+				'userSexe'=> 'h',
 				'userPseudo'=> 'pBouffier',
 				'userTel'=> '0666666666',
 				'userPresentation'=> 'BouffierBouffier BouffierBouffier'
@@ -29,8 +29,8 @@ class UsersTableSeeder extends Seeder
 				'userNom'=> 'Chauveau',
 				'userPrenom'=> 'Rémi',
 				'userPassword'=> bcrypt('111'),
-				'userDateNaiss'=> '01/01/95',
-				'userSexe'=> 'Garçon',
+				'userDateNaiss'=> '1995-01-01',
+				'userSexe'=> 'h',
 				'userPseudo'=> 'rChauveau',
 				'userTel'=> '0666666666',
 				'userPresentation'=> 'ChauveauChauveau ChauveauChauveau'
@@ -42,8 +42,8 @@ class UsersTableSeeder extends Seeder
 				'userNom'=> 'Vieux',
 				'userPrenom'=> 'Thomas',
 				'userPassword'=> bcrypt('111'),
-				'userDateNaiss'=> '01/01/95',
-				'userSexe'=> 'Garçon',
+				'userDateNaiss'=> '1995-01-01',
+				'userSexe'=> 'h',
 				'userPseudo'=> 'tVieux',
 				'userTel'=> '0666666666',
 				'userPresentation'=> 'VieuxVieux VieuxVieux'
@@ -55,8 +55,8 @@ class UsersTableSeeder extends Seeder
 				'userNom'=> 'Canto',
 				'userPrenom'=> 'Jessy',
 				'userPassword'=> bcrypt('111'),
-				'userDateNaiss'=> '01/01/95',
-				'userSexe'=> 'Garçon',
+				'userDateNaiss'=> '1995-01-01',
+				'userSexe'=> 'h',
 				'userPseudo'=> 'jcanto',
 				'userTel'=> '0666666666',
 				'userPresentation'=> 'CantoCanto CantoCanto'

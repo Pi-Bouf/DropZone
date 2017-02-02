@@ -10,9 +10,21 @@ class VehiculeTypeSeeder extends Seeder
      * @return void
      */
     public function run() {
-        
-			DB::table('vehicule-type')->insert([
-                'typeLib' => 'fji'
+
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Voiture'
+				]);
+
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Bateau'
+				]);
+                
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Avion'
+				]);
+                
+			DB::table('vehicule_type')->insert([
+                'typeLib' => 'Bateau'
 				]);
     }
 }
