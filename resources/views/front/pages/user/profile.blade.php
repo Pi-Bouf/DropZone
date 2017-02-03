@@ -33,6 +33,7 @@
         <div id="pages">
           <div id="rechercheInput">
             Profil de {{$user->userNom}}
+            A compléter!
           </div>
         </div>
       </div>
