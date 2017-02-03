@@ -15,6 +15,8 @@ class CreateVilleTable extends Migration
     {
       Schema::create('ville', function (Blueprint $table) {
           $table->increments('villeID');
+          $table->double('villeLatitude');
+          $table->double('villeLongitude');
           $table->string('villeLib');
           $table->string('villeCP');
           $table->string('villeDepartement');

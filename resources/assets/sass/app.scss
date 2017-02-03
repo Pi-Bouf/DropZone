@@ -1,9 +1,4 @@
-// @import 'flaticon';
-@font-face {
-    font-family: "Flaticon";
-    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
-}
-
+@import 'flaticon';
 body {
     margin: 0;
     padding: 0;
@@ -20,20 +15,30 @@ body {
     padding-top: 10vh;
     .parent a {
         color: white;
-        font-size: 16px
+        margin: 3px;
+        font-size: 16px;
+        &:hover {
+            background-color: #202021;
+            border-radius: 5px;
+        }
     }
     .child a {
         color: white;
         margin-left: 14px;
+    }
+    .icon-menu {
+        font-size: 30px;
+        width: 50px;
+        padding: 5px;
+        display: inline-block;
     }
 }
 
 #content {
     padding-left: 0px;
     height: 100vh;
-    overflow: hidden;
     #header {
-        height: 10vh;
+        height: calc(10vh - 1px);
         text-align: center;
         border-bottom: 1px solid #2472fb;
         .logo {
@@ -41,6 +46,8 @@ body {
         }
     }
     #pages {
+        overflow: auto;
+        height: 90vh;
         .pages_item {
             height: 90vh;
         }
