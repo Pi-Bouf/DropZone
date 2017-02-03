@@ -1570,7 +1570,7 @@ body {
 
 #slideMenu .parent a {
   color: white;
-  margin: 3px;
+  margin: 0px;
   font-size: 16px;
 }
 
@@ -1579,15 +1579,10 @@ body {
   border-radius: 5px;
 }
 
-#slideMenu .child a {
-  color: white;
-  margin-left: 14px;
-}
-
 #slideMenu .icon-menu {
-  font-size: 30px;
+  font-size: 26px;
   width: 50px;
-  padding: 5px;
+  padding: 2px;
   display: inline-block;
 }
 
@@ -1607,7 +1602,7 @@ body {
 }
 
 #content #pages {
-  overflow: auto;
+  overflow: hidden;
   height: 90vh;
 }
 

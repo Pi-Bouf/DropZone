@@ -17,10 +17,10 @@
     <div class="uk-grid">
       <div id="slideMenu" class="uk-width-2-10">
         <ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
-          <li class="parent"><a href="#" class="scrollTo" to="accueil"><span class="icon-menu fi flaticon-home-1"></span>Accueil</a></li>
-          <li class="parent"><a href="#" class="scrollTo" to="expedition"><span class="icon-menu fi flaticon-archive"></span>Expedier un colis</a></li>
-          <li class="parent"><a href="#" class="scrollTo" to="transport"><span class="icon-menu fi flaticon-paper-plane-1"></span>Propose transport</a></li>
-          <li class="parent"><a href="#" class="scrollTo" to="recherche"><span class="icon-menu fi flaticon-route"></span>Recherche Tansport/Colis</a></li>
+          <li class="parent"><a href="#" class="scrollTo" to="accueil"><span class="icon-menu fi flaticon-home-1"></span><span class="text-menu">Accueil</span></a></li>
+          <li class="parent"><a href="#" class="scrollTo" to="expedition"><span class="icon-menu fi flaticon-archive"></span><span class="text-menu">Expedier un colis</span></a></li>
+          <li class="parent"><a href="#" class="scrollTo" to="transport"><span class="icon-menu fi flaticon-paper-plane-1"></span><span class="text-menu">Propose transport</span></a></li>
+          <li class="parent"><a href="#" class="scrollTo" to="recherche"><span class="icon-menu fi flaticon-route"></span><span class="text-menu">Recherche Tansport/Colis</span></a></li>
           <li class="parent"><a href="#"><span class="icon-menu fi flaticon-user-3"></span>Se connecter</a></li>
         </ul>
       </div>

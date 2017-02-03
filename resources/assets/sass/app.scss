@@ -15,21 +15,17 @@ body {
     padding-top: 10vh;
     .parent a {
         color: white;
-        margin: 3px;
+        margin: 0px;
         font-size: 16px;
         &:hover {
             background-color: #202021;
             border-radius: 5px;
         }
     }
-    .child a {
-        color: white;
-        margin-left: 14px;
-    }
     .icon-menu {
-        font-size: 30px;
+        font-size: 26px;
         width: 50px;
-        padding: 5px;
+        padding: 2px;
         display: inline-block;
     }
 }
@@ -46,7 +42,7 @@ body {
         }
     }
     #pages {
-        overflow: auto;
+        overflow: hidden;
         height: 90vh;
         .pages_item {
             height: 90vh;
