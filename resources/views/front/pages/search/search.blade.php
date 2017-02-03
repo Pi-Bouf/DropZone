@@ -32,7 +32,15 @@
         <div id="header"><img src="/images/Logo.svg" class="logo"></div>
         <div id="pages">
           <div id="rechercheInput">
-            *fjeuifji
+            <input type="text" id="searchLieuDepart" placeholder="Lieu de départ">
+            <button><=></button>
+            <input type="text" id="searchLieuArrivee" placeholder="Lieu d'arrivée'">
+            <input type="date" id="searchDate" placeholder="date"><br>
+            <input type="submit" value="Rechercher un colis">
+            <input type="submit" value="Rechercher un transport">
+          </div>
+          <div id="searchMap">
+            api
           </div>
         </div>
       </div>
