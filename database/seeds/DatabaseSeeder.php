@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(VehiculeTypeSeeder::class);
         $this->call(VehiculeTableSeeder::class);
         $this->call(TransportTableSeeder::class);
+        $this->call(ExpeditionTablesSeeder::class);
+        $this->call(Notation_expeTablesSeeder::class);
+        $this->call(Question_expeTablesSeeder::class);
+        
 
     }
 }
