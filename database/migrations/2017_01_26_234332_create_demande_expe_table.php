@@ -14,7 +14,7 @@ class CreateDemandeExpeTable extends Migration
     public function up()
     {
         Schema::create('demande_expe', function (Blueprint $table) {
-            $table->string('expeID');
+            $table->integer('expeID');
             $table->integer('userID');
             $table->float('prixExp');
       			$table->text('demandeExpeTexte');

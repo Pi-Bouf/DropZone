@@ -14,7 +14,7 @@ class CreateNotationExpeTable extends Migration
     public function up()
     {
         Schema::create('notation_expe', function (Blueprint $table) {
-            $table->string('expeID');
+            $table->integer('expeID');
             $table->integer('userID');
             $table->text('text');
       			$table->float('note');

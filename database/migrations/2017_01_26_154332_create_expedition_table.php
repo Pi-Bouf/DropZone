@@ -14,7 +14,7 @@ class CreateExpeditionTable extends Migration
     public function up()
     {
         Schema::create('expedition', function (Blueprint $table) {
-            $table->integer('expeID');
+            $table->increments('expeID');
             $table->integer('idExpediteur');
             $table->smallInteger('prixMax');
       			$table->boolean('expeAccepte');
