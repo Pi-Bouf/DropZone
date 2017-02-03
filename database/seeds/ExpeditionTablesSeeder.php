@@ -4,8 +4,7 @@ use Illuminate\Database\Seeder;
 class ExpeditionTablesSeeder extends Seeder{
 
 	public function run(){
-		DB::table('notation_expe')->insert([
-			'expeID' => 0,
+		DB::table('expedition')->insert([
 			'idExpediteur' => 0,
 			'prixMax' => 26,
 			'expeAccepte' => 0,
@@ -20,8 +19,7 @@ class ExpeditionTablesSeeder extends Seeder{
 			'villeIDRamassage' => 0
 			]);
 
-			DB::table('notation_expe')->insert([
-			'expeID' => 1,
+			DB::table('expedition')->insert([
 			'idExpediteur' => 0,
 			'prixMax' => 16,
 			'expeAccepte' => 1,
@@ -36,8 +34,7 @@ class ExpeditionTablesSeeder extends Seeder{
 			'villeIDRamassage' => 0
 			]);
 
-			DB::table('notation_expe')->insert([
-			'expeID' => 2,
+			DB::table('expedition')->insert([
 			'idExpediteur' => 1,
 			'prixMax' => 26,
 			'expeAccepte' => 0,

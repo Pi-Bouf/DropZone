@@ -13,8 +13,8 @@ class CreateQuestionExpeTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionExpe', function (Blueprint $table) {
-            $table->string('expeID');
+        Schema::create('question_expe', function (Blueprint $table) {
+            $table->integer('expeID');
             $table->integer('userID');
             $table->text('QuesExpeText');
 			$table->datetime('QuesExpeDate');
@@ -32,6 +32,6 @@ class CreateQuestionExpeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questionExpe');
+        Schema::dropIfExists('question_expe');
     }
 }
