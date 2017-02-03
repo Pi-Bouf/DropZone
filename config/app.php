@@ -12,7 +12,11 @@ return [
     | any other location as required by the application or its packages.
     */
 
+<<<<<<< HEAD
     'name' => 'DropZone',
+=======
+    'name' => 'Dropzone',
+>>>>>>> b7a613b81636eb7638cbc85219cec264e3d9a71e
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://dropzone'),
 
     /*
     |--------------------------------------------------------------------------

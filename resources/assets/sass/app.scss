@@ -1,9 +1,48 @@
+// @import 'flaticon';
+@font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+}
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+body {
+    margin: 0;
+    padding: 0;
+}
 
-// Variables
-@import "variables";
+#page {
+    height: 100vh;
+}
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+#slideMenu {
+    height: 100vh;
+    background-color: #252526;
+    color: white;
+    padding-top: 10vh;
+    .parent a {
+        color: white;
+        font-size: 16px
+    }
+    .child a {
+        color: white;
+        margin-left: 14px;
+    }
+}
+
+#content {
+    padding-left: 0px;
+    height: 100vh;
+    overflow: hidden;
+    #header {
+        height: 10vh;
+        text-align: center;
+        border-bottom: 1px solid #2472fb;
+        .logo {
+            height: 90%;
+        }
+    }
+    #pages {
+        .pages_item {
+            height: 90vh;
+        }
+    }
+}
