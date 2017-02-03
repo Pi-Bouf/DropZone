@@ -14,6 +14,6 @@ class CarteController extends Controller
      */
     public function index()
     {
-        return view('search');
+        return view('front.pages.search.search');
     }
 }
