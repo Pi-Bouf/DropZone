@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search', 'CarteController@index')->name('search');
+
+Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
