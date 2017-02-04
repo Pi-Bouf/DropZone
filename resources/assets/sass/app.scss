@@ -4,6 +4,37 @@ body {
     padding: 0;
 }
 
+@media (max-width: 1480px) {
+    #slideMenu {
+        text-align: center;
+        .parent {
+            margin-bottom: 10px;
+            .text-menu {
+                display: block;
+            }
+        }
+    }
+}
+@media (max-width: 730px) {
+    #slideMenu {
+        text-align: center;
+        padding-left: 18px;
+        .parent {
+            margin-bottom: 10px;
+            .text-menu {
+                display: none;
+            }
+            .icon-menu {
+                display: inline;
+                font-size: 200%;
+            }
+            a {
+                text-align: center;
+            }
+        }
+    }
+}
+
 #page {
     height: 100vh;
 }
@@ -13,6 +44,9 @@ body {
     background-color: #252526;
     color: white;
     padding-top: 10vh;
+    .parent {
+        margin-bottom: 15px;
+    }
     .parent a {
         color: white;
         margin: 0px;
@@ -36,7 +70,7 @@ body {
     #header {
         height: calc(10vh - 1px);
         text-align: center;
-        border-bottom: 1px solid #2472fb;
+        border-bottom: 1px solid #ff7623;
         .logo {
             height: 90%;
         }
@@ -47,5 +81,15 @@ body {
         .pages_item {
             height: 90vh;
         }
+    }
+}
+
+#accueil {
+    background-image: url('../../images/road-06.jpg');
+    background-position: top center;
+    background-size: cover;
+    #presentation {
+        background-color: rgba(255, 255, 255, 0.6);
+        height: 90vh;
     }
 }
