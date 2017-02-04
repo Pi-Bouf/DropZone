@@ -4,49 +4,49 @@ use Illuminate\Database\Seeder;
 class ExpeditionTablesSeeder extends Seeder{
 
 	public function run(){
-		DB::table('expedition')->insert([
-			'idExpediteur' => 0,
-			'prixMax' => 26,
-			'expeAccepte' => 0,
-			'expePrixDefinitif' => 23,
-			'expeDescription' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
-			'expeVolumeColis' => 5,
-			'expeLongueurColis' => 10,
-			'expeLargeurColis' => 15,
-			'expeHauteurColis' => 6,
-			'expePoidColis' => 15.5,
-			'villeIDDestination' => 0,
-			'villeIDRamassage' => 0
+		DB::table('expeditions')->insert([
+			'user_id' => 1,
+			'costMax' => 26,
+			'isAccepted' => 0,
+			'costFixed' => 23,
+			'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+			'volumeItem' => 5,
+			'lengthItem' => 10,
+			'widthItem' => 15,
+			'heightItem' => 6,
+			'weightItem' => 15.5,
+			'ending_ville_id' => 1,
+			'beginning_ville_id' => 2
 			]);
 
-			DB::table('expedition')->insert([
-			'idExpediteur' => 0,
-			'prixMax' => 16,
-			'expeAccepte' => 1,
-			'expePrixDefinitif' => 60,
-			'expeDescription' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
-			'expeVolumeColis' => 5,
-			'expeLongueurColis' => 10,
-			'expeLargeurColis' => 15,
-			'expeHauteurColis' => 6,
-			'expePoidColis' => 15.5,
-			'villeIDDestination' => 1,
-			'villeIDRamassage' => 0
+			DB::table('expeditions')->insert([
+			'user_id' => 2,
+			'costMax' => 16,
+			'isAccepted' => 1,
+			'costFixed' => 60,
+			'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+			'volumeItem' => 5,
+			'lengthItem' => 10,
+			'widthItem' => 15,
+			'heightItem' => 6,
+			'weightItem' => 15.5,
+			'ending_ville_id' => 1,
+			'beginning_ville_id' => 2
 			]);
 
-			DB::table('expedition')->insert([
-			'idExpediteur' => 1,
-			'prixMax' => 26,
-			'expeAccepte' => 0,
-			'expePrixDefinitif' => 55,
-			'expeDescription' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
-			'expeVolumeColis' => 5,
-			'expeLongueurColis' => 10,
-			'expeLargeurColis' => 15,
-			'expeHauteurColis' => 6,
-			'expePoidColis' => 15.5,
-			'villeIDDestination' => 0,
-			'villeIDRamassage' => 1
+			DB::table('expeditions')->insert([
+			'user_id' => 3,
+			'costMax' => 26,
+			'isAccepted' => 0,
+			'costFixed' => 55,
+			'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+			'volumeItem' => 5,
+			'lengthItem' => 10,
+			'widthItem' => 15,
+			'heightItem' => 6,
+			'weightItem' => 15.5,
+			'ending_ville_id' => 1,
+			'beginning_ville_id' => 2
 			]);
 
 	}

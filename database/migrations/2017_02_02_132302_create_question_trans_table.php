@@ -13,15 +13,14 @@ class CreateQuestionTransTable extends Migration
      */
     public function up()
     {
-      Schema::create('question_trans', function (Blueprint $table) {
-          $table->increments('idQuestion');
-          $table->integer('userID');
-          $table->integer('transID');
+      Schema::create('question_transports', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('user_id')->unsigned();
+          $table->integer('transport_id')->unsigned();
           $table->text('text');
-          $table->datetime('date');
           $table->timestamps();
-          $table->foreign('transID')->references('transID')->on('transport');
-          $table->foreign('userID')->references('userID')->on('users');
+          $table->foreign('user_id')->references('id')->on('users');
+          $table->foreign('transport_id')->references('id')->on('transports');
       });
     }
 
@@ -32,7 +31,7 @@ class CreateQuestionTransTable extends Migration
      */
     public function down()
     {
-      Schema::drop('question_trans');
+      Schema::drop('question_transports');
 
     }
 }

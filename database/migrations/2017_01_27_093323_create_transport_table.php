@@ -13,23 +13,23 @@ class CreateTransportTable extends Migration
      */
     public function up()
     {
-      Schema::create('transport', function (Blueprint $table) {
-          $table->increments('transID');
-          $table->integer('vehiID')->unsigned();
-          $table->tinyInteger('transDetourRetirMax');
-          $table->tinyInteger('transDetourDepotMax');
-          $table->boolean('transAutoroute');
-          $table->boolean('transNatureTrajet')->nullable();
-          $table->datetime('transDateDepart');
-          $table->string('transFrequence');
-          $table->datetime('transRegulierDateDebut');
-          $table->datetime('transRegulierDateFin');
-          $table->time('transHeureDepart');
-          $table->text('transInformations');
-          $table->integer('transporteur_userID');
+      Schema::create('transports', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('vehicule_id')->unsigned();
+          $table->integer('user_id')->unsigned();
+          $table->tinyInteger('detourRetirMax');
+          $table->tinyInteger('detourDepotMax');
+          $table->boolean('withHighway');
+          $table->boolean('natureTransport')->default(0); // 0: ponctuel, 1: régulier
+          $table->datetime('beginningDate');
+          $table->string('frequency')->nullable(); // [1/s (1 par semain)], [5/m (5 fois par mois)]
+          $table->datetime('regularyBeginningDate');
+          $table->datetime('regularyEndingDate');
+          $table->time('beginningHour');
+          $table->text('information');
           $table->timestamps();
-          $table->foreign('vehiID')->references('vehiID')->on('vehicule');
-          $table->foreign('transporteur_userID')->references('userID')->on('users');
+          $table->foreign('vehicule_id')->references('id')->on('vehicules');
+          $table->foreign('user_id')->references('id')->on('users');
       });
     }
 
@@ -40,6 +40,6 @@ class CreateTransportTable extends Migration
      */
     public function down()
     {
-        Schema::drop('transport');
+        Schema::drop('transports');
     }
 }

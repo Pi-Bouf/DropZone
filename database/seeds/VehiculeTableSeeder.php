@@ -11,32 +11,32 @@ class VehiculeTableSeeder extends Seeder
      */
     public function run() {
 
-			DB::table('vehicule')->insert([
-                'userID' => '1',
-                'typeID' => '1',
-                'vehiMarque' => 'Renault',
-                'vehiModele' => 'Megan'
+			DB::table('vehicules')->insert([
+                'user_id' => '1',
+                'vehicule_types_id' => '1',
+                'marque' => 'Renault',
+                'modele' => 'Megan'
 				]);
 
-			DB::table('vehicule')->insert([
-                'userID' => '1',
-                'typeID' => '1',
-                'vehiMarque' => 'Renault',
-                'vehiModele' => 'Clio'
+			DB::table('vehicules')->insert([
+                'user_id' => '1',
+                'vehicule_types_id' => '1',
+                'marque' => 'Renault',
+                'modele' => 'Clio'
 				]);
 
-			DB::table('vehicule')->insert([
-                'userID' => '1',
-                'typeID' => '4',
-                'vehiMarque' => 'Citroën',
-                'vehiModele' => 'Citroën 23'
+			DB::table('vehicules')->insert([
+                'user_id' => '1',
+                'vehicule_types_id' => '4',
+                'marque' => 'Citroën',
+                'modele' => 'Citroën 23'
 				]);
 
-			DB::table('vehicule')->insert([
-                'userID' => '2',
-                'typeID' => '3',
-                'vehiMarque' => 'airbus',
-                'vehiModele' => 'a320'
+			DB::table('vehicules')->insert([
+                'user_id' => '2',
+                'vehicule_types_id' => '3',
+                'marque' => 'airbus',
+                'modele' => 'a320'
 				]);
     }
 }

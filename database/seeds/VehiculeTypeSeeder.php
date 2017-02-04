@@ -11,32 +11,32 @@ class VehiculeTypeSeeder extends Seeder
      */
     public function run() {
 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Voiture'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Voiture'
 				]);
 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Bateau'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Bateau'
 				]);
                 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Avion'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Avion'
 				]);
                 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Bateau'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Bateau'
 				]);
                 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Camion'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Camion'
 				]);
                 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Vélo'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Vélo'
 				]);
                 
-			DB::table('vehicule_type')->insert([
-                'typeLib' => 'Moto'
+			DB::table('vehicule_types')->insert([
+                'name' => 'Moto'
 				]);
     }
 }

@@ -13,13 +13,14 @@ class CreateQuestionExpeTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_expe', function (Blueprint $table) {
-            $table->integer('expeID');
-            $table->integer('userID');
-            $table->text('QuesExpeText');
-			$table->datetime('QuesExpeDate');
-            $table->foreign('expeID')->references('expeID')->on('expedition');
-			$table->foreign('userID')->references('userID')->on('users');
+        Schema::create('question_expeditions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('expedition_id')->unsigned();
+            $table->text('question');
+            $table->text('reply')->nullable();
+            $table->foreign('expedition_id')->references('id')->on('expeditions');
+			$table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateQuestionExpeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_expe');
+        Schema::dropIfExists('question_expeditions');
     }
 }

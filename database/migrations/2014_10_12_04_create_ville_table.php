@@ -13,14 +13,14 @@ class CreateVilleTable extends Migration
      */
     public function up()
     {
-      Schema::create('ville', function (Blueprint $table) {
-          $table->increments('villeID');
-          $table->double('villeLatitude');
-          $table->double('villeLongitude');
-          $table->string('villeLib');
-          $table->string('villeCP');
-          $table->string('villeDepartement');
-          $table->string('villeRegion');
+      Schema::create('villes', function (Blueprint $table) {
+          $table->increments('id');
+          $table->double('latitude');
+          $table->double('longitude');
+          $table->string('name');
+          $table->string('codePostal');
+          $table->string('departement');
+          $table->string('region');
           $table->timestamps();
       });
     }
@@ -32,6 +32,6 @@ class CreateVilleTable extends Migration
      */
     public function down()
     {
-      Schema::drop('ville');
+      Schema::drop('villes');
     }
 }

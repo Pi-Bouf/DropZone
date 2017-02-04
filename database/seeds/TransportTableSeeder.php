@@ -11,32 +11,34 @@ class TransportTableSeeder extends Seeder
      */
     public function run() {
 
-			DB::table('transport')->insert([
-                'vehiID' => '1',
-                'transDetourRetirMax' => '10',
-                'transDetourDepotMax' => '5',
-                'transAutoroute' => true,
-                'transDateDepart' => '2017-02-10 13:00:00',
-                'transFrequence' => 'hebdomadaire',
-                'transRegulierDateDebut' => '2017-02-10 13:00:00',
-                'transRegulierDateFin' => '2017-02-20 13:00:00',
-                'transHeureDepart' => '13:00:00',
-                'transInformations' => 'Petit trajet',
-                'transporteur_userID' => '1'
+			DB::table('transports')->insert([
+                'vehicule_id' => '1',
+                'detourRetirMax' => '10',
+                'detourDepotMax' => '5',
+                'withHighway' => true,
+                'natureTransport' => '1',
+                'beginningDate' => '2017-02-10',
+                'frequency' => '1/s',
+                'regularyBeginningDate' => '2017-02-10',
+                'regularyEndingDate' => '2017-02-20',
+                'beginningHour' => '13:00:00',
+                'information' => 'Petit trajet',
+                'user_id' => '1'
 				]);
 
-			DB::table('transport')->insert([
-                'vehiID' => '2',
-                'transDetourRetirMax' => '10',
-                'transDetourDepotMax' => '5',
-                'transAutoroute' => false,
-                'transDateDepart' => '2017-02-10 13:00:00',
-                'transFrequence' => 'hebdomadaire',
-                'transRegulierDateDebut' => '2017-02-10 13:00:00',
-                'transRegulierDateFin' => '2017-02-20 13:00:00',
-                'transHeureDepart' => '13:00:00',
-                'transInformations' => 'Un autre trajet',
-                'transporteur_userID' => '1'
+			DB::table('transports')->insert([
+                'vehicule_id' => '2',
+                'detourRetirMax' => '10',
+                'detourDepotMax' => '5',
+                'withHighway' => false,
+                'natureTransport' => '1',
+                'beginningDate' => '2017-02-10',
+                'frequency' => '1/s',
+                'regularyBeginningDate' => '2017-02-10',
+                'regularyEndingDate' => '2017-02-20',
+                'beginningHour' => '13:00:00',
+                'information' => 'Un autre trajet',
+                'user_id' => '1'
 				]);
     }
 }

@@ -13,14 +13,14 @@ class CreateNotationTransportTable extends Migration
      */
     public function up()
     {
-      Schema::create('notation_transport', function (Blueprint $table) {
-          $table->increments('idNoteTransport');
+      Schema::create('notation_transports', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('demande_transport_id')->unsigned();
           $table->text('text');
           $table->float('note');
-          $table->integer('idDemande');
-          $table->boolean('transpOuUti');
+          $table->boolean('UserOrTransporter');
           $table->timestamps();
-          $table->foreign('idDemande')->references('idDemande')->on('demande_trans');
+          $table->foreign('demande_transport_id')->references('id')->on('demande_transports');
       });
     }
 
@@ -31,6 +31,6 @@ class CreateNotationTransportTable extends Migration
      */
     public function down()
     {
-      Schema::drop('notation_transport');
+      Schema::drop('notation_transports');
     }
 }

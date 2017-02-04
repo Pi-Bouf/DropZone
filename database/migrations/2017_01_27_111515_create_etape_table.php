@@ -13,14 +13,14 @@ class CreateEtapeTable extends Migration
      */
     public function up()
     {
-      Schema::create('etape', function (Blueprint $table) {
-          $table->tinyInteger('villePosition')->unsigned()->autoIncrement();
-          $table->integer('transID');
-          $table->integer('villeID');
-          $table->time('heureApproximative');
+      Schema::create('etapes', function (Blueprint $table) {
+          $table->integer('transport_id')->unsigned();
+          $table->integer('ville_id')->unsigned();
+          $table->tinyInteger('ville_position');
+          $table->time('hourAppro');
           $table->timestamps();
-          $table->foreign('villeID')->references('villeID')->on('ville');
-          $table->foreign('transID')->references('transID')->on('transport');
+          $table->foreign('ville_id')->references('id')->on('villes');
+          $table->foreign('transport_id')->references('id')->on('transports');
       });
     }
 
@@ -31,7 +31,7 @@ class CreateEtapeTable extends Migration
      */
     public function down()
     {
-      Schema::drop('etape');
+      Schema::drop('etapes');
 
     }
 }

@@ -13,14 +13,15 @@ class CreateNotationExpeTable extends Migration
      */
     public function up()
     {
-        Schema::create('notation_expe', function (Blueprint $table) {
-            $table->integer('expeID');
-            $table->integer('userID');
+        Schema::create('notation_expeditions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('expeditions_id')->unsigned();
             $table->text('text');
-      			$table->float('note');
-      			$table->boolean('transpOuUtil');
-            $table->foreign('userID')->references('userID')->on('demande_expe');
-			      $table->foreign('expeID')->references('expeID')->on('demande_expe');
+      		$table->float('note');
+      	    $table->boolean('UserOrTransporter');
+            $table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('expeditions_id')->references('id')->on('expeditions');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateNotationExpeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notation_expe');
+        Schema::dropIfExists('notation_expeditions');
     }
 }

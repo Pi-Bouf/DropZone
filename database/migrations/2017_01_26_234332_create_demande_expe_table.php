@@ -13,16 +13,17 @@ class CreateDemandeExpeTable extends Migration
      */
     public function up()
     {
-        Schema::create('demande_expe', function (Blueprint $table) {
-            $table->integer('expeID');
-            $table->integer('userID');
-            $table->float('prixExp');
-      			$table->text('demandeExpeTexte');
-      			$table->datetime('dateDemande');
-      			$table->datetime('dateDepart');
-      			$table->boolean('demandeAccepte');
-            $table->foreign('userID')->references('userID')->on('users');
-			      $table->foreign('expeID')->references('expeID')->on('Expedition');
+        Schema::create('demande_expeditions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('expedition_id')->unsigned();
+            $table->float('prixAsked');
+      		$table->text('propositionText');
+      		$table->datetime('beginDate');
+      		$table->datetime('endDate');
+      		$table->boolean('isAccepted');
+            $table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('expedition_id')->references('id')->on('expeditions');
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateDemandeExpeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('demande_expe');
+        Schema::dropIfExists('demande_expeditions');
     }
 }

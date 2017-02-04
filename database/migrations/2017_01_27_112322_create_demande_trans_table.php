@@ -13,17 +13,16 @@ class CreateDemandeTransTable extends Migration
      */
     public function up()
     {
-      Schema::create('demande_trans', function (Blueprint $table) {
-          $table->increments('idDemande');
-          $table->integer('transport_transID');
-          $table->integer('utilisateur_userID');
-          $table->boolean('demandeAccep');
-          $table->text('texteDemande');
-          //$table->boolean('demandeAccepte');
-          $table->float('prix');
+      Schema::create('demande_transports', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('transport_id')->unsigned();
+          $table->integer('user_id')->unsigned();
+          $table->boolean('isAccepted');
+          $table->text('text');
+          $table->float('cost');
           $table->timestamps();
-          $table->foreign('transport_transID')->references('transID')->on('transport');
-          $table->foreign('utilisateur_userID')->references('userID')->on('users');
+          $table->foreign('transport_id')->references('id')->on('transports');
+          $table->foreign('user_id')->references('id')->on('users');
       });
     }
 
@@ -34,7 +33,7 @@ class CreateDemandeTransTable extends Migration
      */
     public function down()
     {
-      Schema::drop('demande_trans');
+      Schema::drop('demande_transports');
 
     }
 }
