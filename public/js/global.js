@@ -1,5 +1,13 @@
-$(document).ready(function () {
 
+$(document).ready(function () {
+    var datepicker = UIkit.datepicker($('.datePicker'), {
+        i18n: {
+            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            weekdays: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
+        }
+    });
+
+    /*
     var loader_path = document.getElementById('loader_path').getElementsByTagName('path');
     loader_path[0].setAttribute('d', 'm 0,' + $('#accueil').height() / 2 + ' h ' + $('#accueil').width());
 
@@ -15,6 +23,6 @@ $(document).ready(function () {
     myTimeline.delay(1);
     myTimeline.to(loader_path, 0.8, {
         drawSVG: '0% 100%'
-    });
+    }); */
 
 });

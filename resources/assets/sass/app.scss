@@ -1,95 +1,186 @@
 @import 'flaticon';
 body {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 @media (max-width: 1480px) {
-    #slideMenu {
-        text-align: center;
-        .parent {
-            margin-bottom: 10px;
-            .text-menu {
-                display: block;
-            }
-        }
-    }
+	#slideMenu {
+		text-align: center;
+		.parent {
+			margin-bottom: 10px;
+			.text-menu {
+				display: block;
+			}
+		}
+	}
 }
 @media (max-width: 730px) {
-    #slideMenu {
-        text-align: center;
-        padding-left: 18px;
-        .parent {
-            margin-bottom: 10px;
-            .text-menu {
-                display: none;
-            }
-            .icon-menu {
-                display: inline;
-                font-size: 200%;
-            }
-            a {
-                text-align: center;
-            }
-        }
-    }
+	#slideMenu {
+		text-align: center;
+		padding-left: 18px;
+					display: flex;
+			justify-content: center;
+			flex-direction: column;
+		.parent {
+			margin-bottom: 10px;
+			.text-menu {
+				display: none;
+			}
+			.icon-menu {
+				display: inline;
+				font-size: 200%;
+			}
+			a {
+				text-align: center;
+			}
+		}
+	}
+	#content {
+		.landing_form {
+			width: 90% !important;
+			margin-left: 5% !important;
+			legend {
+				font-size: 20px !important;
+				line-height: 40px !important;
+			}
+			input {
+				width: 90% !important;
+			}
+		}
+	}
 }
 
 #page {
-    height: 100vh;
+	height: 100vh;
 }
 
 #slideMenu {
-    height: 100vh;
-    background-color: #252526;
-    color: white;
-    padding-top: 10vh;
-    .parent {
-        margin-bottom: 15px;
-    }
-    .parent a {
-        color: white;
-        margin: 0px;
-        font-size: 16px;
-        &:hover {
-            background-color: #202021;
-            border-radius: 5px;
-        }
-    }
-    .icon-menu {
-        font-size: 26px;
-        width: 50px;
-        padding: 2px;
-        display: inline-block;
-    }
+	height: 100vh;
+	background-color: #252526;
+	color: white;
+	padding-top: 10vh;
+	.parent {
+		margin-bottom: 15px;
+	}
+	.parent a {
+		color: white;
+		margin: 0px;
+		font-size: 16px;
+		&:hover {
+			background-color: #202021;
+			border-radius: 5px;
+		}
+	}
+	.icon-menu {
+		font-size: 26px;
+		width: 50px;
+		padding: 2px;
+		display: inline-block;
+	}
 }
 
 #content {
-    padding-left: 0px;
-    height: 100vh;
-    #header {
-        height: calc(10vh - 1px);
-        text-align: center;
-        border-bottom: 1px solid #ff7623;
-        .logo {
-            height: 90%;
-        }
-    }
-    #pages {
-        overflow: hidden;
-        height: 90vh;
-        .pages_item {
-            height: 90vh;
-        }
-    }
+	padding-left: 0px;
+	height: 100vh;
+	#header {
+		height: calc(10vh - 1px);
+		text-align: center;
+		border-bottom: 1px solid #AAAAAA;
+		.logo {
+			height: 90%;
+		}
+	}
+	#pages {
+		overflow: hidden;
+		height: 90vh;
+		.landing_pages_item {
+			height: 90vh;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			.landing_form {
+				width: 50%;
+				margin-left: 25%;
+				text-align: center;
+				padding: 5px;
+				legend {
+					font-size: 40px;
+					line-height: 60px;
+				}
+				input {
+					width: 40%;
+					border-radius: 3px;
+					border: 1px solid #CECECE;
+				}
+				button {
+					border-radius: 3px;
+					color: white;
+				}
+				select {
+					border-radius: 3px;
+					border: 1px solid #CECECE;
+				}
+			}
+		}
+	}
 }
 
 #accueil {
-    background-image: url('../../images/road-06.jpg');
-    background-position: top center;
-    background-size: cover;
-    #presentation {
-        background-color: rgba(255, 255, 255, 0.6);
-        height: 90vh;
-    }
+	#presentation {
+		background-color: rgba(255, 255, 255, 0.6);
+		height: 90vh;
+	}
+}
+
+#expedition {
+	background-image: url('../../images/motion-blur-wallpaper-2.jpg');
+	background-position: center center;
+	background-size: cover;
+	.landing_form {
+		border-radius: 5px;
+		background-color: white;
+		legend {
+			font-size: 40px;
+			line-height: 60px;
+			color: #f39c12;
+			&::after {
+				border-bottom: 1px solid #f39c12;
+			}
+		}
+		button {
+			background-color: #f39c12;
+		}
+	}
+}
+
+#transport {
+	background-image: url('../../images/mashina-staraya-gorod-fon.jpg');
+	background-position: center center;
+	background-size: cover;
+	.landing_form {
+		border-radius: 5px;
+		background-color: white;
+		legend {
+			font-size: 40px;
+			line-height: 60px;
+			color: #3498db;
+			&::after {
+				border-bottom: 1px solid #3498db;
+			}
+		}
+		button {
+			background-color: #3498db;
+		}
+	}
+}
+
+#recherche {
+	background-image: url('../../images/desk-wallpapers-3.jpg');
+	background-position: center center;
+	background-size: cover;
+	.landing_form {
+		border-radius: 5px;
+		background-color: white;
+	}
 }

@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
 		public function run(){
 			DB::table('users')->insert([
-				'mail'=> 'pierre.bouffier05@gmail.com',
+				'email'=> 'pierre.bouffier05@gmail.com',
                 'isAdmin' => true,
 				'lastName'=> 'Bouffier',
 				'firstName'=> 'Pierre',
@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
 				]);
 
 			DB::table('users')->insert([
-				'mail'=> 'rm.chauveau@gmail.com',
+				'email'=> 'rm.chauveau@gemail.com',
                 'isAdmin' => true,
 				'lastName'=> 'Chauveau',
 				'firstName'=> 'Rémi',
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
 				]);
 
 			DB::table('users')->insert([
-				'mail'=> 'thomasvieux04300@gmail.com',
+				'email'=> 'thomasvieux04300@gemail.com',
                 'isAdmin' => true,
 				'lastName'=> 'Vieux',
 				'firstName'=> 'Thomas',
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
 				]);
 
 			DB::table('users')->insert([
-				'mail'=> 'jessy.canto.sio@gmail.com',
+				'email'=> 'jessy.canto.sio@gemail.com',
                 'isAdmin' => true,
 				'lastName'=> 'Canto',
 				'firstName'=> 'Jessy',

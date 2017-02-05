@@ -1573,6 +1573,13 @@ body {
   #slideMenu {
     text-align: center;
     padding-left: 18px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
   }
   #slideMenu .parent {
     margin-bottom: 10px;
@@ -1586,6 +1593,17 @@ body {
   }
   #slideMenu .parent a {
     text-align: center;
+  }
+  #content .landing_form {
+    width: 90% !important;
+    margin-left: 5% !important;
+  }
+  #content .landing_form legend {
+    font-size: 20px !important;
+    line-height: 40px !important;
+  }
+  #content .landing_form input {
+    width: 90% !important;
   }
 }
 
@@ -1630,7 +1648,7 @@ body {
 #content #header {
   height: calc(10vh - 1px);
   text-align: center;
-  border-bottom: 1px solid #ff7623;
+  border-bottom: 1px solid #AAAAAA;
 }
 
 #content #header .logo {
@@ -1642,19 +1660,109 @@ body {
   height: 90vh;
 }
 
-#content #pages .pages_item {
+#content #pages .landing_pages_item {
   height: 90vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
 }
 
-#accueil {
-  background-image: url("../../images/road-06.jpg");
-  background-position: top center;
-  background-size: cover;
+#content #pages .landing_pages_item .landing_form {
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  padding: 5px;
+}
+
+#content #pages .landing_pages_item .landing_form legend {
+  font-size: 40px;
+  line-height: 60px;
+}
+
+#content #pages .landing_pages_item .landing_form input {
+  width: 40%;
+  border-radius: 3px;
+  border: 1px solid #CECECE;
+}
+
+#content #pages .landing_pages_item .landing_form button {
+  border-radius: 3px;
+  color: white;
+}
+
+#content #pages .landing_pages_item .landing_form select {
+  border-radius: 3px;
+  border: 1px solid #CECECE;
 }
 
 #accueil #presentation {
   background-color: rgba(255, 255, 255, 0.6);
   height: 90vh;
+}
+
+#expedition {
+  background-image: url("../../images/motion-blur-wallpaper-2.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+#expedition .landing_form {
+  border-radius: 5px;
+  background-color: white;
+}
+
+#expedition .landing_form legend {
+  font-size: 40px;
+  line-height: 60px;
+  color: #f39c12;
+}
+
+#expedition .landing_form legend::after {
+  border-bottom: 1px solid #f39c12;
+}
+
+#expedition .landing_form button {
+  background-color: #f39c12;
+}
+
+#transport {
+  background-image: url("../../images/mashina-staraya-gorod-fon.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+#transport .landing_form {
+  border-radius: 5px;
+  background-color: white;
+}
+
+#transport .landing_form legend {
+  font-size: 40px;
+  line-height: 60px;
+  color: #3498db;
+}
+
+#transport .landing_form legend::after {
+  border-bottom: 1px solid #3498db;
+}
+
+#transport .landing_form button {
+  background-color: #3498db;
+}
+
+#recherche {
+  background-image: url("../../images/desk-wallpapers-3.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+#recherche .landing_form {
+  border-radius: 5px;
+  background-color: white;
 }
 
 /*# sourceMappingURL=app.css.map */
