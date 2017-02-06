@@ -1552,6 +1552,22 @@
   content: "\f27b";
 }
 
+#user-popup {
+  text-align: center;
+}
+
+#user-popup input {
+  width: 90%;
+}
+
+#user-popup input[type="checkbox"] {
+  width: 25px;
+}
+
+#user-popup .uk-button {
+  border-radius: 3px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -1672,7 +1688,7 @@ body {
 }
 
 #content #pages .landing_pages_item .landing_form {
-  width: 50%;
+  width: 60%;
   margin-left: 25%;
   text-align: center;
   padding: 5px;

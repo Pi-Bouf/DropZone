@@ -1,4 +1,6 @@
 @import 'flaticon';
+@import 'login-popup';
+
 body {
 	margin: 0;
 	padding: 0;
@@ -100,7 +102,7 @@ body {
 			justify-content: center;
 			flex-direction: column;
 			.landing_form {
-				width: 50%;
+				width: 60%;
 				margin-left: 25%;
 				text-align: center;
 				padding: 5px;
