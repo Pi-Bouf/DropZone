@@ -1,10 +1,12 @@
 
 $(document).ready(function () {
     var datepicker = UIkit.datepicker($('.datePicker'), {
-        i18n: {
-            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            weekdays: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
-        }
+        weekstart: 0,
+        format: 'YYYY-MM-DD'
+    });
+    var birthday = UIkit.datepicker($('#birthday'), {
+        weekstart: 0,
+        format: 'YYYY-MM-DD'
     });
 
     /*

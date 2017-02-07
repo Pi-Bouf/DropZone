@@ -9,4 +9,13 @@
     .uk-button {
         border-radius: 3px;
     }
+    .uk-flex-item-1 a {
+        outline: none;
+        span {
+            color: #3498db;
+        }
+        div {
+            color: dimgrey;
+        }
+    }
 }
