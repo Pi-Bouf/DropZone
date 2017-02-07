@@ -8,39 +8,35 @@ use App\User;
 
 class UserController extends Controller
 {
-    
-    // Retour RIEN DU TOUT PARCE QUE C'EST INUTILE
-    private function getUserById($user_id){
-      return User::where('users.userID', '=', $user_id)->firstOrFail();
-    }
-
-
-    // Les commentaires en PHP c'est ça:
-
     /**
-    * Retourne une vue avec en data l'utilisateur choisi.
+    * Retourne la vue profil avec en data l'utilisateur choisi.
     * @param Integer $user_id
     * @return view UserProfile
     */
     public function getProfile($user_id){
-
-
-      // $user = self::getUserById($user_id);  --> t'es tellement mauvais...
-      $user = User::whereId($user_id)->firstOrFail(); // Normalement c'est le notre de profile donc Auth::user()... Incompétent, Connard, Nain
-      $data = array('user' => $user, 'page_title' => 'Profil de '.$user->name);
+      $user = User::whereId($user_id)->firstOrFail();
+      $data = array('user' => $user, 'page_title' => 'Profil de '.$user->lastName);
 
       return view('front.pages.user.profile', $data);
     }
 
-    //Affiche le form de modification du profil de l'utilisateur
+    /**
+    * Retourne la vue profil update avec en data l'utilisateur choisi.
+    * @param Integer $user_id
+    * @return view UserProfile_Update
+    */
     public function getProfileUpdate($user_id){
-      $user = self::getUserById($user_id);
-      $data = array('user' => $user, 'page_title' => 'Profil de '.$user->name);
+      $user = User::whereId($user_id)->firstOrFail();
+      $data = array('user' => $user, 'page_title' => 'Mise à jour du de mon profil');
 
       return view('front.pages.user.profile_update', $data);
     }
 
-    //Met à jour le profil de l'utilisateur
+    /**
+    * Met à jour le profil de l'utilisateur
+    * @param Request $request
+    * @return view /home ou back()->withInput() si erreur
+    */
     public function postProfileUpdate(Request $request){
       $rules = array(
         'leChamp' => 'required|max:255',
