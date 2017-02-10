@@ -13,28 +13,28 @@ class VehiculeTableSeeder extends Seeder
 
 			DB::table('vehicules')->insert([
                 'user_id' => '1',
-                'vehicule_types_id' => '1',
+                'vehicule_type_id' => '1',
                 'marque' => 'Renault',
                 'modele' => 'Megan'
 				]);
 
 			DB::table('vehicules')->insert([
                 'user_id' => '1',
-                'vehicule_types_id' => '1',
+                'vehicule_type_id' => '1',
                 'marque' => 'Renault',
                 'modele' => 'Clio'
 				]);
 
 			DB::table('vehicules')->insert([
                 'user_id' => '1',
-                'vehicule_types_id' => '4',
+                'vehicule_type_id' => '4',
                 'marque' => 'Citroën',
                 'modele' => 'Citroën 23'
 				]);
 
 			DB::table('vehicules')->insert([
                 'user_id' => '2',
-                'vehicule_types_id' => '3',
+                'vehicule_type_id' => '3',
                 'marque' => 'airbus',
                 'modele' => 'a320'
 				]);

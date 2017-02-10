@@ -1,23 +1,45 @@
-@extends('layouts.app', [ 'menu_style' => 'scroll' ]) @section('content')
-<div id="profile" class="landing_pages_item">
-    <div class="landing_form">
-        <form class="uk-form">
-            <fieldset data-uk-margin>
-                <legend>Proposer un transport</legend>
-                <div class="uk-form-row"><input type="text" placeholder="qsdqsd"></div>
-                <div class="uk-form-row"><input type="password" placeholder="qsdqsd"></div>
-                <div class="uk-form-row">
-                  <p>Profil de {{$user->firstName}} {{$user->lastName}}</p>
-                  <p>{{$user->description}}</p>
-                    <select>
-						<option>HEY</option>
-						<option>HOY</option>
-					</select>
-                </div>
+@extends('layouts.app', [ 'menu_style' => 'scroll',
+'includesJs' => [],
+'includesCss' => [] ])
+@section('content')
 
-                <div class="uk-form-row"><button class="uk-button uk-button-primary uk-animation-shake uk-animation-hover">Valider</button></div>
+<div id="profile" class="landing_pages_item">
+    <div data-uk-scrollspy="{cls:'uk-animation-fade', delay:300}" class="landing_form">
+        <div  class="uk-form">
+            <fieldset data-uk-margin>
+              @if(Auth::user()->id == $user->id)
+                <div class="profile_header">Mon profil</div>
+              @else
+                <div class="profile_header">{{$user->firstName}} {{$user->lastName}}</div>
+              @endif
+
+
+
+              @if($user->picLink==null)
+                <img src="../../images/icon-{{$user->sexe}}.png" class="uk-thumbnail-mini uk-border-circle" alt="">
+              @else
+                <img src="../../images/{{$user->picLink}}" class="uk-thumbnail-mini uk-border-circle" alt="">
+              @endif
+
+              <div class="">
+                <i class="notation uk-icon-medium uk-icon-star"></i>
+                <i class="notation uk-icon-medium uk-icon-star"></i>
+                <i class="notation uk-icon-medium uk-icon-star"></i>
+                <i class="notation uk-icon-medium uk-icon-star-half-o"></i>
+                <i class="notation uk-icon-medium uk-icon-star-o"></i>
+              </div>
+
+              <p>Profil de {{$user->firstName}} {{$user->lastName}}</p>
+              <p>{{$user->description}}</p>
+
+
+              </div>
+
+
+
+
             </fieldset>
-        </form>
+        </div>
     </div>
 </div>
 
