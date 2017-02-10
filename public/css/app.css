@@ -1804,4 +1804,16 @@ body {
   background-color: white;
 }
 
+#profile .profile_header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 1.8em;
+}
+
+#profile .notation {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+
 /*# sourceMappingURL=app.css.map */
