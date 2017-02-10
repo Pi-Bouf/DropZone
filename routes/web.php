@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@home')->name('home');
 
 
 Route::get('/search', 'CarteController@index')->name('search');
+Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 
 /*
 | User
