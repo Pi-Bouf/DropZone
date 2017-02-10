@@ -23,6 +23,7 @@ Route::get('/search', 'CarteController@index')->name('search');
 | User
 */
 Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
+Route::get('user/me', 'UserController@getProfile')->name('user_me');
 Route::get('user/{user_id}/update', 'UserController@getProfileUpdate')->name('user_profile_update');
 
 /*

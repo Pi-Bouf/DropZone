@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 
 class UserController extends Controller
 {
     /**
     * Retourne la vue profil avec en data l'utilisateur choisi.
+    * Si "me" est donné en paramètre, affiche le profil de l'utilisateur
     * @param Integer $user_id
     * @return view UserProfile
     */
     public function getProfile($user_id){
+      if($user_id=='me') $user_id = Auth::user()->id;
+
       $user = User::whereId($user_id)->firstOrFail();
       $data = array('user' => $user, 'page_title' => 'Profil de '.$user->lastName);
 
