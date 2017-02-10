@@ -9,6 +9,9 @@
 	<link href="/css/components/datepicker.min.css" rel="stylesheet">
 	<link href="/css/components/accordion.gradient.min.css" rel="stylesheet">
 	<link href="/css/app.css" rel="stylesheet">
+	@foreach($includesCss as $inc)
+	<link href="{{ $inc }}" rel="stylesheet">
+	@endforeach
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/uikit.min.js"></script>
 	<script src="/js/components/datepicker.min.js"></script>
@@ -20,6 +23,9 @@
 	<script src="/js/gsap/plugins/MorphSVGPlugin.min.js"></script>
 	<script src="/js/scrollMenu.js"></script>
 	<script src="/js/global.js"></script>
+	@foreach($includesJs as $inc)
+	<script src="{{ $inc }}"></script>
+	@endforeach
 
 </head>
 
