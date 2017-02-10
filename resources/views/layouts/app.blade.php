@@ -6,22 +6,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="/css/uikit.min.css" rel="stylesheet">
-	<link href="/css/components/datepicker.min.css" rel="stylesheet">
-	<link href="/css/components/accordion.gradient.min.css" rel="stylesheet">
+	<link href="" rel="stylesheet">
+	<link href="" rel="stylesheet">
 	<link href="/css/app.css" rel="stylesheet">
 	@foreach($includesCss as $inc)
 	<link href="{{ $inc }}" rel="stylesheet">
 	@endforeach
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/uikit.min.js"></script>
-	<script src="/js/components/datepicker.min.js"></script>
-	<script src="/js/components/lightbox.min.js"></script>
-	<script src="/js/components/accordion.min.js"></script>
-	<script src="/js/gsap/tweenmax.min.js"></script>
-	<script src="/js/gsap/plugins/AttrPlugin.min.js"></script>
-	<script src="/js/gsap/plugins/DrawSVGPlugin.min.js"></script>
-	<script src="/js/gsap/plugins/MorphSVGPlugin.min.js"></script>
-	<script src="/js/scrollMenu.js"></script>
 	<script src="/js/global.js"></script>
 	@foreach($includesJs as $inc)
 	<script src="{{ $inc }}"></script>
