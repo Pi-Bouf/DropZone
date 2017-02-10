@@ -27,6 +27,11 @@ Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
 Route::get('user/{user_id}/update', 'UserController@getProfileUpdate')->name('user_profile_update');
 
 /*
+| Vehicule
+*/
+Route::get('user/myvehicules', 'VehiculeController@listVehicule')->name('user_vehicule');
+
+/*
 | Login/Logout/Forgot
 */
 // Authentication Routes...
