@@ -79,6 +79,12 @@
                     <div>Compte</div>
                 </a>
             </div>
+            <div class="uk-flex-item-1">
+                <a href="{{ route('user_vehicule') }}">
+                    <span class="fi flaticon-stopwatch-3" style="font-size: 45px;"></span>
+                    <div>Mes véhicules</div>
+                </a>
+            </div>
         </div>
 
         <div style="margin-top: 25px">
@@ -89,6 +95,7 @@
                 </div>
             </form>
         </div>
+        
         @endif
     </div>
 </div>

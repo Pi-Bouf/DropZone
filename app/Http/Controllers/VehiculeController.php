@@ -7,9 +7,17 @@ use Auth;
 
 class VehiculeController extends Controller
 {
-    public function listVehicule() {
-        $vehicules = Auth::user()->vehicules;
-
-        return view('front.pages.vehicule.list', array('vehicules' => $vehicules));
+    /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    public function listVehicule() {   
+        return view('front.pages.vehicule.liste');
     }
 }
