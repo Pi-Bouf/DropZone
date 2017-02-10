@@ -96,11 +96,5 @@
 <script>
     var modal = UIkit.modal("#user-popup");
     modal.show();
-
 </script>
 @endif
-<script>
-    var modal = UIkit.modal("#user-popup");
-    modal.show();
-
-</script>

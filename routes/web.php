@@ -20,10 +20,17 @@ Route::get('/', 'HomeController@home')->name('home');
 Route::get('/search', 'CarteController@index')->name('search');
 Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 
+
+/*
+| Vehicule
+*/
+Route::get('user/myvehicules', 'VehiculeController@listVehicule')->name('user_vehicule');
+
 /*
 | User
 */
 Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
+Route::get('user/me', 'UserController@getProfile')->name('user_me');
 Route::get('user/{user_id}/update', 'UserController@getProfileUpdate')->name('user_profile_update');
 
 /*
