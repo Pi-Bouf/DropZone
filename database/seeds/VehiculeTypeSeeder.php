@@ -24,10 +24,6 @@ class VehiculeTypeSeeder extends Seeder
 				]);
                 
 			DB::table('vehicule_types')->insert([
-                'name' => 'Bateau'
-				]);
-                
-			DB::table('vehicule_types')->insert([
                 'name' => 'Camion'
 				]);
                 

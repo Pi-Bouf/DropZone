@@ -25,6 +25,7 @@ Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 | Vehicule
 */
 Route::get('user/myvehicules', 'VehiculeController@listVehicule')->name('user_vehicule');
+Route::get('user/myvehicules/edit/{vehicule}', 'VehiculeController@getEditVehicule')->name('user_vehicule_edit');
 
 /*
 | User

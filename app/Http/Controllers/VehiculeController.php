@@ -20,4 +20,15 @@ class VehiculeController extends Controller
     public function listVehicule() {   
         return view('front.pages.vehicule.liste');
     }
+
+    public function getEditVehicule(\App\Vehicule $vehicule) {
+        if(Auth::user()->id != $vehicule->user->id) {
+            return redirect()->route('user_vehicule');
+        }
+        return view('front.pages.vehicule.edit', array('vehicule' => $vehicule));
+    }
+
+    public function setDefault() {
+
+    }
 }
