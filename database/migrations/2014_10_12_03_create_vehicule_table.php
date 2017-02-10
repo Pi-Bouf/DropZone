@@ -16,7 +16,7 @@ class CreateVehiculeTable extends Migration
         Schema::create('vehicules', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('vehicule_types_id')->unsigned();
+            $table->integer('vehicule_type_id')->unsigned();
             $table->float('longMax')->nullable();
             $table->float('hautMax')->nullable();
             $table->float('volume')->nullable();
@@ -25,7 +25,7 @@ class CreateVehiculeTable extends Migration
             $table->boolean('isDefault')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('vehicule_types_id')->references('id')->on('vehicule_types');
+            $table->foreign('vehicule_type_id')->references('id')->on('vehicule_types');
         });
     }
 
