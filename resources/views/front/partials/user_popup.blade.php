@@ -55,7 +55,7 @@
                         <input type="password" name="reg_password_confirmation" placeholder="Confirmation du mot de passe..." required>
                         <br><strong>{{ $errors->first('reg_password-confirm') }}</strong>
                     </div>
-                    <div class="uk-form-row"><button class="uk-button uk-button-success">Connexion</button></div>
+                    <div class="uk-form-row"><button class="uk-button uk-button-success">Inscription</button></div>
                 </form>
             </div>
         </div>
