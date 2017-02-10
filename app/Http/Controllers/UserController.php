@@ -16,10 +16,14 @@ class UserController extends Controller
     * @return view UserProfile
     */
     public function getProfile($user_id){
-      if($user_id=='me') $user_id = Auth::user()->id;
+      if($user_id=='me') {
+        $user_id = Auth::user()->id;
+        $page_title = 'Mon profil';
+      }
 
       $user = User::whereId($user_id)->firstOrFail();
-      $data = array('user' => $user, 'page_title' => 'Profil de '.$user->lastName);
+      if(!isset($page_title)) $page_title = 'Profil de '.$user->firstName .' '.$user->lastName;
+      $data = array('user' => $user, 'page_title' => $page_title);
 
       return view('front.pages.user.profile', $data);
     }

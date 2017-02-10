@@ -1793,4 +1793,15 @@ body {
   background-color: white;
 }
 
+#profile {
+  background-image: url("../../images/desk-wallpapers-3.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+#profile .landing_form {
+  border-radius: 5px;
+  background-color: white;
+}
+
 /*# sourceMappingURL=app.css.map */
