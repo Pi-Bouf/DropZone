@@ -19,18 +19,31 @@
                     <div class="uk-width-4-5">
                         <b>Marque: </b> {{ $vehicule->marque }}<br>
                         <b>Modèle: </b> {{ $vehicule->modele }}<br> @if($vehicule->longMax)
-                        <b>Longueur Max: </b> {{ $vehicule->longMax }} @else
-                        <b>Longueur Max: </b>
+                        <b>Longueur Max (cm): </b> {{ $vehicule->longMax }} @else
+                        <b>Longueur Max (cm): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
                         <br> @if($vehicule->hautMax)
-                        <b>Hauteur Max: </b> {{ $vehicule->hautMax }} @else
-                        <b>Hauteur Max: </b>
+                        <b>Hauteur Max (cm): </b> {{ $vehicule->hautMax }} @else
+                        <b>Hauteur Max (cm): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
-                        <br> @if($vehicule->volumeMax)
-                        <b>Volume Max: </b> {{ $vehicule->volumeMax }} @else
-                        <b>Volume Max: </b>
+                        <br> 
+                        @if($vehicule->largMax)
+                        <b>Largeur Max (cm): </b> {{ $vehicule->largMax }} @else
+                        <b>Largeur Max (cm): </b>
+                        <font color="red">Non renseigné.</font>
+                        @endif
+                        <br> 
+                        @if($vehicule->poidMax)
+                        <b>Poid Max (kg): </b> {{ $vehicule->poidMax }} @else
+                        <b>Poid Max (kg): </b>
+                        <font color="red">Non renseigné.</font>
+                        @endif
+                        <br> 
+                        @if($vehicule->volumeMax)
+                        <b>Volume Max (cm³): </b> {{ $vehicule->volumeMax }} @else
+                        <b>Volume Max (cm³): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
                     </div>
