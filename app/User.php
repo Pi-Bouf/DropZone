@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function vehicules() {
-        return $this->hasMany('App\Vehicule');
+        return $this->hasMany('App\Vehicule')->orderBy('isDefault', 'desc');
     }
 }

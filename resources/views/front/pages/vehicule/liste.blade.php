@@ -35,9 +35,12 @@
                         @endif
                     </div>
                 </div>
-                <a style="border-radius: 5px;" class="uk-button uk-button-primary" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">Modifier</a> @if($vehicule->isDefault == 1)
-                <span style="border-radius: 5px;" class="uk-button" disabled>Véhicule par défaut</span> @else
-                <a style="border-radius: 5px;" class="uk-button uk-button-success" href="">Par défaut</a> @endif
+                <a style="border-radius: 5px;" class="uk-button uk-button-primary" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">Modifier</a>
+                @if($vehicule->isDefault == 1)
+                    <span style="border-radius: 5px;" class="uk-button" disabled>Véhicule par défaut</span>
+                @else
+                    <a style="border-radius: 5px;" class="uk-button uk-button-success" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}">Par défaut</a>
+                @endif
 
                 <a style="border-radius: 5px;" class="uk-button uk-button-danger" href="">Supprimer</a>
             </div>
