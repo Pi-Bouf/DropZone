@@ -15,6 +15,17 @@ class UserController extends Controller
     * @param Integer $user_id
     * @return view UserProfile
     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+    * Retourne la vue profile avec en data l'utilisateur choisi.
+    * @param Integer $user_id
+    * @return view UserProfile
+    */
     public function getProfile($user_id){
       if($user_id=='me') {
         $user_id = Auth::user()->id;
@@ -29,11 +40,13 @@ class UserController extends Controller
     }
 
     /**
-    * Retourne la vue profil update avec en data l'utilisateur choisi.
+    * Retourne la vue profile update avec en data l'utilisateur choisi.
     * @param Integer $user_id
     * @return view UserProfile_Update
     */
-    public function getProfileUpdate($user_id){
+    public function getProfileUpdate(){
+
+      $user_id = Auth::user();
       $user = User::whereId($user_id)->firstOrFail();
       $data = array('user' => $user, 'page_title' => 'Mise à jour du de mon profil');
 

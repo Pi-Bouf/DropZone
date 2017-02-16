@@ -31,7 +31,7 @@ Route::get('user/myvehicules/edit/{vehicule}', 'VehiculeController@getEditVehicu
 | User
 */
 Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
-Route::get('user/{user_id}/update', 'UserController@getProfileUpdate')->name('user_profile_update');
+Route::get('user/me/update', 'UserController@getProfileUpdate')->name('user_profile_update');
 
 /*
 | Login/Logout/Forgot
