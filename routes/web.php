@@ -27,6 +27,9 @@ Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 Route::get('user/myvehicules', 'VehiculeController@listVehicule')->name('user_vehicule');
 Route::post('user/myvehicules/edit/{vehicule}', 'VehiculeController@postEditVehicule')->name('user_vehicule_edit_post');
 Route::get('user/myvehicules/edit/{vehicule}', 'VehiculeController@getEditVehicule')->name('user_vehicule_edit');
+Route::get('user/myvehicules/add', 'VehiculeController@getAddVehicule')->name('user_vehicule_add');
+Route::post('user/myvehicules/add', 'VehiculeController@postAddVehicule')->name('user_vehicule_add_post');
+Route::get('user/myvehicules/delete/{vehicule}', 'VehiculeController@deleteVehicule')->name('user_vehicule_delete');
 Route::get('user/myvehicules/setDefault/{vehicule}', 'VehiculeController@setDefault')->name('user_vehicule_default');
 
 /*

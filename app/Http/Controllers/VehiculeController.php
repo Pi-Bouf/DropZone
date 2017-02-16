@@ -29,39 +29,60 @@ class VehiculeController extends Controller
     }
     
     public function postEditVehicule(\App\Vehicule $vehicule, Request $request) {
-        
-        $rules = array(
-        'marque' => 'required|max:255',
-        'modele' => 'required|max:255',
-        'longMax' => 'required|numeric',
-        'hautMax' => 'required|numeric',
-        'largMax' => 'required|numeric',
-        'poidMax' => 'required|numeric',
-        'volume' => 'required|numeric',
-        );
-        
-        $this->validate($request, $rules);
-        
-        $vehicule->marque = $request->input('marque');
-        $vehicule->modele = $request->input('modele');
-        $vehicule->longMax = $request->input('longMax');
-        $vehicule->hautMax = $request->input('hautMax');
-        $vehicule->largMax = $request->input('largMax');
-        $vehicule->poidMax = $request->input('poidMax');
-        $vehicule->volume = $request->input('volume');
-        
-        if($vehicule->save()) {
-            return redirect()->back()->with('success', 'ok');
-        } else {
-            return redirect()->back()->with('error', 'ok');
+        if(Auth::user()->id == $vehicule->user->id) {
+            $rules = array(
+            'marque' => 'required|max:255',
+            'modele' => 'required|max:255',
+            'longMax' => 'required|numeric',
+            'hautMax' => 'required|numeric',
+            'largMax' => 'required|numeric',
+            'poidMax' => 'required|numeric',
+            'volume' => 'required|numeric',
+            );
+            
+            $this->validate($request, $rules);
+            
+            $vehicule->marque = $request->input('marque');
+            $vehicule->modele = $request->input('modele');
+            $vehicule->longMax = $request->input('longMax');
+            $vehicule->hautMax = $request->input('hautMax');
+            $vehicule->largMax = $request->input('largMax');
+            $vehicule->poidMax = $request->input('poidMax');
+            $vehicule->volume = $request->input('volume');
+            
+            if($vehicule->save()) {
+                return redirect()->route('user_vehicule')->with('edit', 'ok');
+            } else {
+                return redirect()->back()->with('error', 'ok');
+            }
         }
+        return redirect()->route('user_vehicule');
+    }
+    
+    public function deleteVehicule(\App\Vehicule $vehicule) {
+        if(Auth::user()->id == $vehicule->user->id) {
+            $vehicule->delete();
+            return redirect()->route('user_vehicule')->with('delete', 'ok');
+        }
+        return redirect()->route('user_vehicule');
     }
     
     public function setDefault(\App\Vehicule $vehicule) {
-        Auth::user()->vehicules()->update(array('isDefault' => 0));
-        $vehicule->isDefault = true;
-        $vehicule->save();
+        if(Auth::user()->id == $vehicule->user->id) {
+            Auth::user()->vehicules()->update(array('isDefault' => 0));
+            $vehicule->isDefault = true;
+            $vehicule->save();
+            
+            return redirect()->back();
+        }
+        return redirect()->route('user_vehicule');
+    }
+
+    public function getAddVehicule() {
+        return view('front.pages.vehicule.add');
+    }
+
+    public function postAddVehicule(Request $request) {
         
-        return redirect()->back();
     }
 }
