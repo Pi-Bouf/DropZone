@@ -4,10 +4,15 @@
     <div class="landing_form">
         <div class="uk-form">
             <fieldset data-uk-margin>
-                <legend style="color: #3498db">Expedier un colis</legend>
+                <legend style="color: #3498db">Mes véhicules</legend>
             </fieldset>
         </div>
-
+        @if(!Auth::user()->vehicules->count())
+            <div class="uk-alert uk-alert-info"> Aucun véhicule !</div>
+        @endif 
+        @if(session('edit'))
+            <div class="uk-alert uk-alert-success"> Véhicule sauvegardé ! </div>
+        @endif 
         <div class="uk-accordion" style="margin: 10px;" data-uk-accordion>
             @foreach(Auth::user()->vehicules as $vehicule)
             <h3 class="uk-accordion-title">{{ $vehicule->marque }} {{ $vehicule->modele }}</h3>
@@ -41,8 +46,8 @@
                         <font color="red">Non renseigné.</font>
                         @endif
                         <br> 
-                        @if($vehicule->volumeMax)
-                        <b>Volume Max (cm³): </b> {{ $vehicule->volumeMax }} @else
+                        @if($vehicule->volume)
+                        <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
                         <b>Volume Max (cm³): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
@@ -55,10 +60,11 @@
                     <a style="border-radius: 5px;" class="uk-button uk-button-success" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}">Par défaut</a>
                 @endif
 
-                <a style="border-radius: 5px;" class="uk-button uk-button-danger" href="">Supprimer</a>
+                <a style="border-radius: 5px;" class="uk-button uk-button-danger" href="{{ route('user_vehicule_delete', array('vehicule' => $vehicule->id)) }}">Supprimer</a>
             </div>
             @endforeach
         </div>
+        <a href="{{ route('user_vehicule_add') }}" class="uk-button uk-button-primary">Ajouter un véhicule</a>
     </div>
 </div>
 

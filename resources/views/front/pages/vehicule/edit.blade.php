@@ -7,9 +7,7 @@
             <fieldset data-uk-margin>
                 <legend style="color: #3498db">{{ $vehicule->marque }} {{ $vehicule->modele }}</legend>
             </fieldset>
-            @if(session('success'))
-            <div class="uk-alert uk-alert-success"> Véhicule sauvegardé ! </div>
-            @endif @if(session('error'))
+            @if(session('error'))
             <div class="uk-alert uk-alert-danger"> Erreur lors de l'enregistrement, veuillez vérifier les données !</div>
             @endif
             <div class="uk-form-row">
