@@ -46,9 +46,8 @@ class UserController extends Controller
     */
     public function getProfileUpdate(){
 
-      $user_id = Auth::user();
-      $user = User::whereId($user_id)->firstOrFail();
-      $data = array('user' => $user, 'page_title' => 'Mise à jour du de mon profil');
+      $user = Auth::user();
+      $data = array('user' => $user);
 
       return view('front.pages.user.profile_update', $data);
     }

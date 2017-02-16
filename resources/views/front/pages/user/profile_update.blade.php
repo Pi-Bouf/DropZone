@@ -1,4 +1,4 @@
-@extends('layouts.app', [ 'menu_style' => 'scroll',
+@extends('layouts.app', [ 'page_title' => 'DropZone - Modification du profil', 'menu_style' => 'scroll',
 'includesJs' => [],
 'includesCss' => [] ])
 @section('content')
