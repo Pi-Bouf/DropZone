@@ -19,25 +19,41 @@
                     <div class="uk-width-4-5">
                         <b>Marque: </b> {{ $vehicule->marque }}<br>
                         <b>Modèle: </b> {{ $vehicule->modele }}<br> @if($vehicule->longMax)
-                        <b>Longueur Max: </b> {{ $vehicule->longMax }} @else
-                        <b>Longueur Max: </b>
+                        <b>Longueur Max (cm): </b> {{ $vehicule->longMax }} @else
+                        <b>Longueur Max (cm): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
                         <br> @if($vehicule->hautMax)
-                        <b>Hauteur Max: </b> {{ $vehicule->hautMax }} @else
-                        <b>Hauteur Max: </b>
+                        <b>Hauteur Max (cm): </b> {{ $vehicule->hautMax }} @else
+                        <b>Hauteur Max (cm): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
-                        <br> @if($vehicule->volumeMax)
-                        <b>Volume Max: </b> {{ $vehicule->volumeMax }} @else
-                        <b>Volume Max: </b>
+                        <br> 
+                        @if($vehicule->largMax)
+                        <b>Largeur Max (cm): </b> {{ $vehicule->largMax }} @else
+                        <b>Largeur Max (cm): </b>
+                        <font color="red">Non renseigné.</font>
+                        @endif
+                        <br> 
+                        @if($vehicule->poidMax)
+                        <b>Poid Max (kg): </b> {{ $vehicule->poidMax }} @else
+                        <b>Poid Max (kg): </b>
+                        <font color="red">Non renseigné.</font>
+                        @endif
+                        <br> 
+                        @if($vehicule->volumeMax)
+                        <b>Volume Max (cm³): </b> {{ $vehicule->volumeMax }} @else
+                        <b>Volume Max (cm³): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
                     </div>
                 </div>
-                <a style="border-radius: 5px;" class="uk-button uk-button-primary" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">Modifier</a> @if($vehicule->isDefault == 1)
-                <span style="border-radius: 5px;" class="uk-button" disabled>Véhicule par défaut</span> @else
-                <a style="border-radius: 5px;" class="uk-button uk-button-success" href="">Par défaut</a> @endif
+                <a style="border-radius: 5px;" class="uk-button uk-button-primary" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">Modifier</a>
+                @if($vehicule->isDefault == 1)
+                    <span style="border-radius: 5px;" class="uk-button" disabled>Véhicule par défaut</span>
+                @else
+                    <a style="border-radius: 5px;" class="uk-button uk-button-success" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}">Par défaut</a>
+                @endif
 
                 <a style="border-radius: 5px;" class="uk-button uk-button-danger" href="">Supprimer</a>
             </div>

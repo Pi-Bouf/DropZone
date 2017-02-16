@@ -6,7 +6,6 @@ var name=1;
 function addEtape(){
     div = document.getElementById('etape')
     name++;
-    alert('addEtape');
     newInput = document.createElement('input');
  
     newInput.setAttribute('type','text');
@@ -21,9 +20,13 @@ function addEtape(){
 }
 
 function occa(){
-    alert('occa');
+    console.log('occaa');
+    document.getElementById('trajetOcca').style.display = "block";
+    document.getElementById('trajetRegu').style.display = "none";
 }
 
 function regu(){
-    alert('regu()');
+    console.log('regu');
+    document.getElementById('trajetOcca').style.display = "none";
+    document.getElementById('trajetRegu').style.display = "block";
 }
