@@ -1633,6 +1633,9 @@ body {
   #content .landing_form input {
     width: 90% !important;
   }
+  #content .landing_form .gender {
+    width: 20px !important;
+  }
 }
 
 #page {
@@ -1825,6 +1828,10 @@ body {
 #profile_update .landing_form {
   border-radius: 5px;
   background-color: white;
+}
+
+.gender {
+  width: 20px !important;
 }
 
 /*# sourceMappingURL=app.css.map */
