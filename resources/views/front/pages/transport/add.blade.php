@@ -20,7 +20,7 @@
 </style>
 <h1 class="center">Proposer un transport</h1>
 
-<form method="POST" id="formAjoutTransport" action="{{ route('')) }}">
+<form method="POST" id="formAjoutTransport" action="{{url('/postaddtransport')}}">
     <div id="divLeft" class="divFormAddTransport">
         <h2>1. Information sur le trajet</h2>
         <label class="labelForm" for="villeDepart">Ville départ : </label><br>
