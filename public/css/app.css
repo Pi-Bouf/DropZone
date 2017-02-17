@@ -1630,6 +1630,9 @@ body {
     font-size: 20px !important;
     line-height: 40px !important;
   }
+  #content .landing_form textarea {
+    width: 90% !important;
+  }
   #content .landing_form input {
     width: 90% !important;
   }
@@ -1716,6 +1719,13 @@ body {
 
 #content #pages .landing_pages_item .landing_form input {
   width: 40%;
+  border-radius: 3px;
+  border: 1px solid #CECECE;
+}
+
+#content #pages .landing_pages_item .landing_form textarea {
+  width: 40%;
+  height: 100px;
   border-radius: 3px;
   border: 1px solid #CECECE;
 }

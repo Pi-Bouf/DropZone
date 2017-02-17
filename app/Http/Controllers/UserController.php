@@ -40,8 +40,8 @@ class UserController extends Controller
     }
 
     /**
-    * Retourne la vue profile update avec en data l'utilisateur choisi.
-    * @param Integer $user_id
+    * Retourne la vue profile update avec en data l'utilisateur connecté
+    * @param I
     * @return view UserProfile_Update
     */
     public function getProfileUpdate(){
