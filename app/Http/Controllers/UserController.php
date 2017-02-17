@@ -59,21 +59,34 @@ class UserController extends Controller
     */
     public function postProfileUpdate(Request $request){
       $rules = array(
-        'leChamp' => 'required|max:255',
-        //les rules à ajouter
+        'firstName' => 'required|max:50|string',
+        'lastName' => 'required|max:75|string',
+        'gender' => 'in:0,1',
+        'email' => 'required|max:100|email',
+        'reg_birthday' => 'required|date',
+        'phone' => 'required|max:9999999999|numeric',
+        'description' => 'required|max:255|string',
       );
-
       $this->validate($request, $rules);
 
-      $user = Auth::user();
-      //$user->nom = $request->input('name');
-      //$user->prenom = $request->input('name');
 
-      if($user->save()){
-        return redirect()->route('/home');
-      }else{
-        return redirect()->back()->withInput();
+
+      $user = Auth::user();
+      $user->firstName = $request->input('firstName');
+      $user->lastName = $request->input('lastName');
+      $user->sexe = ($request->input('gender') == '0') ? 'h' : 'f';
+
+      $user->email = $request->input('email');
+      $user->birthday = date('Y-m-d', strtotime(str_replace('/', '-', $request->input('reg_birthday'))));
+      $user->phone = $request->input('phone');
+      $user->description = $request->input('description');
+
+      if($user->save()) {
+          return redirect()->route('user_profile_update')->with('edit', 'ok');
+      } else {
+          return redirect()->back()->with('error', 'ok');
       }
+
     }
 
 

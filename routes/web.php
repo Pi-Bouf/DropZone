@@ -21,7 +21,7 @@ Route::get('/search', 'CarteController@index')->name('search');
 
 
 /*
-| 
+|
 */
 Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 Route::get('/postaddtransport', 'TransportController@addData')->name('postaddtransport');
@@ -42,6 +42,7 @@ Route::get('user/myvehicules/setDefault/{vehicule}', 'VehiculeController@setDefa
 */
 Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
 Route::get('user/me/update', 'UserController@getProfileUpdate')->name('user_profile_update');
+Route::post('user/me/update', 'UserController@postProfileUpdate')->name('user_profile_update_post');
 
 /*
 | Login/Logout/Forgot
