@@ -23,15 +23,15 @@
 <form method="POST" id="formAjoutTransport" action="{{url('/postaddtransport')}}">
     <div id="divLeft" class="divFormAddTransport">
         <h2>1. Information sur le trajet</h2>
-        <label class="labelForm" for="villeDepart">Ville départ : </label><br>
-        <input class="inputForm" type="text" id="villeDepart" name="villeDepart"><br><br>
+        <label class="labelForm" for="villeDepart" autocomplete="on">Ville départ : </label><br>
+        <input class="inputForm" type="text" id="villeDepart" name="villeDepart" onchange="marqueur()"><br><br>
 
         <label class="labelForm" for="villeArrivee">Ville arrivée : </label><br>
-        <input class="inputForm" type="text" id="villeArrivee" name="villeArrivee"><br><br>
+        <input class="inputForm" type="text" id="villeArrivee" name="villeArrivee" onchange="marqueur()"><br><br>
 
         <label class="labelForm" for="villeEtape">Villes étapes : </label><br>
         <div style="display:inline-block" id="etape">
-            1.<input class="inputForm" type="text" name="villeEtape1"><br>
+            1.<input class="inputForm" type="text" name="villeEtape1" onchange="marqueur()"><br>
         </div>
         <button type="button" onclick="addEtape()" id="ajoutButton">+</button>
         <br><br>
@@ -83,8 +83,11 @@
         <label for="pd">Poids disponible :</label><input type="number" id="pd" name="pd"><br>
     </div>
     <div class="uk-form-row"><button class="uk-button uk-button-primary">Proposer</button></div>
+
+
+    <div id="map" style="width:300px; height:300px;"></div>
 </form>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyBG7UMpAqWGL9dA_zbG3Safn8TqYI4x2hs" async defer></script>
 
 @endsection
