@@ -1,7 +1,11 @@
 var div;
 var newInput;
 var name = 1;
-
+var tabEtape=[];
+var tabAuto=[];
+var tabLatEtape=[];
+var tabLngEtape=[];
+var waypts = [];
 function addEtape() {
     div = document.getElementById('etape')
     name++;
@@ -11,7 +15,8 @@ function addEtape() {
     newInput = document.createElement('input');
 
     newInput.setAttribute('type', 'text');
-    newInput.setAttribute('name', 'villeEtape' + name);
+    newInput.setAttribute('id', 'villeEtape' + name);
+    newInput.setAttribute('name', 'villeEtape');
     div.appendChild(newInput);
     div.appendChild(document.createElement('br'));
     if (name == 5) {
@@ -19,7 +24,17 @@ function addEtape() {
         var but = document.getElementById('ajoutButton');
         e.removeChild(but);
     }
+  
+        tabEtape[name] = document.getElementById('villeEtape'+name);
+        tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name]);
+        google.maps.event.addListener(tabAuto[name], 'place_changed', function () {
+            var place = tabAuto[name].getPlace();
+            tabLatEtape[name] = place.geometry.location.lat();
+            tabLngEtape[name] = place.geometry.location.lng();
+            marqueur();
+                    
 
+        });   
 }
 
 function occa() {
@@ -32,22 +47,14 @@ function regu() {
     document.getElementById('trajetRegu').style.display = "block";
 }
 
-function change(){
-	var myLatLng1 = {lat: 44.566667, lng: 6.083333};
-	monCercle = new google.maps.Circle(null);
-	tailleCercle[0]=document.getElementById('taille').value*1;
-	cercle ={
-	map: map,
-	center: myLatLng1,
-	radius: tailleCercle[0]
-  }
-  monCercle = new google.maps.Circle(cercle);
-}
+
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 46.797, lng: 2.544},
-    zoom: 5
-  });
+    directionsDisplay = new google.maps.DirectionsRenderer();
+     map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 46.797, lng: 2.544},
+        zoom: 5
+     });
+     directionsDisplay.setMap(map);
     google.maps.event.addDomListener(window, 'load', initialize);
 }
 
@@ -58,41 +65,94 @@ function showMarkers() {
   }
 }
 
-function marqueur(){
-    alert('change');
-}
 var markDep;
+
+var latDepart;
+var lngDepart;
+
+var latArrivee;
+var lngArrivee;
+
+var latEtape;
+var lngEtape;
+
 function initialize() {
 
-var input = document.getElementById('villeDepart');
-var autocomplete = new google.maps.places.Autocomplete(input);
-google.maps.event.addListener(autocomplete, 'place_changed', function () {
-    var place = autocomplete.getPlace();
-    var lat = place.geometry.location.lat();
-    var lng = place.geometry.location.lng();
-            
-    markDep = new google.maps.Marker({
-                position : {lat,lng},
-                map: map,
-                title: ''
-    });
-});
+        var inputDepart = document.getElementById('villeDepart');
+        var autocompleteDepart = new google.maps.places.Autocomplete(inputDepart);
+        google.maps.event.addListener(autocompleteDepart, 'place_changed', function () {
+            var place = autocompleteDepart.getPlace();
+            latDepart = place.geometry.location.lat();
+            lngDepart = place.geometry.location.lng();
+            marqueur();
+                    
 
-var inputArrivee = document.getElementById('villeArrivee');
-var autocomplete = new google.maps.places.Autocomplete(input);
-google.maps.event.addListener(autocomplete, 'place_changed', function () {
-    var place = autocomplete.getPlace();
-    var lat = place.geometry.location.lat();
-    var lng = place.geometry.location.lng();
-            
-    markDep = new google.maps.Marker({
-                position : {lat,lng},
-                map: map,
-                title: ''
-    });
-});
+        });
+        var inputArrivee = document.getElementById('villeArrivee');
+        var autocompleteArrivee = new google.maps.places.Autocomplete(inputArrivee);
+        google.maps.event.addListener(autocompleteArrivee, 'place_changed', function () {
+            var place = autocompleteArrivee.getPlace();
+            latArrivee = place.geometry.location.lat();
+            lngArrivee = place.geometry.location.lng();
+            marqueur();
+                    
+
+        });  
+        var inputEtape1 = document.getElementById('villeEtape1');
+        var autocompleteEtape1 = new google.maps.places.Autocomplete(inputEtape1);
+        google.maps.event.addListener(autocompleteEtape1, 'place_changed', function () {
+            var place = autocompleteEtape1.getPlace();
+            latEtape1 = place.geometry.location.lat();
+            lngEtape1 = place.geometry.location.lng();
+            marqueur();
+                    
+
+        });     
             //alert("This function is working!");
             //alert(place.name);
            // alert(place.address_components[0].long_name);
 
 }
+
+function marqueur(){
+    
+    var directionsService = new google.maps.DirectionsService();
+    if(document.getElementById('villeDepart').value!="" && document.getElementById('villeArrivee').value!="")
+    {
+        document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
+        document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
+
+        //document.getElementById('villeEtapeHidden').value=""
+
+        var etape = document.getElementsByName('villeEtape');
+        for (var i = 0; i < etape.length; i++) {
+            if (etape[i].value != "") {
+                alert("salut"+etape.value);
+                waypts.push({
+                    location: etape[i].value
+                });
+            }
+        }
+
+        document.getElementById('btProposer').disabled  = false;
+        var depart = new google.maps.LatLng(latDepart, lngDepart);
+        var arrivee = new google.maps.LatLng(latArrivee, lngArrivee);
+        var request = {
+            destination: arrivee,
+            origin: depart,
+            waypoints: waypts,
+            travelMode: 'DRIVING'
+        };
+
+        // Pass the directions request to the directions service.
+        directionsService.route(request, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            } else{
+            }
+        });
+    } else {
+        document.getElementById('btProposer').disabled  = true;
+    }
+}
+

@@ -24,7 +24,7 @@ Route::get('/search', 'CarteController@index')->name('search');
 |
 */
 Route::get('/addtransport', 'TransportController@index')->name('addtransport');
-Route::get('/postaddtransport', 'TransportController@addData')->name('postaddtransport');
+Route::post('/postaddtransport', 'TransportController@addData')->name('postaddtransport');
 
 /*
 | Vehicule

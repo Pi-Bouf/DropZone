@@ -21,12 +21,12 @@ class CreateTransportTable extends Migration
             $table->tinyInteger('detourDepotMax');
             $table->boolean('withHighway');
             $table->boolean('natureTransport')->default(0); // 0: ponctuel, 1: régulier
-            $table->datetime('beginningDate');
-            $table->string('frequency')->nullable(); // [1/s (1 par semain)], [5/m (5 fois par mois)]
-            $table->datetime('regularyBeginningDate');
-            $table->datetime('regularyEndingDate');
-            $table->time('beginningHour');
-            $table->text('information');
+            $table->datetime('beginningDate')->nullable();
+            $table->string('frequency')->nullable()->nullable(); // [1/s (1 par semain)], [5/m (5 fois par mois)]
+            $table->datetime('regularyBeginningDate')->nullable();
+            $table->datetime('regularyEndingDate')->nullable();
+            $table->time('beginningHour')->nullable();
+            $table->text('information')->nullable();
             $table->float('longMax')->nullable();
             $table->float('hautMax')->nullable();
             $table->float('largMax')->nullable();
