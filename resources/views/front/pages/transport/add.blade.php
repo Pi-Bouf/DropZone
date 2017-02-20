@@ -24,7 +24,7 @@
     {{ csrf_field() }}
     <div id="divLeft" class="divFormAddTransport ">
         <h2>1. Information sur le trajet</h2>
-        <label class="labelForm" for="villeDepart">Ville départ : </label><br>
+        <label class="labelForm" for="villeDepart">Ville départ :</label><br>
         <input class="inputForm" type="text" id="villeDepart" name="villeDepart" onchange="marqueur()">
         <input id="villeDepartHidden" type="hidden" value="">
         <br><br>
