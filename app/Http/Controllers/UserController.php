@@ -23,7 +23,8 @@ class UserController extends Controller
 
     /**
     * Retourne la vue profile avec en data l'utilisateur choisi.
-    * @param Integer $user_id
+    * Si c'est /me retourne la vue profile de l'utilisateur connecté
+    * @param Integer $user_id ou string 'me'
     * @return view UserProfile
     */
     public function getProfile($user_id){
@@ -31,17 +32,22 @@ class UserController extends Controller
         $user_id = Auth::user()->id;
         $page_title = 'Mon profil';
       }
-
       $user = User::whereId($user_id)->firstOrFail();
+
+      /////////////////////////////////////////////////////////////
+      // ICI LE PUTAIN DE CODE POUR RECUP LE VEHICULE PAR DEFAUT //
+      /////////////////////////////////////////////////////////////
+
+      $age = intval(date('Y', time() - strtotime($user->birthday.' 23:59:59'))) - 1970;  //Soustraire 1970 parce que strtotime calcule le temps depuis 1970-01-01
       if(!isset($page_title)) $page_title = 'Profil de '.$user->firstName .' '.$user->lastName;
-      $data = array('user' => $user, 'page_title' => $page_title);
+      $data = array('user' => $user, 'age' => $age, 'page_title' => $page_title);
 
       return view('front.pages.user.profile', $data);
     }
 
     /**
     * Retourne la vue profile update avec en data l'utilisateur connecté
-    * @param I
+    * @param
     * @return view UserProfile_Update
     */
     public function getProfileUpdate(){

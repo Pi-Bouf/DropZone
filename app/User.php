@@ -30,6 +30,9 @@ class User extends Authenticatable
     public function vehicules() {
         return $this->hasMany('App\Vehicule')->orderBy('isDefault', 'desc');
     }
-    
+
+    public function default_vehicule(){
+      return $this->hasOne('App\Vehicule')->where('isDefault')->orderBy('desc');
+    }
 
 }
