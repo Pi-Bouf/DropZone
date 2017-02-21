@@ -14,19 +14,13 @@ class VilleTableSeeder extends Seeder
         DB::table('villes')->insert([
             'latitude' => 44.560132,
             'longitude' => 6.080900,
-            'name' => "Gap",
-            'codePostal' => "05000",
-            'departement' => "Hautes-Alpes",
-            'region' => "PACA"
+            'name' => "Gap"
         ]);
 
         DB::table('villes')->insert([
             'latitude' => 44.560132,
             'longitude' => 6.080900,
-            'name' => "Grenoble",
-            'codePostal' => "38000",
-            'departement' => "Isère",
-            'region' => "PACA"
+            'name' => "Grenoble"
         ]);
     }
 }

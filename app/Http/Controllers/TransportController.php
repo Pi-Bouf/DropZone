@@ -43,8 +43,10 @@ class TransportController extends Controller
             $transport->poidMax = $request->input('pd');
             $transport->volume = $request->input('volume');
             
+            
             if($transport->save()) {
-                return 'gg';
+                
+
             } else {
                 return 'fait chier';
             }

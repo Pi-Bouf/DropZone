@@ -102,8 +102,8 @@ function initialize() {
         var autocompleteEtape1 = new google.maps.places.Autocomplete(inputEtape1);
         google.maps.event.addListener(autocompleteEtape1, 'place_changed', function () {
             var place = autocompleteEtape1.getPlace();
-            latEtape1 = place.geometry.location.lat();
-            lngEtape1 = place.geometry.location.lng();
+            tabLatEtape[1] = place.geometry.location.lat();
+            tabLngEtape[1] = place.geometry.location.lng();
             marqueur();
                     
 
@@ -122,12 +122,14 @@ function marqueur(){
         document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
         document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
 
-        //document.getElementById('villeEtapeHidden').value=""
 
         var etape = document.getElementsByName('villeEtape');
+        var e
         for (var i = 0; i < etape.length; i++) {
+            e=i+1;
+            alert('euuuu ' + tabLatEtape[e]+';'+tabLngEtape[e]);
+            document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e];
             if (etape[i].value != "") {
-                alert("salut"+etape.value);
                 waypts.push({
                     location: etape[i].value
                 });

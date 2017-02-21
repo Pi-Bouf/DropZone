@@ -41,6 +41,11 @@
         </div>
         <button type="button" onclick="addEtape()" id="ajoutButton">+</button>
         <br><br>
+        <input id="villeEtapeHidden1" type="hidden" value="">
+        <input id="villeEtapeHidden2" type="hidden" value="">
+        <input id="villeEtapeHidden3" type="hidden" value="">
+        <input id="villeEtapeHidden4" type="hidden" value="">
+        <input id="villeEtapeHidden5" type="hidden" value="">
         <label class="labelForm" for="detour">Détour maximum : </label><br>
         <input class="inputForm" type="number" id="detour" name="detour"> km<br><br>
 

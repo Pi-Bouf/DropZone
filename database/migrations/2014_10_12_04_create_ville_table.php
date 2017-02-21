@@ -18,9 +18,6 @@ class CreateVilleTable extends Migration
           $table->double('latitude');
           $table->double('longitude');
           $table->string('name');
-          $table->string('codePostal');
-          $table->string('departement');
-          $table->string('region');
           $table->timestamps();
       });
     }
