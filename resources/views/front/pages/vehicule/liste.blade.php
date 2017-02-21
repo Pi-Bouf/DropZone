@@ -13,6 +13,9 @@
         @if(session('edit'))
             <div class="uk-alert uk-alert-success"> Véhicule sauvegardé ! </div>
         @endif 
+        @if(session('add'))
+            <div class="uk-alert uk-alert-success"> Véhicule ajouté !</div>
+        @endif 
         <div class="uk-accordion" style="margin: 10px;" data-uk-accordion>
             @foreach(Auth::user()->vehicules as $vehicule)
             <h3 class="uk-accordion-title">{{ $vehicule->marque }} {{ $vehicule->modele }}</h3>

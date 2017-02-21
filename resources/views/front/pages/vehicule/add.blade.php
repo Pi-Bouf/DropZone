@@ -57,6 +57,17 @@
                 @endif                
             </div>
             <div class="uk-form-row">
+                <label for="volume">Type de véhicule:</label>
+                <select name="vehicule_type">
+                    @foreach($vehi_type as $vehi)
+                    <option value="{{ $vehi->id }}">{{ $vehi->name }}</option>
+                    @endforeach
+                </select>
+                @if ($errors->has('vehicule_type'))
+                    <p class="uk-form-help-block">{{ $errors->first('vehicule_type') }}</p>
+                @endif                
+            </div>
+            <div class="uk-form-row">
                 <button class="uk-button uk-button-primary">Ajouter</button>
             </div>
         </form>
