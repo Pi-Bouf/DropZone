@@ -22,7 +22,7 @@ class CreateTransportTable extends Migration
             $table->boolean('withHighway');
             $table->boolean('natureTransport')->default(0); // 0: ponctuel, 1: régulier
             $table->datetime('beginningDate')->nullable();
-            $table->string('frequency')->nullable()->nullable(); // [1/s (1 par semain)], [5/m (5 fois par mois)]
+            $table->string('frequency')->nullable(); // [1/s (1 par semain)], [5/m (5 fois par mois)]
             $table->datetime('regularyBeginningDate')->nullable();
             $table->datetime('regularyEndingDate')->nullable();
             $table->time('beginningHour')->nullable();

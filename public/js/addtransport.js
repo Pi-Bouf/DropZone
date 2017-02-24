@@ -6,6 +6,8 @@ var tabAuto=[];
 var tabLatEtape=[];
 var tabLngEtape=[];
 var waypts = [];
+var place;
+var autoroute = true;
 function addEtape() {
     div = document.getElementById('etape')
     name++;
@@ -28,7 +30,7 @@ function addEtape() {
         tabEtape[name] = document.getElementById('villeEtape'+name);
         tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name]);
         google.maps.event.addListener(tabAuto[name], 'place_changed', function () {
-            var place = tabAuto[name].getPlace();
+            place = tabAuto[name].getPlace();
             tabLatEtape[name] = place.geometry.location.lat();
             tabLngEtape[name] = place.geometry.location.lng();
             marqueur();
@@ -114,22 +116,30 @@ function initialize() {
 
 }
 
+function autorouteClicked(){
+    if(document.getElementById('oui').checked){
+        autoroute = true;
+    } else {
+        autoroute = false;
+    }
+    marqueur();
+}
 function marqueur(){
     
     var directionsService = new google.maps.DirectionsService();
+    var etape;
     if(document.getElementById('villeDepart').value!="" && document.getElementById('villeArrivee').value!="")
     {
         document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
         document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
 
 
-        var etape = document.getElementsByName('villeEtape');
-        var e
+        etape = document.getElementsByName('villeEtape');
+        var e;
         for (var i = 0; i < etape.length; i++) {
             e=i+1;
-            alert('euuuu ' + tabLatEtape[e]+';'+tabLngEtape[e]);
-            document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e];
             if (etape[i].value != "") {
+                document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e];
                 waypts.push({
                     location: etape[i].value
                 });
@@ -141,6 +151,7 @@ function marqueur(){
         var arrivee = new google.maps.LatLng(latArrivee, lngArrivee);
         var request = {
             destination: arrivee,
+            avoidHighways: autoroute,
             origin: depart,
             waypoints: waypts,
             travelMode: 'DRIVING'
@@ -149,7 +160,7 @@ function marqueur(){
         // Pass the directions request to the directions service.
         directionsService.route(request, function(response, status) {
             if (status === google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
+                directionsDisplay.setDirections(response);
             } else{
             }
         });
