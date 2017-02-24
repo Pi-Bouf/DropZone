@@ -133,7 +133,7 @@ function marqueur(){
         document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
         document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
 
-
+        // a changer
         etape = document.getElementsByName('villeEtape');
         var e;
         for (var i = 0; i < etape.length; i++) {
