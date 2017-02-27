@@ -12,13 +12,21 @@ class BackOfficeController extends Controller
     {
         $this->middleware('admin');
     }
-
+    
     public function getDashBoard()
     {
         $data = array(
-            "user" => Auth::user(),
-            "userCount" => User::all()->count()
+        "user" => Auth::user(),
+        "userCount" => User::all()->count(),
         );
         return view('back.pages.dash.home', $data);
+    }
+    
+    public function getUserList()
+    {
+        $data = array(
+        "user" => Auth::user(),
+        );
+        return view('back.pages.user.list', $data);
     }
 }
