@@ -61,3 +61,8 @@ $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+/*
+| Back - Dashboard
+*/
+$this->get('/admin', 'BackOfficeController@getDashBoard')->name('admin_home');
