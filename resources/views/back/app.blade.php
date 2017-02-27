@@ -8,28 +8,28 @@
     <meta name="description" content="Developed By M Abdur Rokib Promy">
     <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
     <!-- bootstrap 3.0.2 -->
-    <link href="backoff/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link href="backoff/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="backoff/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Morris chart -->
-    <link href="backoff/css/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- jvectormap -->
-    <link href="backoff/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- Date Picker -->
-    <link href="backoff/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <!-- fullCalendar -->
     <!-- <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" /> -->
     <!-- Daterange picker -->
-    <link href="backoff/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <!-- iCheck for checkboxes and radio inputs -->
-    <link href="backoff/css/iCheck/all.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/iCheck/all.css" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
     <!-- <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" /> -->
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <!-- Theme style -->
-    <link href="backoff/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/backoff/css/style.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -70,7 +70,7 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="backoff/img/26115.jpg" class="img-circle" alt="User Image" />
+                        <img src="/backoff/img/26115.jpg" class="img-circle" alt="User Image" />
                     </div>
                     <div class="pull-left info">
                         <p>Bonjour, {{ $user->firstName }}</p>
@@ -128,31 +128,31 @@
 
     <!-- jQuery 2.0.2 -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="backoff/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/backoff/js/jquery.min.js" type="text/javascript"></script>
 
     <!-- jQuery UI 1.10.3 -->
-    <script src="backoff/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+    <script src="/backoff/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
     <!-- Bootstrap -->
-    <script src="backoff/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/backoff/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- daterangepicker -->
-    <script src="backoff/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <script src="/backoff/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
 
-    <script src="backoff/js/plugins/chart.js" type="text/javascript"></script>
+    <script src="/backoff/js/plugins/chart.js" type="text/javascript"></script>
 
     <!-- datepicker
         <script src="js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>-->
     <!-- Bootstrap WYSIHTML5
         <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>-->
     <!-- iCheck -->
-    <script src="backoff/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <script src="/backoff/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <!-- calendar -->
-    <script src="backoff/js/plugins/fullcalendar/fullcalendar.js" type="text/javascript"></script>
+    <script src="/backoff/js/plugins/fullcalendar/fullcalendar.js" type="text/javascript"></script>
 
     <!-- Director App -->
-    <script src="backoff/js/Director/app.js" type="text/javascript"></script>
+    <script src="/backoff/js/Director/app.js" type="text/javascript"></script>
 
     <!-- Director dashboard demo (This is only for demo purposes) -->
-    <script src="backoff/js/Director/dashboard.js" type="text/javascript"></script>
+    <script src="/backoff/js/Director/dashboard.js" type="text/javascript"></script>
 
     <!-- Director for demo purposes -->
     <script type="text/javascript">

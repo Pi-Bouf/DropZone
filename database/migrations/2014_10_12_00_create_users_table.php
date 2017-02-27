@@ -16,6 +16,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('isAdmin')->default(0);
+            $table->boolean('isChecked')->default(0);
+            $table->boolean('isBanned')->default(0);
             $table->string('email')->unique();
             $table->string('facebookID')->nullable();
             $table->string('lastName');

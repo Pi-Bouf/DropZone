@@ -67,3 +67,4 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 */
 $this->get('/admin', 'BackOfficeController@getDashBoard')->name('admin_home');
 $this->get('/admin/user/list', 'BackOfficeController@getUserList')->name('admin_user_list');
+$this->post('/admin/user/list', 'BackOfficeController@postSearchUserList')->name('admin_user_list_search_post');

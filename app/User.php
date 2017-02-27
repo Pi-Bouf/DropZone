@@ -35,4 +35,15 @@ class User extends Authenticatable
       return $this->hasOne('App\Vehicule')->where('isDefault')->orderBy('desc');
     }
 
+    public function scopeChecked() {
+        return $this->where('isChecked', true);
+    }
+
+    public function scopeNotChecked() {
+        return $this->where('isChecked', false);
+    }
+
+    public function scopeBanned() {
+        return $this->where('isBanned', true);
+    }
 }
