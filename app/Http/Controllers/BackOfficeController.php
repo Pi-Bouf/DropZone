@@ -96,8 +96,8 @@ class BackOfficeController extends Controller
         return view('back.pages.user.list', $data);
     }
 
-    public function getUserDetail(User $user) {
-
+    public function getUserDetail(User $user)
+    {
         $data = array(
             "user" => Auth::user(),
             "actualUser" => $user,

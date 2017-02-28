@@ -83,13 +83,8 @@
                             <i class="fa fa-dashboard"></i> <span>Accueil</span>
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gavel"></i> <span>Utilisateurs</span><span class="caret"></span></a>
-                        <ul class="dropdown-menu forAnimate" role="menu">
-                            <li><a href="{{ route('admin_user_list') }}" style="color: #39435C">Liste</a></li>
-                            <li><a href="#" style="color: #39435C">Nouveaux</a></li>
-                            <li><a href="#" style="color: #39435C">Bloqués</a></li>
-                        </ul>
+                    <li>
+                        <a href="{{ route('admin_user_list') }}"><i class="fa fa-gavel"></i> <span>Utilisateurs</span></a>
                     </li>
 
                     <li>

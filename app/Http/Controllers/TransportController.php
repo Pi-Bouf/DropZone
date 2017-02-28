@@ -39,7 +39,6 @@ class TransportController extends Controller
                 $transport->frequency = $request->input('freq');
                 $transport->regularyBeginningDate = $request->input('dateDebut');
                 $transport->regularyEndingDate = $request->input('dateFin');
-
             }
 
 

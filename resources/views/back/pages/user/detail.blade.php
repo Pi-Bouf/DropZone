@@ -7,26 +7,118 @@
                 Profil
             </header>
             <div class="panel-body">
-                {{ $actualUser->firstName }}
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        <h3>{{ $actualUser->firstName }} {{ $actualUser->lastName }}</h3>
+                        <img style="max-width: 100%;" class="img-circle" src="/images/profile/{{ $actualUser->picLink }}"></img>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" class="row">
+                    <div class="col-md-2 col-md-offset-5 text-center">
+                        <h4>{{ $actualUser->birthday }}</h4>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        {{ $actualUser->description }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="panel">
             <header class="panel-heading">
-                Informations complémentaires
+                Informations
             </header>
             <div class="panel-body">
                 <table class="table table-striped">
                     <tr>
-                        <td>Data inscription</td>
-                        <td><span class="badge bg-green">{{ $actualUser->created_at }}</span></td>
+                        <th>Login</th>
+                        <td>{{ $actualUser->login }}</td>
                     </tr>
                     <tr>
-                        <td>Data inscription</td>
-                        <td><span class="badge bg-green">{{ $actualUser->created_at }}</span></td>
+                        <th>Email</th>
+                        <td>{{ $actualUser->email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Facebook ID</th>
+                        <td>@if($actualUser->facebookID) {{ $actualUser->facebookID }} @else <span class="badge bg-red">Pas lié</span>                            @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Sexe</th>
+                        <td>@if($actualUser->sexe == "f") Femme @else Homme @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Aide au chargement</th>
+                        <td>@if($actualUser->helperOption) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Transporteur</th>
+                        <td>@if($actualUser->transportOption) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Validé</th>
+                        <td>@if($actualUser->isChecked) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Bannis</th>
+                        <td>@if($actualUser->isBanned) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone</th>
+                        <td>{{ $actualUser->phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Data inscription</th>
+                        <td>{{ $actualUser->created_at }}</td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <th>Nombre de véhicules</th>
+                        <td><span class="badge bg-info">{{ $actualUser->vehicules->count() }}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de transports en attentes</th>
+                        <td><span class="badge bg-info"> ??? </span></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de transports effectués</th>
+                        <td><span class="badge bg-info">{{ $actualUser->expeditions->count() }}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre d'expeditions en attentes</th>
+                        <td><span class="badge bg-info"> ??? </span></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre d'expeditions effectuées</th>
+                        <td><span class="badge bg-info">{{ $actualUser->expeditions->count() }}</span></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel">
+            <header class="panel-heading">
+                Transports
+            </header>
+            <div class="panel-body">
+                @foreach($actualUser->transports as $transport)
+                <div style="border: 1px solid #f56954; margin-bottom: 5px; border-radius: 5px;">COUCOU</div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel">
+            <header class="panel-heading">
+                Expeditions
+            </header>
+            <div class="panel-body">
+                qsd
             </div>
         </div>
     </div>
