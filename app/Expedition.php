@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transport extends Model
+class Expedition extends Model
 {
-    
+
 }
 
 ?>

@@ -29,8 +29,8 @@ Route::post('/postaddtransport', 'TransportController@addData')->name('postaddtr
 /*
 | Deposer colis
 */
-Route::get('/addcolis', 'ColisController@index')->name('addcolis');
-Route::post('/postaddcolis', 'ColisController@addData')->name('postaddcolis');
+Route::get('/addcolis', 'ExpeditionController@index')->name('addcolis');
+Route::post('/postaddcolis', 'ExpeditionController@addData')->name('postaddcolis');
 
 /*
 | Vehicule
