@@ -21,10 +21,16 @@ Route::get('/search', 'CarteController@index')->name('search');
 
 
 /*
-|
+| Transport
 */
 Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 Route::post('/postaddtransport', 'TransportController@addData')->name('postaddtransport');
+
+/*
+| Deposer colis
+*/
+Route::get('/addcolis', 'ColisController@index')->name('addcolis');
+Route::post('/postaddcolis', 'ColisController@addData')->name('postaddcolis');
 
 /*
 | Vehicule
