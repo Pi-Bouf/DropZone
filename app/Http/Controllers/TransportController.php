@@ -31,11 +31,11 @@ class TransportController extends Controller
 
 
             if($request->input('nature') == 'occasionnel'){
-                $transport->natureTransport = '0';
+                $transport->natureTransport = false;
                 $transport->beginningDate =  $request->input('dateDepart');
                 $transport->beginningHour = '12:12:10';
             } else {
-                $transport->natureTransport = '1';
+                $transport->natureTransport = true;
                 $transport->frequency = $request->input('freq');
                 $transport->regularyBeginningDate = $request->input('dateDebut');
                 $transport->regularyEndingDate = $request->input('dateFin');

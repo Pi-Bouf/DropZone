@@ -100,6 +100,18 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <header class="panel-heading">
+                Véhicules
+            </header>
+            <div class="panel-body">
+                wxc
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-6">
         <div class="panel">
             <header class="panel-heading">
@@ -107,7 +119,14 @@
             </header>
             <div class="panel-body">
                 @foreach($actualUser->transports as $transport)
-                <div style="border: 1px solid #f56954; margin-bottom: 5px; border-radius: 5px;">COUCOU</div>
+                <div style="background-color: rgba(0, 255, 0, 0.2); margin-bottom: 5px; border-radius: 5px; padding: 3px; color: #666666;">
+                    <div class="text-center">
+                        <h4><b>{{ $transport->villeDepart->ville->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $transport->villeArrivee->ville->name }}</b></h4>
+                        @if($transport->natureTransport) qsd @else
+                        <div><b>Date départ:</b> {{ $transport->beginningDate }}</div>
+                        @endif
+                    </div>
+                </div>
                 @endforeach
             </div>
         </div>

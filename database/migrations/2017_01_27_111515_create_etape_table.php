@@ -14,6 +14,7 @@ class CreateEtapeTable extends Migration
     public function up()
     {
       Schema::create('etapes', function (Blueprint $table) {
+          $table->increments('id');
           $table->integer('transport_id')->unsigned();
           $table->integer('ville_id')->unsigned();
           $table->tinyInteger('ville_position');
