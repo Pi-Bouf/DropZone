@@ -23,6 +23,36 @@
                             <label class="checkbox-inline"><input type="checkbox" name="banned" value="option3"> Bannis</label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Inscription depuis</label>
+                        <div class="col-lg-8">
+                            <select class="form-control m-b-4" name="dateSince">
+                                <option value="start">Depuis le début</option>
+                                <option value="j/1">1 Jour</option>
+                                <option value="j/2">2 Jours</option>
+                                <option value="j/3">3 Jours</option>
+                                <option value="j/4">4 Jours</option>
+                                <option value="j/5">5 Jours</option>
+                                <option value="s/1">1 Semaine</option>
+                                <option value="s/2">2 Semaine</option>
+                                <option value="s/3">3 Semaine</option>
+                                <option value="s/4">4 Semaine</option>
+                                <option value="m/1">1 Mois</option>
+                                <option value="m/2">2 Mois</option>
+                                <option value="m/3">3 Mois</option>
+                                <option value="m/4">4 Mois</option>
+                                <option value="m/5">5 Mois</option>
+                                <option value="m/6">6 Mois</option>
+                                <option value="m/7">7 Mois</option>
+                                <option value="m/8">8 Mois</option>
+                                <option value="m/9">9 Mois</option>
+                                <option value="m/10">10 Mois</option>
+                                <option value="m/11">11 Mois</option>
+                                <option value="a/1">1 An</option>
+                                <option value="a/2">2 An</option>
+                                </select>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-info">Go !</button>
                 </form>
             </div>
@@ -37,6 +67,8 @@
                 Les utilisateurs
             </header>
             <div class="panel-body table-responsive">
+                @if($option == "NBRSEARCHED")
+                <i><b>{{ $userSearchCount }}</b> utilisateurs trouvés !</i> @endif
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -52,7 +84,7 @@
                     <tbody>
                         @foreach($userList as $oneUser)
                         <tr>
-                            <td><a href="">{{ $oneUser->id }}</a></td>
+                            <td><a href="{{ route('admin_user_detail', array('user' => $oneUser->id)) }}">{{ $oneUser->id }}</a></td>
                             <td>{{ $oneUser->picLink }}</td>
                             <td>{{ $oneUser->firstName }}</td>
                             <td>{{ $oneUser->lastName }}</td>
@@ -68,7 +100,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                @if($pagination == "OK")
+                @if($option == "PAGINATE")
                 <div class="text-center">
                     <?php echo $userList->links(); ?>
                 </div>
