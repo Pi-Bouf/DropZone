@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ville;
+use App\Etape;
 use Auth;
 
 class TransportController extends Controller
@@ -64,9 +65,9 @@ class TransportController extends Controller
                 $villeA->latitude = $villeArr[0];
                 $villeA->longitude = $villeArr[1];
                 $villeA->name = $request->input('villeArrivee');
-
+ 
                 for($i = 1 ; $i <= 5 ; $i++){
-                    //if(!empty($request->input('villeEtape'.$i))){
+                    if($request->input('villeEtapeHidden'.$i)!=""){
                         $villeEtape[$i] = new Ville();
                         $villeEtapeCoord[$i] = $request->input('villeEtapeHidden'.$i);
                         $villeEtapeCoord[$i] = explode (";",$villeEtapeCoord[$i]);
@@ -74,10 +75,29 @@ class TransportController extends Controller
                         $villeEtape[$i]->longitude = $villeEtapeCoord[$i][1];
                         $villeEtape[$i]->name = $request->input('villeEtape'.$i);
                         $villeEtape[$i]->save();
-                    //}
+                        
+                        $etape = new Etape();
+                        $etape->transport_id = $transport->id;
+                        $etape->ville_id = $villeEtape[$i]->id;
+                        $etape->ville_position = $i+1;
+                        $etape->save();
+                    }
                 }
                 if($ville->save() && $villeA->save()){
-                    return $ville->id.' et '.$villeA->id;
+
+                    $etapeDepart = new Etape();
+                    $etapeDepart->transport_id = $transport->id;
+                    $etapeDepart->ville_id = $ville->id;
+                    $etapeDepart->ville_position = 1;
+                    $etapeDepart->save();
+
+                    $etapeArrivee = new Etape();
+                    $etapeArrivee->transport_id = $transport->id;
+                    $etapeArrivee->ville_id = $villeA->id;
+                    $etapeArrivee->ville_position = 7;
+                    $etapeArrivee->save();
+
+                    return redirect()->route('addtransport')->with('add', 'ok');
                 }
 
             } else {

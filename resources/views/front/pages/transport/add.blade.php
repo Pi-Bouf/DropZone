@@ -17,7 +17,10 @@
     .center{
         text-align:center;
     }
-</style>
+</style>       
+ @if(session('add'))
+    <div class="uk-alert uk-alert-success"> Transport ajouté !</div>
+@endif 
 <h1 class="center">Proposer un transport</h1>
 
 <form method="POST" id="formAjoutTransport" action="{{url('/postaddtransport')}}" class="uk-form-file">
@@ -37,7 +40,7 @@
         <label class="labelForm" for="villeEtape">Villes étapes : </label><br>
         <input id="villeEtapeHidden" type="hidden" value="">
         <div style="display:inline-block" id="etape">
-            1.<input class="inputForm" type="text" name="villeEtape" id="villeEtape1" onchange="marqueur()"><br>
+            1.<input class="inputForm" type="text" name="villeEtape1" id="villeEtape1" onchange="marqueur()"><br>
         </div>
         <button type="button" onclick="addEtape()" id="ajoutButton">+</button>
         <br><br>

@@ -18,7 +18,7 @@ function addEtape() {
 
     newInput.setAttribute('type', 'text');
     newInput.setAttribute('id', 'villeEtape' + name);
-    newInput.setAttribute('name', 'villeEtape');
+    newInput.setAttribute('name', 'villeEtape' + name);
     div.appendChild(newInput);
     div.appendChild(document.createElement('br'));
     if (name == 5) {
@@ -133,15 +133,14 @@ function marqueur(){
         document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
         document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
 
-        // a changer
-        etape = document.getElementsByName('villeEtape');
         var e;
-        for (var i = 0; i < etape.length; i++) {
+        for (var i = 0; i < name; i++) {
             e=i+1;
-            if (etape[i].value != "") {
+            etape = document.getElementById('villeEtape'+e);
+            if (etape.value != "") {
                 document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e];
                 waypts.push({
-                    location: etape[i].value
+                    location: etape.value
                 });
             }
         }

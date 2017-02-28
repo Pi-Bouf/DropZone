@@ -17,7 +17,6 @@ class CreateEtapeTable extends Migration
           $table->integer('transport_id')->unsigned();
           $table->integer('ville_id')->unsigned();
           $table->tinyInteger('ville_position');
-          $table->time('hourAppro');
           $table->timestamps();
           $table->foreign('ville_id')->references('id')->on('villes');
           $table->foreign('transport_id')->references('id')->on('transports');
