@@ -24,27 +24,64 @@
                     </div>
                 </div>
                 <div style="margin: 20px;"></div>
-                <!-- Panel Véhicule -->
+                <!-- Panel Vehicules -->
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     @foreach($actualUser->vehicules as $vehicule)
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="heading{{ $vehicule->id }}">
                             <h4 class="panel-title">
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $vehicule->id }}" aria-expanded="true" aria-controls="collapse{{ $vehicule->id }}">
-                                    {{ $vehicule->marque }} {{ $vehicule->modele }}
+                                {{ $vehicule->marque }} {{ $vehicule->modele }}
                                 </a>
-                                <div class="panel-title pull-right"><img style="width: auto; height: 35px;" src="/images/vehicles/{{ $vehicule->vehiculetype->name }}.svg"></div>
+                                <div class="pull-right"><img style="width: auto; height: 30px;" src="/images/vehicles/{{ $vehicule->vehiculetype->name }}.svg"></div>
+                                <div class="clearfix"></div>
                             </h4>
                         </div>
                         <div id="collapse{{ $vehicule->id }}" class="panel-collapse collapse @if($vehicule->isDefault) in @endif" role="tabpanel" aria-labelledby="heading{{ $vehicule->id }}">
                             <div class="panel-body">
-                                SDFSDF
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <img style="width: 50%; height: auto;" src="/images/vehicles/{{ $vehicule->vehiculetype->name }}.svg">
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-2">
+                                    <b>Marque: </b> {{ $vehicule->marque }}<br>
+                                    <b>Modèle: </b> {{ $vehicule->modele }}<br>
+                                    @if($vehicule->longMax)
+                                    <b>Longueur Max (cm): </b> {{ $vehicule->longMax }} @else
+                                    <b>Longueur Max (cm): </b>
+                                    <font color="red">Non renseigné.</font>
+                                    @endif
+                                    <br> @if($vehicule->hautMax)
+                                    <b>Hauteur Max (cm): </b> {{ $vehicule->hautMax }} @else
+                                    <b>Hauteur Max (cm): </b>
+                                    <font color="red">Non renseigné.</font>
+                                    @endif
+                                    <br> 
+                                    @if($vehicule->largMax)
+                                    <b>Largeur Max (cm): </b> {{ $vehicule->largMax }} @else
+                                    <b>Largeur Max (cm): </b>
+                                    <font color="red">Non renseigné.</font>
+                                    @endif
+                                    <br> 
+                                    @if($vehicule->poidMax)
+                                    <b>Poid Max (kg): </b> {{ $vehicule->poidMax }} @else
+                                    <b>Poid Max (kg): </b>
+                                    <font color="red">Non renseigné.</font>
+                                    @endif
+                                    <br> 
+                                    @if($vehicule->volume)
+                                    <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
+                                    <b>Volume Max (cm³): </b>
+                                    <font color="red">Non renseigné.</font>
+                                    @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                <!-- End Panel Véhicule -->
+                <!-- Fin Panel Vehicules -->
             </div>
         </div>
     </div>
@@ -102,11 +139,11 @@
                     </tr>
                     <tr>
                         <th>Nombre de transports en attentes</th>
-                        <td><span class="badge bg-info"> ??? </span></td>
+                        <td><span class="badge bg-info"> {{ $actualUser->transportsWaiting->count() }} </span></td>
                     </tr>
                     <tr>
                         <th>Nombre de transports effectués</th>
-                        <td><span class="badge bg-info">{{ $actualUser->expeditions->count() }}</span></td>
+                        <td><span class="badge bg-info">{{ $actualUser->transportsOK->count() }}</span></td>
                     </tr>
                     <tr>
                         <th>Nombre d'expeditions en attentes</th>
@@ -122,18 +159,6 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <div class="panel">
-            <header class="panel-heading">
-                Véhicules
-            </header>
-            <div class="panel-body">
-                wxc
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-6">
         <div class="panel">
             <header class="panel-heading">
@@ -141,11 +166,26 @@
             </header>
             <div class="panel-body">
                 @foreach($actualUser->transports as $transport)
-                <div style="background-color: rgba(0, 255, 0, 0.2); margin-bottom: 5px; border-radius: 5px; padding: 3px; color: #666666;">
+                @if($transport->natureTransport)
+                    @if($transport->regularyEndingDate< date( 'Y-m-d H:i:s')) 
+                        <?php $color="rgba(0, 255, 0, 0.2)" ; ?>
+                    @else
+                        <?php $color = "rgba(0, 0, 255, 0.2)"; ?>
+                    @endif 
+                @else 
+                    @if($transport->beginningDate < date( 'Y-m-d H:i:s')) 
+                        <?php $color="rgba(0, 255, 0, 0.2)" ; ?>
+                    @else
+                        <?php $color = "rgba(0, 0, 255, 0.2)"; ?>
+                    @endif
+                @endif
+                <div style="background-color: {{ $color }}; margin-bottom: 5px; border-radius: 5px; padding: 3px; color: #666666;">
                     <div class="text-center">
                         <h4><b>{{ $transport->villeDepart->ville->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $transport->villeArrivee->ville->name }}</b></h4>
-                        @if($transport->natureTransport) qsd @else
-                        <div><b>Date départ:</b> {{ $transport->beginningDate }}</div>
+                        @if($transport->natureTransport)
+                            qsd
+                        @else
+                            <div><b>Date départ:</b> {{ $transport->beginningDate }}</div>
                         @endif
                     </div>
                 </div>

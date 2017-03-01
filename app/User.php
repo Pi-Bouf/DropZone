@@ -35,6 +35,28 @@ class User extends Authenticatable
         return $this->hasMany('App\Transport');
     }
 
+    public function transportsWaiting() {
+        return $this->hasMany('App\Transport')
+        ->where('beginningDate', '>', date( 'Y-m-d H:i:s'))
+        ->orWhere('regularyEndingDate', '>', date( 'Y-m-d H:i:s'));
+
+        /* ############ On pose ça là, au cas où
+        ->where(function ($query) {
+            $query->where('natureTransport', 0)
+            ->where('beginningDate', '>', date( 'Y-m-d H:i:s'));
+        })
+        ->orWhere(function ($query) {
+            $query->where('natureTransport', 1)
+            ->where('regularyEndingDate', '>', date( 'Y-m-d H:i:s'));
+        }); */
+    }
+
+    public function transportsOK() {
+        return $this->hasMany('App\Transport')
+        ->where('beginningDate', '<', date( 'Y-m-d H:i:s'))
+        ->orWhere('regularyEndingDate', '<', date( 'Y-m-d H:i:s'));
+    }
+
     public function expeditions() {
         return $this->hasMany('App\Expedition');
     }
