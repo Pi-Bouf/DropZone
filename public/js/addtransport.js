@@ -22,7 +22,7 @@ function addEtape() {
     div.appendChild(newInput);
     div.appendChild(document.createElement('br'));
     if (name == 5) {
-        var e = document.getElementById('divLeft');
+        var e = document.getElementById('divUn');
         var but = document.getElementById('ajoutButton');
         e.removeChild(but);
     }

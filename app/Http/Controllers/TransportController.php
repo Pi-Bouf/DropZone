@@ -16,7 +16,8 @@ class TransportController extends Controller
     }
     public function index()
     {
-        return view('front.pages.transport.add');
+        $nbVehicule = Auth::user()->vehicules->count();
+        return view('front.pages.transport.add', array('nbVehicule' =>$nbVehicule));
     }
 
     public function addData(\App\Transport $transport, Request $request)
