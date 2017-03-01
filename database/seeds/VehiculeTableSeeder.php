@@ -15,6 +15,7 @@ class VehiculeTableSeeder extends Seeder
                 'user_id' => '1',
                 'vehicule_type_id' => '1',
                 'marque' => 'Renault',
+                'isDefault' => true,
                 'modele' => 'Megan'
 				]);
 

@@ -11,6 +11,7 @@ class TransportTableSeeder extends Seeder
      */
     public function run() {
 
+        /*
 			DB::table('transports')->insert([
                 'vehicule_id' => '1',
                 'detourRetirMax' => '10',
@@ -40,5 +41,6 @@ class TransportTableSeeder extends Seeder
                 'information' => 'Un autre trajet',
                 'user_id' => '1'
 				]);
+            */
     }
 }

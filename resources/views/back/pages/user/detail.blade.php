@@ -23,6 +23,28 @@
                         {{ $actualUser->description }}
                     </div>
                 </div>
+                <div style="margin: 20px;"></div>
+                <!-- Panel Véhicule -->
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    @foreach($actualUser->vehicules as $vehicule)
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading{{ $vehicule->id }}">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $vehicule->id }}" aria-expanded="true" aria-controls="collapse{{ $vehicule->id }}">
+                                    {{ $vehicule->marque }} {{ $vehicule->modele }}
+                                </a>
+                                <div class="panel-title pull-right"><img style="width: auto; height: 35px;" src="/images/vehicles/{{ $vehicule->vehiculetype->name }}.svg"></div>
+                            </h4>
+                        </div>
+                        <div id="collapse{{ $vehicule->id }}" class="panel-collapse collapse @if($vehicule->isDefault) in @endif" role="tabpanel" aria-labelledby="heading{{ $vehicule->id }}">
+                            <div class="panel-body">
+                                SDFSDF
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <!-- End Panel Véhicule -->
             </div>
         </div>
     </div>
@@ -43,7 +65,7 @@
                     </tr>
                     <tr>
                         <th>Facebook ID</th>
-                        <td>@if($actualUser->facebookID) {{ $actualUser->facebookID }} @else <span class="badge bg-red">Pas lié</span>                            @endif</td>
+                        <td>@if($actualUser->facebookID) {{ $actualUser->facebookID }} @else <span class="badge bg-red">Pas lié</span> @endif</td>
                     </tr>
                     <tr>
                         <th>Sexe</th>
@@ -51,19 +73,19 @@
                     </tr>
                     <tr>
                         <th>Aide au chargement</th>
-                        <td>@if($actualUser->helperOption) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                        <td>@if($actualUser->helperOption) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span> @endif</td>
                     </tr>
                     <tr>
                         <th>Transporteur</th>
-                        <td>@if($actualUser->transportOption) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                        <td>@if($actualUser->transportOption) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span> @endif</td>
                     </tr>
                     <tr>
                         <th>Validé</th>
-                        <td>@if($actualUser->isChecked) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                        <td>@if($actualUser->isChecked) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span> @endif</td>
                     </tr>
                     <tr>
                         <th>Bannis</th>
-                        <td>@if($actualUser->isBanned) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span>                            @endif</td>
+                        <td>@if($actualUser->isBanned) <span class="badge bg-green">Oui</span> @else <span class="badge bg-red">Non</span> @endif</td>
                     </tr>
                     <tr>
                         <th>Téléphone</th>
