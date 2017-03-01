@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ville;
-use App\Etape;
 use Auth;
 
-class TransportController extends Controller
+class ExpeditionController extends Controller
 {
 
     public function __construct()
