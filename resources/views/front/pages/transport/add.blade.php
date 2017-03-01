@@ -24,7 +24,7 @@
         {{ csrf_field() }}
         <div id="divUn" class="landing_pages_item">
             <div class="landing_form">
-            <div class="uk-form">
+            <div id="divUk" class="uk-form">
                     <h2>1. Information sur le trajet</h2>
                     <label class="labelForm" for="villeDepart">Ville départ :</label><br>
                     <input class="inputForm" type="text" id="villeDepart" name="villeDepart" onchange="marqueur()">
