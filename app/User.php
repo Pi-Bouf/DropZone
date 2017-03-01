@@ -31,6 +31,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Vehicule')->orderBy('isDefault', 'desc');
     }
 
+    public function vehiculeDefault() {
+        return $this->hasOne('App\Vehicule')->where('isDefault', true);
+    }
+
     public function transports() {
         return $this->hasMany('App\Transport');
     }
@@ -62,7 +66,7 @@ class User extends Authenticatable
     }
 
     public function default_vehicule(){
-      return $this->hasOne('App\Vehicule')->where('isDefault')->orderBy('desc');
+      return $this->hasOne('App\Vehicule')->where('isDefault', 1);
     }
 
     public function scopeChecked() {

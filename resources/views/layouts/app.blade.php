@@ -15,6 +15,7 @@
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/uikit.min.js"></script>
 	<script src="/js/global.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
 	@foreach($includesJs as $inc)
 	<script src="{{ $inc }}"></script>
 	@endforeach

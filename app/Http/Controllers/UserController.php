@@ -34,10 +34,6 @@ class UserController extends Controller
       }
       $user = User::whereId($user_id)->firstOrFail();
 
-      /////////////////////////////////////////////////////////////
-      // ICI LE PUTAIN DE CODE POUR RECUP LE VEHICULE PAR DEFAUT //
-      /////////////////////////////////////////////////////////////
-
       $age = intval(date('Y', time() - strtotime($user->birthday.' 23:59:59'))) - 1970;  //Soustraire 1970 parce que strtotime calcule le temps depuis 1970-01-01
       if(!isset($page_title)) $page_title = 'Profil de '.$user->firstName .' '.$user->lastName;
       $data = array('user' => $user, 'age' => $age, 'page_title' => $page_title);
