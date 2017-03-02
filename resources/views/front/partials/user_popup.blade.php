@@ -3,6 +3,7 @@
     <div class="modal-content">
         @if(Auth::user())
         <form class="col s12" method="post" action="{{ url('/logout') }}">
+        {{ csrf_field() }}
             <div class="center-align">
                 <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">
                     Déconnexion
