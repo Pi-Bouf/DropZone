@@ -19,6 +19,7 @@ function addEtape() {
     newInput.setAttribute('type', 'text');
     newInput.setAttribute('id', 'villeEtape' + name);
     newInput.setAttribute('name', 'villeEtape' + name);
+    newInput.setAttribute('onchange', 'tryit()');
     div.appendChild(newInput);
     div.appendChild(document.createElement('br'));
     if (name == 5) {
@@ -31,6 +32,7 @@ function addEtape() {
         tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name]);
         google.maps.event.addListener(tabAuto[name], 'place_changed', function () {
             place = tabAuto[name].getPlace();
+            alert(place);
             tabLatEtape[name] = place.geometry.location.lat();
             tabLngEtape[name] = place.geometry.location.lng();
             marqueur();
@@ -109,11 +111,12 @@ function initialize() {
             marqueur();
                     
 
-        });     
-            //alert("This function is working!");
-            //alert(place.name);
-           // alert(place.address_components[0].long_name);
+        });
 
+}
+
+function tryit(oe){
+    marqueur();
 }
 
 function autorouteClicked(){
@@ -125,19 +128,19 @@ function autorouteClicked(){
     marqueur();
 }
 function marqueur(){
-    
+    waypts=[];
     var directionsService = new google.maps.DirectionsService();
     var etape;
     if(document.getElementById('villeDepart').value!="" && document.getElementById('villeArrivee').value!="")
     {
         document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
         document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
-
-        for (var i = 1; i < name + 1 ; i++) {
-            alert (i);
-            etape = document.getElementById('villeEtape'+i);
+        var e;
+        for (var i = 0; i < name ; i++) {
+            e = i+1;
+            etape = document.getElementById('villeEtape'+e);
             if (etape.value != "") {
-                document.getElementById('villeEtapeHidden'+i).value= tabLatEtape[i]+';'+tabLngEtape[i];
+                document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e];
                 waypts.push({
                     location: etape.value
                 });

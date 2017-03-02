@@ -10,7 +10,6 @@
         text-align:center;
     }
 </style>       
-<div id="transport">
     @if(session('add'))
         <div class="uk-alert uk-alert-success"> Transport ajouté !</div>
     @endif 
@@ -23,23 +22,22 @@
     <form method="POST" id="formAjoutTransport" action="{{url('/postaddtransport')}}" class="uk-form-file">
         {{ csrf_field() }}
         <div id="divUn" class="landing_pages_item">
-            <div class="landing_form">
-            <div id="divUk" class="uk-form">
+            <div id="divUk" class="landing_form">
                     <h2>1. Information sur le trajet</h2>
                     <label class="labelForm" for="villeDepart">Ville départ :</label><br>
-                    <input class="inputForm" type="text" id="villeDepart" name="villeDepart" onchange="marqueur()">
+                    <input class="inputForm" type="text" id="villeDepart" name="villeDepart">
                     <input id="villeDepartHidden" name="villeDepartHidden" type="hidden" value="">
                     <br><br>
 
                     <label class="labelForm" for="villeArrivee">Ville arrivée : </label><br>
-                    <input class="inputForm" type="text" id="villeArrivee" name="villeArrivee" onchange="marqueur()">
+                    <input class="inputForm" type="text" id="villeArrivee" name="villeArrivee">
                     <input id="villeArriveeHidden" name="villeArriveeHidden" type="hidden" value="">
                     <br><br>
 
                     <label class="labelForm" for="villeEtape">Villes étapes : </label><br>
                     <input id="villeEtapeHidden" type="hidden" value="">
                     <div style="display:inline-block" id="etape">
-                        1.<input class="inputForm" type="text" name="villeEtape1" id="villeEtape1" onchange="marqueur()"><br>
+                        1.<input class="inputForm" type="text" name="villeEtape1" id="villeEtape1" onchange="tryit();"><br>
                     </div>
                     <button type="button" onclick="addEtape()" id="ajoutButton">+</button>
                     <br><br>
@@ -57,7 +55,6 @@
                     
                     <div id="map" style="width:300px; height:300px;"></div>
                 </div>
-            </div>
         </div>
 
         <div id="divDeux" class="divFormAddTransport landing_pages_item">
@@ -112,5 +109,4 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY" async defer></script>
     @endif
-</div>
 @endsection
