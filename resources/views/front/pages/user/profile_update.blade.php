@@ -8,19 +8,19 @@
 <section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
   <div class="container">
     <div class="row">
-    <form class="col s12">
+    <form class="col s12" method="POST" action="{{ url('/user/me/update') }}">
       <h3 class="about-subtitle">Modifier mes informations personnelles</h3>
 
       {{ csrf_field() }}
       <div class="row black-text">
         <div class="input-field col s6">
-          <input id="firstName" type="text" class="validate" {{ $errors->has('firstName') ? 'class=uk-form-danger' : '' }} placeholder="Prénom..." value="{{ $user->firstName }}" required>
-          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName"  class="validate" {{ $errors->has('firstName') ? 'class=uk-form-danger' : '' }} placeholder="Prénom..." value="{{ $user->firstName }}" required>
+          <label for="firstName">Prénom</label>
           <br><strong>{{ $errors->first('firstName') }}</strong>
         </div>
         <div class="input-field col s6">
           <input type="text" name="lastName" class="validate" {{ $errors->has('lastName') ? 'class=uk-form-danger' : '' }} placeholder="Nom..." value="{{ $user->lastName }}" required>
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Nom</label>
           <br><strong>{{ $errors->first('lastName') }}</strong>
         </div>
       </div>
@@ -38,8 +38,8 @@
       </div>
       <div class="row black-text">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" {{ $errors->has('email') ? 'class=uk-form-danger' : '' }} placeholder="Email..." value="{{ $user->email }}" required>
-          <label for="email">Email</label>
+          <input id="email" name="email" type="email" class="validate" {{ $errors->has('email') ? 'class=uk-form-danger' : '' }} placeholder="Email..." value="{{ $user->email }}" required>
+          <label for="email">Adresse Email</label>
           <br><strong>{{ $errors->first('email') }}</strong>
         </div>
 
@@ -59,8 +59,8 @@
 
       <div class="row black-text">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" {{ $errors->has('description') ? 'class=uk-form-danger' : '' }}>{{ $user->description }}></textarea>
-          <label for="textarea1">Description</label>
+          <textarea name="description" id="description" class="materialize-textarea" {{ $errors->has('description') ? 'class=uk-form-danger' : '' }}>{{ $user->description }}</textarea>
+          <label for="description">Décrivez-vous</label>
         </div>
       </div>
       <button class="waves-effect waves-light btn">Envoyer</button>

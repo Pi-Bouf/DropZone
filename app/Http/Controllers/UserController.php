@@ -34,7 +34,7 @@ class UserController extends Controller
       }
       $user = User::whereId($user_id)->firstOrFail();
 
-      
+
       //Calcul de l'age avec Carbon
       $birthdate = explode("-", $user->birthday);
       $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
@@ -63,8 +63,8 @@ class UserController extends Controller
     * @param Request $request
     * @return view /home ou back()->withInput() si erreur
     */
-    public function postProfileUpdate(Request $request){
-      $rules = array(
+    public function postProfileUpdate(Request $request){      
+      /*$rules = array(
         'firstName' => 'required|max:50|string',
         'lastName' => 'required|max:75|string',
         'gender' => 'in:0,1',
@@ -72,15 +72,15 @@ class UserController extends Controller
         'reg_birthday' => 'required|date',
         'phone' => 'required|max:9999999999|numeric',
         'description' => 'required|max:255|string',
-      );
-      $this->validate($request, $rules);
+      );*/
+      //$this->validate($request, $rules);
 
+      print_r ($request->input());
 
-
-      $user = Auth::user();
+      /*$user = Auth::user();
       $user->firstName = $request->input('firstName');
       $user->lastName = $request->input('lastName');
-      $user->sexe = ($request->input('gender') == '0') ? 'h' : 'f';
+      $user->sexe = ($request->input('gender') == 'h') ? 'h' : 'f';
 
       $user->email = $request->input('email');
       $user->birthday = date('Y-m-d', strtotime(str_replace('/', '-', $request->input('reg_birthday'))));
@@ -91,7 +91,7 @@ class UserController extends Controller
           return redirect()->route('user_profile_update')->with('edit', 'ok');
       } else {
           return redirect()->back()->with('error', 'ok');
-      }
+      }*/
 
     }
 
