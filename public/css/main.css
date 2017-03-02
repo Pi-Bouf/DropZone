@@ -500,3 +500,52 @@ body {
     font-size: 12px;
     line-height: 20px;
 }
+
+/* --------------------------------- */
+/* 2. Custom Utility Classes
+ ----------------------------------- */
+
+.padd-tb-120 {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.padd-tb-80 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.padd-tb-60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.padd-tb-73 {
+    padding-top: 73px;
+    padding-bottom: 73px;
+}
+
+.padd-tb-55 {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.padd-tb-100-30 {
+    padding-top: 100px;
+    padding-bottom: 30px;
+}
+
+.marg-top-15px{
+  margin-top: 15px;
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+.bottom-50 {
+    margin-bottom: 50px;
+}
+
+.icon-size{
+  font-size: 1.35rem;
+}

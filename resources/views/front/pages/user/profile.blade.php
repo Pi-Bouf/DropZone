@@ -8,13 +8,17 @@
 					<div class="clearfix ">
             <div class="col s12 m12 l4">
 							<div class="person-about">
-								<h3 class="about-subtitle">Profil de {{$user->firstName}} {{$user->lastName}}</h3>
-                  <p>{{$user->description}}</p>
+                @if(Auth::user()->id == $user->id)
+                  <h3 class="about-subtitle">Mon profil</h3>
+                @else
+                <h3 class="about-subtitle">Profil de {{$user->firstName}} {{$user->lastName}}</h3>
+                @endif
+                <p>{{$user->description}}</p>
 							</div>
 						</div>
 
             <div class="col s12 m6 l4">
-							<div class="person-img wow fadeIn center-align">
+							<div class="person-img center-align">
                 @if($user->picLink==null)
                   <img src="../../images/profile/icon-{{$user->sexe}}.png" width="75%" class="responsive-img circle" alt="">
                 @else
@@ -28,29 +32,30 @@
                 <h3 class="about-subtitle">Information personnelles</h3>
                 <h5><span>Nom :</span> {{$user->firstName}} {{$user->lastName}}</h5>
                 <h5><span>Note :</span>
-                    <i class="fa fa-star fa-lg yellow-text" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-lg yellow-text" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-lg yellow-text" aria-hidden="true"></i>
-                    <i class="fa fa-star-half-o fa-lg yellow-text" aria-hidden="true"></i>
-                    <i class="fa fa-star-o fa-lg yellow-text" aria-hidden="true"></i>
+									<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+									<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+									<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+									<i class="mdi mdi-star-half icon-size yellow-text" aria-hidden="true"></i>
+                  <i class="mdi mdi-star-outline icon-size yellow-text" aria-hidden="true"></i>
+
                 </h5>
                 <h5><span>Age :</span> {{$age}} ans</h5>
                 <div class="about-social">
                   <ul>
                     <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="fa fa-facebook"></i></a>
+                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-facebook"></i></a>
                     </li>
                     <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="fa fa-twitter"></i></a>
+                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-twitter"></i></a>
                     </li>
                     <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="fa fa-google-plus"></i></a>
+                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-google-plus"></i></a>
                     </li>
                     <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="fa fa-linkedin"></i></a>
+                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-linkedin"></i></a>
                     </li>
                     <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="fa fa-pinterest"></i></a>
+                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-pinterest"></i></a>
                     </li>
                   </ul>
                 </div>

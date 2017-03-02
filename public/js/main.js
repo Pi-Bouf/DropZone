@@ -24,6 +24,19 @@ $(document).ready(function() {
 
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
+        selectYears: 200, // Creates a dropdown of 15 years to control year
+        labelMonthNext: 'Mois suivant',
+        labelMonthPrev: 'Mois précedent',
+        labelMonthSelect: 'Selectionner un mois',
+        labelYearSelect: 'Selectionner une année',
+        monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre' ],
+        monthsShort: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+        weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
+        weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
+        weekdaysLetter: [ 'S', 'M', 'T', 'W', 'T', 'F', 'S' ],
+        today: 'Auj.',
+        clear: 'Réinit.',
+        close: 'Quitter',
+        format: 'dd/mm/yyyy'
     });
 });
