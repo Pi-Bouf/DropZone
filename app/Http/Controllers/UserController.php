@@ -34,6 +34,7 @@ class UserController extends Controller
       }
       $user = User::whereId($user_id)->firstOrFail();
 
+      
       //Calcul de l'age avec Carbon
       $birthdate = explode("-", $user->birthday);
       $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
