@@ -1,5 +1,20 @@
 @extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Mes véhicules', 'includesJs' => ['/js/components/accordion.min.js'], 'includesCss' => ['/css/components/accordion.gradient.min.css']] ) @section('content')
 
+<section id="contact" class="scroll-section root-sec brand-bg padd-tb-120 contact-wrap">
+    <div class="row">
+        <div class="col m4 offset-m2 center-align">
+            <h2>Mes véhicules</h2>
+        </div>
+        <div class="col m4 center-align valign-wrapper">
+            <img src="/images/rocket.svg" class="valign" style="width: 100%; max-height: 250px;">
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="scroll-section black-text root-sec padd-tb-120 contact-wrap">
+    sdfsdf
+</section>
+
 <div id="profile" class="landing_pages_item">
     <div class="landing_form">
         <div class="uk-form">
@@ -8,14 +23,12 @@
             </fieldset>
         </div>
         @if(!Auth::user()->vehicules->count())
-            <div class="uk-alert uk-alert-info"> Aucun véhicule !</div>
-        @endif 
-        @if(session('edit'))
-            <div class="uk-alert uk-alert-success"> Véhicule sauvegardé ! </div>
-        @endif 
-        @if(session('add'))
-            <div class="uk-alert uk-alert-success"> Véhicule ajouté !</div>
-        @endif 
+        <div class="uk-alert uk-alert-info"> Aucun véhicule !</div>
+        @endif @if(session('edit'))
+        <div class="uk-alert uk-alert-success"> Véhicule sauvegardé ! </div>
+        @endif @if(session('add'))
+        <div class="uk-alert uk-alert-success"> Véhicule ajouté !</div>
+        @endif
         <div class="uk-accordion" style="margin: 10px;" data-uk-accordion>
             @foreach(Auth::user()->vehicules as $vehicule)
             <h3 class="uk-accordion-title">{{ $vehicule->marque }} {{ $vehicule->modele }}</h3>
@@ -36,32 +49,26 @@
                         <b>Hauteur Max (cm): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
-                        <br> 
-                        @if($vehicule->largMax)
+                        <br> @if($vehicule->largMax)
                         <b>Largeur Max (cm): </b> {{ $vehicule->largMax }} @else
                         <b>Largeur Max (cm): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
-                        <br> 
-                        @if($vehicule->poidMax)
+                        <br> @if($vehicule->poidMax)
                         <b>Poid Max (kg): </b> {{ $vehicule->poidMax }} @else
                         <b>Poid Max (kg): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
-                        <br> 
-                        @if($vehicule->volume)
+                        <br> @if($vehicule->volume)
                         <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
                         <b>Volume Max (cm³): </b>
                         <font color="red">Non renseigné.</font>
                         @endif
                     </div>
                 </div>
-                <a style="border-radius: 5px;" class="uk-button uk-button-primary" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">Modifier</a>
-                @if($vehicule->isDefault == 1)
-                    <span style="border-radius: 5px;" class="uk-button" disabled>Véhicule par défaut</span>
-                @else
-                    <a style="border-radius: 5px;" class="uk-button uk-button-success" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}">Par défaut</a>
-                @endif
+                <a style="border-radius: 5px;" class="uk-button uk-button-primary" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">Modifier</a> @if($vehicule->isDefault == 1)
+                <span style="border-radius: 5px;" class="uk-button" disabled>Véhicule par défaut</span> @else
+                <a style="border-radius: 5px;" class="uk-button uk-button-success" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}">Par défaut</a> @endif
 
                 <a style="border-radius: 5px;" class="uk-button uk-button-danger" href="{{ route('user_vehicule_delete', array('vehicule' => $vehicule->id)) }}">Supprimer</a>
             </div>
