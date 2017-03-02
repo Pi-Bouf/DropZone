@@ -15,7 +15,6 @@ $(document).ready(function() {
             custom_class: 'body_scroller'
         });
     }
-
     // Modal
     $('.modal').modal();
     $('.loginLink').click(function() {

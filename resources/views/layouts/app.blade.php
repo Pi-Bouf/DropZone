@@ -14,6 +14,14 @@
     @foreach($includesCss as $inc)
     <link href="{{ $inc }}" rel="stylesheet">
     @endforeach
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/libs/materialize/js/materialize.min.js"></script>
+    <script src="/js/fm.scrollator.jquery.js"></script>
+    <script src="/js/main.js"></script>
+    @foreach($includesJs as $inc)
+    <script src="{{ $inc }}"></script>
+    @endforeach
 
 </head>
 
@@ -53,14 +61,6 @@
     </mobile>
 
     @yield('content')
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/libs/materialize/js/materialize.min.js"></script>
-    <script src="/js/fm.scrollator.jquery.js"></script>
-    <script src="/js/main.js"></script>
-    @foreach($includesJs as $inc)
-    <script src="{{ $inc }}"></script>
-    @endforeach
 
     @include('front.partials.user_popup')
 </body>
