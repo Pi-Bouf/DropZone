@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
-
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -34,7 +34,10 @@ class UserController extends Controller
       }
       $user = User::whereId($user_id)->firstOrFail();
 
-      $age = intval(date('Y', time() - strtotime($user->birthday.' 23:59:59'))) - 1970;  //Soustraire 1970 parce que strtotime calcule le temps depuis 1970-01-01
+      //Calcul de l'age avec Carbon
+      $birthdate = explode("-", $user->birthday);
+      $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
+
       if(!isset($page_title)) $page_title = 'Profil de '.$user->firstName .' '.$user->lastName;
       $data = array('user' => $user, 'age' => $age, 'page_title' => $page_title);
 
