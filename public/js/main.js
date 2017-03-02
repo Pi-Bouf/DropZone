@@ -15,9 +15,15 @@ $(document).ready(function() {
             custom_class: 'body_scroller'
         });
     }
+
     // Modal
     $('.modal').modal();
     $('.loginLink').click(function() {
         $('#loginModal').modal('open');
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 });
