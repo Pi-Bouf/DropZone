@@ -1,6 +1,4 @@
-@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => ['/js/components/datepicker.min.js',
-'/js/components/lightbox.min.js', '/js/components/accordion.min.js', '/js/scrollMenu.js'], 'includesCss' => ['/css/components/datepicker.min.css',
-'/css/components/accordion.gradient.min.css']] ) @section('content')
+@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Accueil', 'includesJs' => [], 'includesCss' => []] ) @section('content')
 
 <!-- Home Section start -->
 <section id="home" class="scroll-section root-sec grey lighten-5 home-wrap">

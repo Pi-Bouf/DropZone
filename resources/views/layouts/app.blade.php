@@ -14,7 +14,7 @@
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="/css/normalize.css">
 	<link rel="stylesheet" href="/font/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/libs/materialize/css/materialize.min.css" media="screen,projection" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 	<link rel="stylesheet" href="/css/bootstrap.css" media="screen,projection" />
 
 	<link rel="stylesheet" href="/css/animate.min.css" media="screen,projection" />
@@ -26,10 +26,24 @@
 	@foreach($includesCss as $inc)
 	<link href="{{ $inc }}" rel="stylesheet">
 	@endforeach
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="/js/jquery.easing.1.3.js"></script>
+	<script src="/js/detectmobilebrowser.js"></script>
+	<script src="/js/waypoints.js"></script>
+	<script src="/js/jquery.counterup.min.js"></script>
+	<script src="/js/jquery.nicescroll.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<script src="/libs/sweetalert/sweet-alert.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script src="/js/main.js"></script>
+	@foreach($includesJs as $inc)
+	<script src="{{ $inc }}"></script>
+	@endforeach
 </head>
 
 <body>
-
+	
 	<!-- Preloader -->
 	<div id="preloader">
 		<div class="loader">
@@ -55,7 +69,7 @@
 									<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 									<ul class="right static-menu">
 										<li>
-											<a class="dropdown-button blog-submenu-init" href="#!" data-activates="dropdown1">
+											<a class="waves-effect waves-light btn" href="#user-popup">
 												<i class="mdi-action-account-circle right"></i>
 											</a>
 										</li>
@@ -122,19 +136,7 @@
 
 	</main>
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/js/jquery.easing.1.3.js"></script>
-	<script src="/js/detectmobilebrowser.js"></script>
-	<script src="/js/waypoints.js"></script>
-	<script src="/js/jquery.counterup.min.js"></script>
-	<script src="/js/jquery.nicescroll.min.js"></script>
-	<script src="/libs/materialize/js/materialize.min.js"></script>
-	<script src="/libs/sweetalert/sweet-alert.min.js"></script>
-	<script src="/js/common.js"></script>
-	<script src="/js/main.js"></script>
-	@foreach($includesJs as $inc)
-	<script src="{{ $inc }}"></script>
-	@endforeach
+	@include('front.partials.user_popup')
 </body>
 
 </html>

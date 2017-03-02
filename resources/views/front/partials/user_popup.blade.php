@@ -1,4 +1,4 @@
-<div id="user-popup" class="uk-modal">
+<div id="modal" class="">
     <div class="uk-modal-dialog modal-login">
         <a class="uk-modal-close uk-close"></a>
         @if(Auth::guest())
