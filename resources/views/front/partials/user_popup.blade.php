@@ -4,7 +4,8 @@
         @if(Auth::user())
         <form class="col s12" method="post" action="{{ url('/logout') }}">
             <div class="center-align">
-                <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">Déconnexion
+                <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">
+                    Déconnexion
                     <i class="material-icons right mdi mdi-cancel"></i>
                 </button>
             </div>

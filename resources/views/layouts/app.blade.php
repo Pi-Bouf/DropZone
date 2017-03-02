@@ -14,7 +14,7 @@
     @foreach($includesCss as $inc)
     <link href="{{ $inc }}" rel="stylesheet">
     @endforeach
-    
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/libs/materialize/js/materialize.min.js"></script>
     <script src="/js/fm.scrollator.jquery.js"></script>
@@ -41,7 +41,7 @@
     <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper navbar-fixed white">
-                <a href="#" class="brand-logo center"><img style="height: 50px;" src="./images/Logo.svg"></a>
+                <a href="#" class="brand-logo center"><img style="height: 50px;" src="/images/Logo.svg"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi mdi-dots-vertical"></i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 25px;">
                     <li><a href="#" class="loginLink"><i class="mdi mdi-account-circle"></i></a></li>
