@@ -32,6 +32,7 @@ function initialize() {
 
         var inputDepart = document.getElementById('villeDepart');
         var autocompleteDepart = new google.maps.places.Autocomplete(inputDepart);
+        inputDepart.placeholder ="";
         google.maps.event.addListener(autocompleteDepart, 'place_changed', function () {
             var place = autocompleteDepart.getPlace();
             latDepart = place.geometry.location.lat();
@@ -42,6 +43,7 @@ function initialize() {
         });
         var inputArrivee = document.getElementById('villeArrivee');
         var autocompleteArrivee = new google.maps.places.Autocomplete(inputArrivee);
+        inputArrivee.placeholder ="";
         google.maps.event.addListener(autocompleteArrivee, 'place_changed', function () {
             var place = autocompleteArrivee.getPlace();
             latArrivee = place.geometry.location.lat();

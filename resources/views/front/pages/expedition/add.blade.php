@@ -2,39 +2,80 @@
 'menu_style' => 'static', 
 'page_title' => 'DropZone - Ajout expedition',
 'includesJs' => ['/js/addexpedition.js','/js/components/accordion.min.js'],
-'includesCss' => ['/css/addexpedition.css']])
+'includesCss' => ['']])
 @section('content')
 
-    <h1 class="center">Proposer une expédition</h1>
+<style>
+    #map{
+        height:400px;
+    }
+    input{
+        color:black;
+    }
+</style>
 
-    <form method="POST" id="formAjoutTransport" action="{{url('/postaddexpedition')}}" class="uk-form-file">
-        {{ csrf_field() }}
-        <div id="divLeft" class="divFormAddTransport ">
-
-            <label class="labelForm" for="villeDepart">Ville départ :</label><br>
-            <input class="inputForm" type="text" id="villeDepart" name="villeDepart" onchange="marqueur()">
-            <input id="villeDepartHidden" name="villeDepartHidden" type="hidden" value="">
-            <br><br>
-
-            <label class="labelForm" for="villeArrivee">Ville arrivée : </label><br>
-            <input class="inputForm" type="text" id="villeArrivee" name="villeArrivee" onchange="marqueur()">
-            <input id="villeArriveeHidden" name="villeArriveeHidden" type="hidden" value="">
-            <br><br>
-
-            <h3>Taile du colis :</h3>
-            <label for="lod">Longueur (cm) :</label><input type="number" id="lod" name="lod"><br>
-            <label for="lad">Largeur (cm) :</label><input type="number" id="lad" name="lad"><br>
-            <label for="hd">Hauteur (cm) :</label><input type="number" id="hd" name="hd"><br>
-            <label for="pd">Poids (kg) :</label><input type="number" id="pd" name="pd"><br>
-            <label for="v">Volume :</label><input type="number" id="v" name="v"><br>
-            <label for="descri">Description :</label><textarea type="text" id="descri" name="descri"></textarea><br>
-            
-            <div id="map" style="width:300px; height:300px;"></div>
-       <button class="uk-button uk-button-primary" id="btProposer" disabled>Proposer</button>
-        </div>
+        <section id="contact" class="scroll-section root-sec brand-bg padd-tb-120 contact-wrap">
+            <h2 class="header center">Proposer une expédition</h2>
+            <div class="container">
+                <div class="row">
+                        <!-- Map Start -->
 
 
-    </form>
+                    <form method="POST" id="formAjoutTransport" action="{{url('/postaddexpedition')}}"  novalidate>
+                        <div class="row">
+                            <div class="col s12 l7">
+                                <div class="map-wrapper ">
+                                    
+                                    <div id="map" class="card-panel col s12"></div>
+                                </div>
+                            </div> <!-- Map end -->
+                            {{ csrf_field() }}
+                            <div class="col s12 l5">
+                                <div class="clearfix card-panel grey lighten-5 cform-wrapper">
+                                    <div class="input-field">
+                                        <input id="villeDepart" type="text" name="villeDepart" class="validate input-box" onchange="marqueur()">
+                                        <label for="villeDepart" class="input-label">Ville départ :</label>
+                                        <input id="villeDepartHidden" name="villeDepartHidden" type="hidden" value="">
+                                    </div>
+                                    <div class="input-field">
+                                        <input id="villeArrivee" type="text" name="villeArrivee" class="validate input-box" onchange="marqueur()">
+                                        <label for="villeArrivee" class="input-label">Ville arrivée :</label>
+                                        <input id="villeArriveeHidden" name="villeArriveeHidden" type="hidden" value="">
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="row">                      
+                            <div class="col s12 l7">
+                                <div class="clearfix card-panel grey lighten-5 cform-wrapper">
+                                    <div class="input-field">
+                                        <input id="villeDepart" type="text" name="villeDepart" class="validate input-box" onchange="marqueur()">
+                                        <label for="villeDepart" class="input-label">Ville départ :</label>
+                                        <input id="villeDepartHidden" name="villeDepartHidden" type="hidden" value="">
+                                    </div>
+                                    <div class="input-field">
+                                        <input id="villeArrivee" type="text" name="villeArrivee" class="validate input-box" onchange="marqueur()">
+                                        <label for="villeArrivee" class="input-label">Ville arrivée :</label>
+                                        <input id="villeArriveeHidden" name="villeArriveeHidden" type="hidden" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="section-call-to-area">
+                    <div class="container">
+                        <div class="row">
+                            <a href="#home" class="btn-floating btn-large button-middle call-to-home section-call-to-btn animated btn-up btn-hidden" data-section="#home">
+                            <i class="mdi-navigation-expand-less"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY" async defer></script>
 @endsection
