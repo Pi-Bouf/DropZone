@@ -1,4 +1,4 @@
-@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Accueil', 'includesJs' => [], 'includesCss' => []] ) @section('content')
+@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => [], 'includesCss' => []] ) @section('content')
 
 <!-- Home Section start -->
 <section id="home" class="scroll-section root-sec grey lighten-5 home-wrap">
@@ -21,7 +21,7 @@
                 <div class="row">
                     <a href="#about" class="btn-floating btn-large button-middle call-to-about section-call-to-btn animated btn-up btn-hidden"
                         data-section="#about">
-                        <i class="mdi-navigation-expand-more"></i>
+                        <i class="mdi mdi-navigation-expand-more"></i>
                         </a>
                 </div>
             </div>
@@ -101,7 +101,7 @@
             <div class="row">
                 <a href="#home" class="btn-floating btn-large button-middle call-to-home section-call-to-btn animated btn-up btn-hidden"
                     data-section="#home">
-                    <i class="mdi-navigation-expand-less"></i>
+                    <i class="mdi mdi-navigation-expand-less"></i>
                     </a>
             </div>
         </div>
