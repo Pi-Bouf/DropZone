@@ -1,18 +1,42 @@
 #background {
-    background: url('../../images/Yellow-Lotus-Car-Mountain-Road-HD-Wallpapers.jpg') no-repeat fixed center center / cover;
+    background: url('../../images/michelin-s-road-maps-taken-the-map-and-territory-syntopia-mapx.jpg') no-repeat fixed center center / cover;
 }
+
 #search {
-    background-color: rgba(0, 0, 0, 0.6);
-    min-height: 100vh !important;
+    background-color: #95a5a6;
 }
+
+#transportSearch {
+    background-color: #2980b9;
+    width: 100%;
+    height: 100%;
+}
+
+#expeditionSearch {
+    background-color: #e74c3c;
+    width: 100%;
+    height: 100%;
+}
+
+.tabs-content {
+    min-height: 500px;
+}
+
 .bg-blanc {
     background-color: white;
     color: #444444;
 }
+
 h2 {
     color: white;
 }
 
 h3 {
     color: white;
+}
+
+.formBox {
+    background-color: white;
+    border-radius: 3px;
+    margin: 10px;
 }

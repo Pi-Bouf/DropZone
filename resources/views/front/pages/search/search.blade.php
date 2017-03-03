@@ -1,34 +1,38 @@
 @extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Rechercher un colis ou un transport', 'includesJs' => [], 'includesCss' => ['/css/pages/search.css']] ) @section('content')
 
-<section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
-  <div class="container">
+<section id="search" class="scroll-section root-sec padd-tb-60 team-wrap">
     <div class="row">
-      <div class="clearfix ">
-        test
-      </div>
+        <div class="col m4 offset-m4">
+            <ul id="tabs-swipe-demo" class="tabs">
+                <li class="tab col m6"><a class="active" href="#transportSearch">Transport</a></li>
+                <li class="tab col m6"><a href="#expeditionSearch">Expedition</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </section>
 
-<section id="vehicule" class="scroll-section root-sec brand-bg padd-tb-60 team-wrap">
-  <div class="container">
-      <div class="row">
-        <div class="default-vehicule">
-            <div class="col s12 m12 l6 offset-l3 black-text">
-              <h3 class="about-subtitle white-text center-align">Véhicule</h3>
-              <div class="col s12 m6 l6">
-              </div>
-              <div class="col s12 m6 l6">
-                <div class="person-info marg-top-15px">
+<section class="researchForm">
+    <div class="row">
+        <div id="transportSearch" class="col s12">
+            <div class="row">
+                <div class="col m6 offset-m3">
+                    <div class="formBox">
+                        sdfsdf
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
-        <div class="default-vehicule center-align">
-          <p>Ce membre n'a pas encore ajouté de véhicule...</p>
+        <div id="expeditionSearch" class="col s12">
+            <div class="row">
+                <div class="col m6 offset-m3">
+                    <div class="formBox">
+                        sdfsdf
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 </section>
+
 
 @endsection

@@ -40,4 +40,6 @@ $(document).ready(function() {
         close: 'Quitter',
         format: 'dd/mm/yyyy'
     });
+
+    $('ul.tabs').tabs({ swipeable: true, responsiveThreshold: "100px" });
 });
