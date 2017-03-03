@@ -3,17 +3,16 @@ function initialize() {
     var inputArr = document.getElementById('arriveeTransport');
 
     autocompleteDepTrans = new google.maps.places.Autocomplete(
-        (inputDep),
-        { types: ['(cities)'] });
+        (inputDep));
     autocompleteDepTrans.addListener('place_changed', function () {
         var place = autocompleteDepTrans.getPlace();
-        $('#departTransHidden').val(place.place_id);
+        $('#departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
     autocompleteArrTrans = new google.maps.places.Autocomplete(
-        (inputArr), { types: ['(cities)'] });
+        (inputArr));
     autocompleteArrTrans.addListener('place_changed', function () {
         var place = autocompleteArrTrans.getPlace();
-        $('#arriveeTransHidden').val(place.place_id);
+        $('#arriveeTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 }
