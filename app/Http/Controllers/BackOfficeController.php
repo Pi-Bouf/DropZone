@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Transport;
 use Auth;
 
 class BackOfficeController extends Controller
@@ -103,5 +104,14 @@ class BackOfficeController extends Controller
             "actualUser" => $user,
         );
         return view('back.pages.user.detail', $data);
+    }
+    
+    public function getTransportDetail(Transport $transport)
+    {
+        $data = array(
+            "user" => Auth::user(),
+            "actualTransport" => $transport,
+        );
+        return view('back.pages.transport.detail', $data);
     }
 }
