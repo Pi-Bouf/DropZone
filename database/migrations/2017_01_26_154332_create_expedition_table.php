@@ -20,7 +20,7 @@ class CreateExpeditionTable extends Migration
       		$table->boolean('isAccepted');
       		$table->smallInteger('costFixed');
       		$table->text('description');
-      		$table->tinyInteger('volumeItem');
+      		$table->tinyInteger('volumeItem')->nullable;
       		$table->smallInteger('lengthItem');
       		$table->smallInteger('widthItem');
       		$table->smallInteger('heightItem');
