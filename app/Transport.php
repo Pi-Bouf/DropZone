@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transport extends Model
 {
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function etapes()
     {
         return $this->hasMany('App\Etape');

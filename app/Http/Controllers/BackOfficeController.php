@@ -110,7 +110,7 @@ class BackOfficeController extends Controller
     {
         $data = array(
             "user" => Auth::user(),
-            "actualTransport" => $transport,
+            "transport" => $transport,
         );
         return view('back.pages.transport.detail', $data);
     }

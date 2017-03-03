@@ -77,4 +77,4 @@ $this->get('/admin', 'BackOfficeController@getDashBoard')->name('admin_home');
 $this->get('/admin/user/list', 'BackOfficeController@getUserList')->name('admin_user_list');
 $this->post('/admin/user/list', 'BackOfficeController@postSearchUserList')->name('admin_user_list_search_post');
 $this->get('/admin/user/detail/{user}', 'BackOfficeController@getUserDetail')->name('admin_user_detail');
-$this->get('/admin/transport/detail/{transport}', 'BackOfficeController@getTransportDetail')->name('admin_user_detail');
+$this->get('/admin/transport/detail/{transport}', 'BackOfficeController@getTransportDetail')->name('admin_transport_detail');
