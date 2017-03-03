@@ -2,32 +2,21 @@
 'menu_style' => 'static', 
 'page_title' => 'DropZone - Ajout expedition',
 'includesJs' => ['/js/addexpedition.js'],
-'includesCss' => ['']])
+'includesCss' => ['/css/pages/expeditions.css']])
 @section('content')
 
-<style>
-    #map{
-        height:400px;
-    }
-    input{
-        color:black;
-    }
-    textarea{
-        color:black;
-    }
-    body{
-        color:orange;
-    }
-</style>
 
-        <section id="contact" class="scroll-section root-sec brand-bg padd-tb-120 contact-wrap">
-            <h2 class="header center">Proposer une expédition</h2>
+        <section id="contact" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
+            @if(session('add'))
+                <div class="alert alert-success"> Expedition ajouté !</div>
+            @endif 
+            <h2 class="header center">Proposer une expédition de colis</h2>
             <div class="container">
                 <div class="row">
                         <!-- Map Start -->
 
 
-                    <form method="POST" id="formAjoutTransport" action="{{url('/postaddcolis')}}"  novalidate>
+                    <form method="POST" id="formAjoutTransport" action="{{url('/postaddcolis')}}">
                         <div class="row">
                             <div class="col s12 l7">
                                 <div class="map-wrapper ">
@@ -36,7 +25,7 @@
                                 </div>
                             </div> <!-- Map end -->
                             {{ csrf_field() }}
-                            <div class="col s12 l5">
+                            <div class="col s12 l5" id="infoTrajet">
                                 <div class="clearfix card-panel grey lighten-5 cform-wrapper">
                                     <span>Information sur le trajet</span>
                                     <div class="input-field">
@@ -78,14 +67,14 @@
                                         <label for="largeur" class="input-label">Largeur (cm) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="hauteur" type="number" name="hauteur" class="validate input-box" onchange="marqueur()" required>
+                                        <input id="hauteur" type="number" name="hauteur" class="input-box" onchange="marqueur()" required>
                                         <label for="hauteur" class="input-label">Hauteur (cm) :</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="center">
-                            <button id="btProposer" type="submit" class="waves-light btn-large orange darken-3"><i class="mdi mdi-cube-send right"></i>Proposer</button>
+                            <button id="btProposer" type="submit" class=" btn-large orange darken-3" disabled><i class="mdi mdi-cube-send right"></i>Proposer</button>
                         </div>
                     </form>
                 </div>
