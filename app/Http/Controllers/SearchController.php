@@ -11,4 +11,14 @@ class SearchController extends Controller
     {
         return view('front.pages.search.search');
     }
+
+    public function postSearchTransport()
+    {
+
+    }
+
+    public function postSearchExpedition()
+    {
+
+    }
 }

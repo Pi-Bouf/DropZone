@@ -20,7 +20,8 @@ Route::get('/', 'HomeController@home')->name('home');
 | Recherche de transport / colis
 */
 Route::get('/search', 'SearchController@index')->name('search');
-
+Route::post('/search/transport', 'SearchController@postSearchTransport')->name('search_transport_post');
+Route::post('/search/expedition', 'SearchController@postSearchExpedition')->name('search_expedition_post');
 
 /*
 | Transport

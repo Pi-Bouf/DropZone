@@ -54,7 +54,7 @@
 
     <mobile>
         <ul class="side-nav" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
+            <li><a href="#" class="loginLink"><i class="mdi mdi-account-circle"></i></a></li>
             <li><a href="badges.html">Components</a></li>
             <li><a href="collapsible.html">JavaScript</a></li>
         </ul>
