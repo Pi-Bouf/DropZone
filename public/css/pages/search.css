@@ -1,0 +1,18 @@
+#background {
+    background: url('../../images/Yellow-Lotus-Car-Mountain-Road-HD-Wallpapers.jpg') no-repeat fixed center center / cover;
+}
+#search {
+    background-color: rgba(0, 0, 0, 0.6);
+    min-height: 100vh !important;
+}
+.bg-blanc {
+    background-color: white;
+    color: #444444;
+}
+h2 {
+    color: white;
+}
+
+h3 {
+    color: white;
+}
