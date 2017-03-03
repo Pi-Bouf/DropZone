@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 Route::get('/', 'HomeController@home')->name('home');
 
-
-Route::get('/search', 'CarteController@index')->name('search');
+/*
+| Recherche de transport / colis
+*/
+Route::get('/search', 'SearchController@index')->name('search');
 
 
 /*
