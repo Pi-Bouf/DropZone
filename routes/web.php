@@ -59,7 +59,7 @@ Route::post('user/me/update', 'UserController@postProfileUpdate')->name('user_pr
 // Authentication Routes...
 $this->get('/', 'Auth\LoginController@showLoginForm')->name('login'); // --> connexion dans le pop-up
 $this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+$this->get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

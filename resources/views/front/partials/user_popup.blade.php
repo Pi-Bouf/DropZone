@@ -1,30 +1,8 @@
 <!-- Modal Structure -->
 <div id="loginModal" class="modal">
     <div class="modal-content">
-        @if(Auth::user())
-        <form class="col s12" method="post" action="{{ url('/logout') }}">
-        {{ csrf_field() }}
-            <div class="center-align">
-
-                <div class="row">
-                 <div class="col s12 m4 l4">
-                      <a href="{{ url('/user/me') }}" style="width:100%;" class="btn btn-large waves-effect waves-light blue darken-1 white-text">Mon Profil</a>
-                 </div>
-                 <div class="col s12 m4 l4">
-                      <a href="{{ url('/user/me/update') }}" style="width:100%;" class="btn btn-large waves-effect waves-light blue darken-1 white-text">Modifier mon Profil</a>
-                 </div>
-                 <div class="col s12 m4 l4">
-                      <a href="{{ url('/user/myvehicules') }}" style="width:100%;" class="btn btn-large waves-effect waves-light green darken-1 white-text">Vehicules</a>
-                 </div>
-                 <div class="col s12 m4 l4">
-                      <a href="{{ url('/logout') }}" style="width:100%; margin-top:15px;" class="btn btn-large waves-effect waves-light red darken-1 white-text">Déconnexion</a>
-                 </div>
-                </div>
-
-            </div>
-        </form>
-        @else
-        <div class="row">
+        @if(!Auth::user())
+          <div class="row">
             <form class="col s12" method="post" action="{{ url('/login') }}">
                 {{ csrf_field() }}
                 <div class="row">

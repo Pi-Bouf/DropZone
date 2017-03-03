@@ -553,3 +553,11 @@ h3 {
 .icon-size{
   font-size: 1.35rem;
 }
+
+.no-padding{
+  padding: 0px 0px 0px 0px;
+}
+
+.side-nav{
+  width:250px;
+}
