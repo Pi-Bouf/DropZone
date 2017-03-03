@@ -18,7 +18,6 @@ class CreateVilleTable extends Migration
           $table->double('latitude');
           $table->double('longitude');
           $table->string('name');
-          $table->string('place_id');
           $table->timestamps();
       });
     }

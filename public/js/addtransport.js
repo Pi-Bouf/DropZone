@@ -5,7 +5,6 @@ var tabEtape=[];
 var tabAuto=[];
 var tabLatEtape=[];
 var tabLngEtape=[];
-var tabIdEtape=[];
 var waypts = [];
 var place;
 var autoroute = true;
@@ -36,7 +35,6 @@ function addEtape() {
             alert(place);
             tabLatEtape[name] = place.geometry.location.lat();
             tabLngEtape[name] = place.geometry.location.lng();
-            tabIdEtape[name] = place.place_id;
             marqueur();
                     
 
@@ -75,11 +73,9 @@ var markDep;
 
 var latDepart;
 var lngDepart;
-var idDepart;
 
 var latArrivee;
 var lngArrivee;
-var idArrivee;
 
 var latEtape;
 var lngEtape;
@@ -92,7 +88,6 @@ function initialize() {
             var place = autocompleteDepart.getPlace();
             latDepart = place.geometry.location.lat();
             lngDepart = place.geometry.location.lng();
-            idDepart = place.place_id;
             marqueur();
                     
 
@@ -103,7 +98,6 @@ function initialize() {
             var place = autocompleteArrivee.getPlace();
             latArrivee = place.geometry.location.lat();
             lngArrivee = place.geometry.location.lng();
-            idArrivee = place.place_id;
             marqueur();
                     
 
@@ -114,7 +108,6 @@ function initialize() {
             var place = autocompleteEtape1.getPlace();
             tabLatEtape[1] = place.geometry.location.lat();
             tabLngEtape[1] = place.geometry.location.lng();
-            tabIdEtape[1] = place.place_id;
             marqueur();
                     
 
@@ -140,14 +133,14 @@ function marqueur(){
     var etape;
     if(document.getElementById('villeDepart').value!="" && document.getElementById('villeArrivee').value!="")
     {
-        document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart+";"+idDepart;
-        document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee+";"+idArrivee;
+        document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
+        document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
         var e;
         for (var i = 0; i < name ; i++) {
             e = i+1;
             etape = document.getElementById('villeEtape'+e);
             if (etape.value != "") {
-                document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e]+';'+tabIdEtape[e];
+                document.getElementById('villeEtapeHidden'+e).value= tabLatEtape[e]+';'+tabLngEtape[e];
                 waypts.push({
                     location: etape.value
                 });
@@ -176,4 +169,3 @@ function marqueur(){
         document.getElementById('btProposer').disabled  = true;
     }
 }
-
