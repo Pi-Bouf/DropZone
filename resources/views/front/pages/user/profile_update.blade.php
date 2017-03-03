@@ -44,7 +44,7 @@
         </div>
 
         <div class="input-field col s12">
-          <input type="text" id="birthday" name="reg_birthday" class="datepicker validate" {{ $errors->has('reg_birthday') ? 'class=uk-form-danger' : '' }} value="{{ $user->birthday }}" required>
+          <input type="date" id="birthday" name="reg_birthday" class="datepicker validate" {{ $errors->has('reg_birthday') ? 'class=uk-form-danger' : '' }} value="{{ $user->birthday }}" required>
           <label for="birthday">Date de naissance</label>
           <br><strong>{{ $errors->first('reg_birthday') }}</strong>
         </div>

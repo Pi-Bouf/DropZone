@@ -53,8 +53,11 @@ class UserController extends Controller
     public function getProfileUpdate(){
 
       $user = Auth::user();
-      $data = array('user' => $user);
+      //format date europe
+      $birthdate = explode("-", $user->birthday);
+      $user->birthday = $birthdate[2].'/'.$birthdate[1].'/'.$birthdate[0];
 
+      $data = array('user' => $user);
       return view('front.pages.user.profile_update', $data);
     }
 
@@ -63,27 +66,31 @@ class UserController extends Controller
     * @param Request $request
     * @return view /home ou back()->withInput() si erreur
     */
-    public function postProfileUpdate(Request $request){      
-      /*$rules = array(
+    public function postProfileUpdate(Request $request){
+
+      $rules = array(
         'firstName' => 'required|max:50|string',
         'lastName' => 'required|max:75|string',
         'gender' => 'in:0,1',
         'email' => 'required|max:100|email',
-        'reg_birthday' => 'required|date',
+        'reg_birthday' => 'required',
         'phone' => 'required|max:9999999999|numeric',
-        'description' => 'required|max:255|string',
-      );*/
-      //$this->validate($request, $rules);
+        'description' => 'required|string',
+      );
+      $this->validate($request, $rules);
+
+      $birthdate = explode("/", $request->input('reg_birthday'));
+      $birthdate = $birthdate[2].'/'.$birthdate[1].'/'.$birthdate[0];
 
       print_r ($request->input());
 
-      /*$user = Auth::user();
+      $user = Auth::user();
       $user->firstName = $request->input('firstName');
       $user->lastName = $request->input('lastName');
       $user->sexe = ($request->input('gender') == 'h') ? 'h' : 'f';
 
       $user->email = $request->input('email');
-      $user->birthday = date('Y-m-d', strtotime(str_replace('/', '-', $request->input('reg_birthday'))));
+      $user->birthday = $birthdate;
       $user->phone = $request->input('phone');
       $user->description = $request->input('description');
 
@@ -91,7 +98,7 @@ class UserController extends Controller
           return redirect()->route('user_profile_update')->with('edit', 'ok');
       } else {
           return redirect()->back()->with('error', 'ok');
-      }*/
+      }
 
     }
 
