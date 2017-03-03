@@ -1,0 +1,21 @@
+
+#map{
+    height:400px;
+}
+input{
+    color:black;
+}
+textarea{
+    color:black;
+}
+body{
+    color:orange;
+}
+h2{
+    font-size:2.5em !important;
+    margin-top:-20px;
+}
+
+section{
+
+}
