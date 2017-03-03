@@ -30,7 +30,7 @@ function addEtape() {
     }
   
         tabEtape[name] = document.getElementById('villeEtape'+name);
-        tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name],{ types: ['(cities)'] });
+        tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name]);
         google.maps.event.addListener(tabAuto[name], 'place_changed', function () {
             place = tabAuto[name].getPlace();
             alert(place);
@@ -87,7 +87,7 @@ var lngEtape;
 function initialize() {
 
         var inputDepart = document.getElementById('villeDepart');
-        var autocompleteDepart = new google.maps.places.Autocomplete(inputDepart,{ types: ['(cities)'] });
+        var autocompleteDepart = new google.maps.places.Autocomplete(inputDepart);
         google.maps.event.addListener(autocompleteDepart, 'place_changed', function () {
             var place = autocompleteDepart.getPlace();
             latDepart = place.geometry.location.lat();
@@ -98,7 +98,7 @@ function initialize() {
 
         });
         var inputArrivee = document.getElementById('villeArrivee');
-        var autocompleteArrivee = new google.maps.places.Autocomplete(inputArrivee,{ types: ['(cities)'] });
+        var autocompleteArrivee = new google.maps.places.Autocomplete(inputArrivee);
         google.maps.event.addListener(autocompleteArrivee, 'place_changed', function () {
             var place = autocompleteArrivee.getPlace();
             latArrivee = place.geometry.location.lat();
@@ -109,7 +109,7 @@ function initialize() {
 
         });  
         var inputEtape1 = document.getElementById('villeEtape1');
-        var autocompleteEtape1 = new google.maps.places.Autocomplete(inputEtape1,{ types: ['(cities)'] });
+        var autocompleteEtape1 = new google.maps.places.Autocomplete(inputEtape1);
         google.maps.event.addListener(autocompleteEtape1, 'place_changed', function () {
             var place = autocompleteEtape1.getPlace();
             tabLatEtape[1] = place.geometry.location.lat();

@@ -8,7 +8,6 @@ function initialize() {
     autocompleteDepTrans.addListener('place_changed', function () {
         var place = autocompleteDepTrans.getPlace();
         $('#departTransHidden').val(place.place_id);
-        alert(place.place_id);
     });
 
     autocompleteArrTrans = new google.maps.places.Autocomplete(

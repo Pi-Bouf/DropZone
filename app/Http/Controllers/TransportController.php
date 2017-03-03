@@ -52,7 +52,6 @@ class TransportController extends Controller
             
             
             if($transport->save()) {
-                $ville = new Ville();
                 $villeDep = $request->input('villeDepartHidden');
                 $villeDep = explode (";", $villeDep);
                 $ville->latitude = $villeDep[0];
