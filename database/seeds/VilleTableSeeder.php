@@ -14,13 +14,15 @@ class VilleTableSeeder extends Seeder
         DB::table('villes')->insert([
             'latitude' => 44.560132,
             'longitude' => 6.080900,
-            'name' => "Gap"
+            'name' => "Gap",
+            'place_id' => "ChIJ1ROi2Hg_yxIRYKeX_aUZCAQ",
         ]);
 
         DB::table('villes')->insert([
             'latitude' => 44.560132,
             'longitude' => 6.080900,
-            'name' => "Grenoble"
+            'name' => "Grenoble",
+            'place_id' => "ChIJb76J1ov0ikcRmFOZbs0QjGE",
         ]);
     }
 }

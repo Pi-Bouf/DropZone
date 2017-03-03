@@ -17,21 +17,24 @@
                     <h2>Transport</h2>
                 </div>
                 <form class="formBox col m4 s10 offset-m4 offset-s1" method="post" action="{{ route('search_transport_post') }}">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="departTransport" type="text" class="validate" placeholder="">
+                            <input id="departTransport" name="departTransport" type="text" class="validate" placeholder="" required="required">
+                            <input type="hidden" name="departTransHidden" id="departTransHidden">
                             <label for="departTransport">Ville de départ</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="arriveeTransport" type="text" class="validate" placeholder="">
+                            <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate" placeholder="" required="required">
+                            <input type="hidden" name="arriveeTransHidden" id="arriveeTransHidden">
                             <label for="arriveeTransport">Ville d'arrivée</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="dateTransport" type="date" class="datepicker">
+                            <input id="dateTransport" type="date" class="datepicker" name="dateTransport" required="required">
                             <label for="dateTransport">Date</label>
                         </div>
                     </div>
@@ -47,6 +50,7 @@
                     <h2>Expedition</h2>
                 </div>
                 <form class="formBox col m4 s10 offset-m4 offset-s1">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="departTransport" type="text" class="validate" placeholder="">

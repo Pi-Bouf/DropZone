@@ -57,6 +57,7 @@ class TransportController extends Controller
                 $villeDep = explode (";", $villeDep);
                 $ville->latitude = $villeDep[0];
                 $ville->longitude = $villeDep[1];
+                $ville->place_id = $villeDep[2];
                 $ville->name = $request->input('villeDepart');
 
                 $villeA = new Ville();
@@ -64,6 +65,7 @@ class TransportController extends Controller
                 $villeArr = explode (";", $villeArr);
                 $villeA->latitude = $villeArr[0];
                 $villeA->longitude = $villeArr[1];
+                $villeA->place_id = $villeArr[2];
                 $villeA->name = $request->input('villeArrivee');
  
                 for($i = 1 ; $i <= 5 ; $i++){
@@ -73,6 +75,7 @@ class TransportController extends Controller
                         $villeEtapeCoord[$i] = explode (";",$villeEtapeCoord[$i]);
                         $villeEtape[$i]->latitude = $villeEtapeCoord[$i][0];
                         $villeEtape[$i]->longitude = $villeEtapeCoord[$i][1];
+                        $villeEtape[$i]->place_id = $villeEtapeCoord[$i][2];
                         $villeEtape[$i]->name = $request->input('villeEtape'.$i);
                         $villeEtape[$i]->save();
                         
