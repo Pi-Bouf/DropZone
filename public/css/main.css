@@ -571,3 +571,7 @@ h3 {
 .register-content{
   padding: 24px 0px 24px 0px !important;
 }
+
+.dropdown-content {
+  min-width: 200px; 
+}
