@@ -10,6 +10,10 @@
     background-color: #2980b9;
 }
 
+#transportResults {
+    background-color: #2980b9;
+}
+
 #expeditionSearch {
     background-color: #e74c3c;
 }
@@ -36,4 +40,13 @@ h3 {
 
 .formBox input {
     color: #666666;
+}
+
+.transportItem {
+    margin-bottom: 5px;
+    background-color: white;
+    color: #444444;
+    margin: 5px;
+    border-radius: 3px;
+    padding: 10px;
 }

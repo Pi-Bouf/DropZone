@@ -48,20 +48,62 @@ class SearchController extends Controller
             $lat_sw = $lat - $offset;
             $lon_sw = $lon - $offset; */
 
-            $transport = DB::table('transports')
-            ->addSelect('transports.id')
-            ->addSelect('name')
-            ->addSelect(DB::raw('(villes.latitude + ((transports.detourRetirMax * 0.01) / 1.1132)) as latMax'))
-            ->addSelect(DB::raw('(villes.latitude - ((transports.detourRetirMax * 0.01) / 1.1132)) as latMin'))
-            ->addSelect(DB::raw('(villes.longitude + ((transports.detourRetirMax * 0.01) / 1.1132)) as lngMax'))
-            ->addSelect(DB::raw('(villes.longitude - ((transports.detourRetirMax * 0.01) / 1.1132)) as lngMin'))
-            ->join('etapes', 'transports.id', 'etapes.transport_id')
-            ->join('villes', 'etapes.ville_id', 'villes.id')
-            ->havingRaw('latMax > '.$latDep.' AND latMin < '.$latDep.' AND lngMax > '.$lngDep.' AND lngMin < '.$lngDep)
+            $getTrans = DB::table('transports as first')
+            ->select(DB::raw('first.id'))
+            ->join('etapes as second', 'first.id', 'second.transport_id')
+            ->join('villes', 'second.ville_id', 'villes.id')
+            ->whereIn('first.id', function($query) use ($latArr, $lngArr) {
+                $query->select(DB::raw('transports.id'))->from('transports')
+                ->join('etapes', 'transports.id', 'etapes.transport_id')
+                ->join('villes', 'etapes.ville_id', 'villes.id')
+                ->whereRaw(' transports.id = first.id AND etapes.ville_position > second.ville_position
+                AND (villes.latitude + ((transports.detourRetirMax * 0.01) / 1.1132)) > '.$latArr.' 
+                AND (villes.latitude - ((transports.detourRetirMax * 0.01) / 1.1132)) < '.$latArr.' 
+                AND (villes.longitude + ((transports.detourRetirMax * 0.01) / 1.1132)) > '.$lngArr.' 
+                AND (villes.longitude - ((transports.detourRetirMax * 0.01) / 1.1132)) < '.$lngArr.'');
+            })
+            ->whereRaw('(villes.latitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$latDep.' 
+            AND (villes.latitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$latDep.' 
+            AND (villes.longitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$lngDep.' 
+            AND (villes.longitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$lngDep.'')
             ->get();
 
-            dd($transport->pluck('id'));
+            $transport = Transport::findMany($getTrans->pluck('id')->toArray());
 
+            $data = array(
+                "transports" => $transport,
+                "adresseDep" => $request->input('departTransport'),
+                "adresseArr" => $request->input('arriveeTransport'),
+            );
+
+            $request->session()->flash('transports', $data);
+            return redirect()->route('search_transport');
+    }
+
+    public function getSearchTransport()
+    {
+        /*************************************/
+        // Test
+
+        $transport = Transport::findMany([1, 2, 3, 4]);
+
+            $data = array(
+                "transports" => $transport,
+                "adresseDep" => "Gap, France",
+                "adresseArr" => "Grenoble, France",
+            );
+
+            return view('front.pages.search.transports', $data);
+
+        /*************************************/
+
+        /*
+        if(session('transports') != null)
+        {
+            return view('front.pages.search.transports', session('transports'));
+        } else {
+            return redirect()->back()->withInput();
+        } */
     }
 
     public function postSearchExpedition()

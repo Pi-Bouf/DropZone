@@ -3,7 +3,7 @@
 
 <section id="search" class="scroll-section root-sec padd-tb-60 team-wrap">
     <div class="row">
-        <div class="col m6 s10 offset-m3 offset-s1">
+        <div class="col m6 s10 offset-m3 offset-s1 center-align">
             <h2>Recherche de transports ou d'expeditions</h2>
         </div>
     </div>
@@ -20,7 +20,7 @@
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="departTransport" name="departTransport" type="text" class="validate" placeholder="" required="required">
+                            <input id="departTransport" name="departTransport" value="{{ old('departTransport') }}" type="text" class="validate" placeholder="" required="required">
                             <input type="hidden" name="departTransHidden" id="departTransHidden">
                             <label for="departTransport">Ville de départ</label>
                         </div>
