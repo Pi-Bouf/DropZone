@@ -58,11 +58,13 @@
         </header>
         <mobile>
             <ul class="side-nav collapsible collapsible-accordion" id="mobile-nav">
+              <li><a href="{{ url('/') }}" class="dropdown-button"><i class="mdi mdi-home small left"></i>Accueil</a></li>
               <li class="bold"><a class="active collapsible-header waves-effect"><i class="mdi mdi-account slamm left"></i>Mon Profil</a>
                   <div class="collapsible-body no-padding" style="display: none;">
                       <ul>
                           <li><a href="{{ url('/user/me') }}">Afficher</a></li>
                           <li><a href="{{ url('/user/me/update') }}">Modifier</a></li>
+                          <li class="divider"></li>
                       </ul>
                   </div>
               </li>
@@ -95,7 +97,7 @@
       </mobile>
 
       @endif
-      
+
     @yield('content')
 
     @include('front.partials.login_popup')

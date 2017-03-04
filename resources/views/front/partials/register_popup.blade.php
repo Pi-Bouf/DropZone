@@ -24,9 +24,9 @@
                     <div class="row">
                         <div class="input-field col s12 offset-m2 m8">
                           <i class="material-icons prefix mdi mdi-calendar"></i>
-                            <input class="datepicker" id="birthday" name="reg_birthday" type="text" class="validate" onfocus="(this.type='date')" onblur="(this.type='text')" {{ $errors->has('birthday') ? 'class=uk-form-danger' : '' }} required>
-                            <label for="birthday">Date de naissance</label>
-                            <strong><font color="red">{{ $errors->first('reg_lastname') }}</font></strong>
+                            <input class="datepicker" id="reg_birthday" name="reg_birthday" type="text" class="validate" onfocus="(this.type='date')" onblur="(this.type='text')" {{ $errors->has('reg_birthday') ? 'class=uk-form-danger' : '' }} required>
+                            <label for="reg_birthday">Date de naissance</label>
+                            <strong><font color="red">{{ $errors->first('reg_birthday') }}</font></strong>
                         </div>
                     </div>
                     <div class="row">
@@ -64,10 +64,10 @@
     </div>
 </div>
 
-@if($errors->has('email'))
+@if($errors->has('reg_lastname') || $errors->has('reg_firstname') || $errors->has('reg_email') || $errors->has('reg_password') || $errors->has('reg_birthday'))
 <script>
     setTimeout(function() {
-        $('#registerLink').modal('open');
+        $('#registerModal').modal('open');
     }, 500);
 </script>
 @endif
