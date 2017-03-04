@@ -39,10 +39,11 @@
       @if(Auth::user())
         <ul id="user-nav" class="dropdown-content" style='width: auto !important;'>
           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text left"></i>Profil</a></li>
+          <li><a href="{{ url('/user/me/update') }}"><i class="mdi mdi-account-edit grey-text left"></i>Mes informations</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car left brown-text"></i>Véhicules</a></li>
           <li class="divider"></li>
-          <li><a href="{{ url('/') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Mes transports</a></li>
+          <li><a href="{{ url('/user/mytransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Mes transports</a></li>
           <li><a href="{{ url('/') }}"><i class="mdi mdi-cube-send orange-text left"></i>Mes colis</a></li>
           <li class="divider"></li>
 
@@ -76,6 +77,7 @@
                   <div class="collapsible-body no-padding" style="display: none;">
                       <ul>
                           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text small left"></i>Profil</a></li>
+                          <li><a href="{{ url('/user/me/update') }}"><i class="mdi mdi-account-edit grey-text small left"></i>Mes informations</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car small brown-text left"></i>Véhicules</a></li>
                           <li class="divider"></li>

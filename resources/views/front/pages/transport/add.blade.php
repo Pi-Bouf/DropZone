@@ -1,5 +1,5 @@
-@extends('layouts.app', [ 
-'menu_style' => 'static', 
+@extends('layouts.app', [
+'menu_style' => 'static',
 'page_title' => 'DropZone - Ajout transport',
 'includesJs' => ['/js/addtransport.js','/js/components/accordion.min.js'],
 'includesCss' => ['/css/addtransport.css']])
@@ -9,10 +9,10 @@
     .center{
         text-align:center;
     }
-</style>       
+</style>
     @if(session('add'))
         <div class="uk-alert uk-alert-success"> Transport ajouté !</div>
-    @endif 
+    @endif
     <h1 class="center">Proposer un transport</h1>
 
     @if ($nbVehicule==0)
@@ -49,18 +49,18 @@
                     <label class="labelForm" for="detour">Détour maximum : </label><br>
                     <input class="inputForm" type="number" id="detour" name="detour" min="1" value="1"> km<br><br>
 
-                    <label class="labelForm" for="detour">Autoroute emprunté : </label><br>  
+                    <label class="labelForm" for="detour">Autoroute emprunté : </label><br>
                     <input type="radio" class="uk-radio" name="autoroute" id="oui" value="oui" onchange="autorouteClicked()" checked> <label for="oui">Oui</label>
                     <input type="radio" class="uk-radio" name="autoroute" id="non" value="non" onchange="autorouteClicked()"> <label for="non">Non</label><br>
-                    
+
                     <div id="map" style="width:300px; height:300px;"></div>
                 </div>
         </div>
 
         <div id="divDeux" class="divFormAddTransport landing_pages_item">
-            
+
             <h2>2. Les dates du trajet</h2>
-            <label class="labelForm" for="nature">Nature du trajet : </label><br>  
+            <label class="labelForm" for="nature">Nature du trajet : </label><br>
             <input type="radio" class="uk-radio" name="nature" id="occasionnel" value="occasionnel" onchange="occa()"> <label for="occasionnel">Occasionnel</label>
             <input type="radio" class="uk-radio" name="nature" id="regulier" value="regulier" onchange="regu()"> <label for="regulier">Regulier</label><br>
 
@@ -84,7 +84,7 @@
                 <label for="dateDebut">Date de début : </label><input type="date" name="dateDebut" id="dateDebut" value="2017-01-01">
                 <label for="dateFin">Date de fin : </label><input type="date" name="dateFin" id="dateFin" value="2017-01-01">
             </div>
-            
+
         </div>
         <div id="divTrois" class="divFormAddTransport landing_pages_item">
             <h2>3. Information sur le véhicule</h2>

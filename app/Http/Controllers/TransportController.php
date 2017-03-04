@@ -17,7 +17,7 @@ class TransportController extends Controller
     }
     public function addData(\App\Transport $transport, Request $request)
     {
-            
+
             $transport->vehicule_id = $request->input('vehicule');
             $transport->user_id = Auth::user()->id;
             $transport->detourRetirMax = $request->input('detour');
@@ -39,8 +39,8 @@ class TransportController extends Controller
             $transport->largMax = $request->input('lad');
             $transport->poidMax = $request->input('pd');
             $transport->volume = $request->input('volume');
-            
-            
+
+
             if($transport->save()) {
                 $ville = new Ville();
                 $villeDep = $request->input('villeDepartHidden');
@@ -54,7 +54,7 @@ class TransportController extends Controller
                 $villeA->latitude = $villeArr[0];
                 $villeA->longitude = $villeArr[1];
                 $villeA->name = $request->input('villeArrivee');
- 
+
                 for($i = 1 ; $i <= 5 ; $i++){
                     if($request->input('villeEtapeHidden'.$i)!=""){
                         $villeEtape[$i] = new Ville();
@@ -64,7 +64,7 @@ class TransportController extends Controller
                         $villeEtape[$i]->longitude = $villeEtapeCoord[$i][1];
                         $villeEtape[$i]->name = $request->input('villeEtape'.$i);
                         $villeEtape[$i]->save();
-                        
+
                         $etape = new Etape();
                         $etape->transport_id = $transport->id;
                         $etape->ville_id = $villeEtape[$i]->id;
@@ -88,5 +88,9 @@ class TransportController extends Controller
             } else {
                 return 'fait chier';
             }
+    }
+
+    public function listTransport() {
+        return view('front.pages.transport.liste');
     }
 }

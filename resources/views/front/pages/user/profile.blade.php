@@ -6,15 +6,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="clearfix ">
+
+
+
+
             <div class="col s12 m12 l4">
-							<div class="person-about">
-                @if(Auth::user()->id == $user->id)
-                  <h3 class="about-subtitle">Mon profil</h3>
-                @else
-                <h3 class="about-subtitle">Profil de {{$user->firstName}} {{$user->lastName}}</h3>
-                @endif
-                <p>{{$user->description}}</p>
-							</div>
+							<div class="card white lighten-3">
+				        <div class="card-content grey-text">
+									<div class="person-about">
+		                @if(Auth::user()->id == $user->id)
+		                  <h3 class="about-subtitle">Mon profil</h3>
+		                @else
+		                <h3 class="about-subtitle">{{$user->firstName}} {{$user->lastName}}</h3>
+		                @endif
+		                <p>{{$user->description}}</p>
+									</div>
+				        </div>
+				      </div>
 						</div>
 
             <div class="col s12 m6 l4">
@@ -28,38 +36,45 @@
 						</div>
 
             <div class="col s12 m6 l4">
-              <div class="person-info">
-                <h3 class="about-subtitle">Information personnelles</h3>
-                <h5><span>Nom :</span> {{$user->firstName}} {{$user->lastName}}</h5>
-                <h5><span>Note :</span>
-									<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-									<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-									<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-									<i class="mdi mdi-star-half icon-size yellow-text" aria-hidden="true"></i>
-                  <i class="mdi mdi-star-outline icon-size yellow-text" aria-hidden="true"></i>
 
-                </h5>
-                <h5><span>Age :</span> {{$age}} ans</h5>
-                <div class="about-social">
-                  <ul>
-                    <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-facebook"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-google-plus"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-linkedin"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-pinterest"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+							<div class="card white lighten-3">
+				        <div class="card-content">
+									<div class="person-info">
+		                <h3 class="about-subtitle">Information personnelles</h3>
+		                <h5><span>Nom :</span> {{$user->firstName}} {{$user->lastName}}</h5>
+		                <h5><span>Note :</span>
+											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+											<i class="mdi mdi-star-half icon-size yellow-text" aria-hidden="true"></i>
+		                  <i class="mdi mdi-star-outline icon-size yellow-text" aria-hidden="true"></i>
+
+		                </h5>
+		                <h5><span>Age :</span> {{$age}} ans</h5>
+		                <div class="about-social">
+		                  <ul>
+		                    <li>
+		                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-facebook"></i></a>
+		                    </li>
+		                    <li>
+		                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-twitter"></i></a>
+		                    </li>
+		                    <li>
+		                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-google-plus"></i></a>
+		                    </li>
+		                    <li>
+		                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-linkedin"></i></a>
+		                    </li>
+		                    <li>
+		                      <a href="#" class="btn-floating waves-effect waves-light white"><i class="mdi mdi-pinterest"></i></a>
+		                    </li>
+		                  </ul>
+		                </div>
+		              </div>
+				        </div>
+				      </div>
+
+
             </div>
 					</div>
 				</div>

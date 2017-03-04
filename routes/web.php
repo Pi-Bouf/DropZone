@@ -29,6 +29,8 @@ Route::post('/search/expedition', 'SearchController@postSearchExpedition')->name
 */
 Route::get('/addtransport', 'TransportController@index')->name('addtransport');
 Route::post('/postaddtransport', 'TransportController@addData')->name('postaddtransport');
+Route::get('user/mytransport', 'TransportController@listTransport')->name('user_transport');
+
 
 /*
 | Deposer colis
