@@ -58,7 +58,7 @@
         </header>
         <mobile>
             <ul class="side-nav collapsible collapsible-accordion" id="mobile-nav">
-              <li class="bold"><a class="active collapsible-header waves-effect"><i class="mdi mdi-account left"></i>Mon Profil</a>
+              <li class="bold"><a class="active collapsible-header waves-effect"><i class="mdi mdi-account slamm left"></i>Mon Profil</a>
                   <div class="collapsible-body no-padding" style="display: none;">
                       <ul>
                           <li><a href="{{ url('/user/me') }}">Afficher</a></li>
@@ -66,8 +66,8 @@
                       </ul>
                   </div>
               </li>
-              <li><a href="{{ url('/user/myvehicules') }}" class="dropdown-button"><i class="mdi mdi-car left"></i>Véhicules</a></li>
-              <li><a href="{{ url('/logout') }}" class="dropdown-button"><i class="mdi mdi-logout left red-text"></i>Déconnexion</a></li>
+              <li><a href="{{ url('/user/myvehicules') }}" class="dropdown-button"><i class="mdi mdi-car small left"></i>Véhicules</a></li>
+              <li><a href="{{ url('/logout') }}" class="dropdown-button"><i class="mdi mdi-logout small left red-text"></i>Déconnexion</a></li>
             </ul>
         </mobile>
 
@@ -80,27 +80,26 @@
                   <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi mdi-dots-vertical"></i></a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 25px;">
                     <li><a href="#" class="loginLink"><i class="mdi mdi-login right green-text"></i>Connexion</a></li>
+                    <li><a href="#" class="registerLink"><i class="mdi mdi-account-plus right blue-text"></i>Inscription</a></li>
                   </ul>
               </div>
           </nav>
       </header>
       <mobile>
           <ul class="side-nav collapsible collapsible-accordion" id="mobile-nav">
-            <li><a href="#" class="loginLink"><i class="mdi mdi-login left green-text"></i>Connexion</a></li>
+            <li><a href="#" class="loginLink"><i class="mdi mdi-login small left green-text"></i>Connexion</a></li>
+            <li><a href="#" class="registerLink"><i class="mdi mdi-account-plus small left blue-text"></i>Inscription</a></li>
 
-    
+
           </ul>
       </mobile>
 
       @endif
-
-
-
-
-
+      
     @yield('content')
 
-    @include('front.partials.user_popup')
+    @include('front.partials.login_popup')
+    @include('front.partials.register_popup')
 </body>
 
 

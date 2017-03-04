@@ -22,6 +22,10 @@ $(document).ready(function() {
         $('#loginModal').modal('open');
     });
 
+    $('.registerLink').click(function() {
+        $('#registerModal').modal('open');
+    });
+
     // DatePicker
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month

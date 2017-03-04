@@ -561,3 +561,13 @@ h3 {
 .side-nav{
   width:250px;
 }
+
+.register-modal{
+  max-height: 90% !important;
+  max-width: 90% !important;
+  top: 5% !important;
+}
+
+.register-content{
+  padding: 24px 0px 24px 0px !important;
+}
