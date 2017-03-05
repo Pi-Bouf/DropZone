@@ -13,20 +13,17 @@
         <div class="card-content black-text">
           <h3 class="about-subtitle ">Mes transports</h3>
           <ul class="collapsible" data-collapsible="accordion">
+            @foreach(Auth::user()->transports as $transport)
+            <li>
+              <div class="collapsible-header"><i class="material-icons"></i>transport1</div>
+              <div class="collapsible-body"><span>{{}}.</span></div>
+            </li>
+
+            @endforeach
             <li>
               <div class="collapsible-header"><i class="material-icons"></i>First</div>
               <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
             </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons"></i>Second</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons"></i>Third</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-          </ul>
-
 
         </div>
       </div>
