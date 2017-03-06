@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Date\Date;
 
 class Transport extends Model
 {
@@ -10,6 +11,11 @@ class Transport extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function vehicule()
+    {
+        return $this->belongsTo('App\Vehicule');
     }
 
     public function etapes()

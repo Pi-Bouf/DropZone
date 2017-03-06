@@ -36,13 +36,104 @@
 <section id="transportResults" class="padd-tb-60 team-wrap" style="height: auto!important;">
     <div class="row">
         <div class="col m5 offset-m1 s10 offset-s1 z-depth-4" id="map" style="height: 400px; border: 2px solid white;">
-            sdfsdf
+            Chargement map Google...
         </div>
-        <div class="col m5 s12" id="transportsList" style="max-height: 400px; padding-top: 20px;">
+        <div class="col m5 s12" id="transportsList" style="max-height: 400px;">
             @for ($i = 0; $i < $transports->count(); $i++)
             <div class="row">
                 <div class="col m12 s12 transportItem">
-                    {{ $transports[$i]->villeDepart->ville->name }}
+                    <div class="row">
+                        <div class="col m6 s12">
+                        <div class="center-align">
+                            @if($transports[$i]->natureTransport)
+                                <div class="green darken-3 white-text" style="margin: 5px; border-radius: 3px;">
+                                <h3><i>{{ Date::parse($transports[$i]->regularyBeginningDate)->format('l j F') }}<br>{{ Date::parse($transports[$i]->regularyEndingDate)->format('l j F') }}</i><br>{{ $transports[$i]->frequency }}</h3>
+                                </div>
+                            @else
+                                <div class="blue darken-3" style="margin: 5px; border-radius: 3px;">
+                                <h3>{{ Date::parse($transports[$i]->beginningDate)->format('l j F') }}<br>{{ Date::parse($transports[$i]->beginningHour)->format('H:i') }}</h3>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="row center-align">
+                        @if($user->picLink==null)
+                        <img src="/images/profile/icon-{{$transports[$i]->user->sexe}}.png" width="75%" class="responsive-img circle" alt="">
+                        @else
+                        <img src="/images/profile/{{$transports[$i]->user->picLink}}" width="75%" class="responsive-img circle" alt="">
+                        @endif
+                        </div>
+                        </div>
+                        <div class="col m6 s12">
+                            <div class="row center-align">
+                                <img style="width: 70%; max-height: 100px;" src="/images/vehicles/{{ $transports[$i]->vehicule->vehiculetype->name }}.svg"><br>
+                                <h3 class="black-text">{{ $transports[$i]->vehicule->marque }} {{ $transports[$i]->vehicule->modele }}</h3>
+                                <table class="bordered striped centered" style="margin-top: 5px;">
+                                    <tbody>
+                                    <tr>
+                                        <td>Longueur Max.:</td>
+                                        <td>
+                                        @if($transports[$i]->longMax && $transports[$i]->longMax > 0)
+                                        {{ $transports[$i]->longMax }} cm
+                                        @elseif($transports[$i]->vehicule->longMax > 0)
+                                        {{ $transports[$i]->vehicule->longMax }} cm
+                                        @else
+                                        <i><b>NR.</b></i>
+                                        @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hauteur Max.:</td>
+                                        <td>
+                                        @if($transports[$i]->hautMax && $transports[$i]->hautMax > 0)
+                                        {{ $transports[$i]->hautMax }} cm
+                                        @elseif($transports[$i]->vehicule->hautMax > 0)
+                                        {{ $transports[$i]->vehicule->hautMax }} cm
+                                        @else
+                                        <i><b>NR.</b></i>
+                                        @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Largeur Max.:</td>
+                                        <td>
+                                        @if($transports[$i]->largMax && $transports[$i]->largMax > 0)
+                                        {{ $transports[$i]->largMax }} cm
+                                        @elseif($transports[$i]->vehicule->largMax > 0)
+                                        {{ $transports[$i]->vehicule->largMax }} cm
+                                        @else
+                                        <i><b>NR.</b></i>
+                                        @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Poid Max.:</td>
+                                        <td>
+                                        @if($transports[$i]->poidMax && $transports[$i]->poidMax > 0)
+                                        {{ $transports[$i]->poidMax }} kg
+                                        @elseif($transports[$i]->vehicule->poidMax > 0)
+                                        {{ $transports[$i]->vehicule->poidMax }} kg
+                                        @else
+                                        <i><b>NR.</b></i>
+                                        @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume Max.:</td>
+                                        <td>
+                                        @if($transports[$i]->volume && $transports[$i]->volume > 0)
+                                        {{ $transports[$i]->volume }} kg
+                                        @elseif($transports[$i]->vehicule->volume > 0)
+                                        {{ $transports[$i]->vehicule->volume }} kg
+                                        @else
+                                        <i><b>NR.</b></i>
+                                        @endif
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>                        
+                        </div>
+                    </div>
                 </div>
             </div>
             @endfor
