@@ -39,9 +39,21 @@
             Chargement map Google...
         </div>
         <div class="col m5 s12" id="transportsList" style="max-height: 400px;">
+        <script>
+            var tabEtapeTransport = Array();
+            var tabDetourMax = Array();
+        </script>
             @for ($i = 0; $i < $transports->count(); $i++)
+            <script>
+            tabDetourMax[{{ $transports[$i]->id }}] = {{ $transports[$i]->detourRetirMax }};
+            var tabEtape = Array();
+            @foreach($transports[$i]->etapes as $etape)
+            tabEtape.push({{ $etape->ville->latitude }} + ";" + {{ $etape->ville->longitude }});
+            @endforeach
+            tabEtapeTransport[{{ $transports[$i]->id }}] = tabEtape;
+            </script>
             <div class="row">
-                <div class="col m12 s12 transportItem">
+                <div class="col m12 s12 transportItem" onclick="loadRoad({{ $transports[$i]->id }})">
                     <div class="row">
                         <div class="col m6 s12">
                         <div class="center-align">
@@ -56,11 +68,22 @@
                             @endif
                         </div>
                         <div class="row center-align">
-                        @if($user->picLink==null)
-                        <img src="/images/profile/icon-{{$transports[$i]->user->sexe}}.png" width="75%" class="responsive-img circle" alt="">
+                        @if($transports[$i]->user->picLink==null)
+                        <img src="/images/profile/icon-{{$transports[$i]->user->sexe}}.png" width="20%" class="responsive-img circle" alt="">
                         @else
-                        <img src="/images/profile/{{$transports[$i]->user->picLink}}" width="75%" class="responsive-img circle" alt="">
+                        <img src="/images/profile/{{$transports[$i]->user->picLink}}" width="20%" class="responsive-img circle" alt="">
                         @endif
+                        <br>
+                        <h3 class="black-text">{{ $transports[$i]->user->login }}</h3>
+                        
+                        <i>{{ $transports[$i]->information }}</i>
+                        <div class="center-align">
+                            @if($transports[$i]->withHighway)
+                            <i class="mdi mdi-highway small blue-text"></i>
+                            @else
+                            <i class="mdi mdi-highway small grey-text"></i>
+                            @endif
+                        </div>
                         </div>
                         </div>
                         <div class="col m6 s12">
@@ -139,8 +162,14 @@
             @endfor
         </div>
     </div>
+    <div id="selectTransport" class="center-align" style="margin-top: 25px; display: none;">
+        <a href="" class="waves-effect waves-light btn green">Je prends ce trajet !</a>
+    </div>
 </section>
-
+<script>
+    var depTab = [{{ $latDep }}, {{ $lngDep }}];
+    var arrTab = [{{ $latArr }}, {{ $lngArr }}]
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY" async defer></script>
 
 @endsection

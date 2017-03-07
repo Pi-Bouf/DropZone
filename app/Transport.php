@@ -20,7 +20,7 @@ class Transport extends Model
 
     public function etapes()
     {
-        return $this->hasMany('App\Etape');
+        return $this->hasMany('App\Etape')->orderBy('ville_position', 'ASC');
     }
     
     public function villeDepart()

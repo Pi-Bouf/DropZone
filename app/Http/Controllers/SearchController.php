@@ -33,6 +33,8 @@ class SearchController extends Controller
             $coordArrivee = explode(';', $request->input('arriveeTransHidden'));
             $latArr = $coordArrivee[0];
             $lngArr = $coordArrivee[1];
+
+            $date = date("Y-d-m H:i:s", strtotime($request->input('dateTransport')));
             
             /*
 
@@ -65,7 +67,9 @@ class SearchController extends Controller
             ->whereRaw('(villes.latitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$latDep.' 
             AND (villes.latitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$latDep.' 
             AND (villes.longitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$lngDep.' 
-            AND (villes.longitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$lngDep.'')
+            AND (villes.longitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$lngDep.'
+            AND (beginningDate = "'.$date.'" OR "'.$date.'" BETWEEN regularyBeginningDate AND regularyEndingDate)')
+            ->orderBy('natureTransport', 'DESC')->orderBy('beginningHour', 'ASC')
             ->get();
 
             $transport = Transport::findMany($getTrans->pluck('id')->toArray());
@@ -74,6 +78,10 @@ class SearchController extends Controller
                 "transports" => $transport,
                 "adresseDep" => $request->input('departTransport'),
                 "adresseArr" => $request->input('arriveeTransport'),
+                "latDep" => $latDep,
+                "lngDep" => $lngDep,
+                "latArr" => $latArr,
+                "lngArr" => $lngArr,
             );
 
             $request->session()->flash('transports', $data);
@@ -84,26 +92,30 @@ class SearchController extends Controller
     {
         /*************************************/
         // Test
-
+        /*
         $transport = Transport::findMany([1, 2, 3, 4]);
 
             $data = array(
                 "transports" => $transport,
                 "adresseDep" => "Gap, France",
                 "adresseArr" => "Grenoble, France",
+                "latDep" => "44.559638",
+                "lngDep" => "6.07975799999997",
+                "latArr" => "45.188529",
+                "lngArr" => "5.724523999999974",
             );
 
             return view('front.pages.search.transports', $data);
-
+            */
         /*************************************/
 
-        /*
+        
         if(session('transports') != null)
         {
             return view('front.pages.search.transports', session('transports'));
         } else {
             return redirect()->back()->withInput();
-        } */
+        }
     }
 
     public function postSearchExpedition()
