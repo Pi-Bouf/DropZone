@@ -15,8 +15,13 @@
           <ul class="collapsible" data-collapsible="accordion">
             @foreach(Auth::user()->transports as $transport)
             <li>
-              <div class="collapsible-header"><i class="material-icons"></i>transport1</div>
-              <div class="collapsible-body"><span>{{}}.</span></div>
+              <div class="collapsible-header"><i class="material-icons"></i>{{ $transport->villeDepart->ville->name }}</div>
+              <div class="collapsible-body"><span>
+
+                @foreach($transport->etapes as $etape)
+                {{ $etape->ville->name }}<br>
+                @endforeach
+              </span></div>
             </li>
 
             @endforeach
@@ -24,7 +29,7 @@
               <div class="collapsible-header"><i class="material-icons"></i>First</div>
               <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
             </li>
-
+          </ul>
         </div>
       </div>
 
