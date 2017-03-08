@@ -16,7 +16,7 @@
                 <div class="center-align">
                     <h2>Transport</h2>
                 </div>
-                <form class="formBox col m4 s10 offset-m4 offset-s1" method="post" action="{{ route('search_transport_post') }}">
+                <form class="formBox col l6 m10 s12 offset-l3 offset-m1" method="post" action="{{ route('search_transport_post') }}">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
@@ -49,25 +49,27 @@
                 <div class="center-align">
                     <h2>Expedition</h2>
                 </div>
-                <form class="formBox col m4 s10 offset-m4 offset-s1">
+                <form class="formBox col l6 m10 s12 offset-l3 offset-m1" method="post" action="{{ route('search_expedition_post') }}">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="departTransport" type="text" class="validate" placeholder="">
-                            <label for="departTransport">Ville de départ</label>
+                            <input id="departExpedition" name="departExpedition" type="text" class="validate" placeholder="">
+                            <input type="hidden" name="departExpeHidden" id="departExpeHidden">
+                            <label for="departExpedition">Ville de départ</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="arrive" type="text" class="validate" placeholder="">
-                            <label for="arriveeTransport">Ville d'arrivée</label>
+                            <input id="arriveeExpedition" name="arriveeExpedition" type="text" class="validate" placeholder="">
+                            <input type="hidden" name="arriveeExpeHidden" id="arriveeExpeHidden">
+                            <label for="arriveeExpedition">Ville d'arrivée</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="dateTra" type="date" class="datepicker">
-                            <label for="dateTransport">Date</label>
-                        </div>
+                        <p class="range-field">
+                            <label for="rangeKM">Détours en KM:</label>
+                            <input type="range" id="rangeKM" name="rangeKM" min="1" max="20" value="5">
+                        </p>
                     </div>
                     <div class="center-align">
                         <button class="waves-effect waves-light btn"><i class="right mdi mdi-search-web"></i>Rechercher</button>
@@ -77,7 +79,9 @@
         </div>
     </div>
 </section>
-
+<script>
+    var target = "search";
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initialize&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY"
     async defer></script>
 

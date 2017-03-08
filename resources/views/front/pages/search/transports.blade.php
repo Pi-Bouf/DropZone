@@ -167,6 +167,7 @@
     </div>
 </section>
 <script>
+    var target = "transport";
     var depTab = [{{ $latDep }}, {{ $lngDep }}];
     var arrTab = [{{ $latArr }}, {{ $lngArr }}]
 </script>

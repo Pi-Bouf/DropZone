@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@home')->name('home');
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/search/transport', 'SearchController@getSearchTransport')->name('search_transport');
 Route::post('/search/transport', 'SearchController@postSearchTransport')->name('search_transport_post');
+Route::get('/search/expedition', 'SearchController@getSearchExpedition')->name('search_expedition');
 Route::post('/search/expedition', 'SearchController@postSearchExpedition')->name('search_expedition_post');
 
 /*
