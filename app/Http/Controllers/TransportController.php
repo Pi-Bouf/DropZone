@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ville;
 use App\Etape;
+use App\Transport;
 use Auth;
 class TransportController extends Controller
 {
@@ -97,5 +98,10 @@ class TransportController extends Controller
 
     public function listTransport() {
         return view('front.pages.transport.liste');
+    }
+
+    public function affTransport(Transport $transport) {
+
+        return view('front.pages.transport.affiche', array('transport' => $transport));
     }
 }
