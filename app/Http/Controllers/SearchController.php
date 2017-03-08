@@ -118,8 +118,47 @@ class SearchController extends Controller
         }
     }
 
-    public function postSearchExpedition()
+    public function postSearchExpedition(Request $request)
+    {
+        $rules = array(
+            "departExpedition" => "required",
+            "arriveeExpedition" => "required",
+        );
+
+        $this->validate($request, $rules);
+
+        $coordDepart = explode(';', $request->input('departExpeHidden'));
+        $latDep = $coordDepart[0];
+        $lngDep = $coordDepart[1];
+
+        $coordArrivee = explode(';', $request->input('arriveeExpeHidden'));
+        $latArr = $coordArrivee[0];
+        $lngArr = $coordArrivee[1];
+
+        $rangeKM = $request->input('rangeKM');
+
+
+        $getExpe = DB::table('expeditions')
+        ->select(DB::raw('expeditions.id'))
+        ->join('villes as beginning', 'beginning.id', 'beginning_ville_id')
+        ->join('villes as ending', 'ending.id', 'ending_ville_id')
+        ->whereRaw('(beginning.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latDep.' 
+        AND (beginning.latitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$latDep.' 
+        AND (beginning.longitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$lngDep.' 
+        AND (beginning.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$lngDep.'
+        AND (ending.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latArr.' 
+        AND (ending.latitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$latArr.' 
+        AND (ending.longitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$lngArr.' 
+        AND (ending.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$lngArr)
+        ->get();
+
+        var_dump($getExpe->pluck('id')->toArray());
+        die();
+    }
+
+    public function getSearchExpedition()
     {
 
+        return view('front.pages.search.expeditions');
     }
 }

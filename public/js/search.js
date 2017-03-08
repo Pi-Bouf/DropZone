@@ -6,41 +6,59 @@ var markerArr = null;
 var cityCircle = Array();
 
 function initialize() {
-    var inputDep = document.getElementById('departTransport');
-    var inputArr = document.getElementById('arriveeTransport');
+    var inputDepTransport = document.getElementById('departTransport');
+    var inputArrTransport = document.getElementById('arriveeTransport');
+
+    var inputDepExpedition = document.getElementById('departExpedition');
+    var inputArrExpedition = document.getElementById('arriveeExpedition');
 
     autocompleteDepTrans = new google.maps.places.Autocomplete(
-        (inputDep));
-    autocompleteDepTrans.addListener('place_changed', function() {
+        (inputDepTransport));
+    autocompleteDepTrans.addListener('place_changed', function () {
         var place = autocompleteDepTrans.getPlace();
         $('#departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
     autocompleteArrTrans = new google.maps.places.Autocomplete(
-        (inputArr));
-    autocompleteArrTrans.addListener('place_changed', function() {
+        (inputArrTransport));
+    autocompleteArrTrans.addListener('place_changed', function () {
         var place = autocompleteArrTrans.getPlace();
         $('#arriveeTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
-
-    // Trajet sur la map
-    directionsService = new google.maps.DirectionsService();
-
-    var depart = new google.maps.LatLng(depTab[0], depTab[1]);
-    var arrivee = new google.maps.LatLng(arrTab[0], arrTab[1]);
-    var request = {
-        destination: arrivee,
-        avoidHighways: true,
-        origin: depart,
-        travelMode: 'DRIVING'
-    };
-
-    directionsService.route(request, function(response, status) {
-        if (status === google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        } else {}
+    autocompleteDebTrans = new google.maps.places.Autocomplete(
+        (inputDepExpedition), {types: ['(cities)']});
+    autocompleteDebTrans.addListener('place_changed', function () {
+        var place = autocompleteDebTrans.getPlace();
+        $('#departExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
+
+    autocompleteArrExpe = new google.maps.places.Autocomplete(
+        (inputArrExpedition), {types: ['(cities)']});
+    autocompleteArrExpe.addListener('place_changed', function () {
+        var place = autocompleteArrExpe.getPlace();
+        $('#arriveeExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+    });
+
+    if (target == "transport") {
+        // Trajet sur la map
+        directionsService = new google.maps.DirectionsService();
+
+        var depart = new google.maps.LatLng(depTab[0], depTab[1]);
+        var arrivee = new google.maps.LatLng(arrTab[0], arrTab[1]);
+        var request = {
+            destination: arrivee,
+            avoidHighways: true,
+            origin: depart,
+            travelMode: 'DRIVING'
+        };
+
+        directionsService.route(request, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            } else { }
+        });
+    }
 }
 
 function initMap() {
@@ -114,7 +132,7 @@ function loadRoad(id) {
         travelMode: 'DRIVING'
     };
 
-    directionsService.route(request, function(response, status) {
+    directionsService.route(request, function (response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
         }
@@ -124,7 +142,7 @@ function loadRoad(id) {
     $("#selectTransport").fadeIn();
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Scrollbar
     var $document_body = $('#transportsList');
     if ($document_body.data('scrollator') === undefined) {
