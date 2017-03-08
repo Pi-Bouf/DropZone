@@ -11,19 +11,17 @@ var autoroute = true;
 function addEtape() {
     div = document.getElementById('etape')
     name++;
-    t = document.createTextNode(name + '.');
-    div.appendChild(t);
-
     newInput = document.createElement('input');
 
     newInput.setAttribute('type', 'text');
     newInput.setAttribute('id', 'villeEtape' + name);
     newInput.setAttribute('name', 'villeEtape' + name);
     newInput.setAttribute('onchange', 'tryit()');
+    newInput.setAttribute('placeholder', 'Ville étape');
     div.appendChild(newInput);
     div.appendChild(document.createElement('br'));
     if (name == 5) {
-        var e = document.getElementById('divUk');
+        var e = document.getElementById('trajet');
         var but = document.getElementById('ajoutButton');
         e.removeChild(but);
     }
@@ -32,7 +30,6 @@ function addEtape() {
         tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name]);
         google.maps.event.addListener(tabAuto[name], 'place_changed', function () {
             place = tabAuto[name].getPlace();
-            alert(place);
             tabLatEtape[name] = place.geometry.location.lat();
             tabLngEtape[name] = place.geometry.location.lng();
             marqueur();
@@ -84,6 +81,7 @@ function initialize() {
 
         var inputDepart = document.getElementById('villeDepart');
         var autocompleteDepart = new google.maps.places.Autocomplete(inputDepart);
+        inputDepart.placeholder ="";
         google.maps.event.addListener(autocompleteDepart, 'place_changed', function () {
             var place = autocompleteDepart.getPlace();
             latDepart = place.geometry.location.lat();
@@ -94,6 +92,7 @@ function initialize() {
         });
         var inputArrivee = document.getElementById('villeArrivee');
         var autocompleteArrivee = new google.maps.places.Autocomplete(inputArrivee);
+        inputArrivee.placeholder ="";
         google.maps.event.addListener(autocompleteArrivee, 'place_changed', function () {
             var place = autocompleteArrivee.getPlace();
             latArrivee = place.geometry.location.lat();
@@ -104,6 +103,7 @@ function initialize() {
         });  
         var inputEtape1 = document.getElementById('villeEtape1');
         var autocompleteEtape1 = new google.maps.places.Autocomplete(inputEtape1);
+        inputEtape1.placeholder ="";
         google.maps.event.addListener(autocompleteEtape1, 'place_changed', function () {
             var place = autocompleteEtape1.getPlace();
             tabLatEtape[1] = place.geometry.location.lat();

@@ -6,9 +6,16 @@
 @section('content')
 
 
-        <section id="contact" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
+        <section id="contenuSection" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
             @if(session('add'))
-                <div class="alert alert-success"> Expedition ajouté !</div>
+                <div id="card-alert" class="card orange lighten-5">
+                    <div class="card-content orange-text">
+                        <p>Votre expédition a été ajouté avec succès !</p>
+                    </div>
+                    <button type="button" class="close orange-text" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
             @endif 
             <h2 class="header center">Proposer une expédition de colis</h2>
             <div class="container">

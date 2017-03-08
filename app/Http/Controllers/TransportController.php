@@ -25,13 +25,16 @@ class TransportController extends Controller
             $transport->withHighway = ($request->input('autoroute') == 'oui') ? '1' : '0';
             if($request->input('nature') == 'occasionnel'){
                 $transport->natureTransport = false;
-                $transport->beginningDate =  $request->input('dateDepart');
-                $transport->beginningHour = '12:12:10';
+                $date = explode("/",$request->input('dateDepart'));
+                $transport->beginningDate =  $date[2].'-'.$date[1].'-'.$date[0];
+                $transport->beginningHour = $request->input('heureDepart').':00';
             } else {
                 $transport->natureTransport = true;
                 $transport->frequency = $request->input('freq');
-                $transport->regularyBeginningDate = $request->input('dateDebut');
-                $transport->regularyEndingDate = $request->input('dateFin');
+                $dateB = explode("/",$request->input('dateDebut'));
+                $transport->regularyBeginningDate = $dateB[2].'-'.$dateB[1].'-'.$dateB[0];
+                $dateE = explode("/",$request->input('dateFin'));
+                $transport->regularyEndingDate = $dateE[2].'-'.$dateE[1].'-'.$dateE[0];
             }
             $transport->information = $request->input('descri');
             $transport->longMax = $request->input('lod');
@@ -57,19 +60,21 @@ class TransportController extends Controller
 
                 for($i = 1 ; $i <= 5 ; $i++){
                     if($request->input('villeEtapeHidden'.$i)!=""){
-                        $villeEtape[$i] = new Ville();
-                        $villeEtapeCoord[$i] = $request->input('villeEtapeHidden'.$i);
-                        $villeEtapeCoord[$i] = explode (";",$villeEtapeCoord[$i]);
-                        $villeEtape[$i]->latitude = $villeEtapeCoord[$i][0];
-                        $villeEtape[$i]->longitude = $villeEtapeCoord[$i][1];
-                        $villeEtape[$i]->name = $request->input('villeEtape'.$i);
-                        $villeEtape[$i]->save();
+                        if($request->input('villeEtape'.$i)!=""){
+                            $villeEtape[$i] = new Ville();
+                            $villeEtapeCoord[$i] = $request->input('villeEtapeHidden'.$i);
+                            $villeEtapeCoord[$i] = explode (";",$villeEtapeCoord[$i]);
+                            $villeEtape[$i]->latitude = $villeEtapeCoord[$i][0];
+                            $villeEtape[$i]->longitude = $villeEtapeCoord[$i][1];
+                            $villeEtape[$i]->name = $request->input('villeEtape'.$i);
+                            $villeEtape[$i]->save();
 
-                        $etape = new Etape();
-                        $etape->transport_id = $transport->id;
-                        $etape->ville_id = $villeEtape[$i]->id;
-                        $etape->ville_position = $i+1;
-                        $etape->save();
+                            $etape = new Etape();
+                            $etape->transport_id = $transport->id;
+                            $etape->ville_id = $villeEtape[$i]->id;
+                            $etape->ville_position = $i+1;
+                            $etape->save();
+                        }
                     }
                 }
                 if($ville->save() && $villeA->save()){
