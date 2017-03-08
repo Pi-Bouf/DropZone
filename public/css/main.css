@@ -573,5 +573,13 @@ h3 {
 }
 
 .dropdown-content {
-  min-width: 200px; 
+  min-width: 200px;
+}
+
+.ville_Etape{
+  margin-left: 19px !important;
+}
+
+.uneVille{
+  margin-top: 10px;
 }
