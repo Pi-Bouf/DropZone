@@ -11,14 +11,14 @@ function initialize() {
 
     autocompleteDepTrans = new google.maps.places.Autocomplete(
         (inputDep));
-    autocompleteDepTrans.addListener('place_changed', function () {
+    autocompleteDepTrans.addListener('place_changed', function() {
         var place = autocompleteDepTrans.getPlace();
         $('#departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
     autocompleteArrTrans = new google.maps.places.Autocomplete(
         (inputArr));
-    autocompleteArrTrans.addListener('place_changed', function () {
+    autocompleteArrTrans.addListener('place_changed', function() {
         var place = autocompleteArrTrans.getPlace();
         $('#arriveeTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
@@ -36,11 +36,10 @@ function initialize() {
         travelMode: 'DRIVING'
     };
 
-    directionsService.route(request, function (response, status) {
+    directionsService.route(request, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-        } else {
-        }
+        } else {}
     });
 }
 
@@ -55,7 +54,7 @@ function initMap() {
 }
 
 function loadRoad(id) {
-    for(var i = 0; i < cityCircle.length; i++) {
+    for (var i = 0; i < cityCircle.length; i++) {
         cityCircle[i].setMap(null);
     }
 
@@ -115,16 +114,17 @@ function loadRoad(id) {
         travelMode: 'DRIVING'
     };
 
-    directionsService.route(request, function (response, status) {
+    directionsService.route(request, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
         }
     });
 
+    $("#transportSelect").attr('href', '/transport/' + id);
     $("#selectTransport").fadeIn();
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     // Scrollbar
     var $document_body = $('#transportsList');
     if ($document_body.data('scrollator') === undefined) {
