@@ -37,7 +37,7 @@
                     </div> <!-- Map end -->
                     <div class="col s12 l5" id="infoTrajet">
                         <div class="clearfix card-panel grey lighten-5 cform-wrapper">
-                                        <span>Information sur le trajet</span>
+                                        <h3>Information sur le trajet</h3>
                                         <div class="input-field">
                                             <input id="villeDepart" type="text" name="villeDepart" class="validate input-box" onchange="marqueur()" required>
                                             <label for="villeDepart" class="input-label">Adresse de départ :</label>
@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col s12 l6 ">
                             <div class="clearfix card-panel grey lighten-5 cform-wrapper">
-                            <span>Les dates du trajet</span>
+                            <h3>Les dates du trajet</h3>
                             <br><br>
                             <label class="" for="nature">Nature du trajet : </label><br>
                             <p>
@@ -121,7 +121,7 @@
 
                     <div class="col s12 l6">
                         <div class="clearfix card-panel grey lighten-5 cform-wrapper">
-                            <span>Information sur le véhicule</span>
+                            <h3>Information sur le véhicule</h3>
                             <br><br>
                             <label>Véhicule utilisé : </label>
                             <div class="input-field">

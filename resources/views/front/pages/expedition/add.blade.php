@@ -34,7 +34,7 @@
                             {{ csrf_field() }}
                             <div class="col s12 l5" id="infoTrajet">
                                 <div class="clearfix card-panel grey lighten-5 cform-wrapper">
-                                    <span>Information sur le trajet</span>
+                                    <h3>Information sur le trajet</h3>
                                     <div class="input-field">
                                         <input id="villeDepart" type="text" name="villeDepart" class="validate input-box" onchange="marqueur()" required>
                                         <label for="villeDepart" class="input-label">Adresse de départ :</label>
