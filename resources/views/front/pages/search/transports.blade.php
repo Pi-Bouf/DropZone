@@ -163,7 +163,7 @@
         </div>
     </div>
     <div id="selectTransport" class="center-align" style="margin-top: 25px; display: none;">
-        <a href="" class="waves-effect waves-light btn green">Je prends ce trajet !</a>
+        <a id="transportSelect" href="" class="waves-effect waves-light btn green">Je prends ce trajet !</a>
     </div>
 </section>
 <script>
