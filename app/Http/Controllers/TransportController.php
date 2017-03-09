@@ -5,6 +5,7 @@ use App\Ville;
 use App\Etape;
 use App\Transport;
 use Auth;
+use Carbon\Carbon;
 class TransportController extends Controller
 {
     public function __construct()
@@ -102,6 +103,11 @@ class TransportController extends Controller
 
     public function affTransport(Transport $transport) {
 
-        return view('front.pages.transport.affiche', array('transport' => $transport));
+        //je changerai ouais ! :D
+        $etape = Etape::where('transport_id', "=", $transport->id)->get();
+        
+        $birthdate = explode("-", $transport->user->birthday);
+        $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
+        return view('front.pages.transport.affiche', array('transport' => $transport, 'age' => $age, 'etape' => $etape));
     }
 }
