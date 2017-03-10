@@ -18,7 +18,32 @@
     <div class="row">
         <div class="col s12 l6 push-l1 deep-orange lighten-4">
             <h3>Détails du voyage</h3>
-            <div id="trajet">{{$etape[0]->ville_position}}</div>
+            <div id="trajet">
+                <h4>Trajet</h4>
+                <div> {{ $depart->ville->name }} -> {{ $fin->ville->name }}</div>
+                @if(count($etapes) != 2)
+                    <div>
+                        <i class="mdi mdi-subdirectory-arrow-right"></i>
+                        @foreach($etapes as $etape)
+                            @if($etape->ville_position!=1 && $etape->ville_position!=7)
+                                {{$etape->ville->name}}
+                            @endif
+                        @endforeach
+                        <i class="mdi mdi-subdirectory-arrow-right mdi-rotate-90"></i>
+                    </div>
+                @endif
+
+                @if($transport->natureTransport == "1")
+                                <div>
+                                    Date de début : <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> Date de fin : <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i><br>{{ $transport->frequency }}
+                                </div>
+                            @else
+                                <div>
+                                    <h3>{{ Date::parse($transport->beginningDate)->format('l j F') }}<br>{{ Date::parse($transport->beginningHour)->format('H:i') }}</h3>
+                                </div>
+                @endif
+            </div>
+            
         </div>
         <div class="col s12 l3 push-l2 cyan lighten-2">
             <h3>Conducteur</h3>

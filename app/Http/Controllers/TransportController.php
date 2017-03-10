@@ -93,7 +93,7 @@ class TransportController extends Controller
                     return redirect()->route('addtransport')->with('add', 'ok');
                 }
             } else {
-                return 'fait chier';
+                return redirect()->route('addtransport');
             }
     }
 
@@ -103,11 +103,12 @@ class TransportController extends Controller
 
     public function affTransport(Transport $transport) {
 
-        //je changerai ouais ! :D
-        $etape = Etape::where('transport_id', "=", $transport->id)->get();
-        
+        //$etape = Etape::where('transport_id', "=", $transport->id)->get();
+        $etapes = $transport->etapes()->get()->all();
+        $depart = $transport->villeDepart()->get()->first();
+        $fin = $transport->villeArrivee()->get()->first();
         $birthdate = explode("-", $transport->user->birthday);
         $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
-        return view('front.pages.transport.affiche', array('transport' => $transport, 'age' => $age, 'etape' => $etape));
+        return view('front.pages.transport.affiche', array('transport' => $transport, 'age' => $age, 'depart' => $depart, 'fin' => $fin, 'etapes' => $etapes));
     }
 }
