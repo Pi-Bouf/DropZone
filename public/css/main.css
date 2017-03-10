@@ -580,6 +580,22 @@ h3 {
   margin-left: 19px !important;
 }
 
-.uneVille{
-  margin-top: 10px;
+.mg-t20{
+  margin-top: 20px;
+}
+
+.mg-t30{
+  margin-top: 30px;
+}
+
+.mg-b15{
+  margin-bottom: 20px;
+}
+
+.date-depart-transport{
+  font-size: 1.3em;
+}
+
+.bold{
+  font-weight: bold;
 }
