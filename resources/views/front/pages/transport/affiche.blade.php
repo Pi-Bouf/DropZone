@@ -9,41 +9,70 @@
             color:black;
             text-align:center;
         }
-
-        
+        h2{
+            font-size:2.5em !important;
+            margin-top:-20px;
+            color:cornflowerblue;
+        }
+        textarea:focus {
+            border-bottom: 1px solid white !important;
+            -webkit-box-shadow: 0 1px 0 0 white !important;
+            -moz-box-shadow: 0 1px 0 0 white !important;
+            box-shadow: 0 1px 0 0 white !important;
+        }
+        input:focus {
+            border-bottom: 1px solid white !important;
+            -webkit-box-shadow: 0 1px 0 0 white !important;
+            -moz-box-shadow: 0 1px 0 0 white !important;
+            box-shadow: 0 1px 0 0 white !important;
+        }
     </style>
 
 <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap">
-
+    <h2>Détail et réservation du transport</h2>
     <div class="row">
-        <div class="col s12 l6 push-l1 deep-orange lighten-4">
-            <h3>Détails du voyage</h3>
-            <div id="trajet">
-                <h4>Trajet</h4>
-                <div> {{ $depart->ville->name }} -> {{ $fin->ville->name }}</div>
-                @if(count($etapes) != 2)
+        <div class="col s12 l6 push-l1 ">
+            <div class="row deep-orange lighten-4">
+                <h3>   </h3>
+                <div id="trajet">
+                    <h4>Trajet</h4>
+                    <div> {{ $depart->ville->name }} -> {{ $fin->ville->name }}</div>
+                    @if(count($etapes) != 2)
+                        <div>
+                            Les villes étapes :
+                            @foreach($etapes as $etape)
+                                @if($etape->ville_position!=1 && $etape->ville_position!=7)
+                                    {{$etape->ville->name}}
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
+
+
+                </div>
+            </div><br>
+            <div class="row blue lighten-2">
+                <h4>Information</h4>
+                @if($transport->natureTransport == "1")
                     <div>
-                        <i class="mdi mdi-subdirectory-arrow-right"></i>
-                        @foreach($etapes as $etape)
-                            @if($etape->ville_position!=1 && $etape->ville_position!=7)
-                                {{$etape->ville->name}}
-                            @endif
-                        @endforeach
-                        <i class="mdi mdi-subdirectory-arrow-right mdi-rotate-90"></i>
+                        <div id="nature">Transport régulier : {{$transport->frequency}}</div>
+                        <div id="date">Date de début : <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> Date de fin : <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i></div>
+                    </div>
+                @else
+                    <div>
+                        <div id="nature">Transport occasionnel</div>
+                        <div id="date">Départ le {{ Date::parse($transport->beginningDate)->format('l j F') }} à {{ Date::parse($transport->beginningHour)->format('H:i') }}.</div>
                     </div>
                 @endif
-
-                @if($transport->natureTransport == "1")
-                                <div>
-                                    Date de début : <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> Date de fin : <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i><br>{{ $transport->frequency }}
-                                </div>
-                            @else
-                                <div>
-                                    <h3>{{ Date::parse($transport->beginningDate)->format('l j F') }}<br>{{ Date::parse($transport->beginningHour)->format('H:i') }}</h3>
-                                </div>
-                @endif
+                <div id="detour">Detour maximum : {{$transport->detourRetirMax}}km</div>
+                <div id="autoroute">Autoroute : 
+                    @if($transport->withHighway == true)
+                        Oui
+                    @else
+                        Non
+                    @endif
+                </div>
             </div>
-            
         </div>
         <div class="col s12 l3 push-l2 cyan lighten-2">
             <h3>Conducteur</h3>
@@ -122,6 +151,27 @@
             </table>
             <br>
         </div>
+    </div>
+</section>
+
+<section class="scroll-section root-sec padd-tb-60 team-wrap blue">
+    <div class="row">
+        <h2 class="reservation white-text">Réservation du transport</h2>
+        <form class="reservation col s12 push-m2 m8 push-l3 l6">
+            <div class="row">
+                <div class="input-field">
+                    <textarea id="message" class="validate materialize-textarea white-text"></textarea>
+                    <label for="message" class="white-text">Description de votre colis</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <input id="prix" type="text" class="validate white-text">
+                    <label for="prix" class="white-text">Prix proposé</label>
+                </div>
+            </div>
+            <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white"><i class="mdi mdi-cube-send right"></i>Proposer</button></p>
+        </form>
     </div>
 </section>
 @endsection
