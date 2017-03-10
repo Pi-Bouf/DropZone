@@ -96,14 +96,14 @@
                             <div id="trajetRegu" style="display:none;">
                                 <div class="input-field">
                                     <select name="freq" id="freq">
-                                        <option value="p/j">Plusieurs fois par jour</option>
-                                        <option value="1/j">Une fois par jour</option>
-                                        <option value="p/s">Plusieurs fois par semaine</option>
-                                        <option value="1/s">Une fois par semaine</option>
-                                        <option value="p/m">Plusieurs fois par mois</option>
-                                        <option value="1/m">Une fois par mois</option>
-                                        <option value="p/a">Plusieurs fois par an</option>
-                                        <option value="1/a">Une fois par an</option>
+                                        <option value="Plusieurs fois par jour">Plusieurs fois par jour</option>
+                                        <option value="Une fois par jour">Une fois par jour</option>
+                                        <option value="Plusieurs fois par semaine">Plusieurs fois par semaine</option>
+                                        <option value="Une fois par semaine">Une fois par semaine</option>
+                                        <option value="Plusieurs fois par mois">Plusieurs fois par mois</option>
+                                        <option value="Une fois par mois">Une fois par mois</option>
+                                        <option value="Plusieurs fois par an">Plusieurs fois par an</option>
+                                        <option value="Une fois par an">Une fois par an</option>
                                     </select>
                                     <label for="frequence">Fréquence du trajet</label>
                                 </div>
@@ -131,7 +131,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <span id="info">Si les champs suivants ne sont pas remplis, ils prendront la taille du véhicule.</span>
+                            <span id="info">Si les champs suivants ne sont pas remplis, ils prendront la capacité du véhicule.</span>
                             <div class="input-field">
                                 <label for="lod" class="input-label">Longueur disponible :</label>
                                 <input type="number" class="input-box" id="lod" name="lod"><br>
