@@ -53,7 +53,7 @@
             tabEtapeTransport[{{ $transports[$i]->id }}] = tabEtape;
             </script>
             <div class="row">
-                <div class="col m12 s12 transportItem" onclick="loadRoad({{ $transports[$i]->id }})">
+                <div class="col m12 s12 Item" onclick="loadRoad({{ $transports[$i]->id }})">
                     <div class="row">
                         <div class="col m6 s12">
                         <div class="center-align">
