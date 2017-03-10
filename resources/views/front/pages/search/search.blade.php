@@ -82,7 +82,6 @@
 <script>
     var target = "search";
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initialize&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY"
-    async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initialize&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY" async defer></script>
 
 @endsection
