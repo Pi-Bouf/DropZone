@@ -61,7 +61,7 @@
                       <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send orange-text left"></i>Envoyer un colis</a></li>
                     </ul>
                     <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 25px;">
-                      <li><a href="#" class="dropdown-button dropdown-hover" data-activates="user-nav"><i class="mdi mdi-account left green-text"></i>Mon Profil</a></li>
+                      <li><a href="#" class="dropdown-button dropdown-hover" data-activates="user-nav"><i class="mdi mdi-account left green-text"></i>{{ Auth::user()->firstName}} {{ Auth::user()->lastName}}</a></li>
                     </ul>
                 </div>
             </nav>
