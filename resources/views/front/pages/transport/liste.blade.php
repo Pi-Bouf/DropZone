@@ -9,7 +9,7 @@
 <section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
   <div class="container">
     <div class="row">
-          <h3 class="about-subtitle ">Mes transports</h3>
+          <h3 class="about-subtitle center-align">Mes transports</h3>
           <ul class="collapsible" data-collapsible="accordion">
             @foreach(Auth::user()->transportsWaiting as $transport)
               <li>
@@ -32,7 +32,7 @@
                       <div class="person-info">
                         <h3 class="about-subtitle">Itinéraire prévu</h3>
                       </div>
-                      <ul class="liste_ville black-text">
+                      <ul class="liste_ville black-text mg-b15">
                       @foreach($transport->etapes as $etape)
                         <li class="mg-t20">
                           @if($etape->ville_position == 1 || $etape->ville_position == 7)
