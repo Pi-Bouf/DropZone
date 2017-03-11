@@ -5,13 +5,14 @@
 @section('content')
 
 
-
-<section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
-  <div class="container">
-    <div class="row">
-          <h3 class="about-subtitle center-align">Mes transports</h3>
-          <ul class="collapsible" data-collapsible="accordion">
+    <section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
+      <h3 class="about-subtitle center-align">Mes transports</h3>
+        <div class="container">
+          <div class="row">
+            <a href="{{ url('/addtransport') }}" class="waves-effect waves-light btn blue"><i class="mdi mdi-truck-delivery white-text right"></i> Ajouter</a>
+            <ul class="collapsible" data-collapsible="accordion">
             @foreach(Auth::user()->transportsWaiting as $transport)
+
               <li>
                 <div class="collapsible-header active black-text"> <div class=" green-text lighten-2 red-text lighten-2">
                   <span style="margin: 10px">{{ $transport->villeDepart->ville->name }}</span> &#10142; <span style="margin: 10px"> {{ $transport->villeArrivee->ville->name }} </span></div>
@@ -21,9 +22,9 @@
                   <div class="row">
                     <div class="col s12 m12 l12 mg-b15">
                       @if($transport->natureTransport == 0)
-                        <span class="black-text date-depart-transport">Départ le prévu le <span class="bold">{{ Date::parse($transport->beginningDate)->format('l j F') }}</span>  à <span class="bold">{{ $transport->beginningHour }}</span>.</span>
+                        <span class="black-text date-depart-transport">Départ le prévu le <span class="bold">{{ Date::parse($transport->beginningDate)->format('l j F Y') }}</span>  à <span class="bold">{{ $transport->beginningHour }}</span>.</span>
                       @else
-                        <span class="black-text date-depart-transport">Voyage effectué régulièrement du <span class="bold">{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}</span>  au <span class="bold">{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</span>.</span>
+                        <span class="black-text date-depart-transport">Voyage effectué régulièrement du <span class="bold">{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}</span>  au <span class="bold">{{ Date::parse($transport->regularyEndingDate)->format('l j F Y') }}</span>.</span>
                       @endif
                     </div>
                   </div>
@@ -89,9 +90,29 @@
                       @endif
                     </div>
                   </div>
+                  <div class="row mg-t20">
+                    <div class="col s12 m6 l6">
+                      <span class="grey-text mg-t20">
+                        Annonce déposée {{ Date::parse($transport->created_at)->format('l j F Y') }}.
+                      </span>
+                    </div>
+                    <div class="col s12 m6 l6 right-align">
+                        <a href="#modal1" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                    </div>
+
+                    <div id="modal1" class="modal">
+                      <div class="modal-content">
+                        <h4>Confirmer la suppression</h4>
+                        <p>Voulez-vous vraiment supprimer ce transport?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="/user/deltransport/{{ $transport->id}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Oui</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Non</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </li>
-
             @endforeach
 
             @foreach(Auth::user()->transportsOK as $transport)
@@ -104,9 +125,9 @@
                   <div class="row">
                     <div class="col s12 m12 l12 mg-b15">
                       @if($transport->natureTransport == 0)
-                        <span class="black-text date-depart-transport">Départ le prévu le <span class="bold">{{ Date::parse($transport->beginningDate)->format('l j F') }}</span>  à <span class="bold">{{ $transport->beginningHour }}</span>.</span>
+                        <span class="black-text date-depart-transport">Départ le prévu le <span class="bold">{{ Date::parse($transport->beginningDate)->format('l j F Y') }}</span>  à <span class="bold">{{ $transport->beginningHour }}</span>.</span>
                       @else
-                        <span class="black-text date-depart-transport">Voyage effectué régulièrement du <span class="bold">{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}</span>  au <span class="bold">{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</span>.</span>
+                        <span class="black-text date-depart-transport">Voyage effectué régulièrement du <span class="bold">{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}</span>  au <span class="bold">{{ Date::parse($transport->regularyEndingDate)->format('l j F Y') }}</span>.</span>
                       @endif
                     </div>
                   </div>
@@ -172,15 +193,25 @@
                       @endif
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col s12 m12 l12 right-align mg-t20">
+                      <span class="grey-text ">
+                        Annonce déposée {{ Date::parse($transport->created_at)->format('l j F Y') }}.
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </li>
-
             @endforeach
           </ul>
+        </div>
+      </div>
 
-    </div>
-  </div>
-</section>
+
+
+
+    </section>
+
 
 
 

@@ -6,6 +6,8 @@ use App\Etape;
 use App\Transport;
 use Auth;
 use Carbon\Carbon;
+
+
 class TransportController extends Controller
 {
     public function __construct()
@@ -110,5 +112,14 @@ class TransportController extends Controller
         $birthdate = explode("-", $transport->user->birthday);
         $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
         return view('front.pages.transport.affiche', array('transport' => $transport, 'age' => $age, 'depart' => $depart, 'fin' => $fin, 'etapes' => $etapes));
+    }
+
+    public function deltransport($transport_id){
+      $transport = Transport::whereId($transport_id);
+      $transport->delete();
+      //print_r ($transport);
+      return redirect()->route('user_transport')->with('add', 'ok');
+
+
     }
 }

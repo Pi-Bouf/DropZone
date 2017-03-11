@@ -35,9 +35,10 @@ class CreateTransportTable extends Migration
             $table->timestamps();
             $table->foreign('vehicule_id')->references('id')->on('vehicules');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
         });
     }
-    
+
     /**
     * Reverse the migrations.
     *

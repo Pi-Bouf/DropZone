@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transport extends Model
 {
+  use SoftDeletes;
 
     public function user()
     {
@@ -22,7 +24,7 @@ class Transport extends Model
     {
         return $this->hasMany('App\Etape')->orderBy('ville_position', 'ASC');
     }
-    
+
     public function villeDepart()
     {
         return $this->hasOne('App\Etape')->where('ville_position', 1);

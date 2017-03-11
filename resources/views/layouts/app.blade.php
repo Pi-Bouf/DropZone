@@ -57,8 +57,8 @@
                     <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi mdi-dots-vertical"></i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-right: 25px;">
                       <li><a href="{{ url('/search') }}"><i class="mdi mdi-magnify left"></i>Rechercher</a></li>
-                      <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Transporter un colis</a></li>
-                      <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send orange-text left"></i>Envoyer un colis</a></li>
+                      <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Transporter</a></li>
+                      <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send orange-text left"></i>Expédier</a></li>
                     </ul>
                     <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 25px;">
                       <li><a href="#" class="dropdown-button dropdown-hover" data-activates="user-nav"><i class="mdi mdi-account left green-text"></i>{{ Auth::user()->firstName}} {{ Auth::user()->lastName}}</a></li>
@@ -70,8 +70,8 @@
             <ul class="side-nav collapsible collapsible-accordion" id="mobile-nav">
               <li><a href="{{ url('/') }}" class="dropdown-button"><i class="mdi mdi-home small left"></i>Accueil</a></li>
               <li><a href="{{ url('/search') }}"><i class="mdi mdi-magnify small left"></i>Rechercher</a></li>
-              <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text small left"></i>Transporter un colis</a></li>
-              <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send small orange-text left"></i>Envoyer un colis</a></li>
+              <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text small left"></i>Transporter</a></li>
+              <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send small orange-text left"></i>Expédier</a></li>
               <li class="divider"></li>
               <li class="bold"><a class="active collapsible-header waves-effect"><i class="mdi mdi-account small green-text left"></i>Mon Compte</a>
                   <div class="collapsible-body no-padding" style="display: none;">
