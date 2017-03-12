@@ -79,5 +79,6 @@ class User extends Authenticatable
 
     public function scopeBanned() {
         return $this->where('isBanned', true);
-    }
+    }    
+
 }

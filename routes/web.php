@@ -33,6 +33,7 @@ Route::post('/postaddtransport', 'TransportController@addData')->name('postaddtr
 Route::get('user/mytransport', 'TransportController@listTransport')->name('user_transport');
 Route::get('/user/deltransport/{transport}', 'TransportController@deltransport')->name('deltransport');
 Route::get('/transport/{transport}', 'TransportController@affTransport')->name('afftransport');
+Route::post('/postaddquestion','TransportController@addQuestion')->name('postaddquestion');
 
 
 /*

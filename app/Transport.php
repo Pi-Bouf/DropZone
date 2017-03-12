@@ -25,6 +25,11 @@ class Transport extends Model
         return $this->hasMany('App\Etape')->orderBy('ville_position', 'ASC');
     }
 
+    public function questionsTransport()
+    {
+        return $this->hasMany('App\QuestionTransport');
+    }
+
     public function villeDepart()
     {
         return $this->hasOne('App\Etape')->where('ville_position', 1);

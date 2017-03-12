@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Ville;
 use App\Etape;
 use App\Transport;
+use App\QuestionTransport;
 use Auth;
 use Carbon\Carbon;
 

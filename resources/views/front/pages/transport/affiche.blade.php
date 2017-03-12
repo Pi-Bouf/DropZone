@@ -26,6 +26,15 @@
             -moz-box-shadow: 0 1px 0 0 white !important;
             box-shadow: 0 1px 0 0 white !important;
         }
+
+        .bold{
+            font-weight: bold;
+            
+        }
+
+        #date{
+            font-size:0.8em;
+        }
     </style>
 
 <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap">
@@ -172,6 +181,48 @@
             </div>
             <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white"><i class="mdi mdi-cube-send right"></i>Proposer</button></p>
         </form>
+    </div>
+</section>
+
+<section class="scroll-section root-sec padd-tb-60 team-wrap white">
+    <div class="row">
+        <h2 class="reservation ">Questions : </h2>
+        <form action="{{url('/postaddquestion')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
+            <div class="row">
+                <div class="input-field">
+                    <textarea id="message" class="validate materialize-textarea blue-text"></textarea>
+                    <label for="message" class="blue-text ">Poser votre question ici</label>
+                </div>
+            </div>
+            <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white blue-text">Envoyer</button></p>
+        </form>
+    </div>
+    <div class="row">
+        @if($transport->questionsTransport->count() != 0)
+            Les questions <br>
+            <table class="col s12 push-m2 m8 push-l3 l6">
+                @foreach($transport->questionsTransport as $qu)
+                    <tr style="padding:20px;">
+                        <td class="col s2 center">
+                            @if($qu->user->picLink==null)
+                                <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
+                            @else
+                                <img src="/images/profile/{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
+                            @endif
+                            <br>
+                            <a href="/user/{{$qu->user->id}}">{{$qu->user->login}}</a>
+                            <br><br>
+                        </td>
+                        <td class="col s10">
+                            <div id="date">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
+                            <div>{{$qu->text}}</div>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        @else
+            Pas de question pour le moment.
+        @endif
     </div>
 </section>
 @endsection
