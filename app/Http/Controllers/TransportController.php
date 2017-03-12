@@ -123,4 +123,19 @@ class TransportController extends Controller
 
 
     }
+
+    public function addQuestion(Request $request){
+        $rules = array(
+            'message' => 'required|max:255|string'
+        );
+        $this->validate($request, $rules);
+        $question = new QuestionTransport();
+        $question->transport_id= $request->input('idT');
+        $question->text= $request->input('message');
+        $question->user_id = Auth::user()->id;     
+
+        $question->save();
+
+        return redirect()->back();
+    }
 }

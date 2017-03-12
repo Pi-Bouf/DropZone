@@ -166,7 +166,8 @@
 <section class="scroll-section root-sec padd-tb-60 team-wrap blue">
     <div class="row">
         <h2 class="reservation white-text">Réservation du transport</h2>
-        <form class="reservation col s12 push-m2 m8 push-l3 l6">
+        <form class="reservation col s12 push-m2 m8 push-l3 l6" method="POST" action="{{url('/postaddreservation')}}">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
                     <textarea id="message" class="validate materialize-textarea white-text"></textarea>
@@ -179,6 +180,7 @@
                     <label for="prix" class="white-text">Prix proposé</label>
                 </div>
             </div>
+            <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
             <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white"><i class="mdi mdi-cube-send right"></i>Proposer</button></p>
         </form>
     </div>
@@ -188,18 +190,21 @@
     <div class="row">
         <h2 class="reservation ">Questions : </h2>
         <form action="{{url('/postaddquestion')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
-                    <textarea id="message" class="validate materialize-textarea blue-text"></textarea>
+                    <textarea id="message" name="message" class="validate materialize-textarea blue-text"></textarea>
                     <label for="message" class="blue-text ">Poser votre question ici</label>
                 </div>
+                <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
             </div>
             <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white blue-text">Envoyer</button></p>
         </form>
     </div>
+    <br><br>
     <div class="row">
         @if($transport->questionsTransport->count() != 0)
-            Les questions <br>
+            <h3>Les questions</h3> <br>
             <table class="col s12 push-m2 m8 push-l3 l6">
                 @foreach($transport->questionsTransport as $qu)
                     <tr style="padding:20px;">

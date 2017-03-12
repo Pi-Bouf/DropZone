@@ -34,6 +34,7 @@ Route::get('user/mytransport', 'TransportController@listTransport')->name('user_
 Route::get('/user/deltransport/{transport}', 'TransportController@deltransport')->name('deltransport');
 Route::get('/transport/{transport}', 'TransportController@affTransport')->name('afftransport');
 Route::post('/postaddquestion','TransportController@addQuestion')->name('postaddquestion');
+Route::post('/postaddreservation','TransportController@addReservation')->name('postaddreservation');
 
 
 /*
