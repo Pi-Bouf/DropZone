@@ -41,7 +41,7 @@
 				        <div class="card-content">
 									<div class="person-info">
 		                <h3 class="about-subtitle">Information personnelles</h3>
-		                <h5><span>Nom :</span> {{$user->firstName}} {{$user->lastName}}</h5>
+		                <h5><span>Pseudo :</span> {{$user->login}}</h5>
 		                <h5><span>Note :</span>
 											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
 											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>

@@ -18,6 +18,18 @@ class ExpeditionController extends Controller
         return view('front.pages.expedition.add');
     }
 
+    public function listPackage()
+    {
+      return view('front.pages.expedition.liste');
+    }
+
+    public function delPackage($expedition_id)
+    {
+      $expedition = Expedition::whereId($expedition_id);
+      $expedition->delete();
+      return redirect()->route('user_package')->with('add', 'ok');
+    }
+
     public function addData(\App\Expedition $expedition, Request $request)
     {
         $expedition->user_id = Auth::user()->id;
@@ -32,14 +44,14 @@ class ExpeditionController extends Controller
         $expedition->weightItem = $request->input('poids');
         $expedition->volumeItem = null;
 
-        
+
         $ville = new Ville();
         $villeDep = $request->input('villeDepartHidden');
         $villeDep = explode (";", $villeDep);
         $ville->latitude = $villeDep[0];
         $ville->longitude = $villeDep[1];
         $ville->name = $request->input('villeDepart');
-        
+
 
         $villeA = new Ville();
         $villeArr = $request->input('villeArriveeHidden');

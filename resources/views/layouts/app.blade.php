@@ -44,7 +44,7 @@
           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car left brown-text"></i>Mes véhicules</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/user/mytransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Mes transports</a></li>
-          <li><a href="{{ url('/') }}"><i class="mdi mdi-cube-send orange-text left"></i>Mes colis</a></li>
+          <li><a href="{{ url('/user/mypackage') }}"><i class="mdi mdi-cube-send orange-text left"></i>Mes colis</a></li>
           <li class="divider"></li>
 
           <li class="red lighten-5"><a href="{{ url('/logout') }}"><i class="mdi mdi-logout left red-text"></i>Déconnexion</a></li>
@@ -81,8 +81,8 @@
                           <li class="divider"></li>
                           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car small brown-text left"></i>Mes véhicules</a></li>
                           <li class="divider"></li>
-                          <li><a href="{{ url('/') }}"><i class="mdi mdi-truck-delivery blue-text small left"></i>Mes transports</a></li>
-                          <li><a href="{{ url('/') }}"><i class="mdi mdi-cube-send orange-text small left"></i>Mes colis</a></li>
+                          <li><a href="{{ url('/user/mytransport') }}"><i class="mdi mdi-truck-delivery blue-text small left"></i>Mes transports</a></li>
+                          <li><a href="{{ url('/user/mypackage') }}"><i class="mdi mdi-cube-send orange-text small left"></i>Mes colis</a></li>
                           <li class="divider"></li>
                       </ul>
                   </div>

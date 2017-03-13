@@ -38,10 +38,13 @@ Route::post('/postaddreservation','TransportController@addReservation')->name('p
 
 
 /*
-| Deposer colis
+| Colis
 */
 Route::get('/addcolis', 'ExpeditionController@index')->name('addcolis');
 Route::post('/postaddcolis', 'ExpeditionController@addData')->name('postaddcolis');
+Route::get('user/mypackage', 'ExpeditionController@listPackage')->name('user_package');
+Route::get('/user/delpackage/{package}', 'ExpeditionController@delPackage')->name('deltpackage');
+
 
 /*
 | Vehicule

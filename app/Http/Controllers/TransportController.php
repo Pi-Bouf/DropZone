@@ -119,7 +119,6 @@ class TransportController extends Controller
     public function deltransport($transport_id){
       $transport = Transport::whereId($transport_id);
       $transport->delete();
-      //print_r ($transport);
       return redirect()->route('user_transport')->with('add', 'ok');
 
 
@@ -133,7 +132,7 @@ class TransportController extends Controller
         $question = new QuestionTransport();
         $question->transport_id= $request->input('idT');
         $question->text= $request->input('message');
-        $question->user_id = Auth::user()->id;     
+        $question->user_id = Auth::user()->id;
 
         $question->save();
 
@@ -149,9 +148,9 @@ class TransportController extends Controller
         $demande = new DemandeTransport();
         $demande->transport_id= $request->input('idT');
         $demande->text= $request->input('message');
-        $demande->user_id = Auth::user()->id; 
+        $demande->user_id = Auth::user()->id;
         $demande->cost = $request->input('prix');
-        $demande->isAccepted = false;    
+        $demande->isAccepted = false;
 
         $demande->save();
         return redirect()->back();

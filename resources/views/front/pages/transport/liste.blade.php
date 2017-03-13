@@ -12,7 +12,6 @@
             <a href="{{ url('/addtransport') }}" class="waves-effect waves-light btn blue"><i class="mdi mdi-truck-delivery white-text right"></i> Ajouter</a>
             <ul class="collapsible" data-collapsible="accordion">
             @foreach(Auth::user()->transportsWaiting as $transport)
-
               <li>
                 <div class="collapsible-header active black-text"> <div class=" green-text lighten-2 red-text lighten-2">
                   <span style="margin: 10px">{{ $transport->villeDepart->ville->name }}</span> &#10142; <span style="margin: 10px"> {{ $transport->villeArrivee->ville->name }} </span></div>
@@ -97,17 +96,17 @@
                       </span>
                     </div>
                     <div class="col s12 m6 l6 right-align">
-                        <a href="#modal1" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                        <a href="#delete_" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
                     </div>
 
-                    <div id="modal1" class="modal">
+                    <div id="delete_" class="modal">
                       <div class="modal-content">
                         <h4>Confirmer la suppression</h4>
                         <p>Voulez-vous vraiment supprimer ce transport?</p>
                       </div>
                       <div class="modal-footer">
-                        <a href="/user/deltransport/{{ $transport->id}}" class=" modal-action modal-close waves-effect waves-green btn-flat">Oui</a>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Non</a>
+                        <a href="/user/deltransport/{{ $transport->id}}" class=" modal-action modal-close waves-effect red white-text waves-green btn-flat"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                        <a href="#!" class="margin-r10 modal-action modal-close waves-effect green white-text waves-green btn-flat">Retour</a>
                       </div>
                     </div>
                   </div>
@@ -193,11 +192,25 @@
                       @endif
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col s12 m12 l12 right-align mg-t20">
-                      <span class="grey-text ">
+                  <div class="row mg-t20">
+                    <div class="col s12 m6 l6">
+                      <span class="grey-text mg-t20">
                         Annonce déposée {{ Date::parse($transport->created_at)->format('l j F Y') }}.
                       </span>
+                    </div>
+                    <div class="col s12 m6 l6 right-align">
+                        <a href="#delete" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                    </div>
+
+                    <div id="delete" class="modal">
+                      <div class="modal-content">
+                        <h4>Confirmer la suppression</h4>
+                        <p>Voulez-vous vraiment supprimer ce transport?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="/user/deltransport/{{ $transport->id}}" class=" modal-action modal-close waves-effect red white-text waves-green btn-flat"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                        <a href="#!" class="margin-r10 modal-action modal-close waves-effect green white-text waves-green btn-flat">Retour</a>
+                      </div>
                     </div>
                   </div>
                 </div>
