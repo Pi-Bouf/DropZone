@@ -35,13 +35,14 @@
         #date{
             font-size:0.8em;
         }
+
     </style>
 
 <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap">
     <h2>Détail et réservation du transport</h2>
     <div class="row">
         <div class="col s12 l6 push-l1 ">
-            <div class="row deep-orange lighten-4">
+            <div class="row blue lighten-4">
                 <h3>   </h3>
                 <div id="trajet">
                     <h4>Trajet</h4>
@@ -60,17 +61,17 @@
 
                 </div>
             </div><br>
-            <div class="row blue lighten-2">
+            <div class="row blue lighten-4">
                 <h4>Information</h4>
                 @if($transport->natureTransport == "1")
                     <div>
                         <div id="nature">Transport régulier : {{$transport->frequency}}</div>
-                        <div id="date">Date de début : <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> Date de fin : <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i></div>
+                        <div id="dateD">Date de début : <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> Date de fin : <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i></div>
                     </div>
                 @else
                     <div>
                         <div id="nature">Transport occasionnel</div>
-                        <div id="date">Départ le {{ Date::parse($transport->beginningDate)->format('l j F') }} à {{ Date::parse($transport->beginningHour)->format('H:i') }}.</div>
+                        <div id="dateD">Départ le {{ Date::parse($transport->beginningDate)->format('l j F') }} à {{ Date::parse($transport->beginningHour)->format('H:i') }}.</div>
                     </div>
                 @endif
                 <div id="detour">Detour maximum : {{$transport->detourRetirMax}}km</div>
@@ -83,14 +84,14 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 l3 push-l2 cyan lighten-2">
+        <div class="col s12 l3 push-l2 blue lighten-4">
             <h3>Conducteur</h3>
             @if($transport->user->picLink==null)
                 <img src="/images/profile/icon-{{$transport->user->sexe}}.png" width="35%" class="responsive-img circle" alt="">
             @else
                 <img src="/images/profile/{{$transport->user->picLink}}" width="35%" class="responsive-img circle" alt="">
             @endif
-            <div id="nomConducteur"><a href="/user/{{$transport->user->id}}">{{$transport->user->firstName}}</a> - {{$age}} ans</div>
+            <div id="nomConducteur"><a href="/user/{{$transport->user->id}}" class="white-text">{{$transport->user->firstName}}</a> - {{$age}} ans</div>
             <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> 3.5/5 - 43 avis</div>
             <img style="width: 70%; max-height: 100px;" src="/images/vehicles/{{ $transport->vehicule->vehiculetype->name }}.svg"><br>
             <h3 class="black-text">{{ $transport->vehicule->marque }} {{ $transport->vehicule->modele }}</h3>
@@ -166,22 +167,22 @@
 <section class="scroll-section root-sec padd-tb-60 team-wrap blue">
     <div class="row">
         <h2 class="reservation white-text">Réservation du transport</h2>
-        <form class="reservation col s12 push-m2 m8 push-l3 l6" method="POST" action="{{url('/postaddreservation')}}">
+        <form class="reservation col s12 push-m2 m8 push-l3 l6" method="POST" action="{{route('postaddreservation')}}">
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
-                    <textarea id="message" class="validate materialize-textarea white-text"></textarea>
-                    <label for="message" class="white-text">Description de votre colis</label>
+                    <textarea id="message" name="message" class="validate materialize-textarea white-text" required></textarea>
+                    <label for="message" class="white-text">Description de votre colis : (taille, qu'est ce que c'est, ...)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field">
-                    <input id="prix" type="text" class="validate white-text">
-                    <label for="prix" class="white-text">Prix proposé</label>
+                    <input id="prix" type="number" name="prix" step="0.01" class="validate white-text" required>
+                    <label for="prix" class="white-text">Prix proposé €</label>
                 </div>
             </div>
             <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
-            <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white"><i class="mdi mdi-cube-send right"></i>Proposer</button></p>
+            <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white blue-text"><i class="mdi mdi-cube-send right"></i>Proposer</button></p>
         </form>
     </div>
 </section>
@@ -189,7 +190,7 @@
 <section class="scroll-section root-sec padd-tb-60 team-wrap white">
     <div class="row">
         <h2 class="reservation ">Questions : </h2>
-        <form action="{{url('/postaddquestion')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
+        <form action="{{route('postaddquestion')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
@@ -198,7 +199,7 @@
                 </div>
                 <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
             </div>
-            <p class="center-align"><button id="btProposer" type="submit" class=" btn-large white blue-text">Envoyer</button></p>
+            <p class="center-align"><button id="btProposer" type="submit" class=" btn-large blue white-text">Envoyer</button></p>
         </form>
     </div>
     <br><br>
@@ -207,7 +208,7 @@
             <h3>Les questions</h3> <br>
             <table class="col s12 push-m2 m8 push-l3 l6">
                 @foreach($transport->questionsTransport as $qu)
-                    <tr style="padding:20px;">
+                    <tr>
                         <td class="col s2 center">
                             @if($qu->user->picLink==null)
                                 <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">

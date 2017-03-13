@@ -5,6 +5,7 @@ use App\Ville;
 use App\Etape;
 use App\Transport;
 use App\QuestionTransport;
+use App\DemandeTransport;
 use Auth;
 use Carbon\Carbon;
 
@@ -137,5 +138,23 @@ class TransportController extends Controller
         $question->save();
 
         return redirect()->back();
+    }
+
+    public function addReservation(Request $request){
+        $rules = array(
+            'message' => 'required|max:500',
+            'prix' => 'required',
+        );
+        $this->validate($request, $rules);
+        $demande = new DemandeTransport();
+        $demande->transport_id= $request->input('idT');
+        $demande->text= $request->input('message');
+        $demande->user_id = Auth::user()->id; 
+        $demande->cost = $request->input('prix');
+        $demande->isAccepted = false;    
+
+        $demande->save();
+        return redirect()->back();
+
     }
 }
