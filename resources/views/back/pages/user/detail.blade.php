@@ -76,6 +76,29 @@
                                     @endif
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="row text-center">
+                                        <a class="btn btn-primary">Modifier</a> <a class="btn btn-danger" data-toggle="modal" data-target="#delete_vehicule_{{ $vehicule->id }}">Supprimer</a>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="delete_vehicule_{{ $vehicule->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Voulez-vous vraiment supprimer le véhicule <b><i>{{ $vehicule->marque }} {{ $vehicule->modele }}</i></b>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
+                                            <a href="{{ route('admin_user_vehicule_delete', array('vehicule' => $vehicule->id)) }}" class="btn btn-primary">Supprimer !</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

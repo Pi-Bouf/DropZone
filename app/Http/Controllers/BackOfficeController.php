@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Transport;
+use App\Vehicule;
 use Auth;
 
 class BackOfficeController extends Controller
@@ -104,6 +105,12 @@ class BackOfficeController extends Controller
             "actualUser" => $user,
         );
         return view('back.pages.user.detail', $data);
+    }
+
+    public function getDeleteVehicule(Vehicule $vehicule)
+    {
+        echo $vehicule->marque;
+        die();
     }
     
     public function getTransportDetail(Transport $transport)
