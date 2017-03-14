@@ -94,6 +94,7 @@ $this->post('/admin/user/list', 'BackOfficeController@postSearchUserList')->name
 $this->get('/admin/user/detail/{user}', 'BackOfficeController@getUserDetail')->name('admin_user_detail');
 $this->get('/admin/user/edit/{user}', 'BackOfficeController@getUserEdit')->name('admin_user_edit');
 $this->post('/admin/user/edit/{user}', 'BackOfficeController@postUserEdit')->name('admin_user_edit_post');
+$this->get('/admin/user/pic/delete/{user}', 'BackOfficeController@getUserPicDelete')->name('admin_user_pic_delete');
 $this->get('/admin/user/ban/{user}', 'BackOfficeController@getUserBan')->name('admin_user_ban');
 $this->get('/admin/user/unban/{user}', 'BackOfficeController@getUserUnban')->name('admin_user_unban');
 $this->get('/admin/user/check/{user}', 'BackOfficeController@getUserCheck')->name('admin_user_check');

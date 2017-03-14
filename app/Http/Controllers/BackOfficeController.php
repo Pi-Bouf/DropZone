@@ -107,6 +107,44 @@ class BackOfficeController extends Controller
         return view('back.pages.user.detail', $data);
     }
 
+    public function getUserEdit(User $user)
+    {
+        $data = array(
+            "user" => $user,
+        );
+
+        return view('back.pages.user.edit', $data);
+    }
+
+    public function postUserEdit(User $user, Request $request)
+    {
+        $rules = array(
+            'firstName' => 'required|max:50|string',
+            'lastName' => 'required|max:75|string',
+            'login' => 'required|max:75',
+            'gender' => 'in:h,f',
+            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'birthday' => 'required|date',
+            'phone' => 'max:9999999999|numeric',
+        );
+
+        $this->validate($request, $rules);
+
+        $data = array(
+            "user" => $user,
+        );
+
+        return view('back.pages.user.edit', $data);
+    }
+
+    public function getUserPicDelete(USer $user)
+    {
+        $user->picLink = "NULL";
+        $user->save();
+
+        return redirect()->back();
+    }
+
     public function getUserBan(User $user)
     {
         $user->isBanned = true;

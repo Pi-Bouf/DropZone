@@ -25,7 +25,7 @@
                 </div>
                 <div style="margin-top: 15px;" class="row text-center">
                     @if($user->isChecked)  <a class="btn btn-danger" href="{{ route('admin_user_uncheck', array('user' => $user->id)) }}">Retirer vérification</a> @else <a class="btn btn-success" href="{{ route('admin_user_check', array('user' => $user->id)) }}">Vérifier</a> @endif
-                    <a class="btn btn-info">Modifier</a>
+                    <a class="btn btn-info" href="{{ route('admin_user_edit', array('user' => $user->id)) }}">Modifier</a>
                     @if($user->isBanned) <a class="btn btn-success" href="{{ route('admin_user_unban', array('user' => $user->id)) }}">Débannir</a>  @else <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a> @endif
 
                     <div class="modal fade" id="ban_user" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
@@ -259,7 +259,7 @@
                 @endif
                 <div style="background-color: {{ $color }}; margin-bottom: 5px; border-radius: 5px; padding: 3px; color: #666666;">
                     <div class="text-center">
-                        <h4><b>{{ $transport->villeDepart->ville->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $transport->villeArrivee->ville->name }}</b></h4>
+                        <h4><a href=""><b>{{ $transport->villeDepart->ville->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $transport->villeArrivee->ville->name }}</b></a></h4>
                         @if($transport->natureTransport)
                             qsd
                         @else
