@@ -20,6 +20,11 @@ class Expedition extends Model
     {
         return $this->belongsTo('App\Ville', "ending_ville_id");
     }
+
+    public function questionsExpedition()
+    {
+        return $this->hasMany('App\QuestionExpedition');
+    }
 }
 
 ?>

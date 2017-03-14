@@ -14,7 +14,7 @@
             margin-top:-20px;
             color:cornflowerblue;
         }
-        textarea:focus {
+         .whited:focus{
             border-bottom: 1px solid white !important;
             -webkit-box-shadow: 0 1px 0 0 white !important;
             -moz-box-shadow: 0 1px 0 0 white !important;
@@ -25,6 +25,12 @@
             -webkit-box-shadow: 0 1px 0 0 white !important;
             -moz-box-shadow: 0 1px 0 0 white !important;
             box-shadow: 0 1px 0 0 white !important;
+        }
+         .blued:focus{
+            border-bottom: 1px solid #2196F3  !important;
+            -webkit-box-shadow: 0 1px 0 0 #2196F3  !important;
+            -moz-box-shadow: 0 1px 0 0 #2196F3  !important;
+            box-shadow: 0 1px 0 0 #2196F3  !important;
         }
 
         .bold{
@@ -171,7 +177,7 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
-                    <textarea id="message" name="message" class="validate materialize-textarea white-text" required></textarea>
+                    <textarea id="message" name="message" class="validate materialize-textarea white-text whited" required></textarea>
                     <label for="message" class="white-text">Description de votre colis : (taille, qu'est ce que c'est, ...)</label>
                 </div>
             </div>
@@ -194,7 +200,7 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
-                    <textarea id="message" name="message" class="validate materialize-textarea blue-text"></textarea>
+                    <textarea id="message" name="message" class="validate materialize-textarea blue-text blued"></textarea>
                     <label for="message" class="blue-text ">Poser votre question ici</label>
                 </div>
                 <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">

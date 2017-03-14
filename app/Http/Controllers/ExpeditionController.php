@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ville;
 use Auth;
+use App\QuestionExpedition;
+use App\DemandeExpedition;
+use App\Expedition;
+use Carbon\Carbon;
 
 class ExpeditionController extends Controller
 {
@@ -72,5 +76,50 @@ class ExpeditionController extends Controller
         } else {
                  return redirect()->route('addcolis')->with('noadd', 'ok');
         }
+    }
+
+
+        public function affExpedition(Expedition $expedition) {
+
+        //$etape = Etape::where('transport_id', "=", $transport->id)->get();
+        $birthdate = explode("-", $expedition->user->birthday);
+        $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
+        return view('front.pages.expedition.affiche', array('expedition' => $expedition, 'age' => $age));
+    }
+
+    public function addQuestion(Request $request){
+        $rules = array(
+            'message' => 'required|max:255|string'
+        );
+        $this->validate($request, $rules);
+        $question = new QuestionExpedition();
+        $question->expedition_id= $request->input('idE');
+        $question->question= $request->input('message');
+        $question->user_id = Auth::user()->id;
+
+        $question->save();
+
+    }
+
+    public function addReservation(Request $request){
+        $rules = array(
+            'message' => 'required|max:500',
+            'prix' => 'required',
+            'dateD' => 'required|max:15',
+            'dateF' => 'required|max:15'
+        );
+        $this->validate($request, $rules);
+        $demande = new DemandeExpedition();
+        $demande->expedition_id= $request->input('idE');
+        $demande->propositionText= $request->input('message');
+        $demande->user_id = Auth::user()->id;
+        $demande->prixAsked = $request->input('prix');
+        $demande->isAccepted = false;
+        $demande->beginDate = $request->input('dateD');
+        $demande->endDate = $request->input('dateF');
+
+        $demande->save();
+        return redirect()->back();
+
     }
 }

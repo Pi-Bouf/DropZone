@@ -44,7 +44,7 @@ Route::get('/addcolis', 'ExpeditionController@index')->name('addcolis');
 Route::post('/postaddcolis', 'ExpeditionController@addData')->name('postaddcolis');
 Route::get('user/mypackage', 'ExpeditionController@listPackage')->name('user_package');
 Route::get('/user/delpackage/{package}', 'ExpeditionController@delPackage')->name('deltpackage');
-Route::get('/expedition/{expedition}', 'ExpeditionController@affTransport')->name('affexpedition');
+Route::get('/expedition/{expedition}', 'ExpeditionController@affExpedition')->name('affexpedition');
 Route::post('/postaddquestionexpedition','ExpeditionController@addQuestion')->name('postaddquestionexpedition');
 Route::post('/postaddreservationexpedition','ExpeditionController@addReservation')->name('postaddreservationexpedition');
 
