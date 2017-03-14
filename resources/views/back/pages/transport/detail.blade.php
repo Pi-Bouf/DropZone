@@ -171,7 +171,9 @@
                     @endforeach
                 </div>
                 <!-- Timeline ends here -->
-
+                <div class="text-center" style="font-style: italic;">
+                {{ $transport->information }}
+                </div>
             </div>
         </div>
     </div>
@@ -187,30 +189,90 @@
                         <td><a href="{{ route('admin_user_detail', array('user' => $transport->user->id)) }}">{{ $transport->user->login }}</a></td>
                     </tr>
                     <tr>
-                        <th>Type</th>
+                        <td>Type</td>
                         <td>@if($transport->natureTransport) Régulier @else Ponctuel @endif</td>
                     </tr>
                     @if($transport->natureTransport)
                     <tr>
-                        <th>Date début</th>
+                        <td>Date début</td>
                         <td>{{ $transport->regularyBeginningDate }}</td>
                     </tr>
                     <tr>
-                        <th>Date fin</th>
+                        <td>Date fin</td>
                         <td>{{ $transport->regularyEndingDate }}</td>
                     </tr>
                     <tr>
-                        <th>Fréquence</th>
+                        <td>Fréquence</td>
                         <td>{{ $transport->frequency }}</td>
                     </tr> 
                     @else
                     <tr>
-                        <th>Date départ</th>
+                        <td>Date départ</td>
                         <td>{{ $transport->beginningDate }}</td>
                     </tr>
                     <tr>
-                        <th>Heure départ</th>
+                        <td>Heure départ</td>
                         <td>{{ $transport->beginningHour }}</td>
+                    </tr>
+                    <tr>
+                        <td>Longueur Max.:</td>
+                        <td>
+                        @if($transport->longMax && $transport->longMax > 0)
+                        {{ $transport->longMax }} cm
+                        @elseif($transport->vehicule->longMax > 0)
+                        {{ $transport->vehicule->longMax }} cm
+                        @else
+                        <i><b>NR.</b></i>
+                        @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hauteur Max.:</td>
+                        <td>
+                        @if($transport->hautMax && $transport->hautMax > 0)
+                        {{ $transport->hautMax }} cm
+                        @elseif($transport->vehicule->hautMax > 0)
+                        {{ $transport->vehicule->hautMax }} cm
+                        @else
+                        <i><b>NR.</b></i>
+                        @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Largeur Max.:</td>
+                        <td>
+                        @if($transport->largMax && $transport->largMax > 0)
+                        {{ $transport->largMax }} cm
+                        @elseif($transport->vehicule->largMax > 0)
+                        {{ $transport->vehicule->largMax }} cm
+                        @else
+                        <i><b>NR.</b></i>
+                        @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Poid Max.:</td>
+                        <td>
+                        @if($transport->poidMax && $transport->poidMax > 0)
+                        {{ $transport->poidMax }} kg
+                        @elseif($transport->vehicule->poidMax > 0)
+                        {{ $transport->vehicule->poidMax }} kg
+                        @else
+                        <i><b>NR.</b></i>
+                        @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Volume Max.:</td>
+                        <td>
+                        @if($transport->volume && $transport->volume > 0)
+                        {{ $transport->volume }} kg
+                        @elseif($transport->vehicule->volume > 0)
+                        {{ $transport->vehicule->volume }} kg
+                        @else
+                        <i><b>NR.</b></i>
+                        @endif
+                        </td>
                     </tr>
                     @endif
                 </table>
@@ -218,10 +280,12 @@
         </div>
         <div class="panel">
             <header class="panel-heading">
-                Transports
+                Demandes
             </header>
-            
-            <div class="panel-body">
+            <div class="panel-body" id="noti-box">
+                @if($transport->demandesTransport->count() == 0)
+                <i>Aucune demande pour le moment.</i>
+                @endif
                 @foreach($transport->demandesTransport as $demande)
                 <div class="alert @if($demande->isAccepted) alert-success @else alert-danger @endif">
                     <div class="row">
