@@ -7,6 +7,11 @@
                 Profil
             </header>
             <div class="panel-body">
+                @if($result == "OK")
+                <div class="alert alert-success">
+                    <strong>Super !</strong> L'utilisateur a bien été modifié !
+                </div>
+                @endif
                 <form method="post" action="{{ route('admin_user_edit_post', array('user' => $user->id)) }}">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -80,13 +85,13 @@
             </header>
             <div class="panel-body">
                 <div class="text-center">
-                    @if($user->picLink)
+                    @if($user->picLink != NULL)
                     <img style="width: 50%;" class="img-circle" src="/images/profile/{{ $user->picLink }}"></img>
                     @else
                     <img src="/images/profile/icon-{{$user->sexe}}.png" width="50%" class="img-circle" alt="">
                     @endif
                     <div style="margin: 10px;"></div>
-                    <a href="" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ route('admin_user_pic_delete', array('user' => $user->id)) }}" class="btn btn-danger">Supprimer</a>
                 </div>
             </div>
         </div>

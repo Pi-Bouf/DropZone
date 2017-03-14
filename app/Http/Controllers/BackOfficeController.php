@@ -122,7 +122,7 @@ class BackOfficeController extends Controller
             'firstName' => 'required|max:50|string',
             'lastName' => 'required|max:75|string',
             'login' => 'required|max:75',
-            'gender' => 'in:h,f',
+            'sexe' => 'in:h,f',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'birthday' => 'required|date',
             'phone' => 'max:9999999999|numeric',
@@ -130,8 +130,17 @@ class BackOfficeController extends Controller
 
         $this->validate($request, $rules);
 
+        $user->email = $request->input('email');
+        $user->login = $request->input('login');
+        $user->firstName = $request->input('firstName');
+        $user->lastName = $request->input('lastName');
+        $user->sexe = $request->input('sexe');
+        $user->birthday = $request->input('birthday');
+        $user->phone = $request->input('phone');
+
         $data = array(
             "user" => $user,
+            "result" => "OK",
         );
 
         return view('back.pages.user.edit', $data);
@@ -139,7 +148,7 @@ class BackOfficeController extends Controller
 
     public function getUserPicDelete(USer $user)
     {
-        $user->picLink = "NULL";
+        $user->picLink = NULL;
         $user->save();
 
         return redirect()->back();
