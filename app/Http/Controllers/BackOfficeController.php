@@ -115,7 +115,18 @@ class BackOfficeController extends Controller
     }
 
     public function postEditVehicule(Vehicule $vehicule, Request $request) {
-        
+        $rules = array(
+            'marque' => "required",
+            'modele' => "required",
+        );
+
+        $this->validate($request, $rules);
+
+        $vehicule->marque = $request->input('marque');
+        $vehicule->modele = $request->input('modele');
+        $vehicule->save();
+
+        return redirect()->back();
     }
     
     public function getTransportDetail(Transport $transport)
