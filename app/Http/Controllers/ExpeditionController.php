@@ -115,8 +115,10 @@ class ExpeditionController extends Controller
         $demande->user_id = Auth::user()->id;
         $demande->prixAsked = $request->input('prix');
         $demande->isAccepted = false;
-        $demande->beginDate = $request->input('dateD');
-        $demande->endDate = $request->input('dateF');
+        $beginD = explode ("/", $request->input('dateD'));
+        $demande->beginDate = $beginD[2].'-'.$beginD[1].'-'.$beginD[0];
+        $endD = explode ("/", $request->input('dateF'));
+        $demande->endDate = $endD[2].'-'.$endD[1].'-'.$endD[0];
 
         $demande->save();
         return redirect()->back();
