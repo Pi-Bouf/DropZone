@@ -24,7 +24,8 @@
                     </div>
                 </div>
                 <div style="margin-top: 15px;" class="row text-center">
-                    <a class="btn btn-primary">Modifier</a> <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a>
+                    <a class="btn btn-primary">Modifier</a>
+                    @if($user->isBanned) <a class="btn btn-success" href="{{ route('admin_user_unban', array('user' => $user->id)) }}">Débannir</a>  @else <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a> @endif
                     <div class="modal fade" id="ban_user" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -37,7 +38,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
-                                    <a href="{{-- route('admin_user_delete', array('user' => $user->id)) --}}" class="btn btn-primary">Bannir !</a>
+                                    <a href="{{ route('admin_user_ban', array('user' => $user->id)) }}" class="btn btn-primary">Bannir !</a>
                                 </div>
                             </div>
                         </div>

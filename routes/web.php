@@ -93,6 +93,7 @@ $this->get('/admin/user/list', 'BackOfficeController@getUserList')->name('admin_
 $this->post('/admin/user/list', 'BackOfficeController@postSearchUserList')->name('admin_user_list_search_post');
 $this->get('/admin/user/detail/{user}', 'BackOfficeController@getUserDetail')->name('admin_user_detail');
 $this->get('/admin/user/ban/{user}', 'BackOfficeController@getUserBan')->name('admin_user_ban');
+$this->get('/admin/user/unban/{user}', 'BackOfficeController@getUserUnban')->name('admin_user_unban');
 $this->get('/admin/user/vehicule/delete/{vehicule}', 'BackOfficeController@getDeleteVehicule')->name('admin_user_vehicule_delete');
 $this->post('/admin/user/vehicule/edit/{vehicule}', 'BackOfficeController@postEditVehicule')->name('admin_user_vehicule_edit');
 $this->get('/admin/transport/detail/{transport}', 'BackOfficeController@getTransportDetail')->name('admin_transport_detail');
