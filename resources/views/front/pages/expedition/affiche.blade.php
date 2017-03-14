@@ -14,6 +14,10 @@
             margin-top:-20px;
             color:#ff8a65;
         }
+        h3{
+            font-size:1.6em !important;
+            color: white;
+        }
         .whited:focus {
             border-bottom: 1px solid white !important;
             -webkit-box-shadow: 0 1px 0 0 white !important;
@@ -47,19 +51,64 @@
             margin-left:auto !important;
         }
 
+        #descri tr{
+            border: 1px solid grey;
+            line-height:30px;
+        }
+
+        #descri{
+            margin-bottom:30px;
+        }
+
     </style>
     <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap ">
         <h2>Détail et réservation de l'expédition</h2>
         <div class="row">
-            <div class="col s12 l6 push-l1 deep-orange lighten-2 white-text">
+            <div class="col s12 l6 push-l1  deep-orange lighten-3">
                 <div class="row">
-                    <h3>   </h3>
                     <div id="trajet">
-                        <h4>Trajet</h4>
+                        <h3>Détail de l'annonce</h3>
+                        <br>
+                        <p class="white-text">{{$expedition->description}}</p>
+                        <br>
+                        <table id="descri" class="striped col s12 push-m3 m6">
+                            <tr>
+                                <td>Ville de départ :</td>
+                                <td>{{$expedition->villeDep->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ville d'arrivée :</td>
+                                <td>{{$expedition->villeArr->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Poids de l'objet :</td>
+                                <td>{{$expedition->weightItem}} g</td>
+                            </tr>
+                            <tr>
+                                <td>Longueur du colis :</td>
+                                <td>{{$expedition->lengthItem}} cm</td>
+                            </tr>
+                            <tr>
+                                <td>Largeur du colis :</td>
+                                <td>{{$expedition->widthItem}} cm</td>
+                            </tr>
+                            <tr>
+                                <td>Hauteur du colis :</td>
+                                <td>{{$expedition->heightItem}} cm</td>
+                            </tr>
+                            <tr>
+                                <td>Volume du colis:</td>
+                                <td>{{$expedition->volumeItem}} m³</td>
+                            </tr>
+                            <tr>
+                                <td>Prix maximum :</td>
+                                <td>{{$expedition->costMax}} €</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="col s12 l3 push-l2 deep-orange lighten-2 white-text">
+            <div class="col s12 l3 push-l2  deep-orange lighten-3 padd-tb-60 white-text">
                 <h3>Expéditeur</h3>
                 @if($expedition->user->picLink==null)
                     <img src="/images/profile/icon-{{$expedition->user->sexe}}.png" width="35%" class="responsive-img circle" alt="">
