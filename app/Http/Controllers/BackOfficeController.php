@@ -109,8 +109,13 @@ class BackOfficeController extends Controller
 
     public function getDeleteVehicule(Vehicule $vehicule)
     {
-        echo $vehicule->marque;
-        die();
+        $vehicule->delete();
+
+        return redirect()->back();
+    }
+
+    public function postEditVehicule(Vehicule $vehicule, Request $request) {
+        
     }
     
     public function getTransportDetail(Transport $transport)

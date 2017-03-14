@@ -46,6 +46,7 @@
                                     <div class="col-md-6 col-md-offset-2">
                                     <b>Marque: </b> {{ $vehicule->marque }}<br>
                                     <b>Modèle: </b> {{ $vehicule->modele }}<br>
+                                    <b>Transports: </b> {{ $vehicule->inTransports->count() }}<br>
                                     @if($vehicule->longMax)
                                     <b>Longueur Max (cm): </b> {{ $vehicule->longMax }} @else
                                     <b>Longueur Max (cm): </b>
@@ -78,24 +79,54 @@
                                 </div>
                                 <div class="row">
                                     <div class="row text-center">
-                                        <a class="btn btn-primary">Modifier</a> <a class="btn btn-danger" data-toggle="modal" data-target="#delete_vehicule_{{ $vehicule->id }}">Supprimer</a>
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#edit_vehicule_{{ $vehicule->id }}">Modifier</a> <a class="btn btn-danger" data-toggle="modal" data-target="#delete_vehicule_{{ $vehicule->id }}">Supprimer</a>
                                     </div>
                                 </div>
 
-                                <div class="modal fade" id="delete_vehicule_{{ $vehicule->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal fade" id="delete_vehicule_{{ $vehicule->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez-vous vraiment supprimer le véhicule <b><i>{{ $vehicule->marque }} {{ $vehicule->modele }}</i></b>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
+                                                <a href="{{ route('admin_user_vehicule_delete', array('vehicule' => $vehicule->id)) }}" class="btn btn-primary">Supprimer !</a>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            Voulez-vous vraiment supprimer le véhicule <b><i>{{ $vehicule->marque }} {{ $vehicule->modele }}</i></b>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
-                                            <a href="{{ route('admin_user_vehicule_delete', array('vehicule' => $vehicule->id)) }}" class="btn btn-primary">Supprimer !</a>
-                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="edit_vehicule_{{ $vehicule->id }}" tabindex="-1" role="dialog" aria-labelledby="editModal">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form method="post" action="{{ route('admin_user_vehicule_edit', array('vehicule' => $vehicule->id)) }}">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Modification</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <label for="marque" class="col-2 col-form-label">Marque</label>
+                                                        <div class="col-10">
+                                                            <input class="form-control" type="text" value="{{ $vehicule->marque }}" id="marque" required="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="modele" class="col-2 col-form-label">Modèle</label>
+                                                        <div class="col-10">
+                                                            <input class="form-control" type="text" value="{{ $vehicule->modele }}" id="modele" required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a type="button" class="btn btn-default" data-dismiss="modal">Annuler</a>
+                                                    <button type="submit" class="btn btn-primary">Modifier</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

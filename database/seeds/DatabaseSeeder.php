@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Notation_expeTablesSeeder::class);
         $this->call(Question_expeTablesSeeder::class);
         $this->call(Demande_expeTablesSeeder::class);
-        $this->call(EtapeTablesSeeder::class);
+        $this->call(EtapesTablesSeeder::class);
 
     }
 }

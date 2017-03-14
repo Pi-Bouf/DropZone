@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EtapeTablesSeeder extends Seeder
+class EtapesTablesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

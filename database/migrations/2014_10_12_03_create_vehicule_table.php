@@ -26,6 +26,7 @@ class CreateVehiculeTable extends Migration
             $table->float('volume')->nullable();
             $table->boolean('isDefault')->default(0);
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('vehicule_type_id')->references('id')->on('vehicule_types');
         });
