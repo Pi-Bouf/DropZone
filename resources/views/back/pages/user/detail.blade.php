@@ -23,6 +23,26 @@
                         {{ $actualUser->description }}
                     </div>
                 </div>
+                <div style="margin-top: 15px;" class="row text-center">
+                    <a class="btn btn-primary">Modifier</a> <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a>
+                    <div class="modal fade" id="ban_user" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-left">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez-vous vraiment bannir l'utilisateur <b><i>{{ $user->firstName }} {{ $user->lastName }}</i></b> ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
+                                    <a href="{{-- route('admin_user_delete', array('user' => $user->id)) --}}" class="btn btn-primary">Bannir !</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div style="margin: 20px;"></div>
                 <!-- Panel Vehicules -->
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -113,13 +133,13 @@
                                                     <div class="form-group row">
                                                         <label for="marque" class="col-2 col-form-label">Marque</label>
                                                         <div class="col-10">
-                                                            <input class="form-control" type="text" value="{{ $vehicule->marque }}" id="marque" required="required">
+                                                            <input class="form-control" type="text" value="{{ $vehicule->marque }}" id="marque" name="marque" required="required">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="modele" class="col-2 col-form-label">Modèle</label>
                                                         <div class="col-10">
-                                                            <input class="form-control" type="text" value="{{ $vehicule->modele }}" id="modele" required="required">
+                                                            <input class="form-control" type="text" value="{{ $vehicule->modele }}" id="modele" name="modele" required="required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -184,7 +204,7 @@
                         <td>{{ $actualUser->phone }}</td>
                     </tr>
                     <tr>
-                        <th>Data inscription</th>
+                        <th>Date d'inscription</th>
                         <td>{{ $actualUser->created_at }}</td>
                     </tr>
                     <tr></tr>
