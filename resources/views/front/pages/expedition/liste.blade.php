@@ -56,10 +56,10 @@
                       </span>
                     </div>
                     <div class="col s12 m6 l6 right-align">
-                        <a href="#delete" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                        <a href="#delete_{{ $expedition->id }}" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
                     </div>
 
-                    <div id="delete" class="modal">
+                    <div id="delete_{{ $expedition->id }}" class="modal">
                       <div class="modal-content">
                         <h4>Confirmer la suppression</h4>
                         <p>Voulez-vous vraiment supprimer ce colis?</p>
@@ -79,4 +79,3 @@
     </section>
 
 @endsection
-5
