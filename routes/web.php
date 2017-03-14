@@ -92,6 +92,8 @@ $this->get('/admin', 'BackOfficeController@getDashBoard')->name('admin_home');
 $this->get('/admin/user/list', 'BackOfficeController@getUserList')->name('admin_user_list');
 $this->post('/admin/user/list', 'BackOfficeController@postSearchUserList')->name('admin_user_list_search_post');
 $this->get('/admin/user/detail/{user}', 'BackOfficeController@getUserDetail')->name('admin_user_detail');
+$this->get('/admin/user/edit/{user}', 'BackOfficeController@getUserEdit')->name('admin_user_edit');
+$this->post('/admin/user/edit/{user}', 'BackOfficeController@postUserEdit')->name('admin_user_edit_post');
 $this->get('/admin/user/ban/{user}', 'BackOfficeController@getUserBan')->name('admin_user_ban');
 $this->get('/admin/user/unban/{user}', 'BackOfficeController@getUserUnban')->name('admin_user_unban');
 $this->get('/admin/user/check/{user}', 'BackOfficeController@getUserCheck')->name('admin_user_check');
