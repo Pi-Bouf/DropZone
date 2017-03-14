@@ -54,7 +54,10 @@
                       <span class="grey-text mg-t20">
                         Annonce déposée {{ Date::parse($expedition->created_at)->format('l j F Y') }}.
                       </span>
-                    </div>
+                    </div><br><br>
+                    @foreach($expedition->demandeExpedition as $demande)
+                    <div class="black-text">Une demande de {{ $demande->user->login }}</div>
+                    @endforeach
                     <div class="col s12 m6 l6 right-align">
                         <a href="#delete_{{ $expedition->id }}" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
                     </div>

@@ -25,6 +25,11 @@ class Expedition extends Model
     {
         return $this->hasMany('App\QuestionExpedition');
     }
+
+    public function demandeExpedition()
+    {
+      return $this->hasMany('App\DemandeExpedition');
+    }
 }
 
 ?>
