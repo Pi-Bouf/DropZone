@@ -115,6 +115,14 @@ class BackOfficeController extends Controller
         return redirect()->back();
     }
 
+        public function getUserUnban(User $user)
+    {
+        $user->isBanned = false;
+        $user->save();
+
+        return redirect()->back();
+    }
+
     public function getDeleteVehicule(Vehicule $vehicule)
     {
         $vehicule->delete();

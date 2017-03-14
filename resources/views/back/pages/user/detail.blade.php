@@ -24,8 +24,10 @@
                     </div>
                 </div>
                 <div style="margin-top: 15px;" class="row text-center">
-                    <a class="btn btn-primary">Modifier</a>
+                    @if($user->isChecked)  <a class="btn btn-danger" href="{{ route('admin_user_uncheck', array('user' => $user->id)) }}">Retirer vérification</a> @else <a class="btn btn-success" href="{{ route('admin_user_check', array('user' => $user->id)) }}">Vérifié</a> @endif
+                    <a class="btn btn-warning">Modifier</a>
                     @if($user->isBanned) <a class="btn btn-success" href="{{ route('admin_user_unban', array('user' => $user->id)) }}">Débannir</a>  @else <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a> @endif
+
                     <div class="modal fade" id="ban_user" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
