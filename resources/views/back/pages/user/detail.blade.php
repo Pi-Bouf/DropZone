@@ -259,7 +259,7 @@
                 @endif
                 <div style="background-color: {{ $color }}; margin-bottom: 5px; border-radius: 5px; padding: 3px; color: #666666;">
                     <div class="text-center">
-                        <h4><a href=""><b>{{ $transport->villeDepart->ville->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $transport->villeArrivee->ville->name }}</b></a></h4>
+                        <h4><a href="{{ route('admin_transport_detail', array('transport' => $transport->id)) }}"><b>{{ $transport->villeDepart->ville->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $transport->villeArrivee->ville->name }}</b></a></h4>
                         @if($transport->natureTransport)
                             qsd
                         @else

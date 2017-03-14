@@ -30,6 +30,16 @@ class Transport extends Model
         return $this->hasMany('App\QuestionTransport');
     }
 
+    public function demandesTransport()
+    {
+        return $this->hasMany('App\DemandeTransport')->orderBy('isAccepted', 'DESC');
+    }
+
+    public function demandesTransportAccepted()
+    {
+        return $this->hasMany('App\DemandeTransport')->where('isAccepted', true);
+    }
+
     public function villeDepart()
     {
         return $this->hasOne('App\Etape')->where('ville_position', 1);

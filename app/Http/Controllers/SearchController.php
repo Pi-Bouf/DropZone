@@ -35,7 +35,7 @@ class SearchController extends Controller
         $latArr = $coordArrivee[0];
         $lngArr = $coordArrivee[1];
         
-        $date = date("Y-d-m H:i:s", strtotime($request->input('dateTransport')));
+        $date = date('Y-m-d H:i:s', strtotime(implode('-', array_reverse(explode('/', $request->input('dateTransport'))))));
         
         /*
         
