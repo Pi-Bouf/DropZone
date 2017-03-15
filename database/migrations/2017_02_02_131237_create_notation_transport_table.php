@@ -19,8 +19,10 @@ class CreateNotationTransportTable extends Migration
           $table->text('text');
           $table->float('note');
           $table->boolean('UserOrTransporter');
+          $table->integer('user_id')->unsigned();
           $table->timestamps();
           $table->foreign('demande_transport_id')->references('id')->on('demande_transports');
+          $table->foreign('user_id')->references('id')->on('users');
       });
     }
 

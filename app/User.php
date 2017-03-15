@@ -81,4 +81,11 @@ class User extends Authenticatable
         return $this->where('isBanned', true);
     }
 
+    public function noteTransport(){
+        return $this->hasMany('App\NotationTransport');
+    }
+
+    public function noteExpedition(){
+        return $this->hasMany('App\NotationExpedition');
+    }
 }

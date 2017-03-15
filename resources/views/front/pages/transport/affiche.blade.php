@@ -98,7 +98,7 @@
                 <img src="/images/profile/{{$transport->user->picLink}}" width="35%" class="responsive-img circle" alt="">
             @endif
             <div id="nomConducteur"><a href="/user/{{$transport->user->id}}" class="white-text">{{$transport->user->firstName}}</a> - {{$age}} ans</div>
-            <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> 3.5/5 - 43 avis</div>
+            <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$note}}/5 - {{$nbnote}} avis</div>
             <img style="width: 70%; max-height: 100px;" src="/images/vehicles/{{ $transport->vehicule->vehiculetype->name }}.svg"><br>
             <h3 class="black-text">{{ $transport->vehicule->marque }} {{ $transport->vehicule->modele }}</h3>
             <table class="bordered striped centered" style="margin-top: 5px;">

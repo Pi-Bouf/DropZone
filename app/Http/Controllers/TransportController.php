@@ -107,13 +107,17 @@ class TransportController extends Controller
 
     public function affTransport(Transport $transport) {
 
-        //$etape = Etape::where('transport_id', "=", $transport->id)->get();
+        $totalNote = $transport->user->noteTransport->sum('note');
+        $totalNote += $transport->user->noteExpedition->sum('note');
+        $nbNote = $transport->user->noteTransport->count();
+        $nbNote += $transport->user->noteExpedition->count();
+        $note =  round($totalNote / $nbNote, 2);
         $etapes = $transport->etapes()->get()->all();
         $depart = $transport->villeDepart()->get()->first();
         $fin = $transport->villeArrivee()->get()->first();
         $birthdate = explode("-", $transport->user->birthday);
         $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
-        return view('front.pages.transport.affiche', array('transport' => $transport, 'age' => $age, 'depart' => $depart, 'fin' => $fin, 'etapes' => $etapes));
+        return view('front.pages.transport.affiche', array('note' => $note, 'nbnote' => $nbNote, 'transport' => $transport, 'age' => $age, 'depart' => $depart, 'fin' => $fin, 'etapes' => $etapes));
     }
 
     public function deltransport($transport_id){
