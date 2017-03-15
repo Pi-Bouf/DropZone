@@ -291,7 +291,7 @@
                     <div class="row">
                         <div class="col-md-4 col-xs-12">
                             @if($demande->user->picLink != NULL)
-                            <img style="width: 50%;" class="img-circle" src="/images/profile/{{ $user->picLink }}"></img>
+                            <img style="width: 50%;" class="img-circle" src="{{ $user->picLink }}"></img>
                             @else
                             <img src="/images/profile/icon-{{$user->sexe}}.png" width="50%" class="img-circle" alt="">
                             @endif

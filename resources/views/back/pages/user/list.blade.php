@@ -73,7 +73,6 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Avatar</th>
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Email</th>
@@ -85,7 +84,6 @@
                         @foreach($userList as $oneUser)
                         <tr>
                             <td><a href="{{ route('admin_user_detail', array('user' => $oneUser->id)) }}">{{ $oneUser->id }}</a></td>
-                            <td>{{ $oneUser->picLink }}</td>
                             <td>{{ $oneUser->firstName }}</td>
                             <td>{{ $oneUser->lastName }}</td>
                             <td>{{ $oneUser->email }}</td>

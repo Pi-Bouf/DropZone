@@ -113,7 +113,7 @@
                 @if($expedition->user->picLink==null)
                     <img src="/images/profile/icon-{{$expedition->user->sexe}}.png" width="35%" class="responsive-img circle" alt="">
                 @else
-                    <img src="/images/profile/{{$expedition->user->picLink}}" width="35%" class="responsive-img circle" alt="">
+                    <img src="{{$expedition->user->picLink}}" width="35%" class="responsive-img circle" alt="">
                 @endif
                 <div id="nomConducteur"><a href="/user/{{$expedition->user->id}}" class="white-text">{{$expedition->user->firstName}}</a> - {{$age}} ans</div>
                 <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> 3.5/5 - 43 avis</div>
@@ -182,7 +182,7 @@
                                 @if($qu->user->picLink==null)
                                     <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
                                 @else
-                                    <img src="/images/profile/{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                    <img src="{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
                                 @endif
                                 <br>
                                 <a href="/user/{{$qu->user->id}}" class="deep-orange-text lighten-2">{{$qu->user->login}}</a>
