@@ -98,7 +98,7 @@ $style = [
                                         <!-- Intro -->
                                         @foreach ($introLines as $line)
                                             <p style="{{ $style['paragraph'] }}">
-                                                {{ $line }}
+                                                {!! html_entity_decode($line) !!}
                                             </p>
                                         @endforeach
 
@@ -138,9 +138,12 @@ $style = [
                                             </p>
                                         @endforeach
 
+                                        @if (isset($petitTest))
+
+                                        @endif
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Regards,<br>{{ config('app.name') }}
+                                            Cordialement,<br>{{ config('app.name') }}
                                         </p>
 
                                         <!-- Sub Copy -->
@@ -149,8 +152,8 @@ $style = [
                                                 <tr>
                                                     <td style="{{ $fontFamily }}">
                                                         <p style="{{ $style['paragraph-sub'] }}">
-                                                            If you’re having trouble clicking the "{{ $actionText }}" button,
-                                                            copy and paste the URL below into your web browser:
+                                                            Si le lien "{{ $actionText }}" ne fonctionne pas,
+                                                            copiez-collez le lien suivant:
                                                         </p>
 
                                                         <p style="{{ $style['paragraph-sub'] }}">

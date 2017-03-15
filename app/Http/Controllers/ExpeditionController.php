@@ -9,6 +9,7 @@ use App\QuestionExpedition;
 use App\DemandeExpedition;
 use App\Expedition;
 use Carbon\Carbon;
+use App\Notifications\NotifDemandeExpedition;
 
 class ExpeditionController extends Controller
 {
@@ -121,6 +122,10 @@ class ExpeditionController extends Controller
         $demande->endDate = $endD[2].'-'.$endD[1].'-'.$endD[0];
 
         $demande->save();
+
+        $expedition = Expedition::find($request->input('idE'));
+        $expedition->user->notify(new NotifDemandeExpedition($expedition->user, $expedition, $demande));
+
         return redirect()->back();
 
     }

@@ -4,10 +4,12 @@ use Illuminate\Http\Request;
 use App\Ville;
 use App\Etape;
 use App\Transport;
+use App\User;
 use App\QuestionTransport;
 use App\DemandeTransport;
 use Auth;
 use Carbon\Carbon;
+use App\Notifications\NotifDemandeTransport;
 
 
 class TransportController extends Controller
@@ -148,6 +150,7 @@ class TransportController extends Controller
             'message' => 'required|max:500',
             'prix' => 'required',
         );
+
         $this->validate($request, $rules);
         $demande = new DemandeTransport();
         $demande->transport_id= $request->input('idT');
@@ -157,6 +160,10 @@ class TransportController extends Controller
         $demande->isAccepted = false;
 
         $demande->save();
+
+        $transport = Transport::find($request->input('idT'));
+        $transport->user->notify(new NotifDemandeTransport($transport->user, $transport, $demande));
+
         return redirect()->back();
 
     }
