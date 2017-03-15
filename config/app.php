@@ -168,7 +168,6 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
         //
 
         /*
@@ -228,7 +227,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Date' => Jenssegers\Date\Date::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
