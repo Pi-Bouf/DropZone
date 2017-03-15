@@ -73,14 +73,39 @@
 
                     <h3 class="about-subtitle">Demandes en attente</h3>
 
-                    <div class="col s12 m12 l12">
-
-                        <div class="collection">
+                    <div class="col s12 m12 l12 black-text">
 
                         @foreach($expedition->demandeExpedition as $demande)
-
-                        <a href="#!" class="collection-item black-text">{{ $demande->user->login }} le {{ $demande->user->created_at }}</a>
-
+                            <div class="row card blue lighten-3 demande-expe">
+                                    <div class="col s6 m2 l2 center-align">
+                                      @if($demande->user->picLink==null)
+                                        <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
+                                      @else
+                                        <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
+                                      @endif
+                                    </div>
+                                    <div class="col s6 m2 l2">
+                                      <p>
+                                        {{ $demande->user->login }}
+                                      </p>
+                                      <p>
+                                        <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                  											 4.5/5
+                                      </p>
+                                    </div>
+                                    <div class="col s6 m4 l4">
+                                      <p>
+                                        Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
+                                      </p>
+                                      <p>
+                                        Prix : {{ $demande->prixAsked }} €
+                                      </p>
+                                    </div>
+                                    <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                      <a title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
+                                      <a title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
+                                    </div>
+                            </div>
                         @endforeach
                       </div>
                     </div>
