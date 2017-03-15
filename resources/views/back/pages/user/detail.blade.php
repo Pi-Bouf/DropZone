@@ -10,7 +10,11 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 text-center">
                         <h3>{{ $actualUser->firstName }} {{ $actualUser->lastName }}</h3>
-                        <img style="max-width: 100%;" class="img-circle" src="/images/profile/{{ $actualUser->picLink }}"></img>
+                        @if($actualUser->picLink != NULL)
+                        <img style="width: 100%;" class="img-circle" src="{{ $actualUser->picLink }}"></img>
+                        @else
+                        <img src="/images/profile/icon-{{$actualUser->sexe}}.png" style="width: 75%" class="img-circle" alt="">
+                        @endif
                     </div>
                 </div>
                 <div style="margin-top: 15px;" class="row">

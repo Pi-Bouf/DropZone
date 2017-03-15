@@ -71,7 +71,7 @@
                         @if($transports[$i]->user->picLink==null)
                         <img src="/images/profile/icon-{{$transports[$i]->user->sexe}}.png" width="20%" class="responsive-img circle" alt="">
                         @else
-                        <img src="/images/profile/{{$transports[$i]->user->picLink}}" width="20%" class="responsive-img circle" alt="">
+                        <img src="{{$transports[$i]->user->picLink}}" width="20%" class="responsive-img circle" alt="">
                         @endif
                         <br>
                         <h3 class="black-text">{{ $transports[$i]->user->login }}</h3>

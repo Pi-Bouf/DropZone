@@ -95,7 +95,7 @@
             @if($transport->user->picLink==null)
                 <img src="/images/profile/icon-{{$transport->user->sexe}}.png" width="35%" class="responsive-img circle" alt="">
             @else
-                <img src="/images/profile/{{$transport->user->picLink}}" width="35%" class="responsive-img circle" alt="">
+                <img src="{{$transport->user->picLink}}" width="35%" class="responsive-img circle" alt="">
             @endif
             <div id="nomConducteur"><a href="/user/{{$transport->user->id}}" class="white-text">{{$transport->user->firstName}}</a> - {{$age}} ans</div>
             <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> 3.5/5 - 43 avis</div>
@@ -219,7 +219,7 @@
                             @if($qu->user->picLink==null)
                                 <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
                             @else
-                                <img src="/images/profile/{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                <img src="{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
                             @endif
                             <br>
                             <a href="/user/{{$qu->user->id}}">{{$qu->user->login}}</a>

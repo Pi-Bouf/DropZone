@@ -54,7 +54,7 @@
                         <div class="col m6 s12">
                             <div class="center-align">
                             @if($expeditions[$i]->user->picLink)
-                            <img src="/images/profile/{{$expeditions[$i]->user->picLink}}" width="40%" class="responsive-img circle" alt="">
+                            <img src="{{$expeditions[$i]->user->picLink}}" width="40%" class="responsive-img circle" alt="">
                             @else
                             <img src="/images/profile/icon-{{$expeditions[$i]->user->sexe}}.png" width="40%" class="responsive-img circle" alt="">
                             @endif

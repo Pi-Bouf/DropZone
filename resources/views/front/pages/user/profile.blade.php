@@ -28,9 +28,9 @@
             <div class="col s12 m6 l4">
 							<div class="person-img center-align">
                 @if($user->picLink==null)
-                  <img src="../../images/profile/icon-{{$user->sexe}}.png" width="75%" class="responsive-img circle" alt="">
+                  <img src="/images/profile/icon-{{$user->sexe}}.png" width="75%" class="responsive-img circle" alt="">
                 @else
-                  <img src="../../images/profile/{{$user->picLink}}" width="75%" class="responsive-img circle" alt="">
+                  <img src="{{$user->picLink}}" width="75%" class="responsive-img circle" alt="">
                 @endif
 							</div>
 						</div>

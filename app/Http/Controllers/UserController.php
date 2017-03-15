@@ -98,7 +98,7 @@ class UserController extends Controller
       if($request->hasFile('avatar')) {
         if($request->file('avatar')->isValid()) {
           $path = $request->avatar->store('/public/images');
-          $user->picLink = "/storage/".$path;
+          $user->picLink = "/storage/".substr($path, 7);
         }
       }
 
