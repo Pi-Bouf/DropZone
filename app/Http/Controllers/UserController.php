@@ -72,27 +72,35 @@ class UserController extends Controller
         'firstName' => 'required|max:50|string',
         'lastName' => 'required|max:75|string',
         'gender' => 'in:0,1',
-        'email' => 'required|max:100|email',
-        'reg_birthday' => 'required',
+        'profil_email' => 'required|max:100|email',
         'phone' => 'required|max:9999999999|numeric',
         'description' => 'required|string',
       );
       $this->validate($request, $rules);
 
-      $birthdate = explode("/", $request->input('reg_birthday'));
-      $birthdate = $birthdate[2].'/'.$birthdate[1].'/'.$birthdate[0];
-
-      print_r ($request->input());
+      if(!empty($request->input('reg_birthday'))) {
+        $birthdate = explode("/", $request->input('reg_birthday'));
+        $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];
+      }
 
       $user = Auth::user();
       $user->firstName = $request->input('firstName');
       $user->lastName = $request->input('lastName');
       $user->sexe = ($request->input('gender') == 'h') ? 'h' : 'f';
 
-      $user->email = $request->input('email');
-      $user->birthday = $birthdate;
+      $user->email = $request->input('profil_email');
+      if(!empty($request->input('reg_birthday'))) {
+        $user->birthday = $birthdate;
+      }
       $user->phone = $request->input('phone');
       $user->description = $request->input('description');
+
+      if($request->hasFile('avatar')) {
+        if($request->file('avatar')->isValid()) {
+          $path = $request->avatar->store('/public/images');
+          $user->picLink = "/storage/".$path;
+        }
+      }
 
       if($user->save()) {
           return redirect()->route('user_profile_update')->with('edit', 'ok');
