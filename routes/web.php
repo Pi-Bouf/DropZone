@@ -74,6 +74,8 @@ Route::post('user/me/update', 'UserController@postProfileUpdate')->name('user_pr
 $this->get('/', 'Auth\LoginController@showLoginForm')->name('login'); // --> connexion dans le pop-up
 $this->post('login', 'Auth\LoginController@login');
 $this->get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 // Registration Routes...
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

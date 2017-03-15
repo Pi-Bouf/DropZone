@@ -27,6 +27,8 @@
                     </button>
                 </div>
             </form>
+
+            <a href="auth/facebook" class="btn waves-effect waves-light cyan darken-1">Facebook</a>
         </div>
         @endif
     </div>
