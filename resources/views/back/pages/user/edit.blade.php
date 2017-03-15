@@ -7,7 +7,7 @@
                 Profil
             </header>
             <div class="panel-body">
-                @if($result == "OK")
+                @if(isset($result))
                 <div class="alert alert-success">
                     <strong>Super !</strong> L'utilisateur a bien été modifié !
                 </div>

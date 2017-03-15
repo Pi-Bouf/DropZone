@@ -74,9 +74,15 @@
                     <h3 class="about-subtitle">Demandes en attente</h3>
 
                     <div class="col s12 m12 l12">
-                      @foreach($expedition->demandeExpedition as $demande)
-                      <div class="black-text">Une demande de {{ $demande->user->login }}</div>
-                      @endforeach
+
+                        <div class="collection">
+
+                        @foreach($expedition->demandeExpedition as $demande)
+
+                        <a href="#!" class="collection-item black-text">{{ $demande->user->login }} le {{ $demande->user->created_at }}</a>
+
+                        @endforeach
+                      </div>
                     </div>
                   </div>
                 </div>

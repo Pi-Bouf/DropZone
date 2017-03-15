@@ -24,9 +24,9 @@
                     </div>
                 </div>
                 <div style="margin-top: 15px;" class="row text-center">
-                    @if($user->isChecked)  <a class="btn btn-danger" href="{{ route('admin_user_uncheck', array('user' => $user->id)) }}">Retirer vérification</a> @else <a class="btn btn-success" href="{{ route('admin_user_check', array('user' => $user->id)) }}">Vérifier</a> @endif
-                    <a class="btn btn-info" href="{{ route('admin_user_edit', array('user' => $user->id)) }}">Modifier</a>
-                    @if($user->isBanned) <a class="btn btn-success" href="{{ route('admin_user_unban', array('user' => $user->id)) }}">Débannir</a>  @else <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a> @endif
+                    @if($actualUser->isChecked)  <a class="btn btn-danger" href="{{ route('admin_user_uncheck', array('user' => $actualUser->id)) }}">Retirer vérification</a> @else <a class="btn btn-success" href="{{ route('admin_user_check', array('user' => $actualUser->id)) }}">Vérifier</a> @endif
+                    <a class="btn btn-info" href="{{ route('admin_user_edit', array('user' => $actualUser->id)) }}">Modifier</a>
+                    @if($actualUser->isBanned) <a class="btn btn-success" href="{{ route('admin_user_unban', array('user' => $actualUser->id)) }}">Débannir</a>  @else <a class="btn btn-danger" data-toggle="modal" data-target="#ban_user">Bannir</a> @endif
 
                     <div class="modal fade" id="ban_user" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                         <div class="modal-dialog" role="document">
@@ -36,11 +36,11 @@
                                     <h4 class="modal-title" id="myModalLabel">Suppression</h4>
                                 </div>
                                 <div class="modal-body">
-                                    Voulez-vous vraiment bannir l'utilisateur <b><i>{{ $user->firstName }} {{ $user->lastName }}</i></b> ?
+                                    Voulez-vous vraiment bannir l'utilisateur <b><i>{{ $actualUser->firstName }} {{ $actualUser->lastName }}</i></b> ?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
-                                    <a href="{{ route('admin_user_ban', array('user' => $user->id)) }}" class="btn btn-primary">Bannir !</a>
+                                    <a href="{{ route('admin_user_ban', array('user' => $actualUser->id)) }}" class="btn btn-primary">Bannir !</a>
                                 </div>
                             </div>
                         </div>
@@ -80,19 +80,19 @@
                                     <b>Hauteur Max (cm): </b>
                                     <font color="red">Non renseigné.</font>
                                     @endif
-                                    <br> 
+                                    <br>
                                     @if($vehicule->largMax)
                                     <b>Largeur Max (cm): </b> {{ $vehicule->largMax }} @else
                                     <b>Largeur Max (cm): </b>
                                     <font color="red">Non renseigné.</font>
                                     @endif
-                                    <br> 
+                                    <br>
                                     @if($vehicule->poidMax)
                                     <b>Poid Max (kg): </b> {{ $vehicule->poidMax }} @else
                                     <b>Poid Max (kg): </b>
                                     <font color="red">Non renseigné.</font>
                                     @endif
-                                    <br> 
+                                    <br>
                                     @if($vehicule->volume)
                                     <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
                                     <b>Volume Max (cm³): </b>
@@ -245,13 +245,13 @@
             <div class="panel-body">
                 @foreach($actualUser->transports as $transport)
                 @if($transport->natureTransport)
-                    @if($transport->regularyEndingDate< date( 'Y-m-d H:i:s')) 
+                    @if($transport->regularyEndingDate< date( 'Y-m-d H:i:s'))
                         <?php $color="rgba(0, 255, 0, 0.2)" ; ?>
                     @else
                         <?php $color = "rgba(0, 0, 255, 0.2)"; ?>
-                    @endif 
-                @else 
-                    @if($transport->beginningDate < date( 'Y-m-d H:i:s')) 
+                    @endif
+                @else
+                    @if($transport->beginningDate < date( 'Y-m-d H:i:s'))
                         <?php $color="rgba(0, 255, 0, 0.2)" ; ?>
                     @else
                         <?php $color = "rgba(0, 0, 255, 0.2)"; ?>
