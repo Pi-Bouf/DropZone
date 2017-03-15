@@ -57,7 +57,7 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-        protected $redirectPath = '/home';
+        protected $redirectPath = '/';
 
     /**
      * Redirect the user to the Facebook authentication page.
@@ -86,7 +86,7 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('home');
+        return redirect('/');
     }
 
     /**
@@ -103,11 +103,15 @@ class LoginController extends Controller
             return $authUser;
         }
 
+        $tabName = explode(' ', $facebookUser->name);
+
         return User::create([
-            'name' => $facebookUser->name,
+            'firstName' => $tabName[0],
+            'lastName' => $tabName[1],
+            'login' => $tabName[0].' '.substr($tabName[1], 0, 1).'.',
             'email' => $facebookUser->email,
             'facebook_id' => $facebookUser->id,
-            'avatar' => $facebookUser->avatar
+            'picLink' => $facebookUser->avatar
         ]);
     }
 

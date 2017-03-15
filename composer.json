@@ -12,7 +12,7 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "jenssegers/date": "^3.2",
         "laravel-notification-channels/twilio": "^2.0",
-        "laravel/socialite": "2.0.4",
+        "laravel/socialite": "2.*",
         "guzzlehttp/streams": "2.1.0"
     },
     "require-dev": {

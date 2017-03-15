@@ -57,6 +57,7 @@
                         <button class="btn waves-effect waves-light cyan darken-1" type="submit" name="action">Inscription
                                 <i class="material-icons right mdi mdi-account-plus"></i>
                         </button>
+                        <a href="auth/facebook" class="btn waves-effect waves-light blue darken-1"><i class="material-icons right mdi mdi-facebook-box"></i>Facebook</a>
                     </div>
                 </form>
         </div>

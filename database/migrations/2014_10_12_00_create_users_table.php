@@ -20,14 +20,12 @@ class CreateUsersTable extends Migration
             $table->boolean('isBanned')->default(0);
             $table->string('email')->unique();
             $table->string('facebook_id')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('name')->nullable();
-            $table->string('lastName')->nullable();;
-            $table->string('firstName')->nullable();;
+            $table->string('lastName');
+            $table->string('firstName');
             $table->string('password')->nullable();
-            $table->date('birthday')->nullable();;
+            $table->date('birthday')->default("2000-00-00");
             $table->char('sexe', 1)->nullable();
-            $table->string('login')->nullable();;
+            $table->string('login');
             $table->string('phone')->nullable();
             $table->mediumText('description')->nullable();
             $table->string('picLink')->nullable();
