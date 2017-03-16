@@ -149,6 +149,15 @@ Bonne soirée !',
             'created_at' => '2017-03-16 23:45:07',
             'updated_at' => '2017-03-16 23:45:07',
         ),
+        14 => 
+        array (
+            'id' => 15,
+            'user_id' => 4,
+            'transport_id' => 2,
+            'text' => 'Je ne pense pas, le transporteur ne répond pas à ma demande...',
+            'created_at' => '2017-03-16 23:47:06',
+            'updated_at' => '2017-03-16 23:47:06',
+        ),
     ));
         
         

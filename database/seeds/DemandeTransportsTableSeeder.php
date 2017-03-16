@@ -162,6 +162,17 @@ Merci !',
         'created_at' => '2017-03-16 23:45:24',
         'updated_at' => '2017-03-16 23:45:24',
     ),
+    13 => 
+    array (
+        'id' => 14,
+        'transport_id' => 2,
+        'user_id' => 4,
+        'isAccepted' => NULL,
+        'text' => 'Je veux faire transporter un dentier !',
+        'cost' => 45,
+        'created_at' => '2017-03-16 23:47:20',
+        'updated_at' => '2017-03-16 23:47:20',
+    ),
 ));
         
         
