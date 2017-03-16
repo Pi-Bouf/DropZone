@@ -16,6 +16,25 @@ $(document).ready(function() {
         });
     }
 
+    // Input dates
+    $(document).on('keydown', '.dontSubmit', function(e) {
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
+    $(document).on('keyup', '.auPif', function(e) {
+        if ($(this).val().length > 2) {
+            $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + $(this).val() + '&key=AIzaSyA8s4b7f29R8Mn5v9Xf68GilgyjMUlrPcU', (data) => {
+                if (data.status == "OK") {
+                    console.log();
+                    $("#" + $(this).attr('hiddenId')).val(data.results[0].geometry.location.lat + ";" +
+                        data.results[0].geometry.location.lng)
+                }
+            });
+        }
+    });
+
     // Modal
     $('.modal').modal();
     $('.loginLink').click(function() {

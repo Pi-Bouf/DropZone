@@ -20,14 +20,14 @@
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="departTransport" name="departTransport" value="{{ old('departTransport') }}" type="text" class="validate dontSubmit" placeholder="" required="required">
+                            <input id="departTransport" name="departTransport" value="{{ old('departTransport') }}" type="text" class="validate dontSubmit auPif" hiddenId="departTransHidden" placeholder="" required="required">
                             <input type="hidden" name="departTransHidden" id="departTransHidden">
                             <label for="departTransport">Ville de départ</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate dontSubmit" placeholder="" required="required">
+                            <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate dontSubmit auPif"  hiddenId="arriveeTransHidden" placeholder="" required="required">
                             <input type="hidden" name="arriveeTransHidden" id="arriveeTransHidden">
                             <label for="arriveeTransport">Ville d'arrivée</label>
                         </div>
@@ -53,14 +53,14 @@
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="departExpedition" name="departExpedition" type="text" class="validate dontSubmit" placeholder="">
+                            <input id="departExpedition" name="departExpedition" type="text" class="validate dontSubmit auPif" hiddenId="departExpeHidden" placeholder="">
                             <input type="hidden" name="departExpeHidden" id="departExpeHidden">
                             <label for="departExpedition">Ville de départ</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="arriveeExpedition" name="arriveeExpedition" type="text" class="validate dontSubmit" placeholder="">
+                            <input id="arriveeExpedition" name="arriveeExpedition" type="text" class="validate dontSubmit auPif" hiddenId="arriveeExpeHidden" placeholder="">
                             <input type="hidden" name="arriveeExpeHidden" id="arriveeExpeHidden">
                             <label for="arriveeExpedition">Ville d'arrivée</label>
                         </div>
