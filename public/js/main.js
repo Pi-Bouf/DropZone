@@ -49,11 +49,10 @@ $(document).ready(function() {
 
     //User menu dropdown on hover
     $('.dropdown-hover').dropdown({
-          inDuration: 300,
-          outDuration: 225,
-          hover: true, // Activate on hover
-          belowOrigin: true, // Displays dropdown below the button
-          alignment: 'left'
-        }
-      );
+        inDuration: 300,
+        outDuration: 225,
+        hover: true, // Activate on hover
+        belowOrigin: true, // Displays dropdown below the button
+        alignment: 'left'
+    });
 });

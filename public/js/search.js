@@ -20,6 +20,20 @@ function initialize() {
         $('#departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
+    $(document).on('keydown', '.dontSubmit', function(e) {
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
+    $(document).on('keyup', '.dontSubmit', function(e) {
+        if ($(this).val().length > 2) {
+            $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + $(this).val() + '&key=AIzaSyA8s4b7f29R8Mn5v9Xf68GilgyjMUlrPcU', function(data) {
+                console.log(data.results[0].geometry.location);
+            });
+        }
+    });
+
     autocompleteArrTrans = new google.maps.places.Autocomplete(
         (inputArrTransport));
     autocompleteArrTrans.addListener('place_changed', function() {
