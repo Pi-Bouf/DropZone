@@ -39,5 +39,34 @@ class VehiculeTableSeeder extends Seeder
                 'marque' => 'airbus',
                 'modele' => 'a320'
 				]);
+
+            DB::table('vehicules')->insert([
+                'user_id' => '3',
+                'vehicule_type_id' => '4',
+                'marque' => 'Renault',
+                'modele' => 'Traffic'
+				]);
+
+            DB::table('vehicules')->insert([
+                'user_id' => '4',
+                'vehicule_type_id' => '1',
+                'marque' => 'BMW',
+                'modele' => 'Série 3'
+			]);
+
+            DB::table('vehicules')->insert([
+                'user_id' => '5',
+                'vehicule_type_id' => '1',
+                'marque' => 'Audi',
+                'modele' => 'TT'
+			]);
+
+            DB::table('vehicules')->insert([
+                'user_id' => '6',
+                'vehicule_type_id' => '6',
+                'marque' => 'Harley Davidson',
+                'modele' => 'Imperial'
+			]);
+
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Transport;
 use App\Expedition;
+use Auth;
 
 class SearchController extends Controller
 {
@@ -69,7 +70,8 @@ class SearchController extends Controller
         AND (villes.latitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$latDep.'
         AND (villes.longitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$lngDep.'
         AND (villes.longitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$lngDep.'
-        AND (beginningDate = "'.$date.'" OR "'.$date.'" BETWEEN regularyBeginningDate AND regularyEndingDate)')
+        AND (beginningDate = "'.$date.'" OR "'.$date.'" BETWEEN regularyBeginningDate AND regularyEndingDate)
+        AND user_id != '.Auth::user()->id)
         ->orderBy('natureTransport', 'DESC')->orderBy('beginningHour', 'ASC')
         ->get();
         
@@ -143,7 +145,8 @@ class SearchController extends Controller
         ->select(DB::raw('expeditions.id'))
         ->join('villes as beginning', 'beginning.id', 'beginning_ville_id')
         ->join('villes as ending', 'ending.id', 'ending_ville_id')
-        ->whereRaw('(beginning.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latDep.'
+        ->whereRaw('AND user_id != '.Auth::user()->id.' 
+        AND (beginning.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latDep.'
         AND (beginning.latitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$latDep.'
         AND (beginning.longitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$lngDep.'
         AND (beginning.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$lngDep.'

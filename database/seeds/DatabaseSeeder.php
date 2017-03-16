@@ -15,6 +15,17 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(VehiculeTypeSeeder::class);
         $this->call(VehiculeTableSeeder::class);
+
+        $this->call('TransportsTableSeeder');
+        $this->call('VillesTableSeeder');
+        $this->call('EtapesTableSeeder');
+        $this->call('QuestionTransportsTableSeeder');
+        $this->call('DemandeTransportsTableSeeder');
+    }
+
+        /*
+        $this->call(VehiculeTypeSeeder::class);
+        $this->call(VehiculeTableSeeder::class);
         $this->call(VilleTableSeeder::class);
         $this->call(TransportTableSeeder::class);
         $this->call(ExpeditionTablesSeeder::class);
@@ -22,6 +33,5 @@ class DatabaseSeeder extends Seeder
         $this->call(Question_expeTablesSeeder::class);
         $this->call(Demande_expeTablesSeeder::class);
         $this->call(EtapesTablesSeeder::class);
-
-    }
+        */
 }
