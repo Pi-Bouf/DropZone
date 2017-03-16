@@ -32,7 +32,7 @@
                       <h3 class="about-subtitle">Détails du colis</h3>
                       <div class="person-info">
                         <h5 class="black-text"><span>Longueur :</span> {{ $expedition->lengthItem }} cm</h5>
-                        <h5 class="black-text"><span>Largeur :</span> {{ $expedition->widthhItem }} cm</h5>
+                        <h5 class="black-text"><span>Largeur :</span> {{ $expedition->widthItem }} cm</h5>
                         <h5 class="black-text"><span>Hauteur :</span> {{ $expedition->heightItem }} cm</h5>
                         <h5 class="black-text"><span>Poids :</span> {{ $expedition->weightItem }} kg</h5>
 
@@ -71,11 +71,52 @@
                   </div>
                   <div class="row mg-t20">
 
-                    <h3 class="about-subtitle">Demandes en attente</h3>
-
                     <div class="col s12 m12 l12 black-text">
-
+                      <h3 class="about-subtitle">Demandes en attente</h3>
                         @foreach($expedition->demandeExpedition as $demande)
+                          @if($demande->isAccepted==null)
+                          <div class="row card blue lighten-3 demande-expe">
+                                  <div class="col s6 m2 l2 center-align">
+                                    @if($demande->user->picLink==null)
+                                      <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
+                                    @else
+                                      <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
+                                    @endif
+                                  </div>
+                                  <div class="col s6 m2 l2">
+                                    <p>
+                                      {{ $demande->user->login }}
+                                    </p>
+                                    <p>
+                                      <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                       4.5/5
+                                    </p>
+                                  </div>
+                                  <div class="col s6 m4 l4">
+                                    <p>
+                                      Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
+                                    </p>
+                                    <p>
+                                      Prix : {{ $demande->prixAsked }} €
+                                    </p>
+                                  </div>
+                                  <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                    <a href="{{ route('confirmpackage', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
+                                    <a href="{{ route('cancelpackage', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
+                                  </div>
+                          </div>
+                          @endif
+                        @endforeach
+                      </div>
+                    </div>
+
+
+                    <div class="row mg-t20">
+
+                      <div class="col s12 m12 l12 black-text">
+                        <h3 class="about-subtitle">Demande acceptée</h3>
+                          @foreach($expedition->demandeExpedition as $demande)
+                            @if($demande->isAccepted)
                             <div class="row card blue lighten-3 demande-expe">
                                     <div class="col s6 m2 l2 center-align">
                                       @if($demande->user->picLink==null)
@@ -90,7 +131,7 @@
                                       </p>
                                       <p>
                                         <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-                  											 4.5/5
+                                         4.5/5
                                       </p>
                                     </div>
                                     <div class="col s6 m4 l4">
@@ -102,13 +143,60 @@
                                       </p>
                                     </div>
                                     <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                      <a title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
-                                      <a title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
+                                      <a href="{{ route('confirmpackage', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
+                                      <a href="{{ route('cancelpackage', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
                                     </div>
                             </div>
-                        @endforeach
+                            @endif
+                          @endforeach
+                        </div>
+
+
+
+
+                        <div class="col s12 m12 l12 black-text">
+                          <h3 class="about-subtitle">Demande(s) refusés</h3>
+                            @foreach($expedition->demandeExpedition as $demande)
+                              @if($demande->isAccepted==null)
+                              <div class="row card blue lighten-3 demande-expe">
+                                      <div class="col s6 m2 l2 center-align">
+                                        @if($demande->user->picLink==null)
+                                          <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
+                                        @else
+                                          <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
+                                        @endif
+                                      </div>
+                                      <div class="col s6 m2 l2">
+                                        <p>
+                                          {{ $demande->user->login }}
+                                        </p>
+                                        <p>
+                                          <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                           4.5/5
+                                        </p>
+                                      </div>
+                                      <div class="col s6 m4 l4">
+                                        <p>
+                                          Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
+                                        </p>
+                                        <p>
+                                          Prix : {{ $demande->prixAsked }} €
+                                        </p>
+                                      </div>
+                                      <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                        <a href="{{ route('confirmpackage', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
+                                        <a href="{{ route('cancelpackage', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
+                                      </div>
+                              </div>
+                              @endif
+                            @endforeach
+                          </div>
+
+
+
+
                       </div>
-                    </div>
+
                   </div>
                 </div>
               </li>

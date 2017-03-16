@@ -35,6 +35,18 @@ class ExpeditionController extends Controller
       return redirect()->route('user_package')->with('add', 'ok');
     }
 
+    public function confirmPackage(DemandeExpedition $demande){
+      $demande->isAccepted = true;
+      $demande->save();
+      return redirect()->back();
+    }
+
+    public function cancelPackage(DemandeExpedition $demande){
+      $demande->isAccepted = false;
+      $demande->save();
+      return redirect()->back();
+    }
+
     public function addData(\App\Expedition $expedition, Request $request)
     {
         $expedition->user_id = Auth::user()->id;
