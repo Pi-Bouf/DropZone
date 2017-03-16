@@ -57,7 +57,7 @@
                                                         </div>
 
                                                         <div class="center-align">
-                                                            <button class="btn waves-effect waves-light" type="submit" name="action">Changer le mot de passe<i class="mdi mdi-send right"></i></button>
+                                                            <button class="btn waves-effect waves-light" type="submit" name="action">REINITIALISER<i class="mdi mdi-send right"></i></button>
                                                         </div>
                                                     </form>
                                                 </p>

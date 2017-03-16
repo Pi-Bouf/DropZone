@@ -1,77 +1,88 @@
-@extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Mes véhicules', 'includesJs' => ['/js/components/accordion.min.js'], 'includesCss' => ['/css/components/accordion.gradient.min.css']] ) @section('content')
+@extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Mes véhicules', 'includesJs' => [], 'includesCss'
+=> ['/css/pages/vehicules.css']] ) @section('content')
 
-<div id="profile" class="landing_pages_item">
-    <div class="landing_form">
-        <form class="uk-form" method="post" action="{{ route('user_vehicule_add_post') }}">
-            {{ csrf_field() }}
-            <fieldset data-uk-margin>
-                <legend style="color: #3498db">Ajout d'un véhicule</legend>
-            </fieldset>
-            <div class="uk-form-row">
-                <label for="marque">Marque:</label>
-                <input type="text" placeholder="Marque..." id="marque" name="marque" value="{{ old('marque') }}">
-                @if ($errors->has('marque'))
-                    <p class="uk-form-help-block">{{ $errors->first('marque') }}</p>
-                @endif
+<div id="background">
+    <section id="vehiculeList" class="scroll-section black-text root-sec padd-tb-55 contact-wrap">
+        <div class="row">
+            <div class="col m6 offset-m3">
+                <h2>AJOUTER VEHICULE</h2>
+                <div class="card white">
+                    <div class="card-content black-text">
+                        <div class="row">
+                            <form class="uk-form" method="post" action="{{ route('user_vehicule_add_post') }}">
+                            {{ csrf_field() }}
+                                <div class="input-field col s12">
+                                    <input id="marque" name="marque" type="text" class="validate" value="{{ old('marque') }}">
+                                    <label for="marque">Marque</label>
+                                    @if ($errors->has('marque'))
+                                    <strong style="color: brown;">{{ $errors->first('marque') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input id="modele" name="modele" type="text" class="validate" value="{{ old('modele') }}">
+                                    <label for="modele">Modele</label>
+                                    @if ($errors->has('modele'))
+                                    <strong style="color: brown;">{{ $errors->first('modele') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input id="hautMax" name="hautMax" type="number" class="validate" value="{{ old('hautMax') }}">
+                                    <label for="hautMax">Hauteur Max. (cm)</label>
+                                    @if ($errors->has('hautMax'))
+                                    <strong style="color: brown;">{{ $errors->first('hautMax') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input id="largMax" name="largMax" type="number" class="validate" value="{{ old('largMax') }}">
+                                    <label for="largMax">Largeur Max. (cm)</label>
+                                    @if ($errors->has('largMax'))
+                                    <strong style="color: brown;">{{ $errors->first('largMax') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input id="poidMax" name="poidMax" type="number" class="validate" value="{{ old('poidMax') }}">
+                                    <label for="poidMax">Poid Max. (cm)</label>
+                                    @if ($errors->has('poidMax'))
+                                    <strong style="color: brown;">{{ $errors->first('poidMax') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input id="volume" name="volume" type="number" class="validate" value="{{ old('volume') }}">
+                                    <label for="volume">Poid Max. (cm)</label>
+                                    @if ($errors->has('volume'))
+                                    <strong style="color: brown;">{{ $errors->first('volume') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12 center-align">
+                                    
+                                    @foreach($vehi_type as $vehi)
+                                    <input name="vehicule_type" class="with-gap" type="radio" id="radio_{{ $vehi->id }}" value="{{ $vehi->id }}" />
+                                    <label for="radio_{{ $vehi->id }}">{{ $vehi->name }}</label>
+                                    @endforeach
+
+                                    @if ($errors->has('vehicule_type'))
+                                    <div class="input-field col s12 center-align">
+                                        <strong style="color: brown;">{{ $errors->first('vehicule_type') }}</strong>
+                                    </div>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12 center-align">
+                                    <button class="waves-effect waves-light btn"><i class="mdi mdi-send"></i>button</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="uk-form-row">
-                <label for="modele">Modele:</label>
-                <input type="text" placeholder="Modele..." id="modele" name="modele" value="{{ old('modele') }}">
-                @if ($errors->has('modele'))
-                    <p class="uk-form-help-block">{{ $errors->first('modele') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <label for="longMax">Longueur Max. (cm):</label>
-                <input type="number" step="any" placeholder="Longueur maximum..." id="longMax" name="longMax" value="{{ old('longMax') }}">
-                @if ($errors->has('longMax'))
-                    <p class="uk-form-help-block">{{ $errors->first('longMax') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <label for="hautMax">Hauteur Max. (cm):</label>
-                <input type="number" step="any" placeholder="Hauteur maximum..." id="hautMax" name="hautMax" value="{{ old('hautMax') }}">
-                @if ($errors->has('hautMax'))
-                    <p class="uk-form-help-block">{{ $errors->first('hautMax') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <label for="largMax">Hauteur Max. (cm):</label>
-                <input type="number" step="any" placeholder="Largeur maximum..." id="largMax" name="largMax" value="{{ old('largMax') }}">
-                @if ($errors->has('largMax'))
-                    <p class="uk-form-help-block">{{ $errors->first('largMax') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <label for="poidMax">Poid Max. (kg):</label>
-                <input type="number" step="any" placeholder="Hauteur maximum..." id="poidMax" name="poidMax" value="{{ old('poidMax') }}">
-                @if ($errors->has('poidMax'))
-                    <p class="uk-form-help-block">{{ $errors->first('poidMax') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <label for="volume">Volume Max. (cm³):</label>
-                <input type="number" step="any" placeholder="Hauteur maximum..." id="volume" name="volume" value="{{ old('volume') }}">
-                @if ($errors->has('volume'))
-                    <p class="uk-form-help-block">{{ $errors->first('volume') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <label for="volume">Type de véhicule:</label>
-                <select name="vehicule_type">
-                    @foreach($vehi_type as $vehi)
-                    <option value="{{ $vehi->id }}">{{ $vehi->name }}</option>
-                    @endforeach
-                </select>
-                @if ($errors->has('vehicule_type'))
-                    <p class="uk-form-help-block">{{ $errors->first('vehicule_type') }}</p>
-                @endif                
-            </div>
-            <div class="uk-form-row">
-                <button class="uk-button uk-button-primary">Ajouter</button>
-            </div>
-        </form>
-    </div>
+        </div>
+    </section>
 </div>
 
 @endsection

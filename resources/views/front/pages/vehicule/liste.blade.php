@@ -57,6 +57,9 @@
                     </li>
                     @endforeach
                 </ul>
+                <div class="center-align">
+                    <a href="{{ route('user_vehicule_add') }}" class="waves-effect waves-light btn blue">AJOUTER</a>
+                </div>
             </div>
         </div>
     </section>

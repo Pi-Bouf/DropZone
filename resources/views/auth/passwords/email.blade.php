@@ -36,7 +36,7 @@
                                                         </div>
 
                                                         <div class="center-align">
-                                                            <button class="btn waves-effect waves-light" type="submit" name="action">Envoyer l'email de reinitialisation<i class="mdi mdi-send right"></i></button>
+                                                            <button class="btn waves-effect waves-light" type="submit" name="action">ENVOYER<i class="mdi mdi-send right"></i></button>
                                                         </div>
                                                     </form>
                                                 </p>
