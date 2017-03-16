@@ -21,7 +21,7 @@ class CreateDemandeExpeTable extends Migration
       		$table->text('propositionText');
       		$table->datetime('beginDate');
       		$table->datetime('endDate');
-      		$table->boolean('isAccepted');
+      		$table->boolean('isAccepted')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('expedition_id')->references('id')->on('expeditions');
             $table->timestamps();

@@ -17,7 +17,7 @@ class CreateDemandeTransTable extends Migration
           $table->increments('id');
           $table->integer('transport_id')->unsigned();
           $table->integer('user_id')->unsigned();
-          $table->boolean('isAccepted');
+          $table->boolean('isAccepted')->nullable();
           $table->text('text');
           $table->float('cost');
           $table->timestamps();
