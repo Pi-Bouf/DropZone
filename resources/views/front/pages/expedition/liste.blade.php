@@ -70,9 +70,8 @@
                     </div>
                   </div>
                   <div class="row mg-t20">
-
                     <div class="col s12 m12 l12 black-text">
-                      <h3 class="about-subtitle">Demandes en attente</h3>
+                      <h3 class="about-subtitle">Demande en attente</h3>
                         @foreach($expedition->demandeExpedition as $demande)
                           @if($demande->isAccepted==null)
                           <div class="row card blue lighten-3 demande-expe">
@@ -116,7 +115,7 @@
                       <div class="col s12 m12 l12 black-text">
                         <h3 class="about-subtitle">Demande acceptée</h3>
                           @foreach($expedition->demandeExpedition as $demande)
-                            @if($demande->isAccepted)
+                            @if($demande->isAccepted == 1)
                             <div class="row card blue lighten-3 demande-expe">
                                     <div class="col s6 m2 l2 center-align">
                                       @if($demande->user->picLink==null)
@@ -152,12 +151,13 @@
                         </div>
 
 
-
+                      </div>
+                      <div class="row mg-t20">
 
                         <div class="col s12 m12 l12 black-text">
-                          <h3 class="about-subtitle">Demande(s) refusés</h3>
+                          <h3 class="about-subtitle">Demande refusée</h3>
                             @foreach($expedition->demandeExpedition as $demande)
-                              @if($demande->isAccepted==null)
+                              @if($demande->isAccepted == 0)
                               <div class="row card blue lighten-3 demande-expe">
                                       <div class="col s6 m2 l2 center-align">
                                         @if($demande->user->picLink==null)
@@ -191,12 +191,7 @@
                               @endif
                             @endforeach
                           </div>
-
-
-
-
                       </div>
-
                   </div>
                 </div>
               </li>
