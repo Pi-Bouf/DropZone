@@ -1,47 +1,56 @@
-@extends('layouts.app')
+@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => [], 'includesCss' => []] ) @section('content')
 
-<!-- Main Content -->
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<section>
+    <section id="home" class="scroll-section root-sec grey lighten-5 home-wrap">
+        <div class="sec-overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="home-inner">
+                            <div class="center-align home-content">
+                                <div class="row">
+                                    <div class="col s12 m6 offset-m3">
+                                        <div class="card white">
+                                            <div class="card-content grey-text">
+                                                <span class="card-title">Mot de passe oublié</span>
+                                                <p>
+                                                    @if (session('status'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('status') }}
+                                                        </div>
+                                                    @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-                        {{ csrf_field() }}
+                                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                                                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                                        <div class="row">
+                                                            <div class="input-field col s12 left-align">
+                                                                <input id="emailReset" type="email" class="validate" name="emailReset" value="{{ old('emailReset') }}" required>
+                                                                <label for="emailReset">Email</label>
+                                                                @if ($errors->has('emailReset'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('emailReset') }}</strong> <br/>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                                        <div class="center-align">
+                                                            <button class="btn waves-effect waves-light" type="submit" name="action">Envoyer l'email de reinitialisation<i class="mdi mdi-send right"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</section>
+
 @endsection
