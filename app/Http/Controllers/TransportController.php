@@ -113,7 +113,11 @@ class TransportController extends Controller
         $totalNote += $transport->user->noteExpedition->sum('note');
         $nbNote = $transport->user->noteTransport->count();
         $nbNote += $transport->user->noteExpedition->count();
-        $note =  round($totalNote / $nbNote, 2);
+        if($nbNote > 0) {
+            $note =  round($totalNote / $nbNote, 2);
+        } else {
+            $note = 5;
+        }
         $etapes = $transport->etapes()->get()->all();
         $depart = $transport->villeDepart()->get()->first();
         $fin = $transport->villeArrivee()->get()->first();
@@ -157,7 +161,7 @@ class TransportController extends Controller
         $demande->text= $request->input('message');
         $demande->user_id = Auth::user()->id;
         $demande->cost = $request->input('prix');
-        $demande->isAccepted = false;
+        $demande->isAccepted = NULL;
 
         $demande->save();
 

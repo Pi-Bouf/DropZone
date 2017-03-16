@@ -61,7 +61,7 @@
 
                                 <div class="input-field col s12">
                                     <input id="volume" name="volume" type="number" class="validate" value="{{ old('volume') }}">
-                                    <label for="volume">Poid Max. (cm)</label>
+                                    <label for="volume">Volume (cm³)</label>
                                     @if ($errors->has('volume'))
                                     <strong style="color: brown;">{{ $errors->first('volume') }}</strong>
                                     @endif
