@@ -95,9 +95,15 @@ class ExpeditionController extends Controller
         public function affExpedition(Expedition $expedition) {
 
         //$etape = Etape::where('transport_id', "=", $transport->id)->get();
+        $totalNote = $expedition->user->noteTransport->sum('note');
+        $totalNote += $expedition->user->noteExpedition->sum('note');
+        $nbNote = $expedition->user->noteTransport->count();
+        $nbNote += $expedition->user->noteExpedition->count();
+        $note =  round($totalNote / $nbNote, 2);
+
         $birthdate = explode("-", $expedition->user->birthday);
         $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
-        return view('front.pages.expedition.affiche', array('expedition' => $expedition, 'age' => $age));
+        return view('front.pages.expedition.affiche', array('note' => $note, 'nbnote' => $nbNote, 'expedition' => $expedition, 'age' => $age));
     }
 
     public function addQuestion(Request $request){

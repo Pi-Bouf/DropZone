@@ -116,7 +116,7 @@
                     <img src="{{$expedition->user->picLink}}" width="35%" class="responsive-img circle" alt="">
                 @endif
                 <div id="nomConducteur"><a href="/user/{{$expedition->user->id}}" class="white-text">{{$expedition->user->firstName}}</a> - {{$age}} ans</div>
-                <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> 3.5/5 - 43 avis</div>
+                <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$note}}/5 - {{$nbnote}} avis</div>
             </div>
         </div>
     </section>
