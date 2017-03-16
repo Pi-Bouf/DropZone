@@ -28,6 +28,14 @@
                                 </div>
 
                                 <div class="input-field col s12">
+                                    <input id="longMax" name="longMax" type="number" class="validate" value="{{ old('longMax') }}">
+                                    <label for="longMax">Longueur Max. (cm)</label>
+                                    @if ($errors->has('longMax'))
+                                    <strong style="color: brown;">{{ $errors->first('longMax') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s12">
                                     <input id="hautMax" name="hautMax" type="number" class="validate" value="{{ old('hautMax') }}">
                                     <label for="hautMax">Hauteur Max. (cm)</label>
                                     @if ($errors->has('hautMax'))

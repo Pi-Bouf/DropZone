@@ -27,24 +27,27 @@ class VehiculeController extends Controller
         if(Auth::user()->id != $vehicule->user->id) {
             return redirect()->route('user_vehicule');
         }
-        return view('front.pages.vehicule.edit', array('vehicule' => $vehicule));
+        $vehi_types = VehiculeType::all();
+
+        return view('front.pages.vehicule.edit', array('vehicule' => $vehicule, 'vehi_type' => $vehi_types));
     }
     
     public function postEditVehicule(\App\Vehicule $vehicule, Request $request) {
         if(Auth::user()->id == $vehicule->user->id) {
+            
             $rules = array(
             'marque' => 'required|max:255',
             'modele' => 'required|max:255',
-            'longMax' => 'required|numeric',
-            'hautMax' => 'required|numeric',
-            'largMax' => 'required|numeric',
-            'poidMax' => 'required|numeric',
-            'volume' => 'required|numeric',
+            'longMax' => 'numeric',
+            'hautMax' => 'numeric',
+            'largMax' => 'numeric',
+            'poidMax' => 'numeric',
+            'volume' => 'numeric',
             'vehicule_type' => 'required|in:1,2,3,4,5,6'
             );
             
             $this->validate($request, $rules);
-            
+
             $vehicule->marque = $request->input('marque');
             $vehicule->modele = $request->input('modele');
             $vehicule->longMax = $request->input('longMax');
