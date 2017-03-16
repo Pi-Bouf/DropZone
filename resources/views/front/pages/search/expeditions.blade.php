@@ -3,26 +3,27 @@
 <section id="search" class="scroll-section root-sec padd-tb-60 team-wrap">
     <div class="row">
         <div class="col m6 s10 offset-m3 offset-s1 center-align">
-            <h2><b><i></i></b> transports interessant !</h2>
+            <h2><b><i>{{ $expeditions->count() }}</i></b> expeditions interessantes !</h2>
             <h3>ok <span style="margin: 10px">&#8620;</span> ok</h3>
             <div class="row">
                 <form class="col s12" method="post" action="{{ route('search_expedition_post') }}">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col m4">
-                            <input id="departExpedition" name="departExpedition" type="text" class="validate" placeholder="Indiquez un lieu" required="required">
-                            <input type="hidden" name="departTransHidden" id="departTransHidden">
+                            <input id="departExpedition" name="departExpedition" type="text" class="validate dontSubmit auPif" hiddenId="departExpeHidden" placeholder="Indiquez un lieu" required="required">
+                            <input type="hidden" name="departExpeHidden" id="departExpeHidden">
                             <label for="departExpedition">Départ</label>
                         </div>
                         <div class="input-field col m4">
-                            <input id="arriveeExpedition" name="arriveeExpedition" type="text" class="validate" placeholder="Indiquez un lieu" required="required">
-                            <input type="hidden" name="arriveeTransHidden" id="arriveeTransHidden">
+                            <input id="arriveeExpedition" name="arriveeExpedition" type="text" class="validate dontSubmit auPif" hiddenId="arriveeExpeHidden" placeholder="Indiquez un lieu" required="required">
+                            <input type="hidden" name="arriveeExpeHidden" id="arriveeExpeHidden">
                             <label for="icon_telephone">Arrivée</label>
                         </div>
-                        <div class="input-field col m4">
-                            <input id="dateExpedition" type="date" class="datepicker" name="dateExpedition" placeholder="JJ/MM/AAAA" required="required">
-                            <label for="dateExpedition">Date</label>
+                        <div class="input-field col m4 left-align">
+                            <input id="rangeKM" name="rangeKM" type="number" class="validate" placeholder="Nombre de kilomètre en détour" required="required">
+                            <label for="rangeKM">Détour KM</label>
                         </div>
+                        
                         <div class="center-align">
                             <button class="waves-effect waves-light btn red"><i class="right mdi mdi-search-web"></i>Rechercher</button>
                         </div>

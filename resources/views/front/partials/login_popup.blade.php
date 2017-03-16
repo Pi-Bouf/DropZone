@@ -36,6 +36,11 @@
                 </div>
             </form>
         </div>
+        <div class="row center-align mg-t20">
+            <div class=" col s12 offset-m2 m8 center-align">
+                <a href="/password/reset">Mot de passe oublié ?</a>
+            </div>
+        </div>
         @endif
     </div>
 </div>

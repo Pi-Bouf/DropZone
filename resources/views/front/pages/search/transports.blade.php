@@ -10,12 +10,12 @@
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="input-field col m4">
-                            <input id="departTransport" name="departTransport" type="text" class="validate" placeholder="Indiquez un lieu" required="required">
+                            <input id="departTransport" name="departTransport" type="text" class="validate dontSubmit auPif" hiddenId="departTransHidden" placeholder="Indiquez un lieu" required="required">
                             <input type="hidden" name="departTransHidden" id="departTransHidden">
                             <label for="departTransport">Départ</label>
                         </div>
                         <div class="input-field col m4">
-                            <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate" placeholder="Indiquez un lieu" required="required">
+                            <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate dontSubmit auPif" hiddenId="arriveeTransHidden" placeholder="Indiquez un lieu" required="required">
                             <input type="hidden" name="arriveeTransHidden" id="arriveeTransHidden">
                             <label for="icon_telephone">Arrivée</label>
                         </div>
@@ -53,7 +53,7 @@
             tabEtapeTransport[{{ $transports[$i]->id }}] = tabEtape;
             </script>
             <div class="row">
-                <div class="col m12 s12 Item" onclick="loadRoad({{ $transports[$i]->id }})">
+                <div class="col m12 s12 Item hoverable" style="cursor: pointer;" onclick="loadRoad({{ $transports[$i]->id }})">
                     <div class="row">
                         <div class="col m6 s12">
                         <div class="center-align">

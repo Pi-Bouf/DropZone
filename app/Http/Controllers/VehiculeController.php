@@ -40,6 +40,7 @@ class VehiculeController extends Controller
             'largMax' => 'required|numeric',
             'poidMax' => 'required|numeric',
             'volume' => 'required|numeric',
+            'vehicule_type' => 'required|in:1,2,3,4,5,6'
             );
             
             $this->validate($request, $rules);
@@ -51,6 +52,7 @@ class VehiculeController extends Controller
             $vehicule->largMax = $request->input('largMax');
             $vehicule->poidMax = $request->input('poidMax');
             $vehicule->volume = $request->input('volume');
+            $vehicule->vehicule_type_id = $request->input('vehicule_type');
             
             if($vehicule->save()) {
                 return redirect()->route('user_vehicule')->with('edit', 'ok');
@@ -94,6 +96,7 @@ class VehiculeController extends Controller
             'largMax' => 'numeric',
             'poidMax' => 'numeric',
             'volume' => 'numeric',
+            'vehicule_type' => 'required|in:1,2,3,4,5,6'
         );
 
         $this->validate($request, $rules);

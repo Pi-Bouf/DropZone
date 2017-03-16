@@ -1,76 +1,77 @@
-@extends('layouts.app')
+@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => [], 'includesCss' => []] ) @section('content')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+<section>
+    <section id="home" class="scroll-section root-sec grey lighten-5 home-wrap">
+        <div class="sec-overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="home-inner">
+                            <div class="center-align home-content">
+                                <div class="row">
+                                    <div class="col s12 m6 offset-m3">
+                                        <div class="card white">
+                                            <div class="card-content grey-text">
+                                                <span class="card-title">Réinitialiser mot de passe</span>
+                                                <p>
+                                                    @if (session('status'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('status') }}
+                                                        </div>
+                                                    @endif
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
+                                                        {{ csrf_field() }}
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-                        {{ csrf_field() }}
+                                                        <input type="hidden" name="token" value="{{ $token }}">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                                                        <div class="row">
+                                                            <div class="input-field col s12 left-align">
+                                                                <input id="emailReset" type="email" class="validate" name="emailReset" value="{{ $emailReset or old('emailReset') }}" required>
+                                                                <label for="emailReset">Email</label>
+                                                                @if ($errors->has('emailReset'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('emailReset') }}</strong> <br/>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                                        <div class="row">
+                                                            <div class="input-field col s12 left-align">
+                                                                <input id="passReset" type="password" class="validate" name="passReset" required>
+                                                                <label for="passReset">Mot de passe</label>
+                                                                @if ($errors->has('passReset'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('passReset') }}</strong> <br/>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
+                                                        <div class="row">
+                                                            <div class="input-field col s12 left-align">
+                                                                <input id="passReset_confirmation" type="password" class="validate" name="passReset_confirmation" required>
+                                                                <label for="passReset_confirmation">Confirmation</label>
+                                                            </div>
+                                                        </div>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                                        <div class="center-align">
+                                                            <button class="btn waves-effect waves-light" type="submit" name="action">REINITIALISER<i class="mdi mdi-send right"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</section>
+
 @endsection

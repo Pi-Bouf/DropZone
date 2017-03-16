@@ -36,12 +36,12 @@
                                 <div class="clearfix card-panel grey lighten-5 cform-wrapper">
                                     <h3>Information sur le trajet</h3>
                                     <div class="input-field">
-                                        <input id="villeDepart" type="text" name="villeDepart" class="validate input-box" onchange="marqueur()" required>
+                                        <input id="villeDepart" type="text" name="villeDepart" class="validate input-box dontSubmit auPif" hiddenId="villeDepartHidden" onchange="marqueur()" required>
                                         <label for="villeDepart" class="input-label">Adresse de départ :</label>
                                         <input id="villeDepartHidden" name="villeDepartHidden" type="hidden" value="">
                                     </div>
                                     <div class="input-field">
-                                        <input id="villeArrivee" type="text" name="villeArrivee" class="validate input-box" onchange="marqueur()" required>
+                                        <input id="villeArrivee" type="text" name="villeArrivee" class="validate input-box dontSubmit auPif" hiddenId="villeArriveeHidden" onchange="marqueur()" required>
                                         <label for="villeArrivee" class="input-label">Adresse d'arrivée :</label>
                                         <input id="villeArriveeHidden" name="villeArriveeHidden" type="hidden" value="">
                                     </div>

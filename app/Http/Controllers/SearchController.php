@@ -150,10 +150,12 @@ class SearchController extends Controller
         AND (ending.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latArr.'
         AND (ending.latitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$latArr.'
         AND (ending.longitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$lngArr.'
-        AND (ending.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$lngArr)
+        AND (ending.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) <a '.$lngArr)
         ->get();
+
+        dd($getExpe->pluck('id')->toArray());
         
-        $transport = Expedition::findMany($getExpe->pluck('id')->toArray());
+        $expedition = Expedition::findMany($getExpe->pluck('id')->toArray());
         
         $data = array(
         "expeditions" => $expedition,
@@ -171,7 +173,7 @@ class SearchController extends Controller
     
     public function getSearchExpedition()
     {
-        
+        /*
         $expeditions = Expedition::findMany([1, 2, 3, 4]);
         
         $data = array(
@@ -185,13 +187,14 @@ class SearchController extends Controller
         );
         
         return view('front.pages.search.expeditions', $data);
-        
-        /*
+        */
+
+
         if(session('expeditions') != null)
         {
             return view('front.pages.search.expeditions', session('expeditions'));
         } else {
             return redirect()->back()->withInput();
-        } */
+        }
     }
 }
