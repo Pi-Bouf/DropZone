@@ -58,7 +58,7 @@
                                         <label for="prix" class="input-label">Prix de la livraison (€) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <textarea id="description" type="text" name="description" class="materialize-textarea" onchange="marqueur()" required></textarea>
+                                        <textarea id="description" type="text" name="description" class="validate materialize-textarea" onchange="marqueur()" required></textarea>
                                         <label for="description" class="input-label">Description du colis :</label>
                                     </div>
                                     <div class="input-field">
@@ -74,7 +74,7 @@
                                         <label for="largeur" class="input-label">Largeur (cm) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="hauteur" type="number" name="hauteur" class="input-box" onchange="marqueur()" required>
+                                        <input id="hauteur" type="number" name="hauteur" class="validate input-box" onchange="marqueur()" required>
                                         <label for="hauteur" class="input-label">Hauteur (cm) :</label>
                                     </div>
                                 </div>

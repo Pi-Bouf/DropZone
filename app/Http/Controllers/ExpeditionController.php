@@ -55,6 +55,19 @@ class ExpeditionController extends Controller
 
     public function addData(\App\Expedition $expedition, Request $request)
     {
+        $rules = array(
+            'villeDepartHidden' => 'required|max:150',
+            'villeArriveeHidden' => 'required|max:150',
+            'villeDepart' => 'required|max:150',
+            'villeArrivee' => 'required|max:150',
+            'prix' => 'required|numeric',
+            'description' => 'required|max:400',
+            'longueur' => 'required|numeric',
+            'largeur' => 'required|numeric',
+            'hauteur' => 'required|numeric',
+            'poids' => 'required|numeric'
+        );
+        $this->validate($request, $rules);
         $expedition->user_id = Auth::user()->id;
         $expedition->costMax = $request->input('prix');
         $expedition->costFixed = $request->input('prix');
