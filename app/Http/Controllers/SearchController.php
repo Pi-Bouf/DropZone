@@ -95,7 +95,7 @@ class SearchController extends Controller
     {
         /*************************************/
         // Test
-        /*
+        
         $transport = Transport::findMany([1, 2, 3, 4]);
         
         $data = array(
@@ -109,16 +109,16 @@ class SearchController extends Controller
         );
         
         return view('front.pages.search.transports', $data);
-        */
+        
         /*************************************/
         
-        
+        /*
         if(session('transports') != null)
         {
             return view('front.pages.search.transports', session('transports'));
         } else {
             return redirect()->back()->withInput();
-        }
+        }*/
     }
     
     public function postSearchExpedition(Request $request)

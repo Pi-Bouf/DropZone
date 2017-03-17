@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body class="grey lighten-2">
 
     <!-- Preloader -->
     <div id="preloader">
