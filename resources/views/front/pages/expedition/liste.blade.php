@@ -184,7 +184,7 @@
                                         </p>
                                       </div>
                                       <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                        <a href="{{ route('confirmpackage', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
+                                        <a href="#" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
                                       </div>
                               </div>
                               @endif
