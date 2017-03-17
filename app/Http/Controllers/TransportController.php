@@ -116,7 +116,7 @@ class TransportController extends Controller
         if($nbNote > 0) {
             $note =  round($totalNote / $nbNote, 2);
         } else {
-            $note = 5;
+            $note = '';
         }
         $etapes = $transport->etapes()->get()->all();
         $depart = $transport->villeDepart()->get()->first();

@@ -39,8 +39,18 @@ class UserController extends Controller
       $birthdate = explode("-", $user->birthday);
       $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
 
+        $totalNote = $user->noteTransport->sum('note');
+        $totalNote += $user->noteExpedition->sum('note');
+        $nbNote = $user->noteTransport->count();
+        $nbNote += $user->noteExpedition->count();
+        if($nbNote > 0) {
+            $note =  round($totalNote / $nbNote, 2);
+        } else {
+            $note = '';
+        }
+
       if(!isset($page_title)) $page_title = 'Profil de '.$user->firstName .' '.$user->lastName;
-      $data = array('user' => $user, 'age' => $age, 'page_title' => $page_title);
+      $data = array('note' => $note, 'nbnote' => $nbNote,'user' => $user, 'age' => $age, 'page_title' => $page_title);
 
       return view('front.pages.user.profile', $data);
     }

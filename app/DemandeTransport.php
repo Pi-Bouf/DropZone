@@ -10,6 +10,9 @@ class DemandeTransport extends Model
         return $this->belongsTo('\App\User');
     }
 
+    public function transport() {
+        return $this->belongsTo('\App\Transport');
+    }
 }
 
 ?>

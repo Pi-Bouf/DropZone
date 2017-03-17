@@ -7,7 +7,7 @@ var tabLatEtape = [];
 var tabLngEtape = [];
 var waypts = [];
 var place;
-var autoroute = true;
+var autoroute = false;
 
 function addEtape() {
     div = document.getElementById('etape')
@@ -121,9 +121,9 @@ function tryit(oe) {
 
 function autorouteClicked() {
     if (document.getElementById('oui').checked) {
-        autoroute = true;
-    } else {
         autoroute = false;
+    } else {
+        autoroute = true;
     }
     marqueur();
 }

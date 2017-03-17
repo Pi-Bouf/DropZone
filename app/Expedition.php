@@ -30,6 +30,11 @@ class Expedition extends Model
     {
       return $this->hasMany('App\DemandeExpedition');
     }
+        
+    public function demandeAccepte()
+    {
+        return $this->hasOne('App\DemandeExpedition')->where('isAccepted', 1);
+    }
 }
 
 ?>

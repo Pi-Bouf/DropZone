@@ -43,12 +43,7 @@
 		                <h3 class="about-subtitle">Information personnelles</h3>
 		                <h5><span>Pseudo :</span> {{$user->login}}</h5>
 		                <h5><span>Note :</span>
-											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-											<i class="mdi mdi-star-half icon-size yellow-text" aria-hidden="true"></i>
-		                  <i class="mdi mdi-star-outline icon-size yellow-text" aria-hidden="true"></i>
-
+											<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$note}}/5 - {{$nbnote}} avis.
 		                </h5>
 		                <h5><span>Age :</span> {{$age}} ans</h5>
 		                <div class="about-social">
@@ -106,6 +101,49 @@
             @endif
           </div>
       </div>
+  </section>
+	<br>
+	<section id="vehicule" class="scroll-section root-sec brand-bg padd-tb-60 team-wrap">
+      <div class="container">
+          <div class="row">
+						<div class="col s12 m12 l8 offset-l2 black-text">
+								@if($user->noteExpedition->count()!=0 || $user->noteTransport->count()!=0)
+									<h3 class="about-subtitle white-text center-align">Notes de l'utilisateur</h3>
+									@foreach($user->noteExpedition as $noEx)
+										<div class="white-text padd-tb-5">
+											<div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$noEx->note}}/5,  <span style="font-size:0.8em;"> de 
+											{{$noEx->expedition->demandeAccepte->user->login}}
+											@if($noEx->expedition->demandeAccepte->user->login == $user->id)
+												<a  target="_blank" href="{{ route('user_profile', array('user_id' => $noEx->expedition->user->id)) }}" class="white-text">{{$noEx->expedition->user->login}}</a>
+											@else
+												<a target="_blank" href="{{ route('user_profile', array('user_id' => $noEx->expedition->demandeAccepte->user->id)) }}" class="white-text">{{$noEx->expedition->demandeAccepte->user->login}}</a>
+											@endif
+											 le {{Date::parse($noEx->created_at)->format('l j F') }}</span></div>
+											<p>{{$noEx->text}}</p>
+										</div>
+										<br><br>
+
+									@endforeach
+
+									@foreach($user->noteTransport as $noTr)
+										<div class="white-text padd-tb-5">
+											<div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$noTr->note}}/5,  <span style="font-size:0.8em;"> de 
+											@if($noTr->demandeTransport->user->id == $user->id)
+												<a target="_blank" href="{{ route('user_profile', array('user_id' => $noTr->demandeTransport->transport->user->id)) }}" class="white-text">{{$noTr->demandeTransport->transport->user->login}}</a>
+											@else
+												<a target="_blank" href="{{ route('user_profile', array('user_id' => $noTr->demandeTransport->user->id)) }}" class="white-text">{{$noTr->demandeTransport->user->login}}</a>
+											@endif
+											 le {{Date::parse($noTr->created_at)->format('l j F') }}</span></div>
+											<p>{{$noTr->text}}</p>
+										</div>
+									@endforeach
+
+								@else
+									<p class="center white-text">Pas de note pour le moment.</p>
+								@endif
+						</div>
+					</div>
+			</div>
   </section>
 
 

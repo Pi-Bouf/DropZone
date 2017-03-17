@@ -49,6 +49,7 @@ class Transport extends Model
     {
         return $this->hasOne('App\Etape')->where('ville_position', 7);
     }
+
 }
 
 ?>

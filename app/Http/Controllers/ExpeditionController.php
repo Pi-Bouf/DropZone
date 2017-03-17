@@ -99,7 +99,11 @@ class ExpeditionController extends Controller
         $totalNote += $expedition->user->noteExpedition->sum('note');
         $nbNote = $expedition->user->noteTransport->count();
         $nbNote += $expedition->user->noteExpedition->count();
-        $note =  round($totalNote / $nbNote, 2);
+        if($nbNote > 0) {
+            $note =  round($totalNote / $nbNote, 2);
+        } else {
+            $note = '';
+        }
 
         $birthdate = explode("-", $expedition->user->birthday);
         $age = Carbon::createFromDate($birthdate[0], $birthdate[1], $birthdate[2])->age;
