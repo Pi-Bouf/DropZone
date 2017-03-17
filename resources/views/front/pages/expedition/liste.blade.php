@@ -71,9 +71,12 @@
                   </div>
                   <div class="row mg-t20">
                     <div class="col s12 m12 l12 black-text">
-                      <h3 class="about-subtitle">Demande en attente</h3>
+
                         @foreach($expedition->demandeExpedition as $demande)
                           @if(is_null($demande->isAccepted))
+                            @if($loop->first)
+                              <h3 class="about-subtitle">Demande(s) en attente(s)</h3>
+                            @endif
                           <div class="row card blue lighten-3 demande-expe">
                                   <div class="col s6 m2 l2 center-align">
                                     @if($demande->user->picLink==null)
@@ -84,7 +87,7 @@
                                   </div>
                                   <div class="col s6 m2 l2">
                                     <p>
-                                      {{ $demande->user->login }}
+                                      <a href="/user/{{$demande->user->id}}" target="blank">{{ $demande->user->login }}</a>
                                     </p>
                                     <p>
                                       <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
@@ -114,9 +117,11 @@
                     <div class="row mg-t20">
 
                       <div class="col s12 m12 l12 black-text">
-                        <h3 class="about-subtitle">Demande acceptée</h3>
                           @foreach($expedition->demandeExpedition as $demande)
                             @if($demande->isAccepted == 1)
+                            @if($loop->first)
+                              <h3 class="about-subtitle">Demande acceptée</h3>
+                            @endif
                             <div class="row card blue lighten-3 demande-expe">
                                     <div class="col s6 m2 l2 center-align">
                                       @if($demande->user->picLink==null)
@@ -142,9 +147,12 @@
                                         Prix : {{ $demande->prixAsked }} €
                                       </p>
                                     </div>
+                                    @if($demande->beginDate < date('Y-m-d H:i:s'))
+
                                     <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                      <a href="{{ route('cancelpackage', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
+                                      <a href="#" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
                                     </div>
+                                    @endif
                             </div>
                             @endif
                           @endforeach
@@ -152,49 +160,12 @@
 
 
                       </div>
-                      <div class="row mg-t20">
-
-                        <div class="col s12 m12 l12 black-text">
-                          <h3 class="about-subtitle">Demande refusée</h3>
-                            @foreach($expedition->demandeExpedition as $demande)
-                              @if($demande->isAccepted === 0)
-                              <div class="row card blue lighten-3 demande-expe">
-                                      <div class="col s6 m2 l2 center-align">
-                                        @if($demande->user->picLink==null)
-                                          <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
-                                        @else
-                                          <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
-                                        @endif
-                                      </div>
-                                      <div class="col s6 m2 l2">
-                                        <p>
-                                          {{ $demande->user->login }}
-                                        </p>
-                                        <p>
-                                          <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-                                           4.5/5
-                                        </p>
-                                      </div>
-                                      <div class="col s6 m4 l4">
-                                        <p>
-                                          Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
-                                        </p>
-                                        <p>
-                                          Prix : {{ $demande->prixAsked }} €
-                                        </p>
-                                      </div>
-                                      <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                        <a href="#" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
-                                      </div>
-                              </div>
-                              @endif
-                            @endforeach
-                          </div>
-                      </div>
+                    >
                   </div>
-                </div>
               </li>
               @endforeach
+            </div>
+
             </ul>
         </div>
       </div>
