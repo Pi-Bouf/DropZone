@@ -73,7 +73,7 @@
                     <div class="col s12 m12 l12 black-text">
                       <h3 class="about-subtitle">Demande en attente</h3>
                         @foreach($expedition->demandeExpedition as $demande)
-                          @if($demande->isAccepted==null)
+                          @if(is_null($demande->isAccepted))
                           <div class="row card blue lighten-3 demande-expe">
                                   <div class="col s6 m2 l2 center-align">
                                     @if($demande->user->picLink==null)
@@ -105,6 +105,7 @@
                                   </div>
                           </div>
                           @endif
+
                         @endforeach
                       </div>
                     </div>
@@ -142,7 +143,6 @@
                                       </p>
                                     </div>
                                     <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                      <a href="{{ route('confirmpackage', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
                                       <a href="{{ route('cancelpackage', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
                                     </div>
                             </div>
@@ -157,7 +157,7 @@
                         <div class="col s12 m12 l12 black-text">
                           <h3 class="about-subtitle">Demande refusée</h3>
                             @foreach($expedition->demandeExpedition as $demande)
-                              @if($demande->isAccepted == 0)
+                              @if($demande->isAccepted === 0)
                               <div class="row card blue lighten-3 demande-expe">
                                       <div class="col s6 m2 l2 center-align">
                                         @if($demande->user->picLink==null)
@@ -185,7 +185,6 @@
                                       </div>
                                       <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
                                         <a href="{{ route('confirmpackage', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
-                                        <a href="{{ route('cancelpackage', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
                                       </div>
                               </div>
                               @endif

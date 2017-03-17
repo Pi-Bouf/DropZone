@@ -36,6 +36,12 @@ class ExpeditionController extends Controller
     }
 
     public function confirmPackage(DemandeExpedition $demande){
+      //refuse toutes les autres demandes d'expedition
+      foreach(DemandeExpedition::where('expedition_id', $demande->expedition_id)->get() as $demande_refuse){
+        $demande_refuse->isAccepted = false;
+        $demande_refuse->save();
+      }
+      //valide la demande
       $demande->isAccepted = true;
       $demande->save();
       return redirect()->back();
