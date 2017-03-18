@@ -46,8 +46,6 @@ $(document).ready(function() {
     // Menu Mobile
     $(".button-collapse").sideNav();
 
-    console.log(Scrollbar);
-
     // Input dates
     $(document).on('keydown', '.dontSubmit', function(e) {
         if (e.which == 13) {
