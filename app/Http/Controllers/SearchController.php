@@ -60,6 +60,7 @@ class SearchController extends Controller
         ->select(DB::raw('first.id'))
         ->join('etapes as second', 'first.id', 'second.transport_id')
         ->join('villes', 'second.ville_id', 'villes.id')
+        ->join('vehicules', 'first.vehicule_id', 'vehicules.id' )
         ->whereIn('first.id', function($query) use ($latArr, $lngArr) {
             $query->select(DB::raw('transports.id'))->from('transports')
             ->join('etapes', 'transports.id', 'etapes.transport_id')
@@ -75,12 +76,43 @@ class SearchController extends Controller
         AND (villes.longitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$lngDep.'
         AND (villes.longitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$lngDep.'
         AND (beginningDate = "'.$date.'" OR "'.$date.'" BETWEEN regularyBeginningDate AND regularyEndingDate)
-        AND user_id != '.Auth::user()->id)
-        ->orderBy('natureTransport', 'DESC')->orderBy('beginningHour', 'ASC')
-        ->get();
+        AND first.user_id != '.Auth::user()->id);
+
+        $getTrans->where('withHighway', $request->input('withHighway', true));
+
+        $getTrans->whereRaw('(first.longMax >= '.$request->input('longMax', 0).' OR first.longMax IS NULL)');
+        $getTrans->whereRaw('(vehicules.longMax >= '.$request->input('longMax', 0).' OR vehicules.longMax IS NULL)');
         
-        $transport = Transport::findMany($getTrans->pluck('id')->toArray());
+        $getTrans->whereRaw('(first.largMax >= '.$request->input('largMax', 0).' OR first.largMax IS NULL)');
+        $getTrans->whereRaw('(vehicules.largMax >= '.$request->input('largMax', 0).' OR vehicules.largMax IS NULL)');
         
+        $getTrans->whereRaw('(first.hautMax >= '.$request->input('hautMax', 0).' OR first.hautMax IS NULL)');
+        $getTrans->whereRaw('(vehicules.hautMax >= '.$request->input('hautMax', 0).' OR vehicules.hautMax IS NULL)');
+        
+        $getTrans->whereRaw('(first.poidMax >= '.$request->input('poidMax', 0).' OR first.poidMax IS NULL)');
+        $getTrans->whereRaw('(vehicules.poidMax >= '.$request->input('poidMax', 0).' OR vehicules.poidMax IS NULL)');
+
+        $getTrans->whereRaw('(first.volume >= '.$request->input('volume', 0).' OR first.volume IS NULL)');
+        $getTrans->whereRaw('(vehicules.volume >= '.$request->input('volume', 0).' OR vehicules.volume IS NULL)');
+
+        if($request->input('beginningHour')) {
+            $time = $request->input('beginningHour');
+            if($time != "--:--") {
+                $getTrans->where('first.beginningHour', '>=', $request->input('beginningHour', '00:00').':00');
+            }
+        }
+
+        if($request->input('natureTransport')) {
+            $natureTransport = $request->input('natureTransport');
+            if($natureTransport != "all") {
+                $getTrans->where('natureTransport', $request->input('natureTransport'));
+            }
+        }
+
+        $getTrans->get();
+        
+        $transport = Transport::findMany($getTrans->pluck('id')->toArray())->sortBy('natureTransport');
+
         $data = array(
         "transports" => $transport,
         "adresseDep" => $request->input('departTransport'),
@@ -92,7 +124,7 @@ class SearchController extends Controller
         "dateTransport" => $request->input('dateTransport'),
         );
         
-        $request->session()->flash('transports', $data);
+        $request->session()->flash('transports', array_merge($data, $request->only(['withHighway', 'longMax', 'largMax', 'hautMax', 'poidMax', 'volume', 'beginningHour', 'natureTransport'])));
         return redirect()->route('search_transport');
     }
     
@@ -161,7 +193,7 @@ class SearchController extends Controller
         AND (ending.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) <a '.$lngArr)
         ->get();
 
-        dd($getExpe->pluck('id')->toArray());
+        //dd($getExpe->pluck('id')->toArray());
         
         $expedition = Expedition::findMany($getExpe->pluck('id')->toArray());
         

@@ -120,28 +120,6 @@ function loadPath(id) {
 }
 
 function loadRoad(id) {
-    for (var i = 0; i < cityCircle.length; i++) {
-        cityCircle[i].setMap(null);
-    }
-
-    if (markerDep == null && markerArr == null) {
-        var depMark = { lat: depTab[0], lng: depTab[1] };
-        markerDep = new google.maps.Marker({
-            position: depMark,
-            map: map,
-            icon: "../images/before.png",
-            title: 'Départ !'
-        });
-
-        var arrMark = { lat: arrTab[0], lng: arrTab[1] };
-        markerArr = new google.maps.Marker({
-            position: arrMark,
-            map: map,
-            icon: "../images/after.png",
-            title: 'Arrivée'
-        });
-    }
-
     var waypts = [];
 
     // Trajet sur la map
@@ -157,21 +135,6 @@ function loadRoad(id) {
             location: new google.maps.LatLng(tmp[0], tmp[1])
         });
     }
-
-    for (var i = 0; i < tabEtapeTransport[id].length; i++) {
-        var tmp = tabEtapeTransport[id][i].split(';');
-        cityCircle[i] = new google.maps.Circle({
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35,
-            map: map,
-            center: { lat: parseFloat(tmp[0]), lng: parseFloat(tmp[1]) },
-            radius: 1000 * parseInt(tabDetourMax[id])
-        });
-    }
-
     var request = {
         destination: arrivee,
         avoidHighways: true,
@@ -183,9 +146,24 @@ function loadRoad(id) {
     directionsService.route(request, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            if (markerDep == null && markerArr == null) {
+                var depMark = { lat: depTab[0], lng: depTab[1] };
+                markerDep = new google.maps.Marker({
+                    position: depMark,
+                    map: map,
+                    icon: "../images/flag-variant-red.svg",
+                    title: 'Départ !',
+                });
+
+                var arrMark = { lat: arrTab[0], lng: arrTab[1] };
+                markerArr = new google.maps.Marker({
+                    position: arrMark,
+                    map: map,
+                    icon: "../images/flag-variant-green.svg",
+                    title: 'Arrivée'
+                });
+            }
         }
     });
 
-    $("#transportSelect").attr('href', '/transport/' + id);
-    $("#selectTransport").fadeIn();
 }

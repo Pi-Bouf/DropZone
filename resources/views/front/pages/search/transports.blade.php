@@ -1,7 +1,8 @@
 @extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Recherche de transports', 'includesJs' => ['/js/search.js'], 'includesCss' => ['/css/pages/search.css']] ) @section('content')
 
+<!--    <button class="btn-floating btn-large waves-effect waves-light red scrollTo" data-section="#test"><i class="mdi mdi-search-web"></i></button> -->
+
 <section class="scroll-section root-sec padd-tb-100-30">
-    <button class="btn-floating btn-large waves-effect waves-light red scrollTo" data-section="#test"><i class="mdi mdi-search-web"></i></button>
     <div class="row">
         <div class="col l3 m4 s12 offset-l1">
             <div class="card white lighten-3">
@@ -42,6 +43,10 @@
         <div class="col l7 m8 s12">
 
         @if(isset($transports))
+        <script>
+            var tabEtapeTransport = Array();
+            var tabDetourMax = Array();
+        </script>
             @if($transports->count() == 0)
             <div class="card white lighten-3">
                 <div class="card-content grey-text">
@@ -53,6 +58,14 @@
             </div>
             @endif
             @foreach($transports as $transport)
+            <script>
+            tabDetourMax[{{ $transport->id }}] = {{ $transport->detourRetirMax }};
+            var tabEtape = Array();
+            @foreach($transport->etapes as $etape)
+            tabEtape.push({{ $etape->ville->latitude }} + ";" + {{ $etape->ville->longitude }});
+            @endforeach
+            tabEtapeTransport[{{ $transport->id }}] = tabEtape;
+            </script>
             <div class="card white lighten-3 hoverable">
                 <div class="card-content grey-text">
                     <div class="person-about">
@@ -75,6 +88,9 @@
                                     </div>
                                     <div class="row">
                                         {{ $transport->information }}
+                                    </div>
+                                    <div class="row center-align">
+                                        <a class="btn-floating waves-effect waves-light orange darken-3 scrollTo" data-section="#frameMap" onclick="loadRoad({{ $transport->id }})"><i class="mdi mdi-google-maps"></i></a> <a href="/transport/{{ $transport->id }}" target="_blank" class="waves-effect waves-light blue darken-1 btn">Réserver trajet</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,13 +180,22 @@
                 </div>
             </div>
             @endforeach
+        @else
+        <div class="card white lighten-3">
+            <div class="card-content grey-text">
+                <div class="person-about center-align">
+                    <h3 class="about-subtitle">Trouvez un transport pour vos colis !</h3>
+                    <i class="mdi mdi-arrow-left large"></i>
+                </div>
+            </div>
+        </div>
         @endif
         </div>
     </div>
 </section>
 
 
-<section>
+<section id="frameMap">
     <div class="row">
         <div class="col l10 m4 s12 offset-l1">
             <div class="card white lighten-3">
@@ -202,31 +227,31 @@
                 <div class="input-field col l3 m3 s11">
                     Longueur (cm):
                     <p class="range-field">
-                        <input type="range" id="test5" min="0" max="300" value="0" />
+                        <input type="range" name="longMax" min="0" max="300" value="{{ $longMax or '0'}}" />
                     </p>
                 </div>
                 <div class="input-field col l3 m3 s11">
                     Largeur (cm):
                     <p class="range-field">
-                        <input type="range" id="test5" min="0" max="300" value="0" />
+                        <input type="range" name="largMax" min="0" max="300" value="{{ $largMax or '0' }}" />
                     </p>
                 </div>
                 <div class="input-field col l3 m3 s11">
                     Hauteur (cm):
                     <p class="range-field">
-                        <input type="range" id="test5" min="0" max="300" value="0" />
+                        <input type="range" name="hautMax" min="0" max="300" value="{{ $hautMax or '0' }}" />
                     </p>
                 </div>
                 <div class="input-field col l3 m3 s11">
                     Poid (kg):
                     <p class="range-field">
-                        <input type="range" id="test5" min="0" max="300" value="0" />
+                        <input type="range" name="poidMax" min="0" max="300" value="{{ $poidMax or '0' }}" />
                     </p>
                 </div>
                 <div class="input-field col l4 m4 s11 offset-l4 offset-m4">
                     Volume (cm³):
                     <p class="range-field">
-                        <input type="range" id="test5" min="0" max="300" value="0" />
+                        <input type="range" name="volume" min="0" max="300" value="{{ $volume or '0' }}" />
                     </p>
                 </div>
             </div>
@@ -234,14 +259,14 @@
             <h4>Autres</h4>
             <div class="row">
                 <div class="input-field col l4 m3 s12">
-                    <input type="time" name="timeTransport" id="timeTransport" class="active">
-                    <label for="timeTransport" class="active">Heure minimum</label>
+                    <input type="time" name="beginningHour" id="beginningHour" value="{{ $beginningHour or '--:--' }}" class="active">
+                    <label for="beginningHour" class="active">Heure minimum</label>
                 </div>
                 <div class="input-field col l4 m3 s12">
-                    <select>
-                <option value="1">Les deux</option>
-                <option value="2">Ponctuel</option>
-                <option value="3">Regulier</option>
+                    <select name="natureTransport">
+                <option value="all" @if(isset($natureTransport) && $natureTransport == 'all') selected @endif>Les deux</option>
+                <option value="false" @if(isset($natureTransport) && $natureTransport == 'false') selected @endif>Ponctuel</option>
+                <option value="1" @if(isset($natureTransport) && $natureTransport == '1') selected @endif>Regulier</option>
                 </select>
                     <label>Nature transport</label>
                 </div>
@@ -249,10 +274,11 @@
                     <div class="switch">
                         Autoroute&nbsp;&nbsp;
                         <label>
-                        Off
-                        <input type="checkbox" checked>
+                        Non
+                        <input name='withHighway' type='hidden' value='0'>
+                        <input name="withHighway" type="checkbox" value="1" @if(isset($withHighway) && $withHighway == 0) @else checked @endif>
                         <span class="lever"></span>
-                        On
+                        Oui
                     </label>
                     </div>
                 </div>
@@ -262,11 +288,6 @@
             <button class="waves-effect waves-green btn-flat">Appliquer les filtres</button>
         </div>
     </form>
-</div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<div id="test">
-
 </div>
 
 <script>
