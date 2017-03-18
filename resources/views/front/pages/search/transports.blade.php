@@ -2,7 +2,7 @@
 
 <!--    <button class="btn-floating btn-large waves-effect waves-light red scrollTo" data-section="#test"><i class="mdi mdi-search-web"></i></button> -->
 
-<section class="scroll-section root-sec padd-tb-100-30">
+<section class="padd-tb-55">
     <div class="row">
         <div class="col l3 m4 s12 offset-l1">
             <div class="card white lighten-3">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="col l7 m8 s12">
+        <div class="col l7 m8 s12" id="style-1" style="max-height: 800px !important; overflow: auto !important;">
 
         @if(isset($transports))
         <script>
