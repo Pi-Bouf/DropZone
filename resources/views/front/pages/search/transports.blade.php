@@ -243,7 +243,7 @@
                     </p>
                 </div>
                 <div class="input-field col l3 m3 s11">
-                    Poid (kg):
+                    Poids (kg):
                     <p class="range-field">
                         <input type="range" name="poidMax" min="0" max="300" value="{{ $poidMax or '0' }}" />
                     </p>
