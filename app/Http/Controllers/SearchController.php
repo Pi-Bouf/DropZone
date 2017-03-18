@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Transport;
 use App\Expedition;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 class SearchController extends Controller
 {
@@ -27,14 +28,17 @@ class SearchController extends Controller
         
         $this->validate($request, $rules);
         
-        
-        $coordDepart = explode(';', $request->input('departTransHidden'));
-        $latDep = $coordDepart[0];
-        $lngDep = $coordDepart[1];
-        
-        $coordArrivee = explode(';', $request->input('arriveeTransHidden'));
-        $latArr = $coordArrivee[0];
-        $lngArr = $coordArrivee[1];
+        if((strpos($request->input('departTransHidden'), ";") != FALSE) && (strpos($request->input('arriveeTransHidden'), ";") != FALSE)) {
+            $coordDepart = explode(';', $request->input('departTransHidden'));
+            $latDep = $coordDepart[0];
+            $lngDep = $coordDepart[1];
+            
+            $coordArrivee = explode(';', $request->input('arriveeTransHidden'));
+            $latArr = $coordArrivee[0];
+            $lngArr = $coordArrivee[1];
+        } else {
+            return redirect()->back()->withInput();
+        }
         
         $date = date('Y-m-d H:i:s', strtotime(implode('-', array_reverse(explode('/', $request->input('dateTransport'))))));
         
@@ -85,6 +89,7 @@ class SearchController extends Controller
         "lngDep" => $lngDep,
         "latArr" => $latArr,
         "lngArr" => $lngArr,
+        "dateTransport" => $request->input('dateTransport'),
         );
         
         $request->session()->flash('transports', $data);
@@ -95,7 +100,7 @@ class SearchController extends Controller
     {
         /*************************************/
         // Test
-        
+        /*
         $transport = Transport::findMany([1, 2, 3, 4]);
         
         $data = array(
@@ -109,16 +114,16 @@ class SearchController extends Controller
         );
         
         return view('front.pages.search.transports', $data);
-        
+        */
         /*************************************/
         
-        /*
-        if(session('transports') != null)
-        {
-            return view('front.pages.search.transports', session('transports'));
+        if(isset(session('transports')['transports'])) {
+            $data = session('transports');
         } else {
-            return redirect()->back()->withInput();
-        }*/
+            $data = array();
+        }
+        
+        return view('front.pages.search.transports', $data);
     }
     
     public function postSearchExpedition(Request $request)

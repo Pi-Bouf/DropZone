@@ -90,4 +90,25 @@ class User extends Authenticatable
     public function noteExpedition(){
         return $this->hasMany('App\NotationExpedition');
     }
+
+    public function nbNotes() {
+        $nbNote = $this->noteTransport->count();
+        $nbNote += $this->noteExpedition->count();
+
+        return $nbNote;
+    }
+
+    public function note() {
+        
+        $totalNote = $this->noteTransport->sum('note');
+        $totalNote += $this->noteExpedition->sum('note');
+        $nbNote = $this->nbNotes();
+        if($nbNote > 0) {
+            $note =  round($totalNote / $nbNote, 2);
+        } else {
+            $note = '';
+        }
+
+        return $note;
+    }
 }

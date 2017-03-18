@@ -17,14 +17,14 @@ function initialize() {
         (inputDepTransport));
     autocompleteDepTrans.addListener('place_changed', function() {
         var place = autocompleteDepTrans.getPlace();
-        $('#departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+        $('.departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
     autocompleteArrTrans = new google.maps.places.Autocomplete(
         (inputArrTransport));
     autocompleteArrTrans.addListener('place_changed', function() {
         var place = autocompleteArrTrans.getPlace();
-        $('#arriveeTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+        $('.arriveeTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
     });
 
     autocompleteDebTrans = new google.maps.places.Autocomplete(
@@ -67,6 +67,14 @@ function initMap() {
     });
     directionsDisplay.setMap(map);
     google.maps.event.addDomListener(window, 'load', initialize);
+    $(document).ready(function() {
+        $('.modal-trigger').modal({
+            ready: function() {
+                var map = document.getElementById("map");
+                google.maps.event.trigger(map, 'resize');
+            }
+        });
+    });
 }
 
 function loadPath(id) {
@@ -181,13 +189,3 @@ function loadRoad(id) {
     $("#transportSelect").attr('href', '/transport/' + id);
     $("#selectTransport").fadeIn();
 }
-
-$(document).ready(function() {
-    // Scrollbar
-    var $document_body = $('#transportsList');
-    if ($document_body.data('scrollator') === undefined) {
-        $document_body.scrollator({
-            custom_class: 'body_scroller'
-        });
-    }
-});

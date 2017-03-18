@@ -1,3 +1,108 @@
+<center>
+                        @if($transport->natureTransport)
+                            <h3 style="font-size: 18px;" class="about-subtitle green-text">{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</h3>
+                        @else
+                            <h3 style="font-size: 18px;" class="about-subtitle blue-text">{{ Date::parse($transport->beginningDate)->format('l j F') }}<br>{{ Date::parse($transport->beginningHour)->format('H:i') }}</h3>
+                        @endif
+                        </center>
+                        <div class="row">
+                            <div class="col l2 m4 center-align">
+                                @if($transport->user->picLink==null)
+                                <img src="/images/profile/icon-{{$transport->user->sexe}}.png" style="width: 100px !important; height: auto;" class="responsive-img circle" alt="">
+                                @else
+                                <img src="{{$transport->user->picLink}}" style="width: 100px !important; height: auto;" class="responsive-img circle" alt="">
+                                @endif
+                                <br><a target="_blank" href="{{ route('user_profile', array('user_id' => $transport->user->id)) }}">{{ $transport->user->login }}</a><br>
+                                <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$transport->user->note()}}/5 - {{$transport->user->nbNotes()}} avis</div>
+                            </div>
+                            <div class="col l10">
+                                <div class="row">
+                                    <div class="col l6 m6 center-align">
+
+                                    </div>
+                                    <div class="col l6 m6">
+                                        <img style="width: 70%; max-height: 100px;" src="/images/vehicles/{{ $transport->vehicule->vehiculetype->name }}.svg"><br>
+                                        <h3 class="black-text">{{ $transport->vehicule->marque }} {{ $transport->vehicule->modele }}</h3>
+                                        <table class="bordered striped centered" style="margin-top: 5px;">
+                                            <tbody>
+                                            <tr>
+                                                <td>Longueur Max.:</td>
+                                                <td>
+                                                @if($transport->longMax && $transport->longMax > 0)
+                                                {{ $transport->longMax }} cm
+                                                @elseif($transport->vehicule->longMax > 0)
+                                                {{ $transport->vehicule->longMax }} cm
+                                                @else
+                                                <i><b>NR.</b></i>
+                                                @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hauteur Max.:</td>
+                                                <td>
+                                                @if($transport->hautMax && $transport->hautMax > 0)
+                                                {{ $transport->hautMax }} cm
+                                                @elseif($transport->vehicule->hautMax > 0)
+                                                {{ $transport->vehicule->hautMax }} cm
+                                                @else
+                                                <i><b>NR.</b></i>
+                                                @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Largeur Max.:</td>
+                                                <td>
+                                                @if($transport->largMax && $transport->largMax > 0)
+                                                {{ $transport->largMax }} cm
+                                                @elseif($transport->vehicule->largMax > 0)
+                                                {{ $transport->vehicule->largMax }} cm
+                                                @else
+                                                <i><b>NR.</b></i>
+                                                @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Poid Max.:</td>
+                                                <td>
+                                                @if($transport->poidMax && $transport->poidMax > 0)
+                                                {{ $transport->poidMax }} kg
+                                                @elseif($transport->vehicule->poidMax > 0)
+                                                {{ $transport->vehicule->poidMax }} kg
+                                                @else
+                                                <i><b>NR.</b></i>
+                                                @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Volume Max.:</td>
+                                                <td>
+                                                @if($transport->volume && $transport->volume > 0)
+                                                {{ $transport->volume }} kg
+                                                @elseif($transport->vehicule->volume > 0)
+                                                {{ $transport->vehicule->volume }} kg
+                                                @else
+                                                <i><b>NR.</b></i>
+                                                @endif
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
 @extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Rechercher un colis ou un transport', 'includesJs' => ['/js/search.js'], 'includesCss' => ['/css/pages/search.css']] ) @section('content')
 
 <section id="search" class="scroll-section root-sec padd-tb-60 team-wrap">

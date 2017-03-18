@@ -505,7 +505,10 @@ h3 {
     line-height: 20px;
 }
 
+
 /* --------------------------------- */
+
+
 /* 2. Custom Utility Classes
  ----------------------------------- */
 
@@ -518,6 +521,7 @@ h3 {
     padding-top: 80px;
     padding-bottom: 80px;
 }
+
 .padd-tb-60 {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -538,8 +542,8 @@ h3 {
     padding-bottom: 30px;
 }
 
-.marg-top-15px{
-  margin-top: 15px;
+.marg-top-15px {
+    margin-top: 15px;
 }
 
 .row {
@@ -550,64 +554,64 @@ h3 {
     margin-bottom: 50px;
 }
 
-.icon-size{
-  font-size: 1.35rem;
+.icon-size {
+    font-size: 1.35rem;
 }
 
-.no-padding{
-  padding: 0px 0px 0px 0px;
+.no-padding {
+    padding: 0px 0px 0px 0px;
 }
 
-.side-nav{
-  width:250px;
+.side-nav {
+    width: 250px;
 }
 
-.register-modal{
-  max-height: 90% !important;
-  max-width: 90% !important;
-  top: 5% !important;
+.register-modal {
+    max-height: 90% !important;
+    max-width: 90% !important;
+    top: 5% !important;
 }
 
-.register-content{
-  padding: 24px 0px 24px 0px !important;
+.register-content {
+    padding: 24px 0px 24px 0px !important;
 }
 
 .dropdown-content {
-  min-width: 200px;
+    min-width: 200px;
 }
 
-.ville_Etape{
-  margin-left: 19px !important;
+.ville_Etape {
+    margin-left: 19px !important;
 }
 
-.mg-t20{
-  margin-top: 20px;
+.mg-t20 {
+    margin-top: 20px;
 }
 
-.mg-t30{
-  margin-top: 30px;
+.mg-t30 {
+    margin-top: 30px;
 }
 
-.mg-t50{
-  margin-top: 50px;
+.mg-t50 {
+    margin-top: 50px;
 }
 
-.mg-b15{
-  margin-bottom: 20px;
+.mg-b15 {
+    margin-bottom: 20px;
 }
 
-.date-depart-transport{
-  font-size: 1.3em;
+.date-depart-transport {
+    font-size: 1.3em;
 }
 
-.bold{
-  font-weight: bold;
+.bold {
+    font-weight: bold;
 }
 
-.margin-r10{
-  margin-right: 10px !important;
+.margin-r10 {
+    margin-right: 10px !important;
 }
 
-.demande-expe{
-  padding: 20px 0px 15px 0px;
+.demande-expe {
+    padding: 20px 0px 15px 0px;
 }

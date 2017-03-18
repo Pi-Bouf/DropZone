@@ -4,17 +4,49 @@ $(window).load(function() {
     $('body').delay(350);
 });
 
+(function($) {
+    $.fn.scrollingTo = function(opts) {
+        var defaults = {
+            animationTime: 1000,
+            easing: '',
+            topSpace: 0,
+            callbackBeforeTransition: function() {},
+            callbackAfterTransition: function() {}
+        };
+        var config = $.extend({}, defaults, opts);
+        $(this).on('click', function(e) {
+            var eventVal = e;
+            e.preventDefault();
+            var $section = $(document).find($(this).data('section'));
+            if ($section.length < 1) {
+                return false;
+            }
+            if ($('html, body').is(':animated')) {
+                $('html, body').stop(true, true);
+            }
+            var scrollPos = $section.offset().top;
+            if ($(window).scrollTop() == (scrollPos + config.topSpace)) {
+                return false;
+            }
+            config.callbackBeforeTransition(eventVal, $section);
+            var newScrollPos = (scrollPos - config.topSpace);
+            $('html, body').animate({
+                'scrollTop': (newScrollPos + 'px')
+            }, config.animationTime, config.easing, function() {
+                config.callbackAfterTransition(eventVal, $section);
+            });
+            return $(this);
+        });
+        $(this).data('scrollOps', config);
+        return $(this);
+    };
+}(jQuery));
+
 $(document).ready(function() {
     // Menu Mobile
     $(".button-collapse").sideNav();
 
-    // Scrollbar
-    var $document_body = $('body');
-    if ($document_body.data('scrollator') === undefined) {
-        $document_body.scrollator({
-            custom_class: 'body_scroller'
-        });
-    }
+    console.log(Scrollbar);
 
     // Input dates
     $(document).on('keydown', '.dontSubmit', function(e) {
@@ -28,11 +60,15 @@ $(document).ready(function() {
             $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + $(this).val() + '&key=AIzaSyA8s4b7f29R8Mn5v9Xf68GilgyjMUlrPcU', (data) => {
                 if (data.status == "OK") {
                     console.log();
-                    $("#" + $(this).attr('hiddenId')).val(data.results[0].geometry.location.lat + ";" +
+                    $('[name="' + $(this).attr('hiddenId') + '"]').val(data.results[0].geometry.location.lat + ";" +
                         data.results[0].geometry.location.lng)
                 }
             });
         }
+    });
+
+    $(document).on('keyup', '.forSecondDiv', function(e) {
+        $('#' + $(this).attr('name') + '_hidden').val($(this).val());
     });
 
     // Modal
@@ -44,6 +80,9 @@ $(document).ready(function() {
     $('.registerLink').click(function() {
         $('#registerModal').modal('open');
     });
+
+    // Select
+    $('select').material_select();
 
     // DatePicker
     $('.datepicker').pickadate({
@@ -74,4 +113,14 @@ $(document).ready(function() {
         belowOrigin: true, // Displays dropdown below the button
         alignment: 'left'
     });
+
+    $('.scrollTo').scrollingTo({
+        easing: 'easeOutQuart',
+        animationTime: 1000,
+        callbackBeforeTransition: function(e) {
+
+        },
+        callbackAfterTransition: function(e) {}
+    });
+
 });

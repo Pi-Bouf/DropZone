@@ -7,6 +7,9 @@ use App\User;
 use Auth;
 use Carbon\Carbon;
 
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManager;
+
 class UserController extends Controller
 {
     /**
@@ -106,10 +109,18 @@ class UserController extends Controller
       $user->description = $request->input('description');
 
       if($request->hasFile('avatar')) {
-        if($request->file('avatar')->isValid()) {
-          $path = $request->avatar->store('/public/images');
-          $user->picLink = "/storage/".substr($path, 7);
-        }
+          if($request->file('avatar')->isValid()) {
+              $path = $request->avatar->store('/public/images');
+              $user->picLink = "/storage/".substr($path, 7);
+
+              $image = $request->avatar;
+              $filename  = time() . '.' . $image->getClientOriginalExtension();
+
+              $path = public_path($user->picLink);
+
+              $manager = new ImageManager();
+              $image = $manager->make($request->avatar->getRealPath())->fit(500)->save($path);
+          }
       }
 
       if($user->save()) {

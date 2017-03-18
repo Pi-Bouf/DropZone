@@ -7,17 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/libs/materialize/css/materialize.min.css" rel="stylesheet">
     <link href="/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="/css/fm.scrollator.jquery.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/colors/color8.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/smoothScroll.css" rel="stylesheet">
     @foreach($includesCss as $inc)
     <link href="{{ $inc }}" rel="stylesheet">
     @endforeach
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/libs/materialize/js/materialize.min.js"></script>
-    <script src="/js/fm.scrollator.jquery.js"></script>
+    <script src="/js/smoothScroll.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
     <script src="/js/main.js"></script>
     @foreach($includesJs as $inc)
     <script src="{{ $inc }}"></script>
