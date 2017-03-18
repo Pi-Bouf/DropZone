@@ -8,7 +8,7 @@
             <div class="card white lighten-3">
                 <div class="card-content grey-text">
                     <div class="person-about">
-                        <h3 class="about-subtitle">Recherche</h3>
+                        <h3 class="about-subtitle">Recherche de transport</h3>
                         <form method="post" action="{{ route('search_transport_post') }}">
                             {{ csrf_field() }}
                             <div class="row">
