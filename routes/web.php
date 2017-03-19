@@ -35,6 +35,8 @@ Route::get('/user/deltransport/{transport}', 'TransportController@deltransport')
 Route::get('/transport/{transport}', 'TransportController@affTransport')->name('afftransport');
 Route::post('/postaddquestion','TransportController@addQuestion')->name('postaddquestion');
 Route::post('/postaddreservation','TransportController@addReservation')->name('postaddreservation');
+Route::get('/user/confirmdemandeTransport/{demande}', 'TransportController@confirmTransport')->name('confirmtransport');
+Route::get('/user/canceldemandeTransport/{demande}', 'TransportController@cancelTransport')->name('canceltransport');
 
 
 /*
@@ -65,9 +67,11 @@ Route::get('user/myvehicules/setDefault/{vehicule}', 'VehiculeController@setDefa
 /*
 | User
 */
+Route::get('user/myrequest', 'UserController@getMyRequest')->name('my_request');
 Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
 Route::get('user/me/update', 'UserController@getProfileUpdate')->name('user_profile_update');
 Route::post('user/me/update', 'UserController@postProfileUpdate')->name('user_profile_update_post');
+
 
 /*
 | Login/Logout/Forgot

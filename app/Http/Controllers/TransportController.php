@@ -169,6 +169,18 @@ class TransportController extends Controller
         $transport->user->notify(new NotifDemandeTransport($transport->user, $transport, $demande));
 
         return redirect()->back();
-
     }
+
+    public function confirmTransport(DemandeTransport $demande){
+      $demande->isAccepted = true;
+      $demande->save();
+      return redirect()->back();
+    }
+
+    public function cancelTransport(DemandeTransport $demande){
+      $demande->isAccepted = false;
+      $demande->save();
+      return redirect()->back();
+    }
+
 }

@@ -42,6 +42,8 @@
           <li class="divider"></li>
           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car left brown-text"></i>Mes véhicules</a></li>
           <li class="divider"></li>
+          <li><a href="{{ url('/user/myrequest') }}"><i class="mdi mdi-ticket-account purple-text left"></i>Mes demandes</a></li>
+          <li class="divider"></li>
           <li><a href="{{ url('/user/mytransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Mes transports</a></li>
           <li><a href="{{ url('/user/mypackage') }}"><i class="mdi mdi-cube-send orange-text left"></i>Mes colis</a></li>
           <li class="divider"></li>
@@ -77,6 +79,8 @@
                       <ul>
                           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text small left"></i>Profil</a></li>
                           <li><a href="{{ url('/user/me/update') }}"><i class="mdi mdi-account-edit grey-text small left"></i>Mes informations</a></li>
+                          <li class="divider"></li>
+                          <li><a href="{{ url('/user/myrequest') }}"><i class="mdi mdi-ticket-account small purple-text left"></i>Mes demandes</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car small brown-text left"></i>Mes véhicules</a></li>
                           <li class="divider"></li>

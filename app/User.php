@@ -91,6 +91,14 @@ class User extends Authenticatable
         return $this->hasMany('App\NotationExpedition');
     }
 
+    public function demandesExpedition(){
+        return $this->hasMany('App\DemandeExpedition');
+    }
+
+    public function demandesTransport(){
+        return $this->hasMany('App\DemandeTransport');
+    }
+
     public function nbNotes() {
         $nbNote = $this->noteTransport->count();
         $nbNote += $this->noteExpedition->count();
@@ -99,7 +107,7 @@ class User extends Authenticatable
     }
 
     public function note() {
-        
+
         $totalNote = $this->noteTransport->sum('note');
         $totalNote += $this->noteExpedition->sum('note');
         $nbNote = $this->nbNotes();

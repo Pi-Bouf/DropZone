@@ -30,6 +30,13 @@ class UserController extends Controller
     * @param Integer $user_id ou string 'me'
     * @return view UserProfile
     */
+
+    public function getMyRequest(){
+      //echo "coucou";
+      return view('front.pages.user.myrequest');
+    }
+
+
     public function getProfile($user_id){
       if($user_id=='me') {
         $user_id = Auth::user()->id;
