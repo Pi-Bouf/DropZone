@@ -17,9 +17,15 @@
     }
 </style>
     <section id="contenuSection" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
+        
         @if(session('add'))
             <div class="uk-alert uk-alert-success"> Transport ajouté !</div>
         @endif
+
+        @if(session('error'))
+            <div class="uk-alert uk-alert-error"> Erreur de la BDD !</div>
+        @endif
+
         <h2 class="center">Proposer un transport</h2>
 
         @if ($nbVehicule==0)
@@ -116,6 +122,10 @@
                                     <input type="date" class="datepicker input-box" name="dateFin" id="dateFin">
                                 </div>
                             </div>
+                            <div class="input-field">
+                                <label for="descri">Description :</label>
+                                <textarea type="text" class="materialize-textarea" id="descri" name="descri" required ></textarea><br>
+                            </div>
                         </div>
                     </div> 
 
@@ -151,10 +161,6 @@
                             <div class="input-field">
                                 <label for="v" class="input-label">Volume :</label>
                                 <input type="number" class="input-box" id="v" name="v"><br>
-                            </div>
-                            <div class="input-field">
-                                <label for="descri">Description :</label>
-                                <textarea type="text" class="materialize-textarea" id="descri" name="descri"></textarea><br>
                             </div>
                         </div>
                     </div>
