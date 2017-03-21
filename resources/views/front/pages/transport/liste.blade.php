@@ -4,6 +4,51 @@
 'includesCss' => [] ])
 @section('content')
 
+<style>
+  .rating {
+      overflow: hidden !important;
+      display: inline-block !important;
+      font-size: 0 !important;
+      position: relative !important;
+  }
+  .rating-input {
+      float: right !important;
+      width: 16px !important;
+      height: 16px !important;
+      padding: 0 !important;
+      margin: 0 0 0 -16px !important;
+      opacity: 0 !important;
+  }
+  .rating:hover .rating-star:hover,
+  .rating:hover .rating-star:hover ~ .rating-star,
+  .rating-input:checked ~ .rating-star {
+      background-position: 0 0 !important;
+      border: 0px !important;
+  }
+
+  
+[type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
+  border: 0px !important;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after{
+  background-color:transparent !important;
+  border: 0px !important;
+}
+  .rating-star,
+  .rating:hover .rating-star {
+      padding-left:0px !important;
+      position: relative !important;
+      float: right !important;
+      display: block !important;
+      width: 28px !important;
+      height: 28px !important;
+      background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -28px !important;
+      background-size: 28px auto !important;
+  }
+
+
+
+</style>
 
     <section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
       <h3 class="about-subtitle center-align">Mes transports</h3>
@@ -187,16 +232,53 @@
                                       @if($demande->beginDate < date('Y-m-d H:i:s'))
 
                                       <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                        <a href="#" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                        <a href="#note_{{ $demande->id }}" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
                                       </div>
                                       @endif
+                              </div>
+
+                              <div id="note_{{ $demande->id }}" class="modal">
+                                <form method="POST" id="formAjoutTransport" action="{{route('postnotetransport')}}">
+                                  <div class="modal-content">
+                                    <h4>Noter ce transport :</h4>
+                                    {{ csrf_field() }}
+                                    <div class="input-field">
+                                      <label for="message">Votre message :</label>
+                                      <textarea type="text" class="materialize-textarea" id="message" name="message" required ></textarea><br>
+                                    </div>
+                                    <input type="hidden" id="idnote" name="idnote" value="{{$demande->id}}">
+                                    <label for="note">Note : </label>
+                                    <span class="rating">
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-5" name="rating-input-1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-5" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-4" name="rating-input-1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-4" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-3" name="rating-input-1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-3" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-2" name="rating-input-1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-2" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-1" name="rating-input-1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-1" class="rating-star"></label>
+                                    </span>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button class=" modal-action modal-close waves-effect green white-text waves-green btn-flat"><i class="mdi mdi-star yellow-text left"></i>Noter !</button>
+                                    <a href="#!" class="margin-r10 modal-action modal-close waves-effect red white-text waves-green btn-flat">Retour</a>
+                                  </div>
+                                </form>
                               </div>
                               @endif
                             @endforeach
                           </div>
 
 
-                        </div>
+
+                  </div>
 
 
 
