@@ -113,41 +113,39 @@
 
                     <div class="row mg-t20">
                       <div class="col s12 m12 l12 black-text">
-
+                        <h3 class="about-subtitle">Demande(s) en attente(s)</h3>
                         @foreach($transport->demandesTransport as $demande)
                             @if(is_null($demande->isAccepted))
-                              @if($loop->first)
-                                <h3 class="about-subtitle">Demande(s) en attente(s)</h3>
-                              @endif
-                            <div class="row card blue lighten-3 demande-expe">
-                                    <div class="col s6 m2 l2 center-align">
-                                      @if($demande->user->picLink==null)
-                                        <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
-                                      @else
-                                        <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
-                                      @endif
-                                    </div>
-                                    <div class="col s6 m2 l2">
-                                      <p>
-                                        <a href="/user/{{$demande->user->id}}" target="blank">{{ $demande->user->login }}</a>
-                                      </p>
-                                      <p>
-                                        <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-                                         4.5/5
-                                      </p>
-                                    </div>
-                                    <div class="col s6 m4 l4">
-                                      <p>
-                                        {{ $demande->text}}
-                                      </p>
-                                      <p>
-                                        Prix : {{ $demande->cost }} €
-                                      </p>
-                                    </div>
-                                    <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                      <a href="{{ route('confirmtransport', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
-                                      <a href="{{ route('canceltransport', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
-                                    </div>
+
+                              <div class="row card blue lighten-3 demande-expe">
+                                <div class="col s6 m2 l2 center-align">
+                                  @if($demande->user->picLink==null)
+                                    <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
+                                  @else
+                                    <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
+                                  @endif
+                                </div>
+                                <div class="col s6 m2 l2">
+                                  <p>
+                                    <a href="/user/{{$demande->user->id}}" target="blank">{{ $demande->user->login }}</a>
+                                  </p>
+                                  <p>
+                                    <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                     {{$demande->user->note()}}/5 - {{$demande->user->nbNotes()}} avis
+                                  </p>
+                                </div>
+                                <div class="col s6 m4 l4">
+                                  <p>
+                                    {{ $demande->text}}
+                                  </p>
+                                  <p>
+                                    Prix : {{ $demande->cost }} €
+                                  </p>
+                                </div>
+                                <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                  <a href="{{ route('confirmtransport', array("demande" => $demande->id)) }}" title="Accepter" class="btn-floating btn-large waves-effect waves-light green"><i class="mdi mdi-check"></i></a>
+                                  <a href="{{ route('canceltransport', array("demande" => $demande->id)) }}" title="Refuser" class="btn-floating btn-large waves-effect waves-light red"><i class="mdi mdi-close"></i></a>
+                                </div>
                             </div>
                             @endif
 
@@ -158,12 +156,10 @@
                       <div class="row mg-t20">
 
                         <div class="col s12 m12 l12 black-text">
+                            <h3 class="about-subtitle">Demande(s) acceptée(s)</h3>
                             @foreach($transport->demandesTransport as $demande)
                               @if($demande->isAccepted == 1)
-                              @if($loop->first)
-                                <h3 class="about-subtitle">Demande(s) acceptée(s)</h3>
-                              @endif
-                              <div class="row card blue lighten-3 demande-expe">
+                                <div class="row card blue lighten-3 demande-expe">
                                       <div class="col s6 m2 l2 center-align">
                                         @if($demande->user->picLink==null)
                                           <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
@@ -177,7 +173,7 @@
                                         </p>
                                         <p>
                                           <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-                                           4.5/5
+                                           {{$demande->user->note()}}/5 - {{$demande->user->nbNotes()}} avis
                                         </p>
                                       </div>
                                       <div class="col s6 m4 l4">
