@@ -42,6 +42,7 @@
 <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap">
     <div class="row">
         <div class="col s12 l5 push-l2">
+            
             <div class="card white lighten-3">
                 <div class="card-content grey-text">
                     <div id="trajet">
@@ -60,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             <div class="card white lighten-3">
                 <div class="card-content grey-text">
                     <h3 class="about-subtitle">Information</h3>
@@ -83,7 +85,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
+            </div><br>
         </div>
         <div class="col s12 l3 push-l2">
             <div class="card white lighten-3">
@@ -169,7 +171,7 @@
     </div>
     
 </section>
-
+@if($transport->user->id != Auth::user()->id)
 <section class="scroll-section root-sec padd-tb-60 team-wrap blue">
     <div class="row">
         <h2 class="reservation white-text">Réservation du transport</h2>
@@ -192,10 +194,11 @@
         </form>
     </div>
 </section>
+@endif
 
 <section class="scroll-section root-sec padd-tb-60 team-wrap white">
     <div class="row">
-        <h2 class="reservation ">Questions : </h2>
+        <h2 class="reservation blue-text">Questions : </h2>
         <form action="{{route('postaddquestion')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
             {{ csrf_field() }}
             <div class="row">

@@ -8,13 +8,11 @@
 
         <section id="contenuSection" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
             @if(session('add'))
-                <div id="card-alert" class="card orange lighten-5">
-                    <div class="card-content orange-text">
+                <div id="card-alert">
+                    <div class="orange-text">
                         <p>Votre expédition a été ajouté avec succès !</p>
                     </div>
-                    <button type="button" class="close orange-text" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+
                 </div>
             @endif 
             <h2 class="header center">Proposer une expédition de colis</h2>
@@ -76,6 +74,10 @@
                                     <div class="input-field">
                                         <input id="hauteur" type="number" name="hauteur" class="validate input-box" onchange="marqueur()" required>
                                         <label for="hauteur" class="input-label">Hauteur (cm) :</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input id="volume" type="number" name="volume" class="validate input-box" onchange="marqueur()" step="0.01" required>
+                                        <label for="volume" class="input-label">Volume (m³) :</label>
                                     </div>
                                 </div>
                             </div>

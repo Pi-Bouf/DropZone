@@ -65,7 +65,8 @@ class ExpeditionController extends Controller
             'longueur' => 'required|numeric',
             'largeur' => 'required|numeric',
             'hauteur' => 'required|numeric',
-            'poids' => 'required|numeric'
+            'poids' => 'required|numeric',
+            'volume' => 'required|numeric'
         );
         $this->validate($request, $rules);
         $expedition->user_id = Auth::user()->id;
@@ -78,7 +79,7 @@ class ExpeditionController extends Controller
         $expedition->widthItem = $request->input('largeur');
         $expedition->heightItem = $request->input('hauteur');
         $expedition->weightItem = $request->input('poids');
-        $expedition->volumeItem = null;
+        $expedition->volumeItem = $request->input('volume');
 
 
         $ville = new Ville();
@@ -140,6 +141,8 @@ class ExpeditionController extends Controller
         $question->user_id = Auth::user()->id;
 
         $question->save();
+
+        return redirect()->back();
 
     }
 

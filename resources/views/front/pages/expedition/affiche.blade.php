@@ -16,7 +16,7 @@
         }
         h3{
             font-size:1.6em !important;
-            color: white;
+            color:#ff8a65 !important;
         }
         .whited:focus {
             border-bottom: 1px solid white !important;
@@ -59,69 +59,78 @@
         #descri{
             margin-bottom:30px;
         }
+        #reservBG{
+            background-image:url('../images/orange.jpg');
+            background-size:cover;
+        }
 
     </style>
     <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap ">
-        <h2>Détail et réservation de l'expédition</h2>
         <div class="row">
-            <div class="col s12 l6 push-l1  deep-orange lighten-3">
-                <div class="row">
-                    <div id="trajet">
-                        <h3>Détail de l'annonce</h3>
+            <div class="col s12 l6 push-l1">
+                <div class="card white lighten-3">
+                    <div class="card-content grey-text">
+                        <h3 class="about-subtitle ">Détail de l'expédition</h3>
                         <br>
-                        <p class="white-text">{{$expedition->description}}</p>
+                        <p>{{$expedition->description}}</p>
                         <br>
-                        <table id="descri" class="striped col s12 push-m3 m6">
-                            <tr>
-                                <td>Ville de départ :</td>
-                                <td>{{$expedition->villeDep->name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Ville d'arrivée :</td>
-                                <td>{{$expedition->villeArr->name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Poids de l'objet :</td>
-                                <td>{{$expedition->weightItem}} g</td>
-                            </tr>
-                            <tr>
-                                <td>Longueur du colis :</td>
-                                <td>{{$expedition->lengthItem}} cm</td>
-                            </tr>
-                            <tr>
-                                <td>Largeur du colis :</td>
-                                <td>{{$expedition->widthItem}} cm</td>
-                            </tr>
-                            <tr>
-                                <td>Hauteur du colis :</td>
-                                <td>{{$expedition->heightItem}} cm</td>
-                            </tr>
-                            <tr>
-                                <td>Volume du colis:</td>
-                                <td>{{$expedition->volumeItem}} m³</td>
-                            </tr>
-                            <tr>
-                                <td>Prix maximum :</td>
-                                <td>{{$expedition->costMax}} €</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <table class="striped col l8 push-l2">
+                                <tr>
+                                    <td>Ville de départ :</td>
+                                    <td>{{$expedition->villeDep->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ville d'arrivée :</td>
+                                    <td>{{$expedition->villeArr->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Poids de l'objet :</td>
+                                    <td>{{$expedition->weightItem}} g</td>
+                                </tr>
+                                <tr>
+                                    <td>Longueur du colis :</td>
+                                    <td>{{$expedition->lengthItem}} cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Largeur du colis :</td>
+                                    <td>{{$expedition->widthItem}} cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Hauteur du colis :</td>
+                                    <td>{{$expedition->heightItem}} cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Volume du colis:</td>
+                                    <td>{{$expedition->volumeItem}} m³</td>
+                                </tr>
+                                <tr>
+                                    <td>Prix maximum :</td>
+                                    <td>{{$expedition->costMax}} €</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col s12 l3 push-l2  deep-orange lighten-3 padd-tb-60 white-text">
-                <h3>Expéditeur</h3>
-                @if($expedition->user->picLink==null)
-                    <img src="/images/profile/icon-{{$expedition->user->sexe}}.png" width="35%" class="responsive-img circle" alt="">
-                @else
-                    <img src="{{$expedition->user->picLink}}" width="35%" class="responsive-img circle" alt="">
-                @endif
-                <div id="nomConducteur"><a href="/user/{{$expedition->user->id}}" class="white-text">{{$expedition->user->firstName}}</a> - {{$age}} ans</div>
-                <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$note}}/5 - {{$nbnote}} avis</div>
+            <div class="col s12 l3 push-l2 padd-tb-60">
+                <div class="card white lighten-3">
+                    <div class="card-content grey-text">
+                        <h3 class="about-subtitle ">Expéditeur</h3>
+                        @if($expedition->user->picLink==null)
+                            <img src="/images/profile/icon-{{$expedition->user->sexe}}.png" width="35%" class="responsive-img circle" alt="">
+                        @else
+                            <img src="{{$expedition->user->picLink}}" width="35%" class="responsive-img circle" alt="">
+                        @endif
+                        <div id="nomConducteur"><a href="/user/{{$expedition->user->id}}" class="orange-text">{{$expedition->user->firstName}}</a> - {{$age}} ans</div>
+                        <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$note}}/5 - {{$nbnote}} avis</div><br>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <section class="scroll-section root-sec padd-tb-60 team-wrap deep-orange lighten-2">
+    @if($expedition->user->id != Auth::user()->id)
+    <section class="scroll-section root-sec padd-tb-60 team-wrap " id="reservBG">
         <div class="row">
             <h2 class="reservation white-text">Demande d'expédition du colis</h2>
             <form class="reservation col s12 push-m2 m8 push-l3 l6" method="POST" action="{{route('postaddreservationexpedition')}}">
@@ -129,13 +138,13 @@
                 <div class="row">
                     <div class="input-field">
                         <textarea id="message" name="message" class="validate materialize-textarea white-text whited" required></textarea>
-                        <label for="message" class="white-text">Description de votre trajet</label>
+                        <label for="message" class="white-text left-align">Description de votre trajet</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field">
                         <input id="prix" type="number" name="prix" step="0.01" class="validate white-text" required>
-                        <label for="prix" class="white-text">Prix proposé €</label>
+                        <label for="prix" class="white-text left-align">Prix proposé €</label>
                     </div>
                 </div>        
                 <div class="row">                          
@@ -143,9 +152,9 @@
                         <input type="text" name="dateD" class="datepicker  white-text " id="dateD"><br>
                         <label for="dateD" class=" white-text ">Date départ au plus tôt</label>
                     </div>
-                </div>                                
-                <div class="input-field ">
-                    <div class="row">
+                </div> 
+                <div class="row">                               
+                    <div class="input-field ">
                         <label for="dateF" class="white-text ">Date départ au plus tard</label>
                         <input type="text" name="dateF" class="datepicker  white-text " id="dateF"><br>
                     </div>
@@ -155,6 +164,7 @@
             </form>
         </div>
     </section>
+    @endif
 
     <section class="scroll-section root-sec padd-tb-60 team-wrap white">
         <div class="row">
