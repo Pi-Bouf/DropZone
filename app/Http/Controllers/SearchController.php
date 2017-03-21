@@ -37,7 +37,7 @@ class SearchController extends Controller
             $latArr = $coordArrivee[0];
             $lngArr = $coordArrivee[1];
         } else {
-            return redirect()->back()->withInput();
+            return redirect('/search/transport')->withInput();
         }
         
         $date = date('Y-m-d H:i:s', strtotime(implode('-', array_reverse(explode('/', $request->input('dateTransport'))))));
@@ -95,7 +95,7 @@ class SearchController extends Controller
         }
 
         if(Auth::user()) {
-            $getExpe->whereRaw('user_id != 1');
+            $getTrans->whereRaw('first.user_id != 1');
         }
 
         $getTrans->get();
@@ -158,7 +158,7 @@ class SearchController extends Controller
             $latArr = $coordArrivee[0];
             $lngArr = $coordArrivee[1];
         } else {
-            return redirect()->back()->withInput();
+            return redirect('/search/expedition')->withInput();
         }
         
         $getExpe = DB::table('expeditions')

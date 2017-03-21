@@ -7,7 +7,7 @@ var cityCircle = Array();
 var cityPath = null;
 
 function initialize() {
-    if (target == "transport") {
+    if (target == "transport" || target == "home") {
         var inputDepTransport = document.getElementById('departTransport');
         var inputArrTransport = document.getElementById('arriveeTransport');
     }
@@ -17,7 +17,7 @@ function initialize() {
         var inputArrExpedition = document.getElementById('arriveeExpedition');
     }
 
-    if (target == "transport") {
+    if (target == "transport" || target == "home") {
         autocompleteDepTrans = new google.maps.places.Autocomplete(
             (inputDepTransport));
         autocompleteDepTrans.addListener('place_changed', function() {
@@ -54,40 +54,36 @@ function initialize() {
         });
     }
 
-    directionsService = new google.maps.DirectionsService();
+    if (target != "home") {
+        directionsService = new google.maps.DirectionsService();
 
-    var depart = new google.maps.LatLng(depTab[0], depTab[1]);
-    var arrivee = new google.maps.LatLng(arrTab[0], arrTab[1]);
-    var request = {
-        destination: arrivee,
-        avoidHighways: true,
-        origin: depart,
-        travelMode: 'DRIVING'
-    };
+        var depart = new google.maps.LatLng(depTab[0], depTab[1]);
+        var arrivee = new google.maps.LatLng(arrTab[0], arrTab[1]);
+        var request = {
+            destination: arrivee,
+            avoidHighways: true,
+            origin: depart,
+            travelMode: 'DRIVING'
+        };
 
-    directionsService.route(request, function(response, status) {
-        if (status === google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        } else {}
-    });
+        directionsService.route(request, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            } else {}
+        });
+    }
 }
 
 function initMap() {
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 46.797, lng: 2.544 },
-        zoom: 5
-    });
-    directionsDisplay.setMap(map);
-    google.maps.event.addDomListener(window, 'load', initialize);
-    $(document).ready(function() {
-        $('.modal-trigger').modal({
-            ready: function() {
-                var map = document.getElementById("map");
-                google.maps.event.trigger(map, 'resize');
-            }
+    if (target == "transport" || target == "expedition") {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 46.797, lng: 2.544 },
+            zoom: 5
         });
-    });
+        directionsDisplay.setMap(map);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 function loadPath(id) {

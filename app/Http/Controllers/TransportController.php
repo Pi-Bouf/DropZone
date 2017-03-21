@@ -10,6 +10,7 @@ use App\DemandeTransport;
 use Auth;
 use Carbon\Carbon;
 use App\Notifications\NotifDemandeTransport;
+use App\Notifications\StatusDemandeTransport;
 
 
 class TransportController extends Controller
@@ -199,12 +200,18 @@ class TransportController extends Controller
     public function confirmTransport(DemandeTransport $demande){
       $demande->isAccepted = true;
       $demande->save();
+
+      $demande->user->notify(new StatusDemandeTransport($demande->transport->user, $demande->transport, true));
+
       return redirect()->back();
     }
 
     public function cancelTransport(DemandeTransport $demande){
       $demande->isAccepted = false;
       $demande->save();
+
+    $demande->user->notify(new StatusDemandeTransport($demande->transport->user, $demande->transport, false));
+
       return redirect()->back();
     }
 
