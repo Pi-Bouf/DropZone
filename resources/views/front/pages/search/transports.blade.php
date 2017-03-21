@@ -13,18 +13,18 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="input-field col l12 s12">
-                                    <input id="departTransport" name="departTransport" type="text" class="validate dontSubmit auPif forSecondDiv" placeholder="" hiddenId="departTransHidden" value="{{ $adresseDep or old('departTransport') }}" required="required">
-                                    <input type="hidden" name="departTransHidden" id="departTransHidden" class="departTransHidden" value="@if(isset($latDep) && isset($lngDep)) {{ $latDep }};{{ $lngDep }} @endif {{ old('departTransHidden') }}">
+                                    <input id="departTransport" name="departTransport" type="text" class="validate dontSubmit auPif forSecondDiv" placeholder="" hiddenId="departTransportCoord" value="{{ $departTransport or old('departTransport') }}" required="required">
+                                    <input type="hidden" name="departTransportCoord" id="departTransportCoord" class="departTransportCoord" value="{{ $departTransportCoord or old('departTransportCoord') }}">
                                     <label for="departTransport" class="active">Lieu départ</label>
                                 </div>
                                 <div class="input-field col l12 s12">
-                                    <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate dontSubmit auPif forSecondDiv" placeholder="" hiddenId="arriveeTransHidden" value="{{ $adresseArr or old('arriveeTransport') }}" required="required">
-                                    <input type="hidden" name="arriveeTransHidden" id="arriveeTransHidden" class="arriveeTransHidden" value="@if(isset($latArr) && isset($lngArr)) {{ $latArr }};{{ $lngArr }} @endif {{ old('arriveeTransHidden') }}">
+                                    <input id="arriveeTransport" name="arriveeTransport" type="text" class="validate dontSubmit auPif forSecondDiv" placeholder="" hiddenId="arriveeTransportCoord" value="{{ $arriveeTransport or old('arriveeTransport') }}" required="required">
+                                    <input type="hidden" name="arriveeTransportCoord" id="arriveeTransportCoord" class="arriveeTransportCoord" value="{{ $arriveeTransportCoord or old('arriveeTransportCoord') }}">
                                     <label for="icon_telephone" class="active">Lieu arrivée</label>
                                 </div>
 
                                 <div class="input-field col l9 m12 s12">
-                                    <input id="dateTransport" name="dateTransport" type="date" class="datepicker forSecondDiv">
+                                    <input id="dateTransport" name="dateTransport" type="date" class="datepicker forSecondDivDate">
                                     <label for="dateTransport" class="active">Date</label>
                                 </div>
                                 <div class="col l3 m12 s6 center-align">
@@ -197,7 +197,7 @@
 
 <section id="frameMap">
     <div class="row">
-        <div class="col l10 m4 s12 offset-l1">
+        <div class="col l10 m12 s12 offset-l1">
             <div class="card white lighten-3">
                 <div class="card-content grey-text">
                     <div class="person-about">
@@ -215,11 +215,11 @@
 <div id="filterSearch" class="modal bottom-sheet">
     <form class="col s12" method="post" action="{{ route('search_transport_post') }}">
         {{ csrf_field() }}
-        <input name="departTransport" id="departTransport_hidden" type="hidden" value="{{ $adresseDep or old('departTransport') }}" required="required">
-        <input name="arriveeTransport" id="departTransport_hidden" type="hidden" value="{{ $adresseArr or old('arriveeTransport') }}" required="required">
-        <input id="dateTransport_hidden" name="dateTransport" type="hidden" value="{{ $dateTransport or old('dateTransport') }}">
-        <input type="hidden" name="departTransHidden" id="departTransHidden" value="@if(isset($latDep) && isset($lngDep)) {{ $latDep }};{{ $lngDep }} @endif {{ old('departTransHidden') }}">
-        <input type="hidden" name="arriveeTransHidden" id="arriveeTransHidden" value="@if(isset($latArr) && isset($lngArr)) {{ $latArr }};{{ $lngArr }} @endif {{ old('arriveeTransHidden') }}">
+        <input name="departTransport" id="departTransport_hidden" type="hidden" value="{{ $departTransport or old('departTransport') }}" required="required">
+        <input name="arriveeTransport" id="arriveeTransport_hidden" type="hidden" value="{{ $arriveeTransport or old('arriveeTransport') }}" required="required">
+        <input name="dateTransport" id="dateTransport_hidden" type="hidden" value="{{ $dateTransport or old('dateTransport') }}">
+        <input type="hidden" name="departTransportCoord" class="departTransportCoord_hidden" id="departTransportCoord_hidden" value="{{ $departTransportCoord or old('departTransportCoord') }}">
+        <input type="hidden" name="arriveeTransportCoord" class="arriveeTransportCoord_hidden" id="arriveeTransportCoord_hidden" value="{{ $arriveeTransportCoord or old('arriveeTransportCoord') }}">
 
         <div class="modal-content">
             <h4>Dimensions minimum</h4>
@@ -292,8 +292,10 @@
 
 <script>
     var target = "transport";
-    var depTab = [{{ $latDep or 0 }}, {{ $lngDep or 0 }}];
-    var arrTab = [{{ $latArr or 0 }}, {{ $lngArr or 0 }}];
+    var tmp = "{{ $departTransportCoord or '0;0' }}".split(";");
+    var depTab = [tmp[0], tmp[1]];
+    var tmp = "{{ $arriveeTransportCoord or '0;0' }}".split(";");
+    var arrTab = [tmp[0], tmp[1]];
 
     $(document).ready(function() {
         var $input = $('.datepicker').pickadate();

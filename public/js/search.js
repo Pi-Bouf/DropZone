@@ -7,39 +7,50 @@ var cityCircle = Array();
 var cityPath = null;
 
 function initialize() {
-    var inputDepTransport = document.getElementById('departTransport');
-    var inputArrTransport = document.getElementById('arriveeTransport');
+    if (target == "transport") {
+        var inputDepTransport = document.getElementById('departTransport');
+        var inputArrTransport = document.getElementById('arriveeTransport');
+    }
 
-    var inputDepExpedition = document.getElementById('departExpedition');
-    var inputArrExpedition = document.getElementById('arriveeExpedition');
+    if (target == "expedition") {
+        var inputDepExpedition = document.getElementById('departExpedition');
+        var inputArrExpedition = document.getElementById('arriveeExpedition');
+    }
 
-    autocompleteDepTrans = new google.maps.places.Autocomplete(
-        (inputDepTransport));
-    autocompleteDepTrans.addListener('place_changed', function() {
-        var place = autocompleteDepTrans.getPlace();
-        $('.departTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
-    });
+    if (target == "transport") {
+        autocompleteDepTrans = new google.maps.places.Autocomplete(
+            (inputDepTransport));
+        autocompleteDepTrans.addListener('place_changed', function() {
+            var place = autocompleteDepTrans.getPlace();
+            $('#departTransport_hidden').val(place.formatted_address);
+            $('.departTransportCoord_hidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+        });
 
-    autocompleteArrTrans = new google.maps.places.Autocomplete(
-        (inputArrTransport));
-    autocompleteArrTrans.addListener('place_changed', function() {
-        var place = autocompleteArrTrans.getPlace();
-        $('.arriveeTransHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
-    });
+        autocompleteArrTrans = new google.maps.places.Autocomplete(
+            (inputArrTransport));
+        autocompleteArrTrans.addListener('place_changed', function() {
+            var place = autocompleteArrTrans.getPlace();
+            $('#arriveeTransport_hidden').val(place.formatted_address);
+            $('.arriveeTransportCoord_hidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+        });
 
-    autocompleteDebTrans = new google.maps.places.Autocomplete(
-        (inputDepExpedition), { types: ['(cities)'] });
-    autocompleteDebTrans.addListener('place_changed', function() {
-        var place = autocompleteDebTrans.getPlace();
-        $('#departExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
-    });
+    }
 
-    autocompleteArrExpe = new google.maps.places.Autocomplete(
-        (inputArrExpedition), { types: ['(cities)'] });
-    autocompleteArrExpe.addListener('place_changed', function() {
-        var place = autocompleteArrExpe.getPlace();
-        $('#arriveeExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
-    });
+    if (target == "expedition") {
+        autocompleteDebTrans = new google.maps.places.Autocomplete(
+            (inputDepExpedition), { types: ['(cities)'] });
+        autocompleteDebTrans.addListener('place_changed', function() {
+            var place = autocompleteDebTrans.getPlace();
+            $('#departExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+        });
+
+        autocompleteArrExpe = new google.maps.places.Autocomplete(
+            (inputArrExpedition), { types: ['(cities)'] });
+        autocompleteArrExpe.addListener('place_changed', function() {
+            var place = autocompleteArrExpe.getPlace();
+            $('#arriveeExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+        });
+    }
 
     directionsService = new google.maps.DirectionsService();
 
@@ -147,7 +158,7 @@ function loadRoad(id) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             if (markerDep == null && markerArr == null) {
-                var depMark = { lat: depTab[0], lng: depTab[1] };
+                var depMark = { lat: parseFloat(depTab[0]), lng: parseFloat(depTab[1]) };
                 markerDep = new google.maps.Marker({
                     position: depMark,
                     map: map,
@@ -155,7 +166,7 @@ function loadRoad(id) {
                     title: 'Départ !',
                 });
 
-                var arrMark = { lat: arrTab[0], lng: arrTab[1] };
+                var arrMark = { lat: parseFloat(arrTab[0]), lng: parseFloat(arrTab[1]) };
                 markerArr = new google.maps.Marker({
                     position: arrMark,
                     map: map,

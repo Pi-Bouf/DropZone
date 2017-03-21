@@ -27,13 +27,13 @@ class SearchController extends Controller
         );
         
         $this->validate($request, $rules);
-        
-        if((strpos($request->input('departTransHidden'), ";") != FALSE) && (strpos($request->input('arriveeTransHidden'), ";") != FALSE)) {
-            $coordDepart = explode(';', $request->input('departTransHidden'));
+
+        if((strpos($request->input('departTransportCoord'), ";") != FALSE) && (strpos($request->input('arriveeTransportCoord'), ";") != FALSE)) {
+            $coordDepart = explode(';', $request->input('departTransportCoord'));
             $latDep = $coordDepart[0];
             $lngDep = $coordDepart[1];
             
-            $coordArrivee = explode(';', $request->input('arriveeTransHidden'));
+            $coordArrivee = explode(';', $request->input('arriveeTransportCoord'));
             $latArr = $coordArrivee[0];
             $lngArr = $coordArrivee[1];
         } else {
@@ -41,20 +41,6 @@ class SearchController extends Controller
         }
         
         $date = date('Y-m-d H:i:s', strtotime(implode('-', array_reverse(explode('/', $request->input('dateTransport'))))));
-        
-        /*
-        
-        $lat = $_GET['lat'];
-        $lon = $_GET['lon'];
-        $rayonKM = $_GET['rayon'];
-        
-        // Calcul range offset
-        $offset = ($rayonKM * 0.01) / 1.1132;
-        // Calcul NE & SW with offset for x KM
-        $lat_ne = $lat + $offset;
-        $lon_ne = $lon + $offset;
-        $lat_sw = $lat - $offset;
-        $lon_sw = $lon - $offset; */
         
         $getTrans = DB::table('transports as first')
         ->select(DB::raw('first.id'))
@@ -114,17 +100,10 @@ class SearchController extends Controller
         $transport = Transport::findMany($getTrans->pluck('id')->toArray())->sortBy('natureTransport');
 
         $data = array(
-        "transports" => $transport,
-        "adresseDep" => $request->input('departTransport'),
-        "adresseArr" => $request->input('arriveeTransport'),
-        "latDep" => $latDep,
-        "lngDep" => $lngDep,
-        "latArr" => $latArr,
-        "lngArr" => $lngArr,
-        "dateTransport" => $request->input('dateTransport'),
+            "transports" => $transport,
         );
         
-        $request->session()->flash('transports', array_merge($data, $request->only(['withHighway', 'longMax', 'largMax', 'hautMax', 'poidMax', 'volume', 'beginningHour', 'natureTransport'])));
+        $request->session()->flash('transports', array_merge($data, $request->only(['withHighway', 'longMax', 'largMax', 'hautMax', 'poidMax', 'volume', 'beginningHour', 'natureTransport', 'departTransport', 'arriveeTransport', 'dateTransport', 'departTransportCoord', 'arriveeTransportCoord'])));
         return redirect()->route('search_transport');
     }
     
@@ -213,7 +192,7 @@ class SearchController extends Controller
     
     public function getSearchExpedition()
     {
-        /*
+        
         $expeditions = Expedition::findMany([1, 2, 3, 4]);
         
         $data = array(
@@ -227,14 +206,14 @@ class SearchController extends Controller
         );
         
         return view('front.pages.search.expeditions', $data);
-        */
+        
 
-
+        /*
         if(session('expeditions') != null)
         {
             return view('front.pages.search.expeditions', session('expeditions'));
         } else {
             return redirect()->back()->withInput();
-        }
+        } */
     }
 }

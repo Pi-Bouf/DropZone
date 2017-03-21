@@ -57,7 +57,6 @@ $(document).ready(function() {
         if ($(this).val().length > 2) {
             $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + $(this).val() + '&key=AIzaSyA8s4b7f29R8Mn5v9Xf68GilgyjMUlrPcU', (data) => {
                 if (data.status == "OK") {
-                    console.log();
                     $('[name="' + $(this).attr('hiddenId') + '"]').val(data.results[0].geometry.location.lat + ";" +
                         data.results[0].geometry.location.lng)
                 }
@@ -66,6 +65,10 @@ $(document).ready(function() {
     });
 
     $(document).on('keyup', '.forSecondDiv', function(e) {
+        $('#' + $(this).attr('name') + '_hidden').val($(this).val());
+    });
+
+    $(document).on('change', '.forSecondDivDate', function(e) {
         $('#' + $(this).attr('name') + '_hidden').val($(this).val());
     });
 

@@ -15,12 +15,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(VehiculeTypeSeeder::class);
         $this->call(VehiculeTableSeeder::class);
-
+        
         $this->call('TransportsTableSeeder');
         $this->call('VillesTableSeeder');
         $this->call('EtapesTableSeeder');
         $this->call('QuestionTransportsTableSeeder');
         $this->call('DemandeTransportsTableSeeder');
+        $this->call('ExpeditionsTableSeeder');
     }
 
         /*
