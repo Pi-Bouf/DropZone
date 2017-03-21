@@ -133,7 +133,7 @@
             <div class="card white lighten-3">
                 <div class="card-content grey-text">
                     <div class="person-about">
-                        <h3 class="about-subtitle">Recherche d'expédition'</h3>
+                        <h3 class="about-subtitle">Recherche d'expédition</h3>
                         <form method="post" action="{{ route('search_expedition_post') }}">
                             {{ csrf_field() }}
                             <div class="row">
