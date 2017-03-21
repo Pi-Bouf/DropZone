@@ -41,14 +41,16 @@ function initialize() {
             (inputDepExpedition), { types: ['(cities)'] });
         autocompleteDebTrans.addListener('place_changed', function() {
             var place = autocompleteDebTrans.getPlace();
-            $('#departExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+            $('#departExpedition_hidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+            $('.departExpeditionCoord_hidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
         });
 
         autocompleteArrExpe = new google.maps.places.Autocomplete(
             (inputArrExpedition), { types: ['(cities)'] });
         autocompleteArrExpe.addListener('place_changed', function() {
             var place = autocompleteArrExpe.getPlace();
-            $('#arriveeExpeHidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+            $('#arriveeExpedition_hidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
+            $('.arriveeExpeditionCoord_hidden').val(place.geometry.location.lat() + ";" + place.geometry.location.lng());
         });
     }
 

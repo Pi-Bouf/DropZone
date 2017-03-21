@@ -90,7 +90,12 @@
                                         {{ $transport->information }}
                                     </div>
                                     <div class="row center-align">
-                                        <a class="btn-floating waves-effect waves-light orange darken-3 scrollTo" data-section="#frameMap" onclick="loadRoad({{ $transport->id }})"><i class="mdi mdi-google-maps"></i></a> <a href="/transport/{{ $transport->id }}" target="_blank" class="waves-effect waves-light blue darken-1 btn">Réserver trajet</a>
+                                        <a class="btn-floating waves-effect waves-light orange darken-3 scrollTo" data-section="#frameMap" onclick="loadRoad({{ $transport->id }})"><i class="mdi mdi-google-maps"></i></a> 
+                                        @if(Auth::user())
+                                        <a href="/transport/{{ $transport->id }}" target="_blank" class="waves-effect waves-light blue darken-1 btn">Réserver trajet</a>
+                                        @else
+                                        <a href="#" class="loginLink waves-effect waves-light blue darken-1 btn">Réserver trajet</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +309,7 @@
         picker.set('select', "{{ $dateTransport or old('dateTransport') }}");
     });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyDafB5RLEbXzBKpSNsil8N82xBJ8zXHH8U" async defer></script>
 
 
 @endsection

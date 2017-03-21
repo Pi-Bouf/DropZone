@@ -61,8 +61,7 @@ class SearchController extends Controller
         AND (villes.latitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$latDep.'
         AND (villes.longitude + ((first.detourRetirMax * 0.01) / 1.1132)) > '.$lngDep.'
         AND (villes.longitude - ((first.detourRetirMax * 0.01) / 1.1132)) < '.$lngDep.'
-        AND (beginningDate = "'.$date.'" OR "'.$date.'" BETWEEN regularyBeginningDate AND regularyEndingDate)
-        AND first.user_id != '.Auth::user()->id);
+        AND (beginningDate = "'.$date.'" OR "'.$date.'" BETWEEN regularyBeginningDate AND regularyEndingDate)');
 
         $getTrans->where('withHighway', $request->input('withHighway', true));
 
@@ -93,6 +92,10 @@ class SearchController extends Controller
             if($natureTransport != "all") {
                 $getTrans->where('natureTransport', $request->input('natureTransport'));
             }
+        }
+
+        if(Auth::user()) {
+            $getExpe->whereRaw('user_id != 1');
         }
 
         $getTrans->get();
@@ -146,53 +149,61 @@ class SearchController extends Controller
         
         $this->validate($request, $rules);
         
-        $coordDepart = explode(';', $request->input('departExpeHidden'));
-        $latDep = $coordDepart[0];
-        $lngDep = $coordDepart[1];
-        
-        $coordArrivee = explode(';', $request->input('arriveeExpeHidden'));
-        $latArr = $coordArrivee[0];
-        $lngArr = $coordArrivee[1];
-        
-        $rangeKM = $request->input('rangeKM');
-        
+        if((strpos($request->input('departExpeditionCoord'), ";") != FALSE) && (strpos($request->input('arriveeExpeditionCoord'), ";") != FALSE)) {
+            $coordDepart = explode(';', $request->input('departExpeditionCoord'));
+            $latDep = $coordDepart[0];
+            $lngDep = $coordDepart[1];
+            
+            $coordArrivee = explode(';', $request->input('arriveeExpeditionCoord'));
+            $latArr = $coordArrivee[0];
+            $lngArr = $coordArrivee[1];
+        } else {
+            return redirect()->back()->withInput();
+        }
         
         $getExpe = DB::table('expeditions')
         ->select(DB::raw('expeditions.id'))
         ->join('villes as beginning', 'beginning.id', 'beginning_ville_id')
         ->join('villes as ending', 'ending.id', 'ending_ville_id')
-        ->whereRaw('AND user_id != '.Auth::user()->id.' 
-        AND (beginning.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latDep.'
-        AND (beginning.latitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$latDep.'
-        AND (beginning.longitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$lngDep.'
-        AND (beginning.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$lngDep.'
-        AND (ending.latitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$latArr.'
-        AND (ending.latitude - (('.$rangeKM.' * 0.01) / 1.1132)) < '.$latArr.'
-        AND (ending.longitude + (('.$rangeKM.' * 0.01) / 1.1132)) > '.$lngArr.'
-        AND (ending.longitude - (('.$rangeKM.' * 0.01) / 1.1132)) <a '.$lngArr)
-        ->get();
+        ->whereRaw('isAccepted = false
+        AND (beginning.latitude + (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) > '.$latDep.'
+        AND (beginning.latitude - (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) < '.$latDep.'
+        AND (beginning.longitude + (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) > '.$lngDep.'
+        AND (beginning.longitude - (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) < '.$lngDep.'
+        AND (ending.latitude + (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) > '.$latArr.'
+        AND (ending.latitude - (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) < '.$latArr.'
+        AND (ending.longitude + (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) > '.$lngArr.'
+        AND (ending.longitude - (('.$request->input('rangeKM', 1).' * 0.01) / 1.1132)) < '.$lngArr);
 
-        //dd($getExpe->pluck('id')->toArray());
+
+        $getExpe->whereRaw('(expeditions.lengthItem <= '.$request->input('longMax', 300).' OR expeditions.lengthItem IS NULL)');   
+        $getExpe->whereRaw('(expeditions.widthItem <= '.$request->input('widthItem', 300).' OR expeditions.widthItem IS NULL)');
+        $getExpe->whereRaw('(expeditions.heightItem <= '.$request->input('heightItem', 300).' OR expeditions.heightItem IS NULL)');
+        $getExpe->whereRaw('(expeditions.weightItem <= '.$request->input('weightItem', 10000).' OR expeditions.weightItem IS NULL)');
+        $getExpe->whereRaw('(expeditions.volumeItem <= '.$request->input('volumeItem', 300).' OR expeditions.volumeItem IS NULL)');
+        $getExpe->whereRaw('expeditions.costMax >= '.$request->input('prixMin', 0));
+        $getExpe->whereRaw('expeditions.costMax <= '.$request->input('prixMax', 300));
+
+        if(Auth::user()) {
+            $getExpe->whereRaw('user_id != 1');
+        }
+
+        $getExpe->get();
+
         
         $expedition = Expedition::findMany($getExpe->pluck('id')->toArray());
         
         $data = array(
         "expeditions" => $expedition,
-        "adresseDep" => $request->input('departExpedition'),
-        "adresseArr" => $request->input('arriveeExpedition'),
-        "latDep" => $latDep,
-        "lngDep" => $lngDep,
-        "latArr" => $latArr,
-        "lngArr" => $lngArr,
         );
         
-        $request->session()->flash('expeditions', $data);
+        $request->session()->flash('expeditions', array_merge($data, $request->only(['departExpedition', 'arriveeExpedition', 'rangeKM', 'departExpeditionCoord', 'arriveeExpeditionCoord', 'longMax', 'largMax', 'hautMax', 'poidMax', 'volume'])));
         return redirect()->route('search_expedition');
     }
     
     public function getSearchExpedition()
     {
-        
+        /*
         $expeditions = Expedition::findMany([1, 2, 3, 4]);
         
         $data = array(
@@ -206,14 +217,14 @@ class SearchController extends Controller
         );
         
         return view('front.pages.search.expeditions', $data);
-        
+        */
 
-        /*
-        if(session('expeditions') != null)
-        {
-            return view('front.pages.search.expeditions', session('expeditions'));
+        if(isset(session('expeditions')['expeditions'])) {
+            $data = session('expeditions');
         } else {
-            return redirect()->back()->withInput();
-        } */
+            $data = array();
+        }
+        
+        return view('front.pages.search.expeditions', $data);
     }
 }

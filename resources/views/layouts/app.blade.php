@@ -99,7 +99,7 @@
       <header class="navbar-fixed">
           <nav>
               <div class="nav-wrapper navbar-fixed white">
-                  <a href="#" class="brand-logo center"><img style="height: 50px;" src="/images/Logo.svg"></a>
+                  <a href="{{ url('/') }}" class="brand-logo center"><img style="height: 50px;" src="/images/Logo.svg"></a>
                   <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi mdi-dots-vertical"></i></a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 25px;">
                     <li><a href="#" class="loginLink"><i class="mdi mdi-login right green-text"></i>Connexion</a></li>
