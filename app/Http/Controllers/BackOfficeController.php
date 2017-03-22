@@ -8,6 +8,8 @@ use App\User;
 use App\Transport;
 use App\Expedition;
 use App\Vehicule;
+use App\DemandeTransport;
+use App\DemandeExpedition;
 use Auth;
 
 class BackOfficeController extends Controller
@@ -265,15 +267,30 @@ class BackOfficeController extends Controller
 
     public function getExpeditionDelete(Expedition $expedition)
     {
-
         $expedition->delete();
+        return redirect()->route('admin_expedition_list');
+    }
 
+    public function getDemandeList()
+    {
         $data = array(
             "user" => Auth::user(),
-            "expeditions" => Expedition::paginate(30),
-            "option" => "PAGINATE"
+            "demandesExpedition" => DemandeExpedition::paginate(30),
+            "demandeTransport" => DemandeTransport::paginate(30),
         );
 
         return view('back.pages.expedition.list', $data);
+    }
+
+    public function getDemandeTransportDelete(DemandeTransport $demandetransport)
+    {
+        $demandetransport->delete();
+        return redirect()->route('admin_demande_list');
+    }
+
+    public function getDemandeExpeditionDelete(DemandeExpedition $demandeexpedition)
+    {
+        $demandeexpedition->delete();
+        return redirect()->route('admin_demande_list');
     }
 }
