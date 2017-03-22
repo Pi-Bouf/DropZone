@@ -125,7 +125,7 @@
     @include('front.partials.register_popup')
 </body>
 
-<footer class="darken-3 page-footer">
+<footer class="darken-3 page-footer mg-t20">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">

@@ -2,7 +2,7 @@
 'includesJs' => [],
 'includesCss' => [] ])
 @section('content')
-		<section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
+		<section id="about" class="scroll-section root-sec padd-tb-100-30">
 			<div class="container">
 				<div class="row">
 					<div class="clearfix ">
@@ -117,7 +117,7 @@
 											@else
 												<a  target="_blank" href="{{ route('user_profile', array('user_id' => $noEx->expedition->demandeAccepte->user->id)) }}" class="white-text">{{$noEx->expedition->demandeAccepte->user->login}}</a>
 											@endif
-											
+
 											 le {{Date::parse($noEx->created_at)->format('l j F') }}</span></div>
 											<p>{{$noEx->text}}</p>
 										</div>
@@ -127,7 +127,7 @@
 
 									@foreach($user->noteTransport as $noTr)
 										<div class="white-text padd-tb-5">
-											<div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$noTr->note}}/5,  <span style="font-size:0.8em;"> de 
+											<div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$noTr->note}}/5,  <span style="font-size:0.8em;"> de
 											@if($noTr->demandeTransport->user->id == $user->id)
 												<a target="_blank" href="{{ route('user_profile', array('user_id' => $noTr->demandeTransport->transport->user->id)) }}" class="white-text">{{$noTr->demandeTransport->transport->user->login}}</a>
 											@else
