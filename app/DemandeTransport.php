@@ -13,6 +13,10 @@ class DemandeTransport extends Model
     public function transport() {
         return $this->belongsTo('\App\Transport');
     }
+
+    public function notation(){
+        return $this->hasOne('\App\NotationTransport')->where('UserOrTransporter' , 1);
+    }
 }
 
 ?>

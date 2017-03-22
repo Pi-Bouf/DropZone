@@ -16,12 +16,12 @@ class CreateNotationExpeTable extends Migration
         Schema::create('notation_expeditions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('expeditions_id')->unsigned();
+            $table->integer('expedition_id')->unsigned();
             $table->text('text');
       		$table->float('note');
       	    $table->boolean('UserOrTransporter');
             $table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('expeditions_id')->references('id')->on('expeditions');
+			$table->foreign('expedition_id')->references('id')->on('expeditions');
             $table->timestamps();
         });
     }

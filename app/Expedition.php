@@ -33,7 +33,11 @@ class Expedition extends Model
         
     public function demandeAccepte()
     {
-        return $this->hasOne('App\DemandeExpedition')->where('isAccepted', 1);
+        return $this->hasOne('App\DemandeExpedition')->where('isAccepted', 2);
+    }
+
+    public function notation(){
+        return $this->hasOne('\App\NotationExpedition')->where('UserOrTransporter' , 0);
     }
 }
 

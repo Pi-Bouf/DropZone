@@ -8,6 +8,7 @@ use App\User;
 use App\QuestionTransport;
 use App\DemandeTransport;
 use Auth;
+use App\NotationTransport;
 use Carbon\Carbon;
 use App\Notifications\NotifDemandeTransport;
 use App\Notifications\StatusDemandeTransport;
@@ -213,6 +214,34 @@ class TransportController extends Controller
     $demande->user->notify(new StatusDemandeTransport($demande->transport->user, $demande->transport, false));
 
       return redirect()->back();
+    }
+
+    public function addNoteReservation(\App\DemandeTransport $demande, Request $request){            
+        $rules = array(
+                'message' => 'required|max:300',
+                'rating-input-1' => "in:1,2,3,4,5",
+            );
+        $this->validate($request, $rules);
+
+        $nt = new NotationTransport();
+
+        $nt->demande_transport_id = $demande->id;
+        $nt->text = $request->input('message');
+        $nt->note = $request->input('rating-input-1');
+        $nt->UserOrTransporter = 1;
+        $nt->user_id = $demande->user->id;
+        
+
+        if($nt->save()){
+            $demande->isAccepted = 2;
+            if($demande->save()){
+                return redirect()->back()->with('note', 'ok');
+            } else {
+                return redirect()->back()->with('errornote', 'ok');
+            }
+        } else {
+            return redirect()->back()->with('errornote', 'ok');
+        }
     }
 
 }

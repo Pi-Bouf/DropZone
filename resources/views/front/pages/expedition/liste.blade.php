@@ -4,6 +4,51 @@
 'includesCss' => [] ])
 @section('content')
 
+<style>
+  .rating {
+      overflow: hidden !important;
+      display: inline-block !important;
+      font-size: 0 !important;
+      position: relative !important;
+  }
+  .rating-input {
+      float: right !important;
+      width: 16px !important;
+      height: 16px !important;
+      padding: 0 !important;
+      margin: 0 0 0 -16px !important;
+      opacity: 0 !important;
+  }
+  .rating:hover .rating-star:hover,
+  .rating:hover .rating-star:hover ~ .rating-star,
+  .rating-input:checked ~ .rating-star {
+      background-position: 0 0 !important;
+      border: 0px !important;
+  }
+
+  
+[type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
+  border: 0px !important;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after{
+  background-color:transparent !important;
+  border: 0px !important;
+}
+  .rating-star,
+  .rating:hover .rating-star {
+      padding-left:0px !important;
+      position: relative !important;
+      float: right !important;
+      display: block !important;
+      width: 28px !important;
+      height: 28px !important;
+      background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -28px !important;
+      background-size: 28px auto !important;
+  }
+
+
+
+</style>
 
     <section id="about" class="scroll-section root-sec padd-tb-100-30  grey lighten-5">
       <h3 class="about-subtitle center-align">Mes colis</h3>
@@ -71,12 +116,9 @@
                   </div>
                   <div class="row mg-t20">
                     <div class="col s12 m12 l12 black-text">
-
+                        <h3 class="about-subtitle">Demande(s) en attente(s)</h3>
                         @foreach($expedition->demandeExpedition as $demande)
                           @if(is_null($demande->isAccepted))
-                            @if($loop->first)
-                              <h3 class="about-subtitle">Demande(s) en attente(s)</h3>
-                            @endif
                           <div class="row card blue lighten-3 demande-expe">
                                   <div class="col s6 m2 l2 center-align">
                                     @if($demande->user->picLink==null)
@@ -91,7 +133,7 @@
                                     </p>
                                     <p>
                                       <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-                                       4.5/5
+                                      {{$demande->user->note()}}/5 - {{$demande->user->nbNotes()}} avis
                                     </p>
                                   </div>
                                   <div class="col s6 m4 l4">
@@ -117,11 +159,9 @@
                     <div class="row mg-t20">
 
                       <div class="col s12 m12 l12 black-text">
+                          <h3 class="about-subtitle">Demande acceptée</h3>
                           @foreach($expedition->demandeExpedition as $demande)
-                            @if($demande->isAccepted == 1)
-                            @if($loop->first)
-                              <h3 class="about-subtitle">Demande acceptée</h3>
-                            @endif
+                            @if($demande->isAccepted == 1 || $demande->isAccepted == 2)
                             <div class="row card blue lighten-3 demande-expe">
                                     <div class="col s6 m2 l2 center-align">
                                       @if($demande->user->picLink==null)
@@ -131,28 +171,70 @@
                                       @endif
                                     </div>
                                     <div class="col s6 m2 l2">
-                                      <p>
+                                      <a href="/user/{{$demande->user->id}}">
                                         {{ $demande->user->login }}
-                                      </p>
+                                      </a>
                                       <p>
-                                        <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
-                                         4.5/5
+                                          <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                           {{$demande->user->note()}}/5 - {{$demande->user->nbNotes()}} avis
                                       </p>
                                     </div>
                                     <div class="col s6 m4 l4">
                                       <p>
-                                        Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
+                                        Départ entre le {{ Date::parse($demande->beginDate)->format('j F') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
                                       </p>
                                       <p>
                                         Prix : {{ $demande->prixAsked }} €
                                       </p>
                                     </div>
-                                    @if($demande->beginDate < date('Y-m-d H:i:s'))
+                                      @if($demande->isAccepted==2 && !is_null($expedition->notation))
+                                        <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                          Votre note :<br>
+                                              {{$expedition->notation->note}}
+                                             /5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                        </div>
+                                      @else
+                                        @if($demande->beginDate < date('Y-m-d H:i:s'))
 
-                                    <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                      <a href="#" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                        <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                          <a href="#note_{{ $demande->id }}" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                        </div>
+                                        @endif
+                                      @endif
+                              <div id="note_{{ $demande->id }}" class="modal">
+                                <form method="POST" id="formAjoutTransport" action="{{route('postnoteexpedition', array('demande' => $demande->id))}}">
+                                  <div class="modal-content">
+                                    <h4>Noter ce transport :</h4>
+                                    {{ csrf_field() }}
+                                    <div class="input-field">
+                                      <label for="message">Votre message :</label>
+                                      <textarea type="text" class="materialize-textarea" id="message" name="message" required ></textarea><br>
                                     </div>
-                                    @endif
+                                    <label for="note">Note : </label>
+                                    <span class="rating">
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-5" name="rating-input-1" value="5" required/>
+                                      <label for="rating-{{$demande->id}}-input-1-5" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-4" name="rating-input-1" value="4"/>
+                                      <label for="rating-{{$demande->id}}-input-1-4" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-3" name="rating-input-1" value="3"/>
+                                      <label for="rating-{{$demande->id}}-input-1-3" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-2" name="rating-input-1" value="2"/>
+                                      <label for="rating-{{$demande->id}}-input-1-2" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-1" name="rating-input-1" value="1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-1" class="rating-star"></label>
+                                    </span>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button class=" modal-action modal-close waves-effect green white-text waves-green btn-flat"><i class="mdi mdi-star yellow-text left"></i>Noter ! </button>
+                                    <a href="#!" class="margin-r10 modal-action modal-close waves-effect red white-text waves-green btn-flat">Retour</a>
+                                  </div>
+                                </form>
+                              </div>
                             </div>
                             @endif
                           @endforeach

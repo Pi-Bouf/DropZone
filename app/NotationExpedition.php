@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class NotationExpedition extends Model
 {
     public function expedition() {
-        return $this->belongsTo('\App\Expedition', 'expeditions_id');
+        return $this->hasone('\App\Expedition');
+    }
+
+    public function monExpedition() {
+        return $this->hasOne('\App\Expedition', 'id');
     }
 
 

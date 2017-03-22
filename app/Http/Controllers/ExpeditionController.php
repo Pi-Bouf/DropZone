@@ -7,6 +7,7 @@ use App\Ville;
 use Auth;
 use App\QuestionExpedition;
 use App\DemandeExpedition;
+use App\NotationExpedition;
 use App\Expedition;
 use Carbon\Carbon;
 use App\Notifications\NotifDemandeExpedition;
@@ -159,7 +160,6 @@ class ExpeditionController extends Controller
         $demande->propositionText= $request->input('message');
         $demande->user_id = Auth::user()->id;
         $demande->prixAsked = $request->input('prix');
-        $demande->isAccepted = false;
         $beginD = explode ("/", $request->input('dateD'));
         $demande->beginDate = $beginD[2].'-'.$beginD[1].'-'.$beginD[0];
         $endD = explode ("/", $request->input('dateF'));
@@ -172,5 +172,32 @@ class ExpeditionController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function addNoteReservationE(\App\DemandeExpedition $demande, Request $request){            
+        $rules = array(
+                'message' => 'required|max:300',
+                'rating-input-1' => "in:1,2,3,4,5",
+            );
+        $this->validate($request, $rules);
+
+        $nt = new NotationExpedition();
+        $nt->expedition_id = $demande->expedition->id;
+        $nt->text = $request->input('message');
+        $nt->note = $request->input('rating-input-1');
+        $nt->UserOrTransporter = 0;
+        $nt->user_id = $demande->user->id;
+        
+
+        if($nt->save()){
+            $demande->isAccepted = 2;
+            if($demande->save()){
+                return redirect()->back()->with('note', 'ok');
+            } else {
+                return redirect()->back()->with('errornote', 'ok');
+            }
+        } else {
+            return redirect()->back()->with('errornote', 'ok');
+        }
     }
 }
