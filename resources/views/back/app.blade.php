@@ -95,6 +95,10 @@
                         <a href="{{ route('admin_expedition_list') }}"><i class="fa fa-archive"></i> <span>Expeditions</span></a>
                     </li>
 
+                    <li>
+                        <a href="{{ route('admin_demande_list') }}"><i class="fa fa-ticket"></i> <span>Demandes</span></a>
+                    </li>
+
                 </ul>
             </section>
             <!-- /.sidebar -->

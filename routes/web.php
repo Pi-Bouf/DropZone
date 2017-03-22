@@ -119,3 +119,7 @@ $this->get('/admin/transport/detail/{transport}', 'BackOfficeController@getTrans
 $this->get('/admin/expedition/list', 'BackOfficeController@getExpeditionList')->name('admin_expedition_list');
 $this->get('/admin/expedition/delete/{expedition}', 'BackOfficeController@getExpeditionDelete')->name('admin_expedition_delete');
 $this->get('/admin/expedition/detail/{expedition}', 'BackOfficeController@getExpeditionDetail')->name('admin_expedition_detail');
+
+$this->get('/admin/demande/list', 'BackOfficeController@getDemandeList')->name('admin_demande_list');
+$this->get('/admin/demande/deletetransport/{demandetransport}', 'BackOfficeController@getDemandeTransportDelete')->name('admin_demandetransport_delete');
+$this->get('/admin/demande/deleteexpedition/{demandeexpedition}', 'BackOfficeController@getDemandeExpeditionDelete')->name('admin_demandeexpedition_delete');
