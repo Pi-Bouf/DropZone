@@ -44,7 +44,7 @@
         </div>
 
         <div class="input-field col s12">
-          <input type="date" id="birthday" name="reg_birthday" class="datepicker validate" value="{{ $user->birthday }}" required>
+          <input type="date" id="birthday" name="reg_birthday" class="datepicker" value="{{ $user->birthday }}" required>
           <label for="birthday">Date de naissance</label>
           <br><strong>{{ $errors->first('reg_birthday') }}</strong>
         </div>
@@ -71,7 +71,13 @@
   </div>
 </section>
 
-
+<script>
+    $(document).ready(function() {
+        var $input = $('.datepicker').pickadate();
+        var picker = $input.pickadate('picker');
+        picker.set('select', "{{ $user->birthday or old('dateTransport') }}");
+    });
+</script>
 
 
 @endsection

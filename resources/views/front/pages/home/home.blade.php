@@ -55,48 +55,54 @@
 
 <!-- Contact Section end -->
 <section id="contact" class="scroll-section root-sec brand-bg padd-tb-120 contact-wrap">
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
-    <br> fsdioj
+    <div class="container">
+        <div class="row">
+            <div class="carousel carousel-slider center col s4 m3" data-indicators="true">
+                <div class="carousel-fixed-item center">
+                <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                </div>
+                <div class="carousel-item red white-text" href="#one!">
+                <h2>First Panel</h2>
+                <p class="white-text">This is your first panel</p>
+                </div>
+                <div class="carousel-item amber white-text" href="#two!">
+                <h2>Second Panel</h2>
+                <p class="white-text">This is your second panel</p>
+                </div>
+                <div class="carousel-item green white-text" href="#three!">
+                <h2>Third Panel</h2>
+                <p class="white-text">This is your third panel</p>
+                </div>
+                <div class="carousel-item blue white-text" href="#four!">
+                <h2>Fourth Panel</h2>
+                <p class="white-text">This is your fourth panel</p>
+                </div>
+            </div>
+
+            <div class="carousel carousel-slider center col s4 m3m " data-indicators="true">
+                <div class="carousel-fixed-item center">
+                <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                </div>
+                <div class="carousel-item red white-text" href="#one!">
+                <h2>First Panel</h2>
+                <p class="white-text">This is your first panel</p>
+                </div>
+                <div class="carousel-item amber white-text" href="#two!">
+                <h2>Second Panel</h2>
+                <p class="white-text">This is your second panel</p>
+                </div>
+                <div class="carousel-item green white-text" href="#three!">
+                <h2>Third Panel</h2>
+                <p class="white-text">This is your third panel</p>
+                </div>
+                <div class="carousel-item blue white-text" href="#four!">
+                <h2>Fourth Panel</h2>
+                <p class="white-text">This is your fourth panel</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </section>
 <!-- #contact Section end -->
 <script>
