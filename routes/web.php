@@ -116,3 +116,6 @@ $this->post('/admin/user/vehicule/edit/{vehicule}', 'BackOfficeController@postEd
 $this->get('/admin/transport/list', 'BackOfficeController@getTransportList')->name('admin_transport_list');
 $this->get('/admin/transport/delete/{transport}', 'BackOfficeController@getTransportDelete')->name('admin_transport_delete');
 $this->get('/admin/transport/detail/{transport}', 'BackOfficeController@getTransportDetail')->name('admin_transport_detail');
+$this->get('/admin/expedition/list', 'BackOfficeController@getExpeditionList')->name('admin_expedition_list');
+$this->get('/admin/expedition/delete/{expedition}', 'BackOfficeController@getExpeditionDelete')->name('admin_expedition_delete');
+$this->get('/admin/expedition/detail/{expedition}', 'BackOfficeController@getExpeditionDetail')->name('admin_expedition_detail');

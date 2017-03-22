@@ -92,7 +92,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('admin_expedition_list') }}"><i class="fa fa-truck"></i> <span>Expeditions</span></a>
+                        <a href="{{ route('admin_expedition_list') }}"><i class="fa fa-archive"></i> <span>Expeditions</span></a>
                     </li>
 
                 </ul>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Transport;
+use App\Expedition;
 use App\Vehicule;
 use Auth;
 
@@ -240,5 +241,16 @@ class BackOfficeController extends Controller
             "transport" => $transport,
         );
         return view('back.pages.transport.detail', $data);
+    }
+
+    public function getExpeditionList()
+    {
+        $data = array(
+            "user" => Auth::user(),
+            "expeditions" => Expedition::paginate(30),
+            "option" => "PAGINATE"
+        );
+
+        return view('back.pages.expedition.list', $data);
     }
 }

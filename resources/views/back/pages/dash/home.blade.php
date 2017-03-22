@@ -11,17 +11,17 @@
     </div>
     <div class="col-md-3">
         <div class="sm-st clearfix">
-            <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
+            <span class="sm-st-icon st-violet"><i class="fa fa-truck"></i></span>
             <div class="sm-st-info">
-                <span>2200</span> Total Messages
+                <span>{{ Transport::all()->count() }}</span> Transports
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="sm-st clearfix">
-            <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+            <span class="sm-st-icon st-blue"><i class="fa fa-archive"></i></span>
             <div class="sm-st-info">
-                <span>100,320</span> Total Profit
+                <span>{{ Expedition::all()->count() }}</span> Expeditions
             </div>
         </div>
     </div>

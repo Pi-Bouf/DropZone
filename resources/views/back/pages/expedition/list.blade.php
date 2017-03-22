@@ -18,20 +18,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($transports as $transport)
+                    @foreach($expeditions as $expedition)
                         <tr>
-                            <td><a href="{{ route('admin_transport_detail', array('transport' => $transport->id)) }}">{{ $transport->id }}</a></td>
-                            <td><a href="{{ route('admin_user_detail', array('user' => $transport->user->id)) }}">{{ $transport->user->login }}</a></td>
-                            <td>{{ $transport->villeDepart->ville->name }}</td>
-                            <td>{{ $transport->villeArrivee->ville->name }}</td>
-                            <td>@if($transport->natureTransport) <span class="badge bg-green">Régulier</span> @else <span class="badge bg-blue">Ponctuel</span> @endif</td>
+                           <td></td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
                 @if($option == "PAGINATE")
                 <div class="text-center">
-                    <?php echo $transports->links(); ?>
+                    <?php echo $expeditions->links(); ?>
                 </div>
                 @endif
             </div>
@@ -53,19 +49,7 @@
                     </tr>
                     <tr>
                         <td>En attente</td>
-                        <td>{{ Transport::waiting()->count() }}</td>
-                    </tr>
-                    <tr>
-                        <td>Effectué</td>
-                        <td>{{ Transport::OK()->count() }}</td>
-                    </tr>
-                    <tr>
-                        <td>Ponctuel</td>
-                        <td>{{ Transport::ponctuel()->count() }}</td>
-                    </tr>
-                    <tr>
-                        <td>Régulier</td>
-                        <td>{{ Transport::regulier()->count() }}</td>
+                        <td>0</td>
                     </tr>
                 </table>
             </div>

@@ -54,8 +54,9 @@ $(document).ready(function() {
     });
 
     $(document).on('keyup', '.auPif', function(e) {
-        if ($(this).val().length > 2) {
-            $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + $(this).val() + '&key=AIzaSyA8s4b7f29R8Mn5v9Xf68GilgyjMUlrPcU', (data) => {
+
+        if ($(this).val().length >= 2) {
+            $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + $(this).val() + '&key=AIzaSyDafB5RLEbXzBKpSNsil8N82xBJ8zXHH8U', (data) => {
                 if (data.status == "OK") {
                     $('[name="' + $(this).attr('hiddenId') + '"]').val(data.results[0].geometry.location.lat + ";" +
                         data.results[0].geometry.location.lng)
@@ -124,6 +125,6 @@ $(document).ready(function() {
         callbackAfterTransition: function(e) {}
     });
 
-    $('.carousel.carousel-slider').carousel({fullWidth: true});
+    $('.carousel.carousel-slider').carousel({ fullWidth: true });
 
 });
