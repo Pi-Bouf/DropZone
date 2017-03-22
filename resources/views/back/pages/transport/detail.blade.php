@@ -276,10 +276,11 @@
                     </tr>
                     @endif
                 </table>
+                <center>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#del_transport">Supprimer ce transport</a>
+                </center>
             </div>
             
-            <a class="btn btn-danger" data-toggle="modal" data-target="#del_transport">Supprimer</a>
-
             <div class="modal fade" id="del_transport" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -292,7 +293,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
-                            <a href="{{ route('admin_transport_delete', array('transport' => $transport->id)) }}" class="btn btn-primary">Bannir !</a>
+                            <a href="{{ route('admin_transport_delete', array('transport' => $transport->id)) }}" class="btn btn-primary">Supprimer !</a>
                         </div>
                     </div>
                 </div>

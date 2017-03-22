@@ -218,6 +218,20 @@ class BackOfficeController extends Controller
 
         return view('back.pages.transport.list', $data);
     }
+
+    public function getTransportDelete(Transport $transport)
+    {
+
+        $transport->delete();
+
+        $data = array(
+            "user" => Auth::user(),
+            "transports" => Transport::paginate(30),
+            "option" => "PAGINATE"
+        );
+
+        return view('back.pages.transport.list', $data);
+    }
     
     public function getTransportDetail(Transport $transport)
     {
