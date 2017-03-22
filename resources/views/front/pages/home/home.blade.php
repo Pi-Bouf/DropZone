@@ -1,4 +1,4 @@
-@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => ['/js/search.js'], 'includesCss' => []] ) @section('content')
+@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => ['/js/search.js'], 'includesCss' => ['/css/home.css']] ) @section('content')
 
 <section>
     <section id="home" class="scroll-section root-sec grey lighten-5 home-wrap">
@@ -9,7 +9,7 @@
                         <div class="home-inner">
                             <div class="center-align home-content">
                                 <h1 class="home-title">Drop<span>Zone</span></h1>
-                                <h2 class="home-subtitle">Transportez vos colis à moindre prix !</h2>
+                                <h2 class="home-subtitle">Transportez vos colis à moindre prix ! {{$bouh}}</h2>
                                 <div class="row">
                                     <div class="col s12 m6 l8 offset-l2 offset-m3">
                                         <div class="card" style="background-color: rgba(0, 0, 0, 0) !important;">
@@ -37,6 +37,7 @@
                                                             <div class="col l12 m12 s6 center-align">
                                                                 <button class="btn-floating btn-large waves-effect waves-light white"><i class="mdi mdi-search-web" style="color: dodgerblue !important;"></i></button>
                                                             </div>
+                                                            
                                                         </div>
                                                     </form>
                                                 </div>
@@ -54,54 +55,81 @@
 </section>
 
 <!-- Contact Section end -->
-<section id="contact" class="scroll-section root-sec brand-bg padd-tb-120 contact-wrap">
+<section id="contact" class="scroll-section root-sec padd-tb-120 contact-wrap">
     <div class="container">
         <div class="row">
-            <div class="carousel carousel-slider center col s4 m3" data-indicators="true">
-                <div class="carousel-fixed-item center">
-                <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                </div>
-                <div class="carousel-item red white-text" href="#one!">
-                <h2>First Panel</h2>
-                <p class="white-text">This is your first panel</p>
-                </div>
-                <div class="carousel-item amber white-text" href="#two!">
-                <h2>Second Panel</h2>
-                <p class="white-text">This is your second panel</p>
-                </div>
-                <div class="carousel-item green white-text" href="#three!">
-                <h2>Third Panel</h2>
-                <p class="white-text">This is your third panel</p>
-                </div>
-                <div class="carousel-item blue white-text" href="#four!">
-                <h2>Fourth Panel</h2>
-                <p class="white-text">This is your fourth panel</p>
+            <div class="col s10 push-s1 m4 push-m1 center">
+                <span class="infoTransport">Nos derniers transports</span>
+                <div class="carousel carousel-slider center " id="transport" data-indicators="true">
+                    <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(150,150,150,0.5)">
+                        <h3>First Panel</h3>
+                        <p class="white-text">This is your first panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
+                    <div class="carousel-item white-text" href="#two!" style="background-color: rgba(75,75,75,0.5)">
+                        <h3>Second Panel</h3>
+                        <p class="white-text">This is your second panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
+                    <div class="carousel-item  white-text" href="#three!" style="background-color: rgba(150,150,150,0.5)">
+                        <h3>Third Panel</h3>
+                        <p class="white-text">This is your third panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
+                    <div class="carousel-item white-text" href="#four!" style="background-color: rgba(75,75,75,0.5)">
+                        <h3>Fourth Panel</h3>
+                        <p class="white-text">This is your fourth panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="carousel carousel-slider center col s4 m3m " data-indicators="true">
-                <div class="carousel-fixed-item center">
-                <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                </div>
-                <div class="carousel-item red white-text" href="#one!">
-                <h2>First Panel</h2>
-                <p class="white-text">This is your first panel</p>
-                </div>
-                <div class="carousel-item amber white-text" href="#two!">
-                <h2>Second Panel</h2>
-                <p class="white-text">This is your second panel</p>
-                </div>
-                <div class="carousel-item green white-text" href="#three!">
-                <h2>Third Panel</h2>
-                <p class="white-text">This is your third panel</p>
-                </div>
-                <div class="carousel-item blue white-text" href="#four!">
-                <h2>Fourth Panel</h2>
-                <p class="white-text">This is your fourth panel</p>
+            <div class="col m3"></div>
+            <div class="col s10 push-s1 m4 center">
+                <span class="infoColis ">Nos derniers colis</span>
+                <div class="carousel carousel-slider center " id="colis" data-indicators="true">
+                    <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(150,150,150,0.5)">
+                        <h3>First Panel</h3>
+                        <p class="white-text">This is your first panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
+                    <div class="carousel-item white-text" href="#two!" style="background-color: rgba(75,75,75,0.5)">
+                        <h3>Second Panel</h3>
+                        <p class="white-text">This is your second panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
+                    <div class="carousel-item  white-text" href="#three!" style="background-color: rgba(150,150,150,0.5)">
+                        <h3>Third Panel</h3>
+                        <p class="white-text">This is your third panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
+                    <div class="carousel-item white-text" href="#four!" style="background-color: rgba(75,75,75,0.5)">
+                        <h3>Fourth Panel</h3>
+                        <p class="white-text">This is your fourth panel</p>
+                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <div class="row black-text center">
+            <div class="col s12 m4">
+                <i class="mdi mdi-car icon"></i><br><h3>Transport</h3>
+                <div class="text-center">
+                    Choisissez vous-même, au sein de la communauté, le particulier qui acheminera votre colis. Discutez à tout moment par messages privés. Et pour que vous soyez 100% serein, votre colis est automatiquement assuré. Les galères de colis, avec Cocolis, c'est fini !
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <i class="mdi mdi-package-variant-closed icon"></i><br><h3>Expedition</h3>
+                <div class="text-center">
+                    Grâce au covoiturage de colis, vos frais d'envoi coûtent jusqu'à 80% moins cher que les solutions de transport traditionnelles. Cocolis est plus économique, même pour les meubles et objets lourds ou encombrants. Gardez votre argent pour vos vacances !
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <i class="mdi mdi-wechat icon"></i><br><h3>Vos avis </h3>
+                <div class="text-center">
+                    Une chose est sûre : le porteur du colis aurait réalisé le déplacement même sans le colis ! Alors, profiter de ce trajet pour faire livrer un objet, c’est penser à l’environnement. Aucune émission polluante supplémentaire. Une bonne nouvelle, non ?
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <!-- #contact Section end -->

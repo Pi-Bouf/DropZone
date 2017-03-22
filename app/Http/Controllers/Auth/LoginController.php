@@ -43,7 +43,8 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('front.pages.home.home');
+        $bouh = 'coucou';
+        return view('front.pages.home.home', array('bouh'=>$bouh));
     }
 
     public function logout(Request $request)

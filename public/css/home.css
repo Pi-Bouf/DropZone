@@ -1,0 +1,27 @@
+.infoColis{
+    color:darkorange;
+    font-size:1.7em;
+}
+
+.infoTransport{
+    color:royalblue;
+    font-size:1.7em;
+}
+
+#colis{
+    background:url('../../images/colisbg.jpg') no-repeat center;
+    background-size: auto 100%;
+    background-color:white;
+    margin-top:15px;
+}
+
+#transport{
+    background:url('../../images/transportbg.jpg') no-repeat center;
+    background-size: cover;
+    background-color:white;
+    margin-top:15px;
+}
+
+.icon{
+    font-size: 5em !important;
+}
