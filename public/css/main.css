@@ -632,3 +632,15 @@ h3 {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+.footer-header{
+  font-size: 1.7em;
+  margin-bottom: 15px;
+}
+
+footer{
+  background-color: #5d7fbc !important;
+  color: #2F2F2F !important;
+}
+
+.footer-link:active, .footer-link:hover {color:white !important; text-decoration:underline !important;}
