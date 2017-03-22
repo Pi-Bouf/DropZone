@@ -641,8 +641,6 @@ h3 {
 footer{
   background-color: #5d7fbc !important;
   color: #2F2F2F !important;
-  position:relative;
-      bottom:0;
 }
 
 .footer-link:active, .footer-link:hover {color:white !important; text-decoration:underline !important;}
