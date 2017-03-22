@@ -211,7 +211,9 @@ class BackOfficeController extends Controller
     public function getTransportList()
     {
         $data = array(
-            "transports" => Transport::all(),
+            "user" => Auth::user(),
+            "transports" => Transport::paginate(30),
+            "option" => "PAGINATE"
         );
 
         return view('back.pages.transport.list', $data);

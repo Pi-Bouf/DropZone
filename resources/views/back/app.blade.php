@@ -84,13 +84,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin_user_list') }}"><i class="fa fa-gavel"></i> <span>Utilisateurs</span></a>
+                        <a href="{{ route('admin_user_list') }}"><i class="fa fa-user"></i> <span>Utilisateurs</span></a>
                     </li>
 
                     <li>
-                        <a href="basic_form.html">
-                            <i class="fa fa-globe"></i> <span>Basic Elements</span>
-                        </a>
+                        <a href="{{ route('admin_transport_list') }}"><i class="fa fa-truck"></i> <span>Transports</span></a>
                     </li>
 
                     <li>

@@ -50,6 +50,23 @@ class Transport extends Model
         return $this->hasOne('App\Etape')->where('ville_position', 7);
     }
 
+    public static function waiting() {
+        return Transport::where('beginningDate', '>', date( 'Y-m-d H:i:s'))
+        ->orWhere('regularyEndingDate', '>', date( 'Y-m-d H:i:s'))->get();
+    }
+
+    public static function OK() {
+        return Transport::where('beginningDate', '<', date( 'Y-m-d H:i:s'))
+        ->orWhere('regularyEndingDate', '<', date( 'Y-m-d H:i:s'))->get();
+    }
+
+    public static function ponctuel() {
+        return Transport::where('natureTransport', false);
+    }
+
+    public static function regulier() {
+        return Transport::where('natureTransport', true);
+    }
 }
 
 ?>

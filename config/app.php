@@ -230,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Date' => Jenssegers\Date\Date::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Transport' => App\Transport::class,
 
     ],
 

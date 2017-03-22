@@ -277,6 +277,26 @@
                     @endif
                 </table>
             </div>
+            
+            <a class="btn btn-danger" data-toggle="modal" data-target="#del_transport">Supprimer</a>
+
+            <div class="modal fade" id="del_transport" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-left">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                        </div>
+                        <div class="modal-body">
+                            Voulez-vous vraiment supprimer ce transport ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
+                            <a href="{{ route('admin_transport_delete', array('transport' => $transport->id)) }}" class="btn btn-primary">Bannir !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
         <div class="panel">
             <header class="panel-heading">
