@@ -30,7 +30,7 @@
             <div class="col s12 m12 l10 offset-l1 black-text">
               <h3 class="about-subtitle center-align">Demande de transport</h3>
               <ul class="collapsible" data-collapsible="accordion">
-                @foreach(Auth::user()->demandesTransport as $demande)
+                @foreach(Auth::user()->demandesTransport->sortBy('created_at') as $demande)
                 <li>
                   <div class="collapsible-header  ">
                     <span style="margin: 10px">{{ $demande->transport->villeDepart->ville->name }}</span> &#10142; <span style="margin: 10px"> {{ $demande->transport->villeArrivee->ville->name }} </span>
@@ -56,8 +56,21 @@
                       <div class="col s12 m12 l12 mg-t20">
                         <span>{{ $demande->text }}</span>
                       </div>
+
                       <div class="col s12 m12 l12 mg-t20">
-                        <a href="#" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                        <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
+                        <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                      </div>
+
+                      <div id="delete_{{ $demande->id }}" class="modal">
+                        <div class="modal-content">
+                          <h4>Confirmer la suppression</h4>
+                          <p>Voulez-vous vraiment supprimer cette demande?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="/user/myrequest/delTransport/{{$demande->id}}" class="modal-action modal-close waves-effect red white-text waves-green btn-flat"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
+                          <a href="#!" class="margin-r10 modal-action modal-close waves-effect green white-text waves-green btn-flat">Retour</a>
+                        </div>
                       </div>
 
 

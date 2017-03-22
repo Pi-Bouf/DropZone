@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Carbon\Carbon;
+use App\DemandeExpedition;
+use App\DemandeTransport;
 
 // import the Intervention Image Manager Class
 use Intervention\Image\ImageManager;
@@ -32,8 +34,13 @@ class UserController extends Controller
     */
 
     public function getMyRequest(){
-      //echo "coucou";
       return view('front.pages.user.myrequest');
+    }
+
+    public function delTranspRequest($demande_id){
+      $demande = DemandeTransport::whereId($demande_id);
+      $demande->delete();
+      return redirect()->route('my_request')->with('add', 'ok');
     }
 
 

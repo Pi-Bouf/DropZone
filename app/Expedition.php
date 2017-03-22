@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Expedition extends Model
 {
+  use SoftDeletes;
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -30,7 +33,7 @@ class Expedition extends Model
     {
       return $this->hasMany('App\DemandeExpedition');
     }
-        
+
     public function demandeAccepte()
     {
         return $this->hasOne('App\DemandeExpedition')->where('isAccepted', 2);

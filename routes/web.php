@@ -73,6 +73,7 @@ Route::get('user/myrequest', 'UserController@getMyRequest')->name('my_request');
 Route::get('user/{user_id}', 'UserController@getProfile')->name('user_profile');
 Route::get('user/me/update', 'UserController@getProfileUpdate')->name('user_profile_update');
 Route::post('user/me/update', 'UserController@postProfileUpdate')->name('user_profile_update_post');
+Route::get('user/myrequest/delTransport/{demande}', 'UserController@delTranspRequest')->name('del_Transp_Request');
 
 
 /*

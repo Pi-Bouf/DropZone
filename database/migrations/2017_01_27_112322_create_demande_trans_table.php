@@ -23,6 +23,7 @@ class CreateDemandeTransTable extends Migration
           $table->timestamps();
           $table->foreign('transport_id')->references('id')->on('transports');
           $table->foreign('user_id')->references('id')->on('users');
+          $table->softDeletes();
       });
     }
 
