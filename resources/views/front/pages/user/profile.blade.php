@@ -112,10 +112,10 @@
 									@foreach($user->noteExpedition as $noEx)
 										<div class="white-text padd-tb-5">
 											<div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$noEx->note}}/5,  <span style="font-size:0.8em;"> de
-											@if($noEx->monExpedition->user->login != $user->id)
-												<a  target="_blank" href="{{ route('user_profile', array('user_id' => $noEx->monExpedition->user->id)) }}" class="white-text">{{$noEx->monExpedition->user->login}}</a>
+											@if($noEx->expedition->user->id != $user->id)
+												<a  target="_blank" href="{{ route('user_profile', array('user_id' => $noEx->expedition->user->id)) }}" class="white-text">{{$noEx->expedition->user->login}}</a>
 											@else
-												gCovin
+												<a  target="_blank" href="{{ route('user_profile', array('user_id' => $noEx->expedition->demandeAccepte->user->id)) }}" class="white-text">{{$noEx->expedition->demandeAccepte->user->login}}</a>
 											@endif
 											
 											 le {{Date::parse($noEx->created_at)->format('l j F') }}</span></div>

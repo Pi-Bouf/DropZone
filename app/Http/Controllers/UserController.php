@@ -91,7 +91,7 @@ class UserController extends Controller
       $rules = array(
         'firstName' => 'required|max:50|string',
         'lastName' => 'required|max:75|string',
-        'gender' => 'in:0,1',
+        'sexe' => 'in:h,f',
         'profil_email' => 'required|max:100|email',
         'phone' => 'required|max:9999999999|numeric',
         'description' => 'required|string',
@@ -106,7 +106,7 @@ class UserController extends Controller
       $user = Auth::user();
       $user->firstName = $request->input('firstName');
       $user->lastName = $request->input('lastName');
-      $user->sexe = ($request->input('gender') == 'h') ? 'h' : 'f';
+      $user->sexe = $request->input('sexe');
 
       $user->email = $request->input('profil_email');
       if(!empty($request->input('reg_birthday'))) {

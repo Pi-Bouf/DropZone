@@ -124,4 +124,6 @@ $(document).ready(function() {
         callbackAfterTransition: function(e) {}
     });
 
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+
 });
