@@ -231,6 +231,7 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Transport' => App\Transport::class,
+        'Expedition' => App\Expedition::class,
 
     ],
 

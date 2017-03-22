@@ -92,9 +92,7 @@
                     </li>
 
                     <li>
-                        <a href="simple.html">
-                            <i class="fa fa-glass"></i> <span>Simple tables</span>
-                        </a>
+                        <a href="{{ route('admin_expedition_list') }}"><i class="fa fa-truck"></i> <span>Expeditions</span></a>
                     </li>
 
                 </ul>
