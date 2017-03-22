@@ -253,4 +253,27 @@ class BackOfficeController extends Controller
 
         return view('back.pages.expedition.list', $data);
     }
+
+    public function getExpeditionDetail(Expedition $expedition)
+    {
+        $data = array(
+            "user" => Auth::user(),
+            "expedition" => $expedition,
+        );
+        return view('back.pages.expedition.detail', $data);
+    }
+
+    public function getExpeditionDelete(Expedition $expedition)
+    {
+
+        $expedition->delete();
+
+        $data = array(
+            "user" => Auth::user(),
+            "expeditions" => Expedition::paginate(30),
+            "option" => "PAGINATE"
+        );
+
+        return view('back.pages.expedition.list', $data);
+    }
 }

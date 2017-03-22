@@ -232,6 +232,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Transport' => App\Transport::class,
         'Expedition' => App\Expedition::class,
+        'DemandeExpedition' => App\DemandeExpedition::class,
+        'DemandeTransport' => App\DemandeTransport::class,
 
     ],
 

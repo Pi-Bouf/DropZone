@@ -67,6 +67,10 @@
                         <td>Régulier</td>
                         <td>{{ Transport::regulier()->count() }}</td>
                     </tr>
+                    <tr>
+                        <td>Demande de transport</td>
+                        <td>{{ DemandeTransport::all()->count() }}</td>
+                    </tr>
                 </table>
             </div>
             <!-- /.panel-body -->
