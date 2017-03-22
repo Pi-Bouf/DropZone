@@ -43,6 +43,11 @@ class UserController extends Controller
       return redirect()->route('my_request')->with('add', 'ok');
     }
 
+    public function delExpeRequest($demande_id){
+      $demande = DemandeExpedition::whereId($demande_id);
+      $demande->delete();
+      return redirect()->route('my_request')->with('add', 'ok');
+    }
 
     public function getProfile($user_id){
       if($user_id=='me') {
