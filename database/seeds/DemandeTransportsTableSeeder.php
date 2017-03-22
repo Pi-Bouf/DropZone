@@ -29,6 +29,7 @@ Merci !',
                 'cost' => 5,
                 'created_at' => '2017-03-16 23:12:28',
                 'updated_at' => '2017-03-16 23:12:28',
+                'deleted_at' => NULL,
             ),
             1 => 
             array (
@@ -40,6 +41,7 @@ Merci !',
             'cost' => 15,
             'created_at' => '2017-03-16 23:17:47',
             'updated_at' => '2017-03-16 23:17:47',
+            'deleted_at' => NULL,
         ),
         2 => 
         array (
@@ -51,6 +53,7 @@ Merci !',
             'cost' => 150,
             'created_at' => '2017-03-16 23:20:01',
             'updated_at' => '2017-03-16 23:20:01',
+            'deleted_at' => NULL,
         ),
         3 => 
         array (
@@ -62,6 +65,7 @@ Merci !',
             'cost' => 5,
             'created_at' => '2017-03-16 23:28:25',
             'updated_at' => '2017-03-16 23:28:25',
+            'deleted_at' => NULL,
         ),
         4 => 
         array (
@@ -73,6 +77,7 @@ Merci !',
             'cost' => 45,
             'created_at' => '2017-03-16 23:30:16',
             'updated_at' => '2017-03-16 23:30:16',
+            'deleted_at' => NULL,
         ),
         5 => 
         array (
@@ -84,6 +89,7 @@ Merci !',
             'cost' => 2000,
             'created_at' => '2017-03-16 23:33:37',
             'updated_at' => '2017-03-16 23:33:37',
+            'deleted_at' => NULL,
         ),
         6 => 
         array (
@@ -95,6 +101,7 @@ Merci !',
         'cost' => 25,
         'created_at' => '2017-03-16 23:35:34',
         'updated_at' => '2017-03-16 23:35:34',
+        'deleted_at' => NULL,
     ),
     7 => 
     array (
@@ -106,6 +113,7 @@ Merci !',
         'cost' => 10,
         'created_at' => '2017-03-16 23:36:25',
         'updated_at' => '2017-03-16 23:36:25',
+        'deleted_at' => NULL,
     ),
     8 => 
     array (
@@ -117,6 +125,7 @@ Merci !',
         'cost' => 300,
         'created_at' => '2017-03-16 23:37:39',
         'updated_at' => '2017-03-16 23:37:39',
+        'deleted_at' => NULL,
     ),
     9 => 
     array (
@@ -128,6 +137,7 @@ Merci !',
         'cost' => 50,
         'created_at' => '2017-03-16 23:38:24',
         'updated_at' => '2017-03-16 23:38:24',
+        'deleted_at' => NULL,
     ),
     10 => 
     array (
@@ -139,6 +149,7 @@ Merci !',
         'cost' => 25,
         'created_at' => '2017-03-16 23:43:05',
         'updated_at' => '2017-03-16 23:43:05',
+        'deleted_at' => NULL,
     ),
     11 => 
     array (
@@ -150,6 +161,7 @@ Merci !',
         'cost' => 5,
         'created_at' => '2017-03-16 23:43:59',
         'updated_at' => '2017-03-16 23:43:59',
+        'deleted_at' => NULL,
     ),
     12 => 
     array (
@@ -161,6 +173,7 @@ Merci !',
         'cost' => 25,
         'created_at' => '2017-03-16 23:45:24',
         'updated_at' => '2017-03-16 23:45:24',
+        'deleted_at' => NULL,
     ),
     13 => 
     array (
@@ -172,6 +185,7 @@ Merci !',
         'cost' => 45,
         'created_at' => '2017-03-16 23:47:20',
         'updated_at' => '2017-03-16 23:47:20',
+        'deleted_at' => NULL,
     ),
 ));
         

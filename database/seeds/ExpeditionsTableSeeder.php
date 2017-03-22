@@ -34,7 +34,7 @@ class ExpeditionsTableSeeder extends Seeder
                 'beginning_ville_id' => 65,
                 'deleted_at' => NULL,
                 'created_at' => '2017-03-21 21:14:45',
-                'updated_at' => '2017-03-21 21:14:45',
+                'updated_at' => '2017-03-22 22:48:37',
             ),
             1 => 
             array (
@@ -92,6 +92,44 @@ class ExpeditionsTableSeeder extends Seeder
                 'deleted_at' => NULL,
                 'created_at' => '2017-03-21 21:21:22',
                 'updated_at' => '2017-03-21 21:21:22',
+            ),
+            4 => 
+            array (
+                'id' => 5,
+                'user_id' => 3,
+                'costMax' => 15,
+                'isAccepted' => 0,
+                'costFixed' => 15,
+                'description' => 'Manette de PS3 que je dois rendre à un collègue !',
+                'volumeItem' => 10,
+                'lengthItem' => 10,
+                'widthItem' => 10,
+                'heightItem' => 10,
+                'weightItem' => 300,
+                'ending_ville_id' => 72,
+                'beginning_ville_id' => 73,
+                'deleted_at' => NULL,
+                'created_at' => '2017-03-22 22:29:59',
+                'updated_at' => '2017-03-22 22:29:59',
+            ),
+            5 => 
+            array (
+                'id' => 6,
+                'user_id' => 3,
+                'costMax' => 20,
+                'isAccepted' => 0,
+                'costFixed' => 20,
+                'description' => 'Convention de stage à remettre en urgence, j\'en ai vraiment besoin !',
+                'volumeItem' => 1,
+                'lengthItem' => 35,
+                'widthItem' => 20,
+                'heightItem' => 1,
+                'weightItem' => 20,
+                'ending_ville_id' => 74,
+                'beginning_ville_id' => 75,
+                'deleted_at' => NULL,
+                'created_at' => '2017-03-22 22:30:46',
+                'updated_at' => '2017-03-22 22:30:46',
             ),
         ));
         

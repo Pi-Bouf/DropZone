@@ -129,7 +129,7 @@
             </div>
         </div>
     </section>
-    @if($expedition->user->id != Auth::user()->id)
+    @if($expedition->user->id != Auth::user()->id && !$expedition->isAccepted)
     <section class="scroll-section root-sec padd-tb-60 team-wrap " id="reservBG">
         <div class="row">
             <h2 class="reservation white-text">Demande d'expédition du colis</h2>

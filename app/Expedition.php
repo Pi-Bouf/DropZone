@@ -42,6 +42,14 @@ class Expedition extends Model
     public function notation(){
         return $this->hasOne('\App\NotationExpedition')->where('UserOrTransporter' , 0);
     }
+
+    public static function accepted() {
+        return Expedition::where('isAccepted', true);
+    }
+
+    public static function waiting() {
+        return Expedition::where('isAccepted', false);
+    }
 }
 
 ?>

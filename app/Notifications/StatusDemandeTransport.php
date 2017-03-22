@@ -48,7 +48,7 @@ class StatusDemandeTransport extends Notification
             return (new MailMessage)
                         ->subject('Demande de transport acceptée !')
                         ->greeting('Psssst !')
-                        ->line('Votre demain de transport a été acceptée !')
+                        ->line('Votre demande de transport a été acceptée !')
                         ->line('<center><b>Transport: '.$this->transport->villeDepart->ville->name.' ↬ '.$this->transport->villeArrivee->ville->name.'</b></center>')
                         ->line('Maintenant, merci de contacter le transporteur:')
                         ->line('<b>Nom:</b> '.$this->user->login)
@@ -60,7 +60,7 @@ class StatusDemandeTransport extends Notification
             return (new MailMessage)
                         ->subject('Demande de transport refusée')
                         ->greeting('Désolé,...')
-                        ->line('Votre demain de transport n\'a pas été accepté !')
+                        ->line('Votre demande de transport n\'a pas été accepté !')
                         ->line('<center><b>Transport: '.$this->transport->villeDepart->ville->name.' ↬ '.$this->transport->villeArrivee->ville->name.'</b></center>')
                         ->action('Chercher un nouveau transport !', env('APP_URL').'/search/transport')
                         ->line('Vous pouvez consulter à tout moment les demandes dans la partie "Mes Demandes" du site !');

@@ -656,6 +656,42 @@ class VillesTableSeeder extends Seeder
                 'created_at' => '2017-03-21 21:21:22',
                 'updated_at' => '2017-03-21 21:21:22',
             ),
+            71 => 
+            array (
+                'id' => 72,
+                'latitude' => 43.835743999999998,
+                'longitude' => 5.7909160000000384,
+                'name' => 'Manosque, France',
+                'created_at' => '2017-03-22 22:29:59',
+                'updated_at' => '2017-03-22 22:29:59',
+            ),
+            72 => 
+            array (
+                'id' => 73,
+                'latitude' => 44.194713,
+                'longitude' => 5.9431910000000698,
+                'name' => 'Sisteron, France',
+                'created_at' => '2017-03-22 22:29:59',
+                'updated_at' => '2017-03-22 22:29:59',
+            ),
+            73 => 
+            array (
+                'id' => 74,
+                'latitude' => 43.292678100000003,
+                'longitude' => 5.5676425000000336,
+                'name' => 'Aubagne, France',
+                'created_at' => '2017-03-22 22:30:46',
+                'updated_at' => '2017-03-22 22:30:46',
+            ),
+            74 => 
+            array (
+                'id' => 75,
+                'latitude' => 44.194713,
+                'longitude' => 5.9431910000000698,
+                'name' => 'Sisteron, France',
+                'created_at' => '2017-03-22 22:30:46',
+                'updated_at' => '2017-03-22 22:30:46',
+            ),
         ));
         
         

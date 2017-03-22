@@ -275,11 +275,11 @@ class BackOfficeController extends Controller
     {
         $data = array(
             "user" => Auth::user(),
-            "demandesExpedition" => DemandeExpedition::paginate(30),
-            "demandeTransport" => DemandeTransport::paginate(30),
+            "demandeExpedition" => DemandeExpedition::paginate(3),
+            "demandeTransport" => DemandeTransport::paginate(3),
         );
 
-        return view('back.pages.expedition.list', $data);
+        return view('back.pages.demande.list', $data);
     }
 
     public function getDemandeTransportDelete(DemandeTransport $demandetransport)

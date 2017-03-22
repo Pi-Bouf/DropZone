@@ -11,6 +11,7 @@ use App\NotationExpedition;
 use App\Expedition;
 use Carbon\Carbon;
 use App\Notifications\NotifDemandeExpedition;
+use App\Notifications\StatusDemandeExpedition;
 
 class ExpeditionController extends Controller
 {
@@ -45,12 +46,16 @@ class ExpeditionController extends Controller
       //valide la demande
       $demande->isAccepted = true;
       $demande->save();
+      $demande->expedition->isAccepted = true;
+      $demande->expedition->save();
+      $demande->user->notify(new StatusDemandeExpedition($demande->expedition->user, $demande->expedition, true));
       return redirect()->back();
     }
 
     public function cancelPackage(DemandeExpedition $demande){
       $demande->isAccepted = false;
       $demande->save();
+      $demande->user->notify(new StatusDemandeExpedition($demande->expedition->user, $demande->expedition, false));
       return redirect()->back();
     }
 

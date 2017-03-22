@@ -95,7 +95,7 @@ class SearchController extends Controller
         }
 
         if(Auth::user()) {
-            $getTrans->whereRaw('first.user_id != 1');
+            $getTrans->whereRaw('first.user_id != '.Auth::user()->id);
         }
 
         $getTrans->get();
@@ -185,7 +185,7 @@ class SearchController extends Controller
         $getExpe->whereRaw('expeditions.costMax <= '.$request->input('prixMax', 300));
 
         if(Auth::user()) {
-            $getExpe->whereRaw('user_id != 1');
+            $getExpe->whereRaw('user_id != '.Auth::user()->id);
         }
 
         $getExpe->get();
