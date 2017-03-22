@@ -207,6 +207,15 @@ class BackOfficeController extends Controller
 
         return redirect()->back();
     }
+
+    public function getTransportList()
+    {
+        $data = array(
+            "transports" => Transport::all(),
+        );
+
+        return view('back.pages.transport.list', $data);
+    }
     
     public function getTransportDetail(Transport $transport)
     {
