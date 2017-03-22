@@ -9,7 +9,7 @@
                         <div class="home-inner">
                             <div class="center-align home-content">
                                 <h1 class="home-title">Drop<span>Zone</span></h1>
-                                <h2 class="home-subtitle">Transportez vos colis à moindre prix ! {{$bouh}}</h2>
+                                <h2 class="home-subtitle">Transportez vos colis à moindre prix ! </h2>
                                 <div class="row">
                                     <div class="col s12 m6 l8 offset-l2 offset-m3">
                                         <div class="card" style="background-color: rgba(0, 0, 0, 0) !important;">
@@ -59,74 +59,108 @@
     <div class="container">
         <div class="row">
             <div class="col s10 push-s1 m4 push-m1 center">
-                <span class="infoTransport">Nos derniers transports</span>
+                <span class="infoTransport" style="color:#2196F3">Derniers transports</span>
                 <div class="carousel carousel-slider center " id="transport" data-indicators="true">
-                    <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(150,150,150,0.5)">
-                        <h3>First Panel</h3>
-                        <p class="white-text">This is your first panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
-                    <div class="carousel-item white-text" href="#two!" style="background-color: rgba(75,75,75,0.5)">
-                        <h3>Second Panel</h3>
-                        <p class="white-text">This is your second panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
-                    <div class="carousel-item  white-text" href="#three!" style="background-color: rgba(150,150,150,0.5)">
-                        <h3>Third Panel</h3>
-                        <p class="white-text">This is your third panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
-                    <div class="carousel-item white-text" href="#four!" style="background-color: rgba(75,75,75,0.5)">
-                        <h3>Fourth Panel</h3>
-                        <p class="white-text">This is your fourth panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
+                    @foreach(Transport::offset(0)->orderBy('id','desc')->limit(4)->get() as $transport)
+                        <div class="txt">
+                            @if($loop->iteration%2!=0)
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(75,75,75,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$transport->information}}</h4>
+                                <br><br>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$transport->villeDepart->ville->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$transport->villeArrivee->ville->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$transport->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/transport/{{$transport->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @else
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(20,20,20,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$transport->information}}</h4>
+                                <br><br>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$transport->villeDepart->ville->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$transport->villeArrivee->ville->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$transport->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/transport/{{$transport->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col m3"></div>
             <div class="col s10 push-s1 m4 center">
-                <span class="infoColis ">Nos derniers colis</span>
+                <span class="infoColis ">Dernières expéditions</span>
                 <div class="carousel carousel-slider center " id="colis" data-indicators="true">
-                    <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(150,150,150,0.5)">
-                        <h3>First Panel</h3>
-                        <p class="white-text">This is your first panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
-                    <div class="carousel-item white-text" href="#two!" style="background-color: rgba(75,75,75,0.5)">
-                        <h3>Second Panel</h3>
-                        <p class="white-text">This is your second panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
-                    <div class="carousel-item  white-text" href="#three!" style="background-color: rgba(150,150,150,0.5)">
-                        <h3>Third Panel</h3>
-                        <p class="white-text">This is your third panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
-                    <div class="carousel-item white-text" href="#four!" style="background-color: rgba(75,75,75,0.5)">
-                        <h3>Fourth Panel</h3>
-                        <p class="white-text">This is your fourth panel</p>
-                        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                    </div>
+                    @foreach(Expedition::offset(0)->orderBy('id','desc')->limit(4)->get() as $expedition)
+                        <div class="txt">
+                            @if($loop->iteration%2!=0)
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(75,75,75,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$expedition->description}}</h4>
+                                <br><p style="font-size:1.2em;">{{$expedition->costMax}} €</p>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$expedition->villeDep->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$expedition->villeArr->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$expedition->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/expedition/{{$expedition->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @else
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(20,20,20,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$expedition->description}}</h4>
+                                <br><p style="font-size:1.2em;">{{$expedition->costMax}} €</p>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$expedition->villeDep->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$expedition->villeArr->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$expedition->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/expedition/{{$expedition->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <div class="row black-text center">
+        
+        <div class="row noir center padd-tb-120">
             <div class="col s12 m4">
-                <i class="mdi mdi-car icon"></i><br><h3>Transport</h3>
+                <i class="mdi mdi-car icon blue-text"></i><br><h3>Transport</h3>
+                <br>
                 <div class="text-center">
-                    Choisissez vous-même, au sein de la communauté, le particulier qui acheminera votre colis. Discutez à tout moment par messages privés. Et pour que vous soyez 100% serein, votre colis est automatiquement assuré. Les galères de colis, avec Cocolis, c'est fini !
+                    Vous faites un voyage et vous avez encore de la place ? Des colis à déposer sont peut-être sur votre chemin. Vous pourrez, grâce à ça, amortir le prix du trajet sans effort ! 
                 </div>
             </div>
             <div class="col s12 m4">
-                <i class="mdi mdi-package-variant-closed icon"></i><br><h3>Expedition</h3>
+                <i class="mdi mdi-package-variant-closed icon" style="color:darkorange"></i><br><h3>Expedition</h3>
+                <br>
                 <div class="text-center">
-                    Grâce au covoiturage de colis, vos frais d'envoi coûtent jusqu'à 80% moins cher que les solutions de transport traditionnelles. Cocolis est plus économique, même pour les meubles et objets lourds ou encombrants. Gardez votre argent pour vos vacances !
+                    Un colis à envoyer ? Vous pouvez rechercher un transport existant ou bien créer une expédition pour que votre colis soit envoyé le plus rapidement possible et à faible prix !
                 </div>
             </div>
             <div class="col s12 m4">
-                <i class="mdi mdi-wechat icon"></i><br><h3>Vos avis </h3>
+                <i class="mdi mdi-flower icon green-text"></i><br><h3>Écologique</h3>
+                <br>
                 <div class="text-center">
-                    Une chose est sûre : le porteur du colis aurait réalisé le déplacement même sans le colis ! Alors, profiter de ce trajet pour faire livrer un objet, c’est penser à l’environnement. Aucune émission polluante supplémentaire. Une bonne nouvelle, non ?
+                    Le transporteur aurait réalisé le trajet avec ou sans le colis. Profiter de ce trajet pour envoyer un colis, c'est aussi respecter l'environnement ! Génial, non?
                 </div>
             </div>
         </div>

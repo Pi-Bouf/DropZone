@@ -29,7 +29,7 @@
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader">
-            <svg class="circle-loader" height="50" width="50">
+            <svg class="ci555rcle-loader" height="50" width="50">
               <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" />
             </svg>
         </div>
@@ -125,28 +125,28 @@
     @include('front.partials.register_popup')
 </body>
 
-<footer class="blue lighten-2 page-footer">
+<footer class="darken-3 page-footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="grey-text text-darken-4">DropZone</h5>
+                <p class="grey-text text-darken-4">Envoyez vos objets partout en France à moindre prix....</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+                <h4 class="footer-header grey-text text-darken-4">Informations</h4>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="footer-link grey-text text-darken-4" href="#!">Comment ça marche?</a></li>
+                  <li><a class="footer-link grey-text text-darken-4" href="#!">Mentions légales</a></li>
+                  <li><a class="footer-link grey-text text-darken-4" href="#!">Foire aux questions</a></li>
+                  <li><a class="footer-link grey-text text-darken-4" href="#!">Conditions générales d'utilisation</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="footer-copyright">
+          <div class="grey darken-4 footer-copyright mg-t20">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2017 Copyright DropZone
+            <a class="grey-text text-lighten-4 right" href="http://www.gap.univ-mrs.fr/miw/">MIW 2017</a>
             </div>
           </div>
         </footer>
