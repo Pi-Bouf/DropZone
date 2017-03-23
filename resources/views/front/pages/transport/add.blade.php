@@ -55,9 +55,8 @@
                                             <input id="villeArriveeHidden" name="villeArriveeHidden" type="hidden" value="">
                                         </div>
                                         <div id="etape">
-                                            <div class="input-field">
-                                                <input class="validate input-box dontSubmit auPif" type="text" name="villeEtape1" hiddenId="villeEtapeHidden1" id="villeEtape1" onchange="tryit();">
                                                 <label class="input-label" for="villeEtape1">Villes étapes : </label>
+                                            <div class="input-field">
                                             </div>
                                         </div>
                             <div id="trajet" class="center">

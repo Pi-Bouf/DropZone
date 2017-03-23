@@ -1,6 +1,6 @@
 var div;
 var newInput;
-var name = 1;
+var name = 0;
 var tabEtape = [];
 var tabAuto = [];
 var tabLatEtape = [];
@@ -20,10 +20,19 @@ function addEtape() {
     newInput.setAttribute('onchange', 'tryit()');
     newInput.setAttribute('placeholder', 'Ville étape');
     newInput.setAttribute('hiddenId', "villeEtapeHidden" + name);
-    newInput.className += "auPif dontSubmit";
+    newInput.className += "auPif dontSubmit inputEtape";
+
+    newButton = document.createElement('button');
+    newButton.className += "btSuppr btn-floating waves-effect waves-light red";
+    newButton.setAttribute('id', 'brSuppr'+name);
+    newButton.setAttribute('onclick', 'suppr(' +name+ ')');
+    newButton.setAttribute('type', 'button');
+    newButton.innerHTML  = 'X';
+    
 
     div.appendChild(newInput);
-    div.appendChild(document.createElement('br'));
+    div.appendChild(newButton);
+    
     if (name == 5) {
         var e = document.getElementById('trajet');
         var but = document.getElementById('ajoutButton');
@@ -39,6 +48,23 @@ function addEtape() {
         tabLngEtape[name] = place.geometry.location.lng();
         marqueur();
     });
+}
+
+function suppr(nb){
+    for(var i = 0; i<name-nb;i++){
+        var result = nb+i;
+        var etun = result+1;
+        document.getElementById('villeEtape'+result).value = document.getElementById('villeEtape'+etun).value;
+        document.getElementById('villeEtapeHidden'+result).value = document.getElementById('villeEtapeHidden'+etun).value;
+
+    }
+    document.getElementById("villeEtape"+name).remove();
+    document.getElementById("brSuppr"+name).remove();
+    if(name==5){
+        document.getElementById('trajet').innerHTML = '<button id="ajoutButton" onclick="addEtape()" type="button" class="btn-floating waves-effect waves-light blue"><i class="material-icons">+</i></button>';
+    }
+    name=name-1;
+    marqueur();
 }
 
 function occa() {

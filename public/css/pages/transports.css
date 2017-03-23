@@ -18,3 +18,11 @@ h2{
 #info{
     font-size:1em;
 }
+
+.inputEtape{
+    width:80% !important;
+}
+
+.btSuppr{
+    max-width:20% !important;
+}
