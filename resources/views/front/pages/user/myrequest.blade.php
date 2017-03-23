@@ -1,7 +1,7 @@
 @extends('layouts.app', [ 'menu_style' => 'scroll',
 'includesJs' => [],
 'page_title' => 'DropZone - Mes demandes',
-'includesCss' => [] ])
+'includesCss' => ['/css/pages/request.css'] ])
 @section('content')
 
 
@@ -29,17 +29,17 @@
                   <div class="collapsible-body grey lighten-5">
                     <div class="row">
                       <div class="col s12 m12 l12">
-                        @if($demande->expedition->beginDate == $demande->expedition->endDate)
-                        <span class="black-text date-depart-transport">Départ le <span class="bold">{{ Date::parse($demande->expedition->beginDate)->format('l j F') }}</span>.</span>
+                        @if($demande->beginDate == $demande->endDate)
+                        <span class="black-text date-depart-transport">Départ le <span class="bold">{{ Date::parse($demande->beginDate)->format('l j F') }}</span>.</span>
                         @else
-                        <span class="black-text date-depart-transport">Départ entre le <span class="bold">{{ Date::parse($demande->expedition->beginDate)->format('l j F') }}</span> et le <span class="bold">{{ Date::parse($demande->expedition->endDate)->format('l j F Y') }}</span>.</span>
+                        <span class="black-text date-depart-transport">Départ entre le <span class="bold">{{ Date::parse($demande->beginDate)->format('l j F') }}</span> et le <span class="bold">{{ Date::parse($demande->endDate)->format('l j F Y') }}</span>.</span>
                         @endif
                       </div>
 
                       <div class="col s12 m6 l6 mg-t20">
                         Expediteur : <a href="/user/{{$demande->expedition->user->id}}">{{$demande->expedition->user->login}}</a>
                       </div>
-                      <div class="col s12 m6 l6">
+                      <div class="col s12 m6 l6 mg-t20">
                         Prix proposé : {{$demande->prixAsked}} €
                       </div>
                       <div class="col s12 m12 l12 mg-t20">
@@ -48,13 +48,31 @@
 
                       <div class="col s12 m12 l12 mg-t20">
                         @if($demande->isAccepted === 1 || $demande->isAccepted === 2)
-                        <a href="#" title="Noter l'expedition" class="right waves-effect blue waves-light btn">Noter</a>
-                        @endif
-                      </div>
+                          @if($demande->isAccepted === 2 && !is_null($demande->expedition->notationTransporter))
+                            <div class="col s6 m4 l4 center-align" >
 
-                      <div class="col s12 m12 l12 mg-t20">
-                        <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
-                        <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                            </div>
+                            <div class="col s12 m12 l12 mg-t20">
+                              <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
+                              <div class="right">Note attribuée : {{$demande->expedition->notationTransporter->note}}/5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i></div>
+                            </div>
+                          @else                          
+                            <div class="col s12 m12 l12 mg-t20">
+                              <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
+                              @if($demande->beginDate < date('Y-m-d H:i:s'))
+                                <a href="#note_expe_{{ $demande->id }}" title="Noter l'expedition" class="right waves-effect green waves-light btn">Noter</a>
+                              @else
+                                <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                              @endif
+                            </div>
+                          @endif
+
+                        @else
+                          <div class="col s12 m12 l12 mg-t20">
+                            <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
+                            <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                          </div>
+                        @endif
                       </div>
 
                       <div id="delete_expe{{ $demande->id }}" class="modal">
@@ -75,6 +93,40 @@
                   </div>
 
                 </li>
+                <div id="note_expe_{{ $demande->id }}" class="modal">
+                  <form method="POST" id="formAjoutTransport" action="{{route('postnoteexpeditiontrans', array('demande' => $demande->id))}}">
+                    <div class="modal-content">
+                      <h4>Noter ce transport :</h4>
+                      {{ csrf_field() }}
+                      <div class="input-field">
+                        <label for="message">Votre message :</label>
+                        <textarea type="text" class="materialize-textarea" id="message" name="message" required ></textarea><br>
+                      </div>
+                      <label for="note">Note : </label>
+                      <span class="rating">
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-5" name="rating-input-1" value="5" required/>
+                        <label for="rating-{{$demande->id}}-input-1-5" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-4" name="rating-input-1" value="4"/>
+                        <label for="rating-{{$demande->id}}-input-1-4" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-3" name="rating-input-1" value="3"/>
+                        <label for="rating-{{$demande->id}}-input-1-3" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-2" name="rating-input-1" value="2"/>
+                        <label for="rating-{{$demande->id}}-input-1-2" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-1" name="rating-input-1" value="1"/>
+                        <label for="rating-{{$demande->id}}-input-1-1" class="rating-star"></label>
+                      </span>
+                    </div>
+                    <div class="modal-footer">
+                      <button class=" modal-action modal-close waves-effect green white-text waves-green btn-flat"><i class="mdi mdi-star yellow-text left"></i>Noter ! </button>
+                      <a href="#!" class="margin-r10 modal-action modal-close waves-effect red white-text waves-green btn-flat">Retour</a>
+                    </div>
+                  </form>
+                </div>
                 @endforeach
               </ul>
             </div>
@@ -133,6 +185,40 @@
                   </div>
 
                 </li>
+                <div id="note_trans_{{ $demande->id }}" class="modal">
+                  <form method="POST" id="formAjoutTransport" action="{{route('postnotetransportuser', array('demande' => $demande->id))}}">
+                    <div class="modal-content">
+                      <h4>Noter l'expéditeur :</h4>
+                      {{ csrf_field() }}
+                      <div class="input-field">
+                        <label for="message">Votre message :</label>
+                        <textarea type="text" class="materialize-textarea" id="message" name="message" required ></textarea><br>
+                      </div>
+                      <label for="note">Note : </label>
+                      <span class="rating">
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-5" name="rating-input-1" value="5" required/>
+                        <label for="rating-{{$demande->id}}-input-1-5" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-4" name="rating-input-1" value="4"/>
+                        <label for="rating-{{$demande->id}}-input-1-4" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-3" name="rating-input-1" value="3"/>
+                        <label for="rating-{{$demande->id}}-input-1-3" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-2" name="rating-input-1" value="2"/>
+                        <label for="rating-{{$demande->id}}-input-1-2" class="rating-star"></label>
+                        <input type="radio" class="rating-input"
+                                id="rating-{{$demande->id}}-input-1-1" name="rating-input-1" value="1"/>
+                        <label for="rating-{{$demande->id}}-input-1-1" class="rating-star"></label>
+                      </span>
+                    </div>
+                    <div class="modal-footer">
+                      <button class=" modal-action modal-close waves-effect green white-text waves-green btn-flat"><i class="mdi mdi-star yellow-text left"></i>Noter ! </button>
+                      <a href="#!" class="margin-r10 modal-action modal-close waves-effect red white-text waves-green btn-flat">Retour</a>
+                    </div>
+                  </form>
+                </div>
                 @endforeach
               </ul>
             </div>

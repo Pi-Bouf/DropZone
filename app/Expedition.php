@@ -43,6 +43,10 @@ class Expedition extends Model
         return $this->hasOne('\App\NotationExpedition')->where('UserOrTransporter' , 0);
     }
 
+    public function notationTransporter(){
+        return $this->hasOne('\App\NotationExpedition')->where('UserOrTransporter' , 1);
+    }
+
     public static function accepted() {
         return Expedition::where('isAccepted', true);
     }

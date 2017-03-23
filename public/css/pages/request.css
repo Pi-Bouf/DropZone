@@ -1,0 +1,40 @@
+ .rating {
+      overflow: hidden !important;
+      display: inline-block !important;
+      font-size: 0 !important;
+      position: relative !important;
+  }
+  .rating-input {
+      float: right !important;
+      width: 16px !important;
+      height: 16px !important;
+      padding: 0 !important;
+      margin: 0 0 0 -16px !important;
+      opacity: 0 !important;
+  }
+  .rating:hover .rating-star:hover,
+  .rating:hover .rating-star:hover ~ .rating-star,
+  .rating-input:checked ~ .rating-star {
+      background-position: 0 0 !important;
+      border: 0px !important;
+  }
+
+  
+[type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
+  border: 0px !important;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after{
+  background-color:transparent !important;
+  border: 0px !important;
+}
+  .rating-star,
+  .rating:hover .rating-star {
+      padding-left:0px !important;
+      position: relative !important;
+      float: right !important;
+      display: block !important;
+      width: 28px !important;
+      height: 28px !important;
+      background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -28px !important;
+      background-size: 28px auto !important;
+  }

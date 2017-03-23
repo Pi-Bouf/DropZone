@@ -205,4 +205,31 @@ class ExpeditionController extends Controller
             return redirect()->back()->with('errornote', 'ok');
         }
     }
+
+    public function addNoteReservationT(\App\DemandeExpedition $demande, Request $request){            
+        $rules = array(
+                'message' => 'required|max:300',
+                'rating-input-1' => "in:1,2,3,4,5",
+            );
+        $this->validate($request, $rules);
+
+        $nt = new NotationExpedition();
+        $nt->expedition_id = $demande->expedition->id;
+        $nt->text = $request->input('message');
+        $nt->note = $request->input('rating-input-1');
+        $nt->UserOrTransporter = 1;
+        $nt->user_id = $demande->expedition->user->id;
+        
+
+        if($nt->save()){
+            $demande->isAccepted = 2;
+            if($demande->save()){
+                return redirect()->back()->with('note', 'ok');
+            } else {
+                return redirect()->back()->with('errornote', 'ok');
+            }
+        } else {
+            return redirect()->back()->with('errornote', 'ok');
+        }
+    }
 }
