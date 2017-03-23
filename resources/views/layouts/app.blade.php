@@ -29,7 +29,7 @@
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader">
-            <svg class="ci555rcle-loader" height="50" width="50">
+            <svg class="circle-loader" height="50" width="50">
               <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" />
             </svg>
         </div>
@@ -131,20 +131,20 @@
     @include('front.partials.register_popup')
 </body>
 
-<footer class="darken-3 page-footer mg-t20">
+<footer class="darken-3 page-footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="grey-text text-darken-4">DropZone</h5>
-                <p class="grey-text text-darken-4">Envoyez vos objets partout en France à moindre prix....</p>
+                <h5 class="grey-text white-text">DropZone</h5>
+                <p class="grey-text white-text">Transportez vos colis à moindre prix !</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h4 class="footer-header grey-text text-darken-4">Informations</h4>
+                <h4 class="footer-header grey-text white-text">Informations</h4>
                 <ul>
-                  <li><a class="footer-link grey-text text-darken-4" href="#!">Comment ça marche?</a></li>
-                  <li><a class="footer-link grey-text text-darken-4" href="#!">Mentions légales</a></li>
-                  <li><a class="footer-link grey-text text-darken-4" href="#!">Foire aux questions</a></li>
-                  <li><a class="footer-link grey-text text-darken-4" href="#!">Conditions générales d'utilisation</a></li>
+                  <li><a class="footer-link grey-text white-text" href="#!">Comment ça marche?</a></li>
+                  <li><a class="footer-link grey-text white-text" href="#!">Mentions légales</a></li>
+                  <li><a class="footer-link grey-text white-text" href="#!">Foire aux questions</a></li>
+                  <li><a class="footer-link grey-text white-text" href="#!">Conditions générales d'utilisation</a></li>
                 </ul>
               </div>
             </div>

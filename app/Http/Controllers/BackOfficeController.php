@@ -275,8 +275,8 @@ class BackOfficeController extends Controller
     {
         $data = array(
             "user" => Auth::user(),
-            "demandeExpedition" => DemandeExpedition::paginate(3),
-            "demandeTransport" => DemandeTransport::paginate(3),
+            "demandeExpedition" => DemandeExpedition::paginate(30),
+            "demandeTransport" => DemandeTransport::paginate(30),
         );
 
         return view('back.pages.demande.list', $data);

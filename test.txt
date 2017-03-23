@@ -1,1 +1,87 @@
-php artisan iseed transports,villes,etapes,question_transports,demande_transports,expeditions
+php artisan iseed transports,villes,etapes,question_transports,demande_transports,expeditions,demande_expedition
+
+NULL en attente
+0 refusé
+1 accepté
+2 effectué
+
+<td>
+@if($transport->isAccepted === 0) 
+    <span class="badge bg-red">Refusé</span> 
+@elseif($transport->isAccepted === 1)
+    <span class="badge bg-green">Accepté</span> 
+@elseif($transport->isAccepted === 2) 
+    <span class="badge bg-yellow">Effectué</span> 
+@else
+    <span class="badge bg-blue">En attente</span> 
+@endif
+</td>
+
+
+<div class="txt">
+                            @if($loop->iteration%2!=0)
+                            <div class="carousel-item grey-text" href="#one!" style="background-color: rgba(255, 255, 255, 1)">
+                                <br><br>
+                                <h4 class="truncate info">{{$transport->information}}</h4>
+                                <br><br>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$transport->villeDepart->ville->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$transport->villeArrivee->ville->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$transport->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/transport/{{$transport->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @else
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(20,20,20,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$transport->information}}</h4>
+                                <br><br>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$transport->villeDepart->ville->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$transport->villeArrivee->ville->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$transport->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/transport/{{$transport->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @endif
+                        </div>
+
+                        <div class="txt">
+                            @if($loop->iteration%2!=0)
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(75,75,75,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$expedition->description}}</h4>
+                                <br><p style="font-size:1.2em;">{{$expedition->costMax}} €</p>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$expedition->villeDep->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$expedition->villeArr->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$expedition->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/expedition/{{$expedition->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @else
+                            <div class="carousel-item  white-text" href="#one!" style="background-color: rgba(20,20,20,0.6)">
+                                <br><br>
+                                <h4 class="truncate info">{{$expedition->description}}</h4>
+                                <br><p style="font-size:1.2em;">{{$expedition->costMax}} €</p>
+                                <p class="white-text"><i class="mdi mdi-map-marker green-text"></i>{{$expedition->villeDep->name}}<br><i class="mdi mdi-arrow-down-bold flecheRoute"></i><br><i class="mdi mdi-map-marker red-text"></i>{{$expedition->villeArr->name}}</p>
+                                <br>
+                                <p class="compte"><i class="mdi mdi-account"></i> {{$expedition->user->login}}</p>
+                                <br><br>
+                                @if(Auth::user())
+                                    <a class="btn waves-effect blue white-text darken-text-2" href="/expedition/{{$expedition->id}}">Détail</a>
+                                @else
+                                    <a class="loginLink btn waves-effect blue white-text darken-text-2"  href="#">Détail</a>
+                                @endif
+                            </div>
+                            @endif
+                        </div>

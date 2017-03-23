@@ -1,46 +1,11 @@
-.infoColis{
-    color:darkorange;
-    font-size:1.7em;
+.carousel .indicators .indicator-item {
+    background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
-.infoTransport{
-    color:royalblue;
-    font-size:1.7em;
+.carousel .indicators .indicator-item.active {
+    background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
-#colis{
-    background:url('../../images/colisbg.jpg') no-repeat center;
-    background-size: auto 100%;
-    background-color:white;
-    margin-top:15px;
-    vertical-align: middle;
-}
-
-#transport{
-    background:url('../../images/transportbg.jpg') no-repeat center;
-    background-size: cover;
-    background-color:white;
-    margin-top:15px;
-}
-
-.icon{
-    font-size: 5em !important;
-}
-
-.flecheRoute{
-    font-size: 2em !important;
-}
-
-.noir{
-    color:#333333;
-}
-
-.info{
-    width: 80% !important;
-    margin-right:auto !important;
-    margin-left:auto !important;
-}
-
-.compte{
-    font-size:1.2em !important;
+img.profile {
+    max-width: 15rem;
 }
