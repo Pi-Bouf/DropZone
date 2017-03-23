@@ -47,8 +47,12 @@
           <li><a href="{{ url('/user/mytransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Mes transports</a></li>
           <li><a href="{{ url('/user/mypackage') }}"><i class="mdi mdi-cube-send orange-text left"></i>Mes colis</a></li>
           <li class="divider"></li>
-
           <li class="red lighten-5"><a href="{{ url('/logout') }}"><i class="mdi mdi-logout left red-text"></i>Déconnexion</a></li>
+        </ul>
+
+        <ul id="search-nav" class="dropdown-content" style='width: auto !important;'>
+          <li><a href="{{ url('/search/expedition') }}"><i class="mdi mdi-cube-send orange-text left"></i>Une expedition</a></li>
+          <li><a href="{{ url('/search/transport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Un transport</a></li>
         </ul>
 
         <header class="navbar-fixed">
@@ -56,8 +60,10 @@
                 <div class="nav-wrapper navbar-fixed white">
                     <a href="/" class="brand-logo center"><img style="height: 50px;" src="/images/Logo.svg"></a>
                     <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi mdi-dots-vertical"></i></a>
-                    <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-right: 25px;">
-                      <li><a href="{{ url('/search') }}"><i class="mdi mdi-magnify left"></i>Rechercher</a></li>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-right: 15px;">
+                      <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left: 15px;">
+                        <li><a href="#" class="dropdown-button dropdown-hover" data-activates="search-nav"><i class="mdi mdi-magnify left grey-text"></i>Rechercher</a></li>
+                      </ul>
                       <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Transporter</a></li>
                       <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send orange-text left"></i>Expédier</a></li>
                     </ul>
