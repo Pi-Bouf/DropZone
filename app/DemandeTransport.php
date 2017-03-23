@@ -20,6 +20,10 @@ class DemandeTransport extends Model
     public function notation(){
         return $this->hasOne('\App\NotationTransport')->where('UserOrTransporter' , 1);
     }
+
+    public function notationUser(){
+        return $this->hasOne('\App\NotationTransport')->where('UserOrTransporter' , 0);
+    }
 }
 
 ?>

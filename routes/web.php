@@ -38,7 +38,7 @@ Route::post('/postaddreservation','TransportController@addReservation')->name('p
 Route::get('/user/confirmdemandeTransport/{demande}', 'TransportController@confirmTransport')->name('confirmtransport');
 Route::get('/user/canceldemandeTransport/{demande}', 'TransportController@cancelTransport')->name('canceltransport');
 Route::post('/postnotetransport/{demande}','TransportController@addNoteReservation')->name('postnotetransport');
-Route::post('/postnotetransportuser/{demande}','TransportController@addNoteReservation')->name('postnotetransportuser');
+Route::post('/postnotetransportuser/{demande}','TransportController@addNoteReservationUser')->name('postnotetransportuser');
 
 
 /*

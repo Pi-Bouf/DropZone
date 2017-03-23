@@ -236,11 +236,18 @@
                                              /5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
                                         </div>
                                       @else
-                                        @if($demande->beginDate < date('Y-m-d H:i:s'))
-
-                                        <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
-                                          <a href="#note_{{ $demande->id }}" title="Noter cette expéditeur" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
-                                        </div>
+                                        @if($demande->transport->natureTransport == 0)
+                                          @if($demande->transport->beginningDate < date('Y-m-d H:i:s'))
+                                            <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                              <a href="#note_{{ $demande->id }}" title="Noter cette expéditeur" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                            </div>
+                                          @endif
+                                        @else
+                                          @if($demande->transport->regularyBeginningDate < date('Y-m-d H:i:s'))
+                                            <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                              <a href="#note_{{ $demande->id }}" title="Noter cette expéditeur" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                            </div>
+                                          @endif
                                         @endif
                                       @endif
                               </div>
@@ -390,8 +397,108 @@
                         <a href="#!" class="margin-r10 modal-action modal-close waves-effect green white-text waves-green btn-flat">Retour</a>
                       </div>
                     </div>
+                    <div class="row mg-t20">
+
+                        <div class="col s12 m12 l12 black-text">
+                            <h3 class="about-subtitle">Demande(s) acceptée(s)</h3>
+                            @foreach($transport->demandesTransport as $demande)
+                              @if($demande->isAccepted == 1 || $demande->isAccepted == 2)
+                                <div class="row card blue lighten-3 demande-expe">
+                                      <div class="col s6 m2 l2 center-align">
+                                        @if($demande->user->picLink==null)
+                                          <img src="/images/profile/icon-{{$demande->user->sexe}}.png" width="50%" class="circle" alt="">
+                                        @else
+                                          <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
+                                        @endif
+                                      </div>
+                                      <div class="col s6 m2 l2">
+                                        <p>
+                                          <a href="/user/{{$demande->user->id}}" target="blank">{{ $demande->user->login }}</a>
+                                        </p>
+                                        <p>
+                                          <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                           {{$demande->user->note()}}/5 - {{$demande->user->nbNotes()}} avis
+                                        </p>
+                                      </div>
+                                      <div class="col s6 m4 l4">
+                                        <p>
+                                          {{ $demande->text}}
+                                        </p>
+                                        <p>
+                                          Prix : {{ $demande->cost }} €
+                                        </p>
+                                      </div>
+                                      @if($demande->isAccepted==2 && !is_null($demande->notation))
+                                        <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                          Votre note :<br>
+                                              {{$demande->notation->note}}
+                                             /5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
+                                        </div>
+                                      @else
+                                        @if($demande->transport->natureTransport == 0)
+                                          @if($demande->transport->beginningDate < date('Y-m-d H:i:s'))
+                                            <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                              <a href="#note_{{ $demande->id }}" title="Noter cette expéditeur" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                            </div>
+                                          @endif
+                                        @else
+                                          @if($demande->transport->regularyBeginningDate < date('Y-m-d H:i:s'))
+                                            <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                              <a href="#note_{{ $demande->id }}" title="Noter cette expéditeur" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
+                                            </div>
+                                          @endif
+                                        @endif
+                                      @endif
+                              </div>
+
+                              <div id="note_{{ $demande->id }}" class="modal">
+                                <form method="POST" id="formAjoutExpedition" action="{{route('postnotetransport', array('demande' => $demande->id))}}">
+                                  <div class="modal-content">
+                                    <h4>Noter cet expéditeur :</h4>
+                                    {{ csrf_field() }}
+                                    <div class="input-field">
+                                      <label for="message">Votre message :</label>
+                                      <textarea type="text" class="materialize-textarea" id="message" name="message" required ></textarea><br>
+                                    </div>
+                                    <label for="note">Note : </label>
+                                    <span class="rating">
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-5" name="rating-input-1" value="5" required/>
+                                      <label for="rating-{{$demande->id}}-input-1-5" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-4" name="rating-input-1" value="4"/>
+                                      <label for="rating-{{$demande->id}}-input-1-4" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-3" name="rating-input-1" value="3"/>
+                                      <label for="rating-{{$demande->id}}-input-1-3" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-2" name="rating-input-1" value="2"/>
+                                      <label for="rating-{{$demande->id}}-input-1-2" class="rating-star"></label>
+                                      <input type="radio" class="rating-input"
+                                              id="rating-{{$demande->id}}-input-1-1" name="rating-input-1" value="1"/>
+                                      <label for="rating-{{$demande->id}}-input-1-1" class="rating-star"></label>
+                                    </span>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button class=" modal-action modal-close waves-effect green white-text waves-green btn-flat"><i class="mdi mdi-star yellow-text left"></i>Noter ! </button>
+                                    <a href="#!" class="margin-r10 modal-action modal-close waves-effect red white-text waves-green btn-flat">Retour</a>
+                                  </div>
+                                </form>
+                              </div>
+                              @endif
+                            @endforeach
+                          </div>
+
+
+
+                  </div>
+
+
+
+                </div>
                   </div>
                 </div>
+                
               </li>
             @endforeach
           </ul>

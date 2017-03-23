@@ -161,11 +161,32 @@
                       <div class="col s12 m12 l12 mg-t20">
                         <span>{{ $demande->text }}</span>
                       </div>
-
-                      <div class="col s12 m12 l12 mg-t20">
-                        <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
-                        <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
-                      </div>
+                        <div class="col s12 m12 l12 mg-t20">
+                          @if($demande->isAccepted == 1 || $demande->isAccepted == 2)
+                            @if($demande->isAccepted==2 && !is_null($demande->notationUser))
+                              <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
+                              <div class="right">Note attribuée : {{$demande->notationUser->note}}/5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i></div>
+                            @else
+                              <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
+                              @if($demande->transport->natureTransport == 0)
+                                @if($demande->transport->beginningDate < date('Y-m-d H:i:s'))
+                                  <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class="right waves-effect green waves-light btn">Noter</a>
+                                @else
+                                  <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                                @endif
+                              @else
+                                @if($demande->transport->regularyBeginningDate < date('Y-m-d H:i:s'))
+                                  <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class="right waves-effect green waves-light btn">Noter</a>
+                                @else
+                                  <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                                @endif
+                              @endif
+                            @endif
+                          @else
+                            <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
+                            <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                          @endif
+                        </div>
 
                       <div id="delete_{{ $demande->id }}" class="modal">
                         <div class="modal-content">
@@ -173,6 +194,7 @@
                           <p>Voulez-vous vraiment supprimer cette demande?</p>
                         </div>
                         <div class="modal-footer">
+                        
                           <a href="/user/myrequest/delTransport/{{$demande->id}}" class="modal-action modal-close waves-effect red white-text waves-green btn-flat"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
                           <a href="#!" class="margin-r10 modal-action modal-close waves-effect green white-text waves-green btn-flat">Retour</a>
                         </div>
