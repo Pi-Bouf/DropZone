@@ -8,14 +8,22 @@
 
         <section id="contenuSection" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
             @if(session('add'))
-                <div id="card-alert">
-                    <div class="orange-text">
-                        <p>Votre expédition a été ajouté avec succès !</p>
+                <div>
+                    <div class="alert center" onclick="this.parentElement.style.display='none';" style="background-color:#fcf4c9; color:darkorange; padding-top:3px; padding-bottom:3px;">
+                        <i class="mdi mdi-check"></i> 
+                        <strong>Expédition ajouté avec succès !</strong>
                     </div>
-
                 </div>
-            @endif 
-            <h2 class="header center">Proposer une expédition de colis</h2>
+            @endif
+            @if(session('error') || $errors->count()>0)
+                <div>
+                    <div class="alert center" onclick="this.parentElement.style.display='none';" style="background-color:#fad5d5; color:#a94442; padding-top:3px; padding-bottom:3px;">
+                        <i class="mdi mdi-close"></i> 
+                        <strong>Vous devez remplir tous les champs.</strong>
+                    </div>
+                </div>
+            @endif
+            <br>
             <div class="container">
                 <div class="row">
                         <!-- Map Start -->
@@ -32,7 +40,7 @@
                             {{ csrf_field() }}
                             <div class="col s12 l5" id="infoTrajet">
                                 <div class="clearfix card-panel grey lighten-5 cform-wrapper">
-                                    <h3>Information sur le trajet</h3>
+                                    <h3 class="about-subtitle">Proposer une expédition de colis</h3>
                                     <div class="input-field">
                                         <input id="villeDepart" type="text" name="villeDepart" class="validate input-box dontSubmit auPif" hiddenId="villeDepartHidden" onchange="marqueur()" required>
                                         <label for="villeDepart" class="input-label">Adresse de départ :</label>
@@ -50,7 +58,7 @@
                             <div class="col s0 l2"></div>                    
                             <div class="col s12 l8">
                                 <div class="clearfix card-panel grey lighten-5 cform-wrapper">
-                                    <h3>Information sur le colis</h3>
+                                    <h3 class="about-subtitle">Information sur le colis</h3>
                                     <div class="input-field">
                                         <input id="prix" type="number" name="prix" class="validate input-box" onchange="marqueur()" step="0.01" required>
                                         <label for="prix" class="input-label">Prix de la livraison (€) :</label>
@@ -60,8 +68,8 @@
                                         <label for="description" class="input-label">Description du colis :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="poids" type="number" name="poids" class="validate input-box" onchange="marqueur()" required>
-                                        <label for="poids" class="input-label">Poids (g) :</label>
+                                        <input id="poids" type="number" name="poids" class="validate input-box" onchange="marqueur()" step="0.1" required>
+                                        <label for="poids" class="input-label">Poids (kg) :</label>
                                     </div>
                                     <div class="input-field">
                                         <input id="longueur" type="number" name="longueur" class="validate input-box" onchange="marqueur()" required>

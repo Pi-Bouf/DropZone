@@ -110,10 +110,10 @@ class ExpeditionController extends Controller
             if($expedition->save()){
                  return redirect()->route('addcolis')->with('add', 'ok');
             } else {
-                 return redirect()->route('addcolis')->with('noadd', 'ok');
+                 return redirect()->route('addcolis')->with('error','ok');
             }
         } else {
-                 return redirect()->route('addcolis')->with('noadd', 'ok');
+                 return redirect()->route('addcolis')->with('error','ok');
         }
     }
 
