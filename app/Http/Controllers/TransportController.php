@@ -36,7 +36,7 @@ class TransportController extends Controller
                 'villeArriveeHidden' => 'required|max:150',
                 'descri' => 'required|max:600',
                 'dateDepart' => 'required|max:12',
-                'heureDepart' => 'required|max:5',
+                'heureDepart' => 'required|max:2',
             );
         } else{
             $rules = array(
@@ -59,7 +59,7 @@ class TransportController extends Controller
             $transport->natureTransport = false;
             $date = explode("/",$request->input('dateDepart'));
             $transport->beginningDate =  $date[2].'-'.$date[1].'-'.$date[0];
-            $transport->beginningHour = $request->input('heureDepart').':00';
+            $transport->beginningHour = $request->input('heureDepart').':00:00';
         } else {
             $transport->natureTransport = true;
             $transport->frequency = $request->input('freq');

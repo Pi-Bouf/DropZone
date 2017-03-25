@@ -26,3 +26,11 @@ h2{
 .btSuppr{
     max-width:20% !important;
 }
+
+strong{
+    font-weight: bold !important;
+}
+
+.alert{
+    font-size:1.5em;
+}

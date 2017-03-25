@@ -18,7 +18,18 @@ h2{
     font-size:2.5em !important;
     margin-top:-20px;
 }
+h3{
+    color:orange !important;
+}
 
 #ajoutButton{
     width:50px;
+}
+
+strong{
+    font-weight: bold !important;
+}
+
+.alert{
+    font-size:1.5em;
 }

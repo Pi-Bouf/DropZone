@@ -76,11 +76,19 @@
         <mobile>
             <ul class="side-nav collapsible collapsible-accordion" id="mobile-nav">
               <li><a href="{{ url('/') }}" class="dropdown-button"><i class="mdi mdi-home small left"></i>Accueil</a></li>
-              <li><a href="{{ url('/search') }}"><i class="mdi mdi-magnify small left"></i>Rechercher</a></li>
+              <li class="bold"><a class="collapsible-header waves-effect"><i class="mdi mdi-magnify small grey-text left"></i>Rechercher</a>
+                  <div class="collapsible-body no-padding" style="display: none;">
+                      <ul>
+                        <li><a href="{{ url('/search/expedition') }}"><i class="mdi mdi-cube-send small orange-text left"></i>Une expedition</a></li>
+                        <li><a href="{{ url('/search/transport') }}"><i class="mdi mdi-truck-delivery small blue-text left"></i>Un transport</a></li>
+                        <li class="divider"></li>
+                      </ul>
+                  </div>
+              </li>
               <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text small left"></i>Transporter</a></li>
               <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send small orange-text left"></i>Expédier</a></li>
               <li class="divider"></li>
-              <li class="bold"><a class="active collapsible-header waves-effect"><i class="mdi mdi-account small green-text left"></i>Mon Compte</a>
+              <li class="bold"><a class="collapsible-header waves-effect"><i class="mdi mdi-account small green-text left"></i>Mon Compte</a>
                   <div class="collapsible-body no-padding" style="display: none;">
                       <ul>
                           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text small left"></i>Profil</a></li>
@@ -103,8 +111,8 @@
       @else
 
       <ul id="search-nav" class="dropdown-content" style='width: auto !important;'>
-        <li><a href="{{ url('/search/expedition') }}"><i class="mdi mdi-cube-send orange-text left"></i>Une expedition</a></li>
         <li><a href="{{ url('/search/transport') }}"><i class="mdi mdi-truck-delivery blue-text left"></i>Un transport</a></li>
+        <li><a href="{{ url('/search/expedition') }}"><i class="mdi mdi-cube-send orange-text left"></i>Une expedition</a></li>
       </ul>
 
       <header class="navbar-fixed">
@@ -124,6 +132,19 @@
       </header>
       <mobile>
           <ul class="side-nav collapsible collapsible-accordion" id="mobile-nav">
+
+
+            <li class="bold"><a class="collapsible-header waves-effect"><i class="mdi mdi-magnify small grey-text left"></i>Rechercher</a>
+                <div class="collapsible-body no-padding" style="display: none;">
+                    <ul>
+                      <li><a href="{{ url('/search/expedition') }}"><i class="mdi mdi-cube-send small orange-text left"></i>Une expedition</a></li>
+                      <li><a href="{{ url('/search/transport') }}"><i class="mdi mdi-truck-delivery small blue-text left"></i>Un transport</a></li>
+                      <li class="divider"></li>
+                    </ul>
+                </div>
+            </li>
+
+
             <li><a href="#" class="loginLink"><i class="mdi mdi-login small left green-text"></i>Connexion</a></li>
             <li><a href="#" class="registerLink"><i class="mdi mdi-account-plus small left blue-text"></i>Inscription</a></li>
 

@@ -28,7 +28,7 @@ class VehiculeTypeSeeder extends Seeder
 				]);
                 
 			DB::table('vehicule_types')->insert([
-                'name' => 'Vélo'
+                'name' => 'Velo'
 				]);
                 
 			DB::table('vehicule_types')->insert([

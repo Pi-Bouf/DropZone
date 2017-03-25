@@ -42,7 +42,6 @@ function addEtape() {
     tabEtape[name] = document.getElementById('villeEtape' + name);
     tabAuto[name] = new google.maps.places.Autocomplete(tabEtape[name]);
     google.maps.event.addListener(tabAuto[name], 'place_changed', function() {
-        console.log("ok");
         place = tabAuto[name].getPlace();
         tabLatEtape[name] = place.geometry.location.lat();
         tabLngEtape[name] = place.geometry.location.lng();
@@ -131,7 +130,7 @@ function initialize() {
 
     });
 
-    var inputEtape1 = document.getElementById('villeEtape1');
+    /*var inputEtape1 = document.getElementById('villeEtape1');
     var autocompleteEtape1 = new google.maps.places.Autocomplete(inputEtape1);
     inputEtape1.placeholder = "";
     google.maps.event.addListener(autocompleteEtape1, 'place_changed', function() {
@@ -140,7 +139,7 @@ function initialize() {
         tabLngEtape[1] = place.geometry.location.lng();
         marqueur();
 
-    });
+    });*/
 
 }
 
