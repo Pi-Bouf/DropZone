@@ -40,6 +40,8 @@
           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text left"></i>Profil</a></li>
           <li><a href="{{ url('/user/me/update') }}"><i class="mdi mdi-account-edit grey-text left"></i>Mes informations</a></li>
           <li class="divider"></li>
+          <li><a href="{{ url('/admin') }}"><i class="mdi mdi-settings small red-text left"></i>Administration</a></li>
+          <li class="divider"></li>
           <li><a href="{{ url('/user/myvehicules') }}"><i class="mdi mdi-car left brown-text"></i>Mes véhicules</a></li>
           <li class="divider"></li>
           <li><a href="{{ url('/user/myrequest') }}"><i class="mdi mdi-ticket-account purple-text left"></i>Mes demandes</a></li>
@@ -93,6 +95,8 @@
                       <ul>
                           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text small left"></i>Profil</a></li>
                           <li><a href="{{ url('/user/me/update') }}"><i class="mdi mdi-account-edit grey-text small left"></i>Mes informations</a></li>
+                          <li class="divider"></li>
+                          <li><a href="{{ url('/admin') }}"><i class="mdi mdi-setting small red-text left"></i>Administration</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ url('/user/myrequest') }}"><i class="mdi mdi-ticket-account small purple-text left"></i>Mes demandes</a></li>
                           <li class="divider"></li>
