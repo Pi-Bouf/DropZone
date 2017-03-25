@@ -291,6 +291,6 @@ class BackOfficeController extends Controller
     public function getDemandeExpeditionDelete(DemandeExpedition $demandeexpedition)
     {
         $demandeexpedition->delete();
-        return redirect()->route('admin_demande_list');
+        return redirect()->back();
     }
 }
