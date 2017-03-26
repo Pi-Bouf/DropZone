@@ -90,13 +90,13 @@
               <li><a href="{{ url('/addtransport') }}"><i class="mdi mdi-truck-delivery blue-text small left"></i>Transporter</a></li>
               <li><a href="{{ url('addcolis') }}"><i class="mdi mdi-cube-send small orange-text left"></i>Expédier</a></li>
               <li class="divider"></li>
+              <li><a href="{{ url('/admin') }}"><i class="mdi mdi-settings small red-text left"></i>Administration</a></li>
+              <li class="divider"></li>
               <li class="bold"><a class="collapsible-header waves-effect"><i class="mdi mdi-account small green-text left"></i>Mon Compte</a>
                   <div class="collapsible-body no-padding" style="display: none;">
                       <ul>
                           <li><a href="{{ url('/user/me') }}"><i class="mdi mdi-face-profile pink-text small left"></i>Profil</a></li>
                           <li><a href="{{ url('/user/me/update') }}"><i class="mdi mdi-account-edit grey-text small left"></i>Mes informations</a></li>
-                          <li class="divider"></li>
-                          <li><a href="{{ url('/admin') }}"><i class="mdi mdi-setting small red-text left"></i>Administration</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ url('/user/myrequest') }}"><i class="mdi mdi-ticket-account small purple-text left"></i>Mes demandes</a></li>
                           <li class="divider"></li>
