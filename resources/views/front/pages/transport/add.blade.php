@@ -9,6 +9,12 @@
     $(document).ready(function() {
         $('select').material_select();
     });
+    function calcVolume() {
+        $("#v").val((parseFloat($("#lod").val()) * parseFloat($("#lad").val()) * parseFloat($("#hd").val())) / 1000000);
+        if ($("#v").val() != "") {
+            $('[for="v"]').addClass("active");
+        }
+    }
 </script>
 
 <style type="text/css">
@@ -155,15 +161,15 @@
                             <span id="info">Si les champs suivants ne sont pas remplis, ils prendront la capacité du véhicule.</span>
                             <div class="input-field">
                                 <label for="lod" class="input-label">Longueur disponible : (cm)</label>
-                                <input type="number" class="input-box validate" id="lod" name="lod"><br>
+                                <input type="number" class="input-box validate" id="lod" name="lod" onchange="calcVolume()"><br>
                             </div>
                             <div class="input-field">
                                 <label for="lad" class="input-label">Largeur disponible : (cm)</label>
-                                <input type="number" class="input-box validate" id="lad" name="lad"><br>
+                                <input type="number" class="input-box validate" id="lad" name="lad" onchange="calcVolume()"><br>
                             </div>
                             <div class="input-field">
                                 <label for="hd" class="input-label">Hauteur disponible : (cm)</label>
-                                <input type="number" class="input-box validate" id="hd" name="hd"><br>
+                                <input type="number" class="input-box validate" id="hd" name="hd" onchange="calcVolume()"><br>
                             </div>
                             <div class="input-field">
                                 <label for="pd" class="input-label">Poids disponible : (kg)</label>

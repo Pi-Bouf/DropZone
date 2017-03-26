@@ -109,7 +109,7 @@ class UsersTableSeeder extends Seeder
 					'sexe'=> 'h',
 					'login'=> 'Mickey M.'.substr(md5(rand(0, 100000)), 0, 4),
 					'phone'=> '0666666666',
-					'created_at' => '2016-01-01',
+					'created_at' => '2017-01-01',
 					'description'=> "Coucou c'est moi :D",
 				]);
 			}

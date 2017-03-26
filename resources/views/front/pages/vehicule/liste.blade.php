@@ -39,18 +39,18 @@
                                     <font color="red">Non renseigné.</font>
                                     @endif
                                     <br> @if($vehicule->volume)
-                                    <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
-                                    <b>Volume Max (cm³): </b>
+                                    <b>Volume Max (m³): </b> {{ $vehicule->volume }} @else
+                                    <b>Volume Max (m³): </b>
                                     <font color="red">Non renseigné.</font>
                                     @endif
                                     <br>
-                                    <a class="waves-effect waves-light btn-floating green" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}"><i class="mdi mdi-clipboard-text"></i></a>
+                                    <a class="waves-effect waves-light btn-floating green tooltipped" data-position="top" data-tooltip="Editer le véhicule" href="{{ route('user_vehicule_edit', array('vehicule' => $vehicule->id)) }}"><i class="mdi mdi-clipboard-text"></i></a>
                                     @if($vehicule->isDefault == 1)
-                                    <span class="waves-effect waves-light btn-floating grey" disabled><i class="mdi mdi-check-all"></i></span>
+                                    <span class="waves-effect waves-light btn-floating grey tooltipped" data-position="top" data-tooltip="Véhicule déjà par defaut" disabled><i class="mdi mdi-check-all"></i></span>
                                     @else
-                                    <a class="waves-effect waves-light btn-floating blue" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}"><i class="mdi mdi-check"></i></a>
+                                    <a class="waves-effect waves-light btn-floating blue tooltipped" data-position="top" data-tooltip="Mettre par defaut" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}"><i class="mdi mdi-check"></i></a>
                                     @endif
-                                    <a class="waves-effect waves-light btn-floating red" href="{{ route('user_vehicule_delete', array('vehicule' => $vehicule->id)) }}"><i class="mdi mdi-close"></i></a>
+                                    <a class="waves-effect waves-light btn-floating red tooltipped" data-position="top" data-tooltip="Supprimer véhicule" href="{{ route('user_vehicule_delete', array('vehicule' => $vehicule->id)) }}"><i class="mdi mdi-close"></i></a>
                                 </div>
                             </div>
                         </div>

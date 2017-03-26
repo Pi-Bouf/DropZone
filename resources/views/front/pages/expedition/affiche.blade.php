@@ -86,7 +86,7 @@
                                 </tr>
                                 <tr>
                                     <td>Poids de l'objet :</td>
-                                    <td>{{$expedition->weightItem}} g</td>
+                                    <td>{{$expedition->weightItem}} kg</td>
                                 </tr>
                                 <tr>
                                     <td>Longueur du colis :</td>

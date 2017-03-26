@@ -266,9 +266,9 @@
                         <td>Volume Max.:</td>
                         <td>
                         @if($transport->volume && $transport->volume > 0)
-                        {{ $transport->volume }} kg
+                        {{ $transport->volume }} m³
                         @elseif($transport->vehicule->volume > 0)
-                        {{ $transport->vehicule->volume }} kg
+                        {{ $transport->vehicule->volume }} m³
                         @else
                         <i><b>NR.</b></i>
                         @endif

@@ -5,6 +5,14 @@
 'includesCss' => ['/css/pages/expeditions.css']])
 @section('content')
 
+<script>
+    function calcVolume() {
+        $("#volume").val((parseFloat($("#longueur").val()) * parseFloat($("#largeur").val()) * parseFloat($("#hauteur").val())) / 1000000);
+        if ($("#volume").val() != "") {
+            $('[for="volume"]').addClass("active");
+        }
+    }
+</script>
 
         <section id="contenuSection" class="scroll-section root-sec brand-bg padd-tb-60 contact-wrap grey lighten-3">
             @if(session('add'))
@@ -60,31 +68,31 @@
                                 <div class="clearfix card-panel grey lighten-5 cform-wrapper">
                                     <h3 class="about-subtitle">Information sur le colis</h3>
                                     <div class="input-field">
-                                        <input id="prix" type="number" name="prix" class="validate input-box" onchange="marqueur()" step="0.01" required>
+                                        <input id="prix" type="number" name="prix" class="validate input-box" step="0.01" required>
                                         <label for="prix" class="input-label">Prix de la livraison (€) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <textarea id="description" type="text" name="description" class="validate materialize-textarea" onchange="marqueur()" required></textarea>
+                                        <textarea id="description" type="text" name="description" class="validate materialize-textarea" required></textarea>
                                         <label for="description" class="input-label">Description du colis :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="poids" type="number" name="poids" class="validate input-box" onchange="marqueur()" step="0.1" required>
-                                        <label for="poids" class="input-label">Poids (kg) :</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <input id="longueur" type="number" name="longueur" class="validate input-box" onchange="marqueur()" required>
+                                        <input id="longueur" type="number" name="longueur" class="validate input-box" onchange="calcVolume()" required>
                                         <label for="longueur" class="input-label">Longueur (cm) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="largeur" type="number" name="largeur" class="validate input-box" onchange="marqueur()" required>
-                                        <label for="largeur" class="input-label">Largeur (cm) :</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <input id="hauteur" type="number" name="hauteur" class="validate input-box" onchange="marqueur()" required>
+                                        <input id="hauteur" type="number" name="hauteur" class="validate input-box" onchange="calcVolume()" required>
                                         <label for="hauteur" class="input-label">Hauteur (cm) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="volume" type="number" name="volume" class="validate input-box" onchange="marqueur()" step="0.01" required>
+                                        <input id="largeur" type="number" name="largeur" class="validate input-box" onchange="calcVolume()" required>
+                                        <label for="largeur" class="input-label">Largeur (cm) :</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input id="poids" type="number" name="poids" class="validate input-box" step="0.1" required>
+                                        <label for="poids" class="input-label">Poids (kg) :</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input id="volume" type="number" name="volume" class="validate input-box" step="0.01" required>
                                         <label for="volume" class="input-label">Volume (m³) :</label>
                                     </div>
                                 </div>

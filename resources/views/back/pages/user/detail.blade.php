@@ -98,8 +98,8 @@
                                     @endif
                                     <br>
                                     @if($vehicule->volume)
-                                    <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
-                                    <b>Volume Max (cm³): </b>
+                                    <b>Volume Max (m³): </b> {{ $vehicule->volume }} @else
+                                    <b>Volume Max (m³): </b>
                                     <font color="red">Non renseigné.</font>
                                     @endif
                                     </div>

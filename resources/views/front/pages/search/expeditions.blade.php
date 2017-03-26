@@ -93,7 +93,7 @@
                                                 <td>Volume Max.:</td>
                                                 <td>
                                                 @if($expedition->volumeItem && $expedition->volumeItem > 0)
-                                                {{ $expedition->volumeItem }} kg
+                                                {{ $expedition->volumeItem }} m³
                                                 @else
                                                 <i><b>NR.</b></i>
                                                 @endif
@@ -224,9 +224,9 @@
                     </p>
                 </div>
                 <div class="input-field col l4 m4 s11 offset-l4 offset-m4">
-                    Volume (cm³):
+                    Volume (m³):
                     <p class="range-field">
-                        <input type="range" name="volume" min="0" max="300" value="{{ $volume or '300' }}" />
+                        <input type="range" name="volume" min="0" max="5" value="{{ $volume or '5' }}" />
                     </p>
                 </div>
             </div>

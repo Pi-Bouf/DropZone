@@ -21,6 +21,13 @@ class BackOfficeController extends Controller
     
     public function getDashBoard()
     {
+        //$data = array_fill (1 , 14 , 0);
+        //dd($data);
+        $data = DB::select( DB::raw('SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM users WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at)') );
+        dd($data);
+
+        // SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM users WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at);
+
         $data = array(
         "user" => Auth::user(),
         "userCount" => User::all()->count(),

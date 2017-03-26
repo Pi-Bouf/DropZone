@@ -47,13 +47,13 @@
                     <tr>
                         <td>Poid Max.:</td>
                         <td>
-                            {{ $expedition->weightItem }} cm
+                            {{ $expedition->weightItem }} kg
                         </td>
                     </tr>
                     <tr>
                         <td>Volume Max.:</td>
                         <td>
-                            {{ $expedition->volumeItem }} cm
+                            {{ $expedition->volumeItem }} m³
                         </td>
                     </tr>
                 </table>

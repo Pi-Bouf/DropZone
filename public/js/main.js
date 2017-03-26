@@ -4,6 +4,13 @@ $(window).load(function() {
     $('body').delay(350);
 });
 
+function calcVolume() {
+    $("#volume").val((parseFloat($("#longMax").val()) * parseFloat($("#largMax").val()) * parseFloat($("#hautMax").val())) / 1000000);
+    if ($("#volume").val() != "") {
+        $('[for="volume"]').addClass("active");
+    }
+}
+
 (function($) {
     $.fn.scrollingTo = function(opts) {
         var defaults = {
