@@ -46,13 +46,13 @@
 
             <div class="input-field col s12">
               <input type="date" id="birthday" name="reg_birthday" class="datepicker" value="{{ $user->birthday }}" required>
-              <label for="birthday">Date de naissance</label>
+              <label for="birthday" class="active">Date de naissance</label>
               <br><strong>{{ $errors->first('reg_birthday') }}</strong>
             </div>
 
             <div class="input-field col s12">
               <input type="text" name="phone" class="validate" placeholder="Téléphone..." value="{{ $user->phone }}" required>
-              <label for="phone">Téléphone</label>
+              <label for="phone" class="active">Téléphone</label>
               <br><strong>{{ $errors->first('phone') }}</strong>
 
             </div>
