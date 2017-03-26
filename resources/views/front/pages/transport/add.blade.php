@@ -15,6 +15,20 @@
             $('[for="v"]').addClass("active");
         }
     }
+    function setDefaultValue(element) {
+        var id = $("#vehicule").val();
+        $("#lod").val(tabDataVehicule[id][0]);
+        $('[for="lod"]').addClass("active");
+        $("#lad").val(tabDataVehicule[id][1]);
+        $('[for="lad"]').addClass("active");
+        $("#hd").val(tabDataVehicule[id][2]);
+        $('[for="hd"]').addClass("active");
+        $("#pd").val(tabDataVehicule[id][3]);
+        $('[for="pd"]').addClass("active");
+        $("#v").val(tabDataVehicule[id][4]);
+        $('[for="v"]').addClass("active");
+    }
+    var tabDataVehicule = Array();
 </script>
 
 <style type="text/css">
@@ -152,9 +166,12 @@
                             <br><br>
                             <label>Véhicule utilisé : </label>
                             <div class="input-field">
-                                <select name="vehicule" id="vehicule">
+                                <select name="vehicule" id="vehicule" onchange="setDefaultValue()">
                                     @foreach(Auth::user()->vehicules as $vehicule)
                                         <option value="{{$vehicule->id}}">{{ $vehicule->marque }} {{ $vehicule->modele }}</option>
+                                        <script>
+                                            tabDataVehicule[{{$vehicule->id}}] = ["{{ $vehicule->longMax }}", "{{ $vehicule->largMax }}", "{{ $vehicule->hautMax }}","{{ $vehicule->poidMax }}", "{{ $vehicule->volume }}"]
+                                        </script>
                                     @endforeach
                                 </select>
                             </div>
@@ -193,4 +210,7 @@
         </div>
         @endif
     </section>
+    <script>
+        setDefaultValue();
+    </script>
 @endsection

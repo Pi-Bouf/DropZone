@@ -51,6 +51,7 @@
                                     <a class="waves-effect waves-light btn-floating blue tooltipped" data-position="top" data-tooltip="Mettre par defaut" href="{{ url('user/myvehicules/setDefault/'.$vehicule->id) }}"><i class="mdi mdi-check"></i></a>
                                     @endif
                                     <a class="waves-effect waves-light btn-floating red tooltipped" data-position="top" data-tooltip="Supprimer véhicule" href="{{ route('user_vehicule_delete', array('vehicule' => $vehicule->id)) }}"><i class="mdi mdi-close"></i></a>
+                                    <input type="text" value="{{ $vehicule->caracInArray() }}" id="TEST">
                                 </div>
                             </div>
                         </div>
