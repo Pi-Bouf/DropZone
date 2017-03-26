@@ -10,6 +10,10 @@ class QuestionTransport extends Model
         return $this->belongsTo('\App\User');
     }
 
+    public function reponseAtQuestion(){
+        return $this->hasMany('\App\QuestionTransport', 'question_transport_id');
+    }
+
 }
 
 ?>

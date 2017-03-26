@@ -18,6 +18,7 @@ class CreateQuestionExpeTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('expedition_id')->unsigned();
             $table->text('question');
+            $table->integer('question_expedition_id')->nullable();
             $table->text('reply')->nullable();
             $table->foreign('expedition_id')->references('id')->on('expeditions');
 			$table->foreign('user_id')->references('id')->on('users');

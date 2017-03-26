@@ -152,6 +152,21 @@ class ExpeditionController extends Controller
 
     }
 
+    public function postaddreponseexpe(\App\QuestionExpedition $question, Request $request){
+        $rules = array(
+            'reponse' => 'required|max:255|string'
+        );
+        $this->validate($request, $rules);
+        $rep = new QuestionExpedition();
+        $rep->expedition_id= $request->input('idT');
+        $rep->question= $request->input('reponse');
+        $rep->question_expedition_id = $question->id;
+        $rep->user_id = Auth::user()->id;
+
+        $rep->save();
+        return redirect()->back();
+    }
+
     public function addReservation(Request $request){
         $rules = array(
             'message' => 'required|max:500',

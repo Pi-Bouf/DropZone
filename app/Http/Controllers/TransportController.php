@@ -175,6 +175,21 @@ class TransportController extends Controller
 
         return redirect()->back();
     }
+    
+    public function postaddreponse(\App\QuestionTransport $question, Request $request){
+        $rules = array(
+            'reponse' => 'required|max:255|string'
+        );
+        $this->validate($request, $rules);
+        $rep = new QuestionTransport();
+        $rep->transport_id= $request->input('idT');
+        $rep->text= $request->input('reponse');
+        $rep->question_transport_id = $question->id;
+        $rep->user_id = Auth::user()->id;
+
+        $rep->save();
+        return redirect()->back();
+    }
 
     public function addReservation(Request $request){
         $rules = array(
