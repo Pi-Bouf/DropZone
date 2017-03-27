@@ -26,7 +26,7 @@
       border: 0px !important;
   }
 
-  
+
 [type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
   border: 0px !important;
 }
@@ -140,6 +140,7 @@
                                     <p>
                                       Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
                                     </p>
+                                    <p>{{$demande->propositionText}}</p>
                                     <p>
                                       Prix : {{ $demande->prixAsked }} €
                                     </p>
@@ -183,6 +184,7 @@
                                       <p>
                                         Départ entre le {{ Date::parse($demande->beginDate)->format('j F') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
                                       </p>
+                                      <p>{{$demande->propositionText}}</p>
                                       <p>
                                         Prix : {{ $demande->prixAsked }} €
                                       </p>
