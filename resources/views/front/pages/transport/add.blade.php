@@ -9,6 +9,26 @@
     $(document).ready(function() {
         $('select').material_select();
     });
+    function calcVolume() {
+        $("#v").val((parseFloat($("#lod").val()) * parseFloat($("#lad").val()) * parseFloat($("#hd").val())) / 1000000);
+        if ($("#v").val() != "") {
+            $('[for="v"]').addClass("active");
+        }
+    }
+    function setDefaultValue(element) {
+        var id = $("#vehicule").val();
+        $("#lod").val(tabDataVehicule[id][0]);
+        $('[for="lod"]').addClass("active");
+        $("#lad").val(tabDataVehicule[id][1]);
+        $('[for="lad"]').addClass("active");
+        $("#hd").val(tabDataVehicule[id][2]);
+        $('[for="hd"]').addClass("active");
+        $("#pd").val(tabDataVehicule[id][3]);
+        $('[for="pd"]').addClass("active");
+        $("#v").val(tabDataVehicule[id][4]);
+        $('[for="v"]').addClass("active");
+    }
+    var tabDataVehicule = Array();
 </script>
 
 <style type="text/css">
@@ -146,24 +166,27 @@
                             <br><br>
                             <label>Véhicule utilisé : </label>
                             <div class="input-field">
-                                <select name="vehicule" id="vehicule">
+                                <select name="vehicule" id="vehicule" onchange="setDefaultValue()">
                                     @foreach(Auth::user()->vehicules as $vehicule)
                                         <option value="{{$vehicule->id}}">{{ $vehicule->marque }} {{ $vehicule->modele }}</option>
+                                        <script>
+                                            tabDataVehicule[{{$vehicule->id}}] = ["{{ $vehicule->longMax }}", "{{ $vehicule->largMax }}", "{{ $vehicule->hautMax }}","{{ $vehicule->poidMax }}", "{{ $vehicule->volume }}"]
+                                        </script>
                                     @endforeach
                                 </select>
                             </div>
                             <span id="info">Si les champs suivants ne sont pas remplis, ils prendront la capacité du véhicule.</span>
                             <div class="input-field">
                                 <label for="lod" class="input-label">Longueur disponible : (cm)</label>
-                                <input type="number" class="input-box validate" id="lod" name="lod"><br>
+                                <input type="number" class="input-box validate" id="lod" name="lod" onchange="calcVolume()"><br>
                             </div>
                             <div class="input-field">
                                 <label for="lad" class="input-label">Largeur disponible : (cm)</label>
-                                <input type="number" class="input-box validate" id="lad" name="lad"><br>
+                                <input type="number" class="input-box validate" id="lad" name="lad" onchange="calcVolume()"><br>
                             </div>
                             <div class="input-field">
                                 <label for="hd" class="input-label">Hauteur disponible : (cm)</label>
-                                <input type="number" class="input-box validate" id="hd" name="hd"><br>
+                                <input type="number" class="input-box validate" id="hd" name="hd" onchange="calcVolume()"><br>
                             </div>
                             <div class="input-field">
                                 <label for="pd" class="input-label">Poids disponible : (kg)</label>
@@ -187,4 +210,7 @@
         </div>
         @endif
     </section>
+    <script>
+        setDefaultValue();
+    </script>
 @endsection

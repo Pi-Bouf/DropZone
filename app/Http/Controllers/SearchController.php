@@ -94,10 +94,6 @@ class SearchController extends Controller
             }
         }
 
-        if(Auth::user()) {
-            $getTrans->whereRaw('first.user_id != '.Auth::user()->id);
-        }
-
         $getTrans->get();
         
         $transport = Transport::findMany($getTrans->pluck('id')->toArray())->sortBy('natureTransport');
@@ -180,13 +176,9 @@ class SearchController extends Controller
         $getExpe->whereRaw('(expeditions.widthItem <= '.$request->input('widthItem', 300).' OR expeditions.widthItem IS NULL)');
         $getExpe->whereRaw('(expeditions.heightItem <= '.$request->input('heightItem', 300).' OR expeditions.heightItem IS NULL)');
         $getExpe->whereRaw('(expeditions.weightItem <= '.$request->input('weightItem', 10000).' OR expeditions.weightItem IS NULL)');
-        $getExpe->whereRaw('(expeditions.volumeItem <= '.$request->input('volumeItem', 300).' OR expeditions.volumeItem IS NULL)');
+        $getExpe->whereRaw('(expeditions.volumeItem <= '.$request->input('volumeItem', 5).' OR expeditions.volumeItem IS NULL)');
         $getExpe->whereRaw('expeditions.costMax >= '.$request->input('prixMin', 0));
         $getExpe->whereRaw('expeditions.costMax <= '.$request->input('prixMax', 300));
-
-        if(Auth::user()) {
-            $getExpe->whereRaw('user_id != '.Auth::user()->id);
-        }
 
         $getExpe->get();
 

@@ -27,8 +27,9 @@ class Transport extends Model
 
     public function questionsTransport()
     {
-        return $this->hasMany('App\QuestionTransport');
+        return $this->hasMany('App\QuestionTransport')->where('question_transport_id', null);
     }
+
 
     public function demandesTransport()
     {

@@ -98,8 +98,8 @@
                                     @endif
                                     <br>
                                     @if($vehicule->volume)
-                                    <b>Volume Max (cm³): </b> {{ $vehicule->volume }} @else
-                                    <b>Volume Max (cm³): </b>
+                                    <b>Volume Max (m³): </b> {{ $vehicule->volume }} @else
+                                    <b>Volume Max (m³): </b>
                                     <font color="red">Non renseigné.</font>
                                     @endif
                                     </div>
@@ -281,7 +281,19 @@
                 Expeditions
             </header>
             <div class="panel-body">
-                qsd
+                @foreach($actualUser->expeditions as $expedition)
+                @if($expedition->isAccepted)
+                    <?php $color="rgba(0, 255, 0, 0.2)" ; ?>
+                @else
+                    <?php $color = "rgba(0, 0, 255, 0.2)"; ?>
+                @endif
+                <div style="background-color: {{ $color }}; margin-bottom: 5px; border-radius: 5px; padding: 3px; color: #666666;">
+                    <div class="text-center">
+                        <h4><a href="{{ route('admin_expedition_detail', array('expedition' => $expedition->id)) }}"><b>{{ $expedition->villeDep->name }} </b> <span style="margin: 10px">&#8620;</span> <b> {{ $expedition->villeArr->name }}</b></a></h4>
+                        <center><b>Prix: </b> {{ $expedition->costMax }}</center>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

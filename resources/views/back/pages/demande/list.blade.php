@@ -72,7 +72,6 @@
                             <th>Utilisateur</th>
                             <th>Texte</th>
                             <th>Prix proposé</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,7 +82,6 @@
                             <td><a target="_blank" href="{{ route('admin_user_detail', array('user' => $expedition->user->id)) }}">{{ $expedition->user->login }}</a></td>
                             <td>{{ mb_strimwidth($expedition->propositionText, 0, 200, "...") }}</td>
                             <td>{{ $expedition->prixAsked }}€</td>
-                            <td></td>
                         </tr>
                         <div class="modal fade" id="del_demande_expedition_{{ $expedition->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                             <div class="modal-dialog" role="document">

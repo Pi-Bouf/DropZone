@@ -457,4 +457,49 @@
     </div>
 </div>
 <!-- row end -->
-@endsection
+
+@section('graph')
+<script type="text/javascript">
+    $(function() {
+        "use strict";
+        //BAR CHART
+        var data = {
+            labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre"],
+            datasets: [{
+                label: "My First dataset",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [65, 59, 80, 81, 56, 55, 40]
+            }, {
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [28, 48, 40, 19, 86, 27, 90]
+            }, {
+                label: "Zoube",
+                fillColor: "rgba(0,255,0,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(255,0,0,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [52, 5, 6, 22, 45, 85, 12]
+            }]
+        };
+        new Chart(document.getElementById("linechart").getContext("2d")).Line(data, {
+            responsive: true,
+            maintainAspectRatio: false,
+        });
+
+    });
+    // Chart.defaults.global.responsive = true;
+</script>
+@endsection @endsection

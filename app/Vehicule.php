@@ -25,6 +25,10 @@ class Vehicule extends Model
     public function inTransports() {
         return $this->hasMany('App\Transport');
     }
+
+    public function caracInArray() {
+        return '"'.$this->longMax.'", "'.$this->largMax.'", "'.$this->hautMax.'", "'.$this->poidMax.'", "'.$this->volume.'"';
+    }
 }
 
 ?>

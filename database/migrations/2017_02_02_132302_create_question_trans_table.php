@@ -17,6 +17,7 @@ class CreateQuestionTransTable extends Migration
           $table->increments('id');
           $table->integer('user_id')->unsigned();
           $table->integer('transport_id')->unsigned();
+          $table->integer('question_transport_id')->nullable();
           $table->text('text');
           $table->timestamps();
           $table->foreign('user_id')->references('id')->on('users');

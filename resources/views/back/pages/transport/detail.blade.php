@@ -266,9 +266,9 @@
                         <td>Volume Max.:</td>
                         <td>
                         @if($transport->volume && $transport->volume > 0)
-                        {{ $transport->volume }} kg
+                        {{ $transport->volume }} m³
                         @elseif($transport->vehicule->volume > 0)
-                        {{ $transport->vehicule->volume }} kg
+                        {{ $transport->vehicule->volume }} m³
                         @else
                         <i><b>NR.</b></i>
                         @endif
@@ -321,7 +321,29 @@
                         <strong>{{ $demande->cost }}€</strong> - {{ $demande->text }}
                         </div>
                     </div>
+                    <div class="row" style="margin: 5px;">
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#del_demande_transport_{{ $demande->id }}"><i class="fa fa-trash-o"></i></a>
+                    </div>
                 </div>
+                <div class="modal fade" id="del_demande_transport_{{ $demande->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-left">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                            </div>
+                            <div class="modal-body">
+                                <i class="fa fa-quote-left"></i><i> {{ $demande->text }} </i><i class="fa fa-quote-right"></i>
+                                <br /><br />
+                                Voulez-vous vraiment supprimer cette demande ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Non !</button>
+                                <a href="{{ route('admin_demandetransport_delete', array('demandetransport' => $demande->id)) }}" class="btn btn-primary">Supprimer !</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
                 @endforeach
             </div>
         </div>

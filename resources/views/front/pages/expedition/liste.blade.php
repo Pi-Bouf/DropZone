@@ -80,7 +80,7 @@
                         <h5 class="black-text"><span>Largeur :</span> {{ $expedition->widthItem }} cm</h5>
                         <h5 class="black-text"><span>Hauteur :</span> {{ $expedition->heightItem }} cm</h5>
                         <h5 class="black-text"><span>Poids :</span> {{ $expedition->weightItem }} kg</h5>
-
+                        <h5 class="black-text"><span>Volume :</span> {{ $expedition->volumeItem }} m³</h5>
                       </div>
                     </div>
 

@@ -64,6 +64,11 @@
             background-size:cover;
         }
 
+        .reponse{
+            border-left:2px solid black;
+        }
+
+
     </style>
     <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap ">
         <div class="row">
@@ -86,7 +91,7 @@
                                 </tr>
                                 <tr>
                                     <td>Poids de l'objet :</td>
-                                    <td>{{$expedition->weightItem}} g</td>
+                                    <td>{{$expedition->weightItem}} kg</td>
                                 </tr>
                                 <tr>
                                     <td>Longueur du colis :</td>
@@ -184,11 +189,10 @@
         <br><br>
         <div class="row">
             @if($expedition->questionsExpedition->count() != 0)
-                <h3>Les questions</h3> <br>
-                <table class="col s12 push-m2 m8 push-l3 l6">
+                <div class="col s12 push-m2 m8 push-l3 l6">
                     @foreach($expedition->questionsExpedition as $qu)
-                        <tr>
-                            <td class="col s2 center">
+                        <div class="row">
+                            <div class="col s4 m2">
                                 @if($qu->user->picLink==null)
                                     <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
                                 @else
@@ -197,14 +201,62 @@
                                 <br>
                                 <a href="/user/{{$qu->user->id}}" class="deep-orange-text lighten-2">{{$qu->user->login}}</a>
                                 <br><br>
-                            </td>
-                            <td class="col s10">
-                                <div id="date">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
-                                <div>{{$qu->question}}</div>
-                            </td>
-                        </tr>
+                            </div>
+                            <div class="col s8 m10">
+                                <div id="date" class="left-align">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
+                                <div class=" left-align">{{$qu->question}}</div>
+                            </div>
+                        </div>
+                        @if($qu->reponseAtQuestion->count() != 0)
+                            @foreach($qu->reponseAtQuestion as $rep)
+                                <div class="row">
+                                    <div class="col s11 push-s1">
+                                        <div class="col s4 m2 reponse">
+                                                @if($rep->user->picLink==null)
+                                                    <img src="/images/profile/icon-{{$rep->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
+                                                @else
+                                                    <img src="{{$rep->user->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                                @endif
+                                                <br>
+                                                <a href="/user/{{$rep->user->id}}" class="deep-orange-text">{{$rep->user->login}}</a>
+                                                <br><br>
+                                        </div>
+                                        <div class="col s8 m10">
+                                                <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
+                                                <div class=" left-align">{{$rep->question}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                        <div class="row">
+                            <div class="col s11 push-s1">
+                                <div class="col s4 m2 reponse">
+                                        @if(Auth::user()->picLink==null)
+                                            <img src="/images/profile/icon-{{Auth::user()->sexe}}.png" width="100%" class="responsive-img circle" alt="">
+                                        @else
+                                            <img src="{{Auth::user()->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                        @endif
+                                        <br><br>
+                                </div>
+                                <div class="col s8 m10">
+                                    <form action="{{route('postaddreponseexpe',array('question' => $qu->id))}}" method="POST">
+                                        {{ csrf_field() }}
+                                        <div class="input-field">
+                                            <input id="reponse" type="text" name="reponse" class="validate deep-orange-text oranged" data-length="255" required>
+                                            <label for="reponse" class="deep-orange-text left-align">Votre réponse</label>
+                                        </div>
+                                        <input id="idT" name="idT" type="hidden" value="{{$expedition->id}}">
+                                        <p class="center-align addRep"><button id="btRépondre" type="submit" class=" btn-small deep-orange white-text">Répondre</button></p>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
                     @endforeach
-                </table>
+                </div>
             @else
                 Pas de question pour le moment.
             @endif

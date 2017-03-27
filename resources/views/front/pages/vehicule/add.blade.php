@@ -28,7 +28,7 @@
                                 </div>
 
                                 <div class="input-field col s12">
-                                    <input id="longMax" name="longMax" type="number" class="validate" value="{{ old('longMax') }}">
+                                    <input id="longMax" name="longMax" type="number" class="validate" value="{{ old('longMax') }}" onchange="calcVolume()">
                                     <label for="longMax">Longueur Max. (cm)</label>
                                     @if ($errors->has('longMax'))
                                     <strong style="color: brown;">{{ $errors->first('longMax') }}</strong>
@@ -36,7 +36,7 @@
                                 </div>
 
                                 <div class="input-field col s12">
-                                    <input id="hautMax" name="hautMax" type="number" class="validate" value="{{ old('hautMax') }}">
+                                    <input id="hautMax" name="hautMax" type="number" class="validate" value="{{ old('hautMax') }}" onchange="calcVolume()">
                                     <label for="hautMax">Hauteur Max. (cm)</label>
                                     @if ($errors->has('hautMax'))
                                     <strong style="color: brown;">{{ $errors->first('hautMax') }}</strong>
@@ -44,7 +44,7 @@
                                 </div>
 
                                 <div class="input-field col s12">
-                                    <input id="largMax" name="largMax" type="number" class="validate" value="{{ old('largMax') }}">
+                                    <input id="largMax" name="largMax" type="number" class="validate" value="{{ old('largMax') }}" onchange="calcVolume()">
                                     <label for="largMax">Largeur Max. (cm)</label>
                                     @if ($errors->has('largMax'))
                                     <strong style="color: brown;">{{ $errors->first('largMax') }}</strong>
@@ -53,7 +53,7 @@
 
                                 <div class="input-field col s12">
                                     <input id="poidMax" name="poidMax" type="number" class="validate" value="{{ old('poidMax') }}">
-                                    <label for="poidMax">Poid Max. (cm)</label>
+                                    <label for="poidMax">Poid Max. (kg)</label>
                                     @if ($errors->has('poidMax'))
                                     <strong style="color: brown;">{{ $errors->first('poidMax') }}</strong>
                                     @endif
@@ -61,7 +61,7 @@
 
                                 <div class="input-field col s12">
                                     <input id="volume" name="volume" type="number" class="validate" value="{{ old('volume') }}">
-                                    <label for="volume">Volume (cm³)</label>
+                                    <label for="volume">Volume (m³)</label>
                                     @if ($errors->has('volume'))
                                     <strong style="color: brown;">{{ $errors->first('volume') }}</strong>
                                     @endif

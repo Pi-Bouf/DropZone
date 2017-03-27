@@ -160,7 +160,6 @@
         var $input = $('.datepicker').pickadate();
         var picker = $input.pickadate('picker');
         picker.set('select', "{{ Date::now()->format('d/m/Y') }}");
-        picker.set('select', "{{ $dateTransport or old('dateTransport') }}");
     });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyDafB5RLEbXzBKpSNsil8N82xBJ8zXHH8U" async defer></script>

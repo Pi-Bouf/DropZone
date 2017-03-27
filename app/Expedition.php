@@ -26,7 +26,7 @@ class Expedition extends Model
 
     public function questionsExpedition()
     {
-        return $this->hasMany('App\QuestionExpedition');
+        return $this->hasMany('App\QuestionExpedition')->where('question_expedition_id', null);
     }
 
     public function demandeExpedition()

@@ -10,6 +10,9 @@ class QuestionExpedition extends Model
         return $this->belongsTo('\App\User');
     }
 
+    public function reponseAtQuestion(){
+        return $this->hasMany('\App\QuestionExpedition', 'question_expedition_id');
+    }
 }
 
 ?>
