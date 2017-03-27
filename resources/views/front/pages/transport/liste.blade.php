@@ -26,7 +26,7 @@
       border: 0px !important;
   }
 
-  
+
 [type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
   border: 0px !important;
 }
@@ -498,7 +498,7 @@
                 </div>
                   </div>
                 </div>
-                
+
               </li>
             @endforeach
           </ul>
