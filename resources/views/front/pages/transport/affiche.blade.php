@@ -37,6 +37,10 @@
             font-size:0.8em;
         }
 
+        .reponse{
+            border-left:2px solid black;
+        }
+
     </style>
 
 <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap">
@@ -96,7 +100,7 @@
                     @else
                         <img src="{{$transport->user->picLink}}" width="35%" class="responsive-img circle" alt="">
                     @endif
-                    <div id="nomConducteur"><a href="/user/{{$transport->user->id}}">{{$transport->user->firstName}}</a> - {{$age}} ans</div>
+                    <div id="nomConducteur"><a href="/user/{{$transport->user->id}}">{{$transport->user->login}}</a> - {{$age}} ans</div>
                     <div id="etoile"><i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i> {{$note}}/5 - {{$nbnote}} avis</div>
                     <img style="width: 70%; max-height: 100px;" src="/images/vehicles/{{ $transport->vehicule->vehiculetype->name }}.svg"><br>
                     <h4 class="about-subtitle">{{ $transport->vehicule->marque }} {{ $transport->vehicule->modele }}</h3>
@@ -180,13 +184,13 @@
             <div class="row">
                 <div class="input-field">
                     <textarea id="message" name="message" class="validate materialize-textarea white-text whited" required></textarea>
-                    <label for="message" class="white-text">Description de votre colis : (taille, qu'est ce que c'est, ...)</label>
+                    <label for="message" class="white-text left-align">Description de votre colis : (taille, qu'est ce que c'est, ...)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field">
                     <input id="prix" type="number" name="prix" step="0.01" class="validate white-text" required>
-                    <label for="prix" class="white-text">Prix proposé €</label>
+                    <label for="prix" class="white-text left-align">Prix proposé €</label>
                 </div>
             </div>
             <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
@@ -203,7 +207,7 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
-                    <textarea id="message" name="message" class="validate materialize-textarea blue-text blued"></textarea>
+                    <textarea id="message" name="message" class="validate materialize-textarea blue-text blued" data-length="255" required></textarea>
                     <label for="message" class="blue-text ">Poser votre question ici</label>
                 </div>
                 <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
@@ -212,29 +216,82 @@
         </form>
     </div>
     <br><br>
+    
+        <strong><font color="red">{{ $errors->first('message') }}</font></strong>
+        <strong><font color="red">{{ $errors->first('reponse') }}</font></strong>
     <div class="row">
+        
         @if($transport->questionsTransport->count() != 0)
-            <h3>Les questions</h3> <br>
-            <table class="col s12 push-m2 m8 push-l3 l6">
+            <div class="col s12 push-m2 m8 push-l3 l6">
                 @foreach($transport->questionsTransport as $qu)
-                    <tr>
-                        <td class="col s2 center">
-                            @if($qu->user->picLink==null)
-                                <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
-                            @else
-                                <img src="{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
-                            @endif
-                            <br>
-                            <a href="/user/{{$qu->user->id}}">{{$qu->user->login}}</a>
-                            <br><br>
-                        </td>
-                        <td class="col s10">
-                            <div id="date">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
-                            <div>{{$qu->text}}</div>
-                        </td>
-                    </tr>
+                    <div class="row">
+                        <div class="col s4 m2">
+                                @if($qu->user->picLink==null)
+                                    <img src="/images/profile/icon-{{$qu->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
+                                @else
+                                    <img src="{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                @endif
+                                <br>
+                                <a href="/user/{{$qu->user->id}}">{{$qu->user->login}}</a>
+                                <br><br>
+                        </div>
+                        <div class="col s8 m10">
+                                <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
+                                <div class=" left-align">{{$qu->text}}</div>
+
+                        </div>
+
+                    </div>
+                    @if($qu->reponseAtQuestion->count() != 0)
+                        @foreach($qu->reponseAtQuestion as $rep)
+                            <div class="row">
+                                <div class="col s11 push-s1">
+                                    <div class="col s4 m2 reponse">
+                                            @if($rep->user->picLink==null)
+                                                <img src="/images/profile/icon-{{$rep->user->sexe}}.png" width="100%" class="responsive-img circle" alt="">
+                                            @else
+                                                <img src="{{$rep->user->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                            @endif
+                                            <br>
+                                            <a href="/user/{{$rep->user->id}}">{{$rep->user->login}}</a>
+                                            <br><br>
+                                    </div>
+                                    <div class="col s8 m10">
+                                            <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
+                                            <div class=" left-align">{{$rep->text}}</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                    <div class="row">
+                        <div class="col s11 push-s1">
+                            <div class="col s4 m2 reponse">
+                                    @if(Auth::user()->picLink==null)
+                                        <img src="/images/profile/icon-{{Auth::user()->sexe}}.png" width="100%" class="responsive-img circle" alt="">
+                                    @else
+                                        <img src="{{Auth::user()->picLink}}" width="100%" class="responsive-img circle" alt="">
+                                    @endif
+                                    <br><br>
+                            </div>
+                            <div class="col s8 m10">
+                                <form action="{{route('postaddreponse',array('question' => $qu->id))}}" method="POST">
+                                    {{ csrf_field() }}
+                                    <div class="input-field">
+                                        <input id="reponse" type="text" name="reponse" class="validate blue-text blued" data-length="255" required>
+                                        <label for="reponse" class="blue-text left-align">Votre réponse</label>
+                                    </div>
+                                    <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
+                                    <p class="center-align addRep"><button id="btRépondre" type="submit" class=" btn-small blue white-text">Répondre</button></p>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
                 @endforeach
-            </table>
+            </div>
         @else
             Pas de question pour le moment.
         @endif

@@ -15,14 +15,15 @@
                 <li>
                   <div class="collapsible-header  ">
                     <span style="margin: 10px">{{ $demande->expedition->villeDep->name }}</span> &#10142; <span style="margin: 10px"> {{ $demande->expedition->villeArr->name }} </span>
-                    @if($demande->isAccepted === 1)
-                    <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
-                    @elseif($demande->isAccepted === 0)
+
+                    @if($demande->isAccepted === 0)
+                    <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
+                    @elseif($demande->isAccepted === 1)
                     <span class="right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
                     @elseif($demande->isAccepted === 2)
+                    <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
+                    @elseif($demande->isAccepted === 3)
                     <span class="right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
-                    @else
-                    <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
                     @endif
 
                   </div>
@@ -47,8 +48,8 @@
                       </div>
 
                       <div class="col s12 m12 l12 mg-t20">
-                        @if($demande->isAccepted === 1 || $demande->isAccepted === 2)
-                          @if($demande->isAccepted === 2 && !is_null($demande->expedition->notationTransporter))
+                        @if($demande->isAccepted === 3 || $demande->isAccepted === 2)
+                          @if($demande->isAccepted === 3 && !is_null($demande->expedition->notationTransporter))
                             <div class="col s6 m4 l4 center-align" >
 
                             </div>
@@ -56,7 +57,7 @@
                               <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
                               <div class="right">Note attribuée : {{$demande->expedition->notationTransporter->note}}/5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i></div>
                             </div>
-                          @else                          
+                          @else
                             <div class="col s12 m12 l12 mg-t20">
                               <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
                               @if($demande->beginDate < date('Y-m-d H:i:s'))
@@ -162,13 +163,13 @@
                         <span>{{ $demande->text }}</span>
                       </div>
                         <div class="col s12 m12 l12 mg-t20">
-                          @if($demande->isAccepted == 1 || $demande->isAccepted == 2)
-                            @if($demande->isAccepted==2 && !is_null($demande->notationUser))
+                          @if($demande->isAccepted == 2 || $demande->isAccepted == 3)
+                            @if($demande->isAccepted==3 && !is_null($demande->notationUser))
                               <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
                               <div class="right">Note attribuée : {{$demande->notationUser->note}}/5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i></div>
                             @else
                               <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
-                              @if($demande->transport->natureTransport == 0)
+                              @if($demande->transport->natureTransport == 1)
                                 @if($demande->transport->beginningDate < date('Y-m-d H:i:s'))
                                   <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class="right waves-effect green waves-light btn">Noter</a>
                                 @else
@@ -194,7 +195,7 @@
                           <p>Voulez-vous vraiment supprimer cette demande?</p>
                         </div>
                         <div class="modal-footer">
-                        
+
                           <a href="/user/myrequest/delTransport/{{$demande->id}}" class="modal-action modal-close waves-effect red white-text waves-green btn-flat"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
                           <a href="#!" class="margin-r10 modal-action modal-close waves-effect green white-text waves-green btn-flat">Retour</a>
                         </div>

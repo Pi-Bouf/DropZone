@@ -26,7 +26,7 @@
       border: 0px !important;
   }
 
-  
+
 [type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
   border: 0px !important;
 }
@@ -94,25 +94,45 @@
                       <h3 class="about-subtitle">Espace disponible</h3>
                       <div class="person-info">
                         <h5 class="black-text"><span>Véhicule :</span> {{ $transport->vehicule->marque }} {{ $transport->vehicule->modele }}</h5>
-                        @if($transport->longMax)
+
+                        @if($transport->longMax > 0)
                           <h5 class="black-text"><span>Longueur :</span> {{ $transport->longMax }} cm</h5>
+                        @elseif($transport->vehicule->longMax > 0)
+                          <h5 class="black-text"><span>Longueur :</span> {{ $transport->vehicule->longMax}} cm</h5>
                         @else
-                          <h5 class="black-text"><span>Longueur :</span> {{ $transport->vehicule->longMax }} cm</h5>
+                          <h5 class="black-text"><span>Longueur :</span> Non renseigné</h5>
                         @endif
-                        @if($transport->hautMax)
+
+                        @if($transport->hautMax > 0)
                           <h5 class="black-text"><span>Hauteur :</span> {{ $transport->hautMax }} cm</h5>
+                        @elseif($transport->vehicule->hautMax > 0)
+                          <h5 class="black-text"><span>Hauteur :</span> {{ $transport->vehicule->hautMax}} cm</h5>
                         @else
-                          <h5 class="black-text"><span>Hauteur :</span> {{ $transport->vehicule->hautMax }} cm</h5>
+                          <h5 class="black-text"><span>Hauteur :</span> Non renseigné</h5>
                         @endif
-                        @if($transport->largMax)
+
+                        @if($transport->largMax > 0)
                           <h5 class="black-text"><span>Largeur :</span> {{ $transport->largMax }} cm</h5>
+                        @elseif($transport->vehicule->largMax > 0)
+                          <h5 class="black-text"><span>Largeur :</span> {{ $transport->vehicule->largMax}} cm</h5>
                         @else
-                          <h5 class="black-text"><span>Largeur :</span> {{ $transport->vehicule->largMax }} cm</h5>
+                          <h5 class="black-text"><span>Largeur :</span> Non renseigné</h5>
                         @endif
-                        @if($transport->poidMax)
+
+                        @if($transport->poidMax > 0)
                           <h5 class="black-text"><span>Poids Max :</span> {{ $transport->poidMax }} kg</h5>
+                        @elseif($transport->vehicule->poidMax > 0)
+                          <h5 class="black-text"><span>Poids Max :</span> {{ $transport->vehicule->poidMax}} kg</h5>
                         @else
-                          <h5 class="black-text"><span>Poids Max :</span> {{ $transport->vehicule->poidMax }} kg</h5>
+                          <h5 class="black-text"><span>Poids Max :</span> Non renseigné</h5>
+                        @endif
+
+                        @if($transport->volume > 0)
+                          <h5 class="black-text"><span>Volume :</span> {{ $transport->volume }} m³</h5>
+                        @elseif($transport->vehicule->volume > 0)
+                          <h5 class="black-text"><span>Volume :</span> {{ $transport->vehicule->volume}} m³</h5>
+                        @else
+                          <h5 class="black-text"><span>Volume :</span> Non renseigné</h5>
                         @endif
                       </div>
                     </div>
@@ -338,25 +358,45 @@
                       <h3 class="about-subtitle">Espace disponible</h3>
                       <div class="person-info">
                         <h5 class="black-text"><span>Véhicule :</span> {{ $transport->vehicule->marque }} {{ $transport->vehicule->modele }}</h5>
-                        @if($transport->longMax)
+
+                        @if($transport->longMax > 0)
                           <h5 class="black-text"><span>Longueur :</span> {{ $transport->longMax }} cm</h5>
+                        @elseif($transport->vehicule->longMax > 0)
+                          <h5 class="black-text"><span>Longueur :</span> {{ $transport->vehicule->longMax}} cm</h5>
                         @else
-                          <h5 class="black-text"><span>Longueur :</span> {{ $transport->vehicule->longMax }} cm</h5>
+                          <h5 class="black-text"><span>Longueur :</span> Non renseigné</h5>
                         @endif
-                        @if($transport->hautMax)
+
+                        @if($transport->hautMax > 0)
                           <h5 class="black-text"><span>Hauteur :</span> {{ $transport->hautMax }} cm</h5>
+                        @elseif($transport->vehicule->hautMax > 0)
+                          <h5 class="black-text"><span>Hauteur :</span> {{ $transport->vehicule->hautMax}} cm</h5>
                         @else
-                          <h5 class="black-text"><span>Hauteur :</span> {{ $transport->vehicule->hautMax }} cm</h5>
+                          <h5 class="black-text"><span>Hauteur :</span> Non renseigné</h5>
                         @endif
-                        @if($transport->largMax)
+
+                        @if($transport->largMax > 0)
                           <h5 class="black-text"><span>Largeur :</span> {{ $transport->largMax }} cm</h5>
+                        @elseif($transport->vehicule->largMax > 0)
+                          <h5 class="black-text"><span>Largeur :</span> {{ $transport->vehicule->largMax}} cm</h5>
                         @else
-                          <h5 class="black-text"><span>Largeur :</span> {{ $transport->vehicule->largMax }} cm</h5>
+                          <h5 class="black-text"><span>Largeur :</span> Non renseigné</h5>
                         @endif
-                        @if($transport->poidMax)
+
+                        @if($transport->poidMax > 0)
                           <h5 class="black-text"><span>Poids Max :</span> {{ $transport->poidMax }} kg</h5>
+                        @elseif($transport->vehicule->poidMax > 0)
+                          <h5 class="black-text"><span>Poids Max :</span> {{ $transport->vehicule->poidMax}} kg</h5>
                         @else
-                          <h5 class="black-text"><span>Poids Max :</span> {{ $transport->vehicule->poidMax }} kg</h5>
+                          <h5 class="black-text"><span>Poids Max :</span> Non renseigné</h5>
+                        @endif
+
+                        @if($transport->volume > 0)
+                          <h5 class="black-text"><span>Volume :</span> {{ $transport->volume }} m³</h5>
+                        @elseif($transport->vehicule->volume > 0)
+                          <h5 class="black-text"><span>Volume :</span> {{ $transport->vehicule->volume}} m³</h5>
+                        @else
+                          <h5 class="black-text"><span>Volume :</span> Non renseigné</h5>
                         @endif
                       </div>
                     </div>
@@ -498,7 +538,7 @@
                 </div>
                   </div>
                 </div>
-                
+
               </li>
             @endforeach
           </ul>

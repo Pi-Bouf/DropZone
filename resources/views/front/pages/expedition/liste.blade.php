@@ -26,7 +26,7 @@
       border: 0px !important;
   }
 
-  
+
 [type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
   border: 0px !important;
 }
@@ -76,11 +76,41 @@
                     <div class="col s12 m4 l4">
                       <h3 class="about-subtitle">Détails du colis</h3>
                       <div class="person-info">
-                        <h5 class="black-text"><span>Longueur :</span> {{ $expedition->lengthItem }} cm</h5>
-                        <h5 class="black-text"><span>Largeur :</span> {{ $expedition->widthItem }} cm</h5>
-                        <h5 class="black-text"><span>Hauteur :</span> {{ $expedition->heightItem }} cm</h5>
-                        <h5 class="black-text"><span>Poids :</span> {{ $expedition->weightItem }} kg</h5>
-                        <h5 class="black-text"><span>Volume :</span> {{ $expedition->volumeItem }} m³</h5>
+                        <h5 class="black-text"><span>Longueur :</span>
+                        @if($expedition->lengthItem > 0 )
+                           {{ $expedition->lengthItem }} cm
+                        @else
+                          Non renseigné
+                        @endif
+                        </h5>
+                        <h5 class="black-text"><span>Largeur :</span> 
+                        @if($expedition->widthItem > 0 )
+                           {{ $expedition->widthItem }} cm
+                        @else
+                          Non renseigné
+                        @endif
+                        </h5>
+                        <h5 class="black-text"><span>Hauteur :</span>
+                        @if($expedition->heightItem > 0 )
+                           {{ $expedition->heightItem }} cm
+                        @else
+                          Non renseigné
+                        @endif
+                        </h5>
+                        <h5 class="black-text"><span>Poids :</span>
+                        @if($expedition->weightItem > 0 )
+                           {{ $expedition->weightItem }} kg
+                        @else
+                          Non renseigné
+                        @endif
+                        </h5>
+                        <h5 class="black-text"><span>Volume :</span>
+                        @if($expedition->volumeItem > 0 )
+                           {{ $expedition->volumeItem }} m³
+                        @else
+                          Non renseigné
+                        @endif
+                        </h5>
                       </div>
                     </div>
 
@@ -88,7 +118,12 @@
                       <div class="person-info">
                         <h3 class="about-subtitle">Description</h3>
                         <h5 class="black-text">{{ $expedition->description }}</h5>
-                        <h5 class="black-text"><span>Prix désiré :</span> {{ $expedition->costFixed }} €</h5>
+                        <h5 class="black-text"><span>Prix désiré :</span> 
+                        @if($expedition->costFixed>0)
+                          {{ $expedition->costFixed }} €</h5>
+                        @else
+                         Non renseigné
+                        @endif
 
                       </div>
                     </div>
@@ -118,7 +153,7 @@
                     <div class="col s12 m12 l12 black-text">
                         <h3 class="about-subtitle">Demande(s) en attente(s)</h3>
                         @foreach($expedition->demandeExpedition as $demande)
-                          @if(is_null($demande->isAccepted))
+                          @if($demande->isAccepted == 0)
                           <div class="row card blue lighten-3 demande-expe">
                                   <div class="col s6 m2 l2 center-align">
                                     @if($demande->user->picLink==null)
@@ -140,6 +175,7 @@
                                     <p>
                                       Départ entre le {{ Date::parse($demande->beginDate)->format('j') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
                                     </p>
+                                    <p>{{$demande->propositionText}}</p>
                                     <p>
                                       Prix : {{ $demande->prixAsked }} €
                                     </p>
@@ -161,7 +197,7 @@
                       <div class="col s12 m12 l12 black-text">
                           <h3 class="about-subtitle">Demande acceptée</h3>
                           @foreach($expedition->demandeExpedition as $demande)
-                            @if($demande->isAccepted == 1 || $demande->isAccepted == 2)
+                            @if($demande->isAccepted == 3 || $demande->isAccepted == 2 )
                             <div class="row card blue lighten-3 demande-expe">
                                     <div class="col s6 m2 l2 center-align">
                                       @if($demande->user->picLink==null)
@@ -183,11 +219,12 @@
                                       <p>
                                         Départ entre le {{ Date::parse($demande->beginDate)->format('j F') }} et le {{ Date::parse($demande->endDate)->format('j F Y') }}
                                       </p>
+                                      <p>{{$demande->propositionText}}</p>
                                       <p>
                                         Prix : {{ $demande->prixAsked }} €
                                       </p>
                                     </div>
-                                      @if($demande->isAccepted==2 && !is_null($expedition->notation))
+                                      @if($demande->isAccepted==3 && !is_null($expedition->notation))
                                         <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
                                           Votre note :<br>
                                               {{$expedition->notation->note}}

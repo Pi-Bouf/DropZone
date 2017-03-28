@@ -39,6 +39,7 @@ Route::get('/user/confirmdemandeTransport/{demande}', 'TransportController@confi
 Route::get('/user/canceldemandeTransport/{demande}', 'TransportController@cancelTransport')->name('canceltransport');
 Route::post('/postnotetransport/{demande}','TransportController@addNoteReservation')->name('postnotetransport');
 Route::post('/postnotetransportuser/{demande}','TransportController@addNoteReservationUser')->name('postnotetransportuser');
+Route::post('/postaddreponse/{question}','TransportController@postaddreponse')->name('postaddreponse');
 
 
 /*
@@ -55,6 +56,7 @@ Route::post('/postaddquestionexpedition','ExpeditionController@addQuestion')->na
 Route::post('/postaddreservationexpedition','ExpeditionController@addReservation')->name('postaddreservationexpedition');
 Route::post('/postnoteexpedition/{demande}','ExpeditionController@addNoteReservationE')->name('postnoteexpedition');
 Route::post('/postnoteexpeditiontrans/{demande}','ExpeditionController@addNoteReservationT')->name('postnoteexpeditiontrans');
+Route::post('/postaddreponseexpe/{question}','ExpeditionController@postaddreponseexpe')->name('postaddreponseexpe');
 
 
 /*
