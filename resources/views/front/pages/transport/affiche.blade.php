@@ -5,10 +5,6 @@
 'includesCss' => ['']])
 @section('content')
     <style>
-        body{
-            color:black;
-            text-align:center;
-        }
          .whited:focus{
             border-bottom: 1px solid white !important;
             -webkit-box-shadow: 0 1px 0 0 white !important;
@@ -38,12 +34,12 @@
         }
 
         .reponse{
-            border-left:2px solid black;
+            border-left:2px solid #CECECE;
         }
 
     </style>
 
-<section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap">
+<section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap center-align">
     <div class="row">
         <div class="col s12 l5 push-l2">
             
@@ -51,10 +47,10 @@
                 <div class="card-content grey-text">
                     <div id="trajet">
                         <h3 class="about-subtitle">Trajet du transport</h3>
-                        <div> {{ $depart->ville->name }} -> {{ $fin->ville->name }}</div>
+                        <div> <span style="font-weight: bold;">{{ $depart->ville->name }}</span> ↬ <span style="font-weight: bold;">{{ $fin->ville->name }}</span></div>
                         @if(count($etapes) != 2)
                             <div>
-                                Les villes étapes :
+                                <span style="font-weight: bold;">Etapes :</span>
                                 @foreach($etapes as $etape)
                                     @if($etape->ville_position!=1 && $etape->ville_position!=7)
                                         {{$etape->ville->name}}
@@ -71,17 +67,17 @@
                     <h3 class="about-subtitle">Information</h3>
                     @if($transport->natureTransport == "1")
                         <div>
-                            <div id="nature">Transport régulier : {{$transport->frequency}}</div>
-                            <div id="dateD">Date de début : <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> Date de fin : <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i></div>
+                            <div id="nature"><span style="font-weight: bold;">Transport régulier :</span> {{$transport->frequency}}</div>
+                            <div id="dateD"><span style="font-weight: bold;">Date de début :</span> <i>{{ Date::parse($transport->regularyBeginningDate)->format('l j F') }}<br></i> <span style="font-weight: bold;">Date de fin :</span> <i>{{ Date::parse($transport->regularyEndingDate)->format('l j F') }}</i></div>
                         </div>
                     @else
                         <div>
-                            <div id="nature">Transport occasionnel</div>
-                            <div id="dateD">Départ le {{ Date::parse($transport->beginningDate)->format('l j F') }} à {{ Date::parse($transport->beginningHour)->format('H:i') }}.</div>
+                            <div id="nature"><span style="font-weight: bold;">Transport occasionnel</span></div>
+                            <div id="dateD">Départ le <span style="font-weight: bold;">{{ Date::parse($transport->beginningDate)->format('l j F') }}<span> à <span style="font-weight: bold;">{{ Date::parse($transport->beginningHour)->format('H:i') }}</span>.</div>
                         </div>
                     @endif
-                    <div id="detour">Detour maximum : {{$transport->detourRetirMax}}km</div>
-                    <div id="autoroute">Autoroute : 
+                    <div id="detour"><span style="font-weight: bold;">Detour maximum :</span> {{$transport->detourRetirMax}}km</div>
+                    <div id="autoroute"><span style="font-weight: bold;">Autoroute : </span>
                         @if($transport->withHighway == true)
                             Oui
                         @else
@@ -176,9 +172,11 @@
     
 </section>
 @if($transport->user->id != Auth::user()->id)
-<section class="scroll-section root-sec padd-tb-60 team-wrap blue">
+<section class="scroll-section root-sec padd-tb-60 team-wrap blue center-align" id="grey-text">
     <div class="row">
-        <h2 class="reservation white-text">Réservation du transport</h2>
+        <div class="center-align">
+            <h2 class="reservation white-text">Réservation du transport</h2>
+        </div>
         <form class="reservation col s12 push-m2 m8 push-l3 l6" method="POST" action="{{route('postaddreservation')}}">
             {{ csrf_field() }}
             <div class="row">
@@ -200,9 +198,11 @@
 </section>
 @endif
 
-<section class="scroll-section root-sec padd-tb-60 team-wrap white">
+<section class="scroll-section root-sec padd-tb-60 team-wrap white center-align">
     <div class="row">
-        <h2 class="reservation blue-text">Questions : </h2>
+        <div class="center-align">
+            <h2 class="reservation blue-text">Questions : </h2>
+        </div>
         <form action="{{route('postaddquestion')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
             {{ csrf_field() }}
             <div class="row">
@@ -232,12 +232,14 @@
                                     <img src="{{$qu->user->picLink}}" width="100%" class="responsive-img circle" alt="">
                                 @endif
                                 <br>
-                                <a href="/user/{{$qu->user->id}}">{{$qu->user->login}}</a>
+                                <div class="center-align">
+                                    <a href="/user/{{$qu->user->id}}">{{$qu->user->login}}</a>
+                                </div>
                                 <br><br>
                         </div>
                         <div class="col s8 m10">
                                 <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
-                                <div class=" left-align">{{$qu->text}}</div>
+                                <div class="left-align grey-text">{{$qu->text}}</div>
 
                         </div>
 
@@ -253,12 +255,14 @@
                                                 <img src="{{$rep->user->picLink}}" width="100%" class="responsive-img circle" alt="">
                                             @endif
                                             <br>
-                                            <a href="/user/{{$rep->user->id}}">{{$rep->user->login}}</a>
+                                            <div class="center-align">
+                                                <a href="/user/{{$rep->user->id}}">{{$rep->user->login}}</a>
+                                            </div>
                                             <br><br>
                                     </div>
                                     <div class="col s8 m10">
                                             <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
-                                            <div class=" left-align">{{$rep->text}}</div>
+                                            <div class="left-align grey-text">{{$rep->text}}</div>
 
                                     </div>
                                 </div>
@@ -279,11 +283,11 @@
                                 <form action="{{route('postaddreponse',array('question' => $qu->id))}}" method="POST">
                                     {{ csrf_field() }}
                                     <div class="input-field">
-                                        <input id="reponse" type="text" name="reponse" class="validate blue-text blued" data-length="255" required>
+                                        <input id="reponse" type="text" name="reponse" class="validate grey-text blued" data-length="255" required>
                                         <label for="reponse" class="blue-text left-align">Votre réponse</label>
                                     </div>
                                     <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
-                                    <p class="center-align addRep"><button id="btRépondre" type="submit" class=" btn-small blue white-text">Répondre</button></p>
+                                    <p class="center-align addRep"><button id="btRépondre" type="submit" class="waves-effect waves-light btn blue-grey darken-1">Répondre</button></p>
                                 </form>
                                 
                             </div>

@@ -5,10 +5,6 @@
 'includesCss' => ['']])
 @section('content')
     <style>
-        body{
-            color:black;
-            text-align:center;
-        }
         h2{
             font-size:2.5em !important;
             margin-top:-20px;
@@ -65,12 +61,12 @@
         }
 
         .reponse{
-            border-left:2px solid black;
+            border-left:2px solid #CECECE;
         }
 
 
     </style>
-    <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap ">
+    <section id="contenuSection" class="scroll-section root-sec padd-tb-60 team-wrap center-align">
         <div class="row">
             <div class="col s12 l6 push-l1">
                 <div class="card white lighten-3">
@@ -135,7 +131,7 @@
         </div>
     </section>
     @if($expedition->user->id != Auth::user()->id && !$expedition->isAccepted)
-    <section class="scroll-section root-sec padd-tb-60 team-wrap " id="reservBG">
+    <section class="scroll-section root-sec padd-tb-60 team-wrap  center-align" id="reservBG">
         <div class="row">
             <h2 class="reservation white-text">Demande d'expédition du colis</h2>
             <form class="reservation col s12 push-m2 m8 push-l3 l6" method="POST" action="{{route('postaddreservationexpedition')}}">
@@ -171,7 +167,7 @@
     </section>
     @endif
 
-    <section class="scroll-section root-sec padd-tb-60 team-wrap white">
+    <section class="scroll-section root-sec padd-tb-60 team-wrap white center-align">
         <div class="row">
             <h2 class="reservation ">Questions : </h2>
             <form action="{{route('postaddquestionexpedition')}}" method="POST" class="reservation col s12 push-m2 m8 push-l3 l6">
@@ -204,7 +200,7 @@
                             </div>
                             <div class="col s8 m10">
                                 <div id="date" class="left-align">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
-                                <div class=" left-align">{{$qu->question}}</div>
+                                <div class="grey-text left-align">{{$qu->question}}</div>
                             </div>
                         </div>
                         @if($qu->reponseAtQuestion->count() != 0)
@@ -223,7 +219,7 @@
                                         </div>
                                         <div class="col s8 m10">
                                                 <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
-                                                <div class=" left-align">{{$rep->question}}</div>
+                                                <div class="left-align grey-text">{{$rep->question}}</div>
 
                                         </div>
                                     </div>
@@ -244,7 +240,7 @@
                                     <form action="{{route('postaddreponseexpe',array('question' => $qu->id))}}" method="POST">
                                         {{ csrf_field() }}
                                         <div class="input-field">
-                                            <input id="reponse" type="text" name="reponse" class="validate deep-orange-text oranged" data-length="255" required>
+                                            <input id="reponse" type="text" name="reponse" class="validate  grey-text oranged" data-length="255" required>
                                             <label for="reponse" class="deep-orange-text left-align">Votre réponse</label>
                                         </div>
                                         <input id="idT" name="idT" type="hidden" value="{{$expedition->id}}">
