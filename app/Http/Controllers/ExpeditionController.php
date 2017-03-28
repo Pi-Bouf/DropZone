@@ -40,11 +40,11 @@ class ExpeditionController extends Controller
     public function confirmPackage(DemandeExpedition $demande){
       //refuse toutes les autres demandes d'expedition
       foreach(DemandeExpedition::where('expedition_id', $demande->expedition_id)->get() as $demande_refuse){
-        $demande_refuse->isAccepted = false;
+        $demande_refuse->isAccepted = 1;
         $demande_refuse->save();
       }
       //valide la demande
-      $demande->isAccepted = true;
+      $demande->isAccepted = 2;
       $demande->save();
       $demande->expedition->isAccepted = true;
       $demande->expedition->save();
@@ -53,7 +53,7 @@ class ExpeditionController extends Controller
     }
 
     public function cancelPackage(DemandeExpedition $demande){
-      $demande->isAccepted = false;
+      $demande->isAccepted = 1;
       $demande->save();
       $demande->user->notify(new StatusDemandeExpedition($demande->expedition->user, $demande->expedition, false));
       return redirect()->back();
@@ -210,7 +210,7 @@ class ExpeditionController extends Controller
         
 
         if($nt->save()){
-            $demande->isAccepted = 2;
+            $demande->isAccepted = 3;
             if($demande->save()){
                 return redirect()->back()->with('note', 'ok');
             } else {
@@ -237,7 +237,7 @@ class ExpeditionController extends Controller
         
 
         if($nt->save()){
-            $demande->isAccepted = 2;
+            $demande->isAccepted = 3;
             if($demande->save()){
                 return redirect()->back()->with('note', 'ok');
             } else {
