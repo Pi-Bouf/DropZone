@@ -18,7 +18,7 @@ class CreateNotationExpeTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('expedition_id')->unsigned();
             $table->text('text');
-      		$table->float('note');
+      		$table->integer('note');
       	    $table->boolean('UserOrTransporter');
             $table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('expedition_id')->references('id')->on('expeditions');

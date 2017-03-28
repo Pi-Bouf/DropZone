@@ -99,7 +99,7 @@ class UsersTableSeeder extends Seeder
 				]);
 
 
-			for($i = 0; $i < 50; $i++) {
+			for($i = 0; $i < 12; $i++) {
 				DB::table('users')->insert([
 					'email'=> 'mickey-@gmail.com'.substr(md5(rand(0, 100000)), 0, 4),
 					'lastName'=> 'Mickey'.substr(md5(rand(0, 100000)), 0, 4),
@@ -110,6 +110,21 @@ class UsersTableSeeder extends Seeder
 					'login'=> 'Mickey M.'.substr(md5(rand(0, 100000)), 0, 4),
 					'phone'=> '0666666666',
 					'created_at' => '2017-01-01',
+					'description'=> "Coucou c'est moi :D",
+				]);
+			}
+
+			for($i = 0; $i < 26; $i++) {
+				DB::table('users')->insert([
+					'email'=> 'mickey-@gmail.com'.substr(md5(rand(0, 100000)), 0, 4),
+					'lastName'=> 'Mickey'.substr(md5(rand(0, 100000)), 0, 4),
+					'firstName'=> 'Mouse'.substr(md5(rand(0, 100000)), 0, 4),
+					'password'=> bcrypt('111'),
+					'birthday'=> '1995-01-01',
+					'sexe'=> 'h',
+					'login'=> 'Mickey M.'.substr(md5(rand(0, 100000)), 0, 4),
+					'phone'=> '0666666666',
+					'created_at' => '2017-02-01',
 					'description'=> "Coucou c'est moi :D",
 				]);
 			}

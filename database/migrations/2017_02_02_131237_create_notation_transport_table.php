@@ -17,7 +17,7 @@ class CreateNotationTransportTable extends Migration
           $table->increments('id');
           $table->integer('demande_transport_id')->unsigned();
           $table->text('text');
-          $table->float('note');
+          $table->integer('note');
           $table->boolean('UserOrTransporter');
           $table->integer('user_id')->unsigned();
           $table->timestamps();

@@ -29,7 +29,7 @@
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
             <div class="sm-st-info">
-                <span>4567</span> Total Documents
+                <span>{{ DemandeExpedition::all()->count() + DemandeTransport::all()->count() }}</span> Demandes Transport/Expeditions
             </div>
         </div>
     </div>
@@ -42,10 +42,10 @@
         <!--earning graph start-->
         <section class="panel">
             <header class="panel-heading">
-                Earning Graph
+                Graphique d'activité
             </header>
             <div class="panel-body">
-                <canvas id="linechart" width="600" height="330"></canvas>
+                <canvas id="inscription" width="600" height="250"></canvas>
             </div>
         </section>
         <!--earning graph end-->
@@ -53,7 +53,18 @@
     </div>
     <div class="col-lg-4">
 
-        <!--chat start-->
+        <!--earning graph start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Graphique de notation
+            </header>
+            <div class="panel-body">
+                <canvas id="avis" width="600" height="330"></canvas>
+            </div>
+        </section>
+        <!--earning graph end-->
+
+        <!--chat start
         <section class="panel">
             <header class="panel-heading">
                 Notifications
@@ -115,7 +126,7 @@
 
             </div>
         </section>
-
+        -->
 
 
     </div>
@@ -463,40 +474,82 @@
     $(function() {
         "use strict";
         //BAR CHART
-        var data = {
-            labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre"],
+        var data_inscription = {
+            labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"],
             datasets: [{
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
+                label: "Utilisateur inscrit",
+                backgroundColor: "rgba(255,0,0,0.1)",
+                borderColor: "rgba(255,0,0,0.4)",
+                pointBackgroundColor: "rgba(255,0,0,0.6)",
+                pointBorderColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
+                pointHighlightStroke: "rgba(255,255,0,1)",
+                data: [{{ $tabUser }}]
             }, {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
+                label: "Transports inscrit",
+                backgroundColor: "rgba(75,0,130,0.1)",
+                borderColor: "rgba(75,0,130,0.4)",
+                pointBackgroundColor: "rgba(75,0,130,0.6)",
+                pointBorderColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
+                pointHighlightStroke: "rgba(255,255,0,1)",
+                data: [{{ $tabTransport }}]
             }, {
-                label: "Zoube",
-                fillColor: "rgba(0,255,0,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(255,0,0,1)",
-                pointStrokeColor: "#fff",
+                label: "Expeditions inscrites",
+                backgroundColor: "rgba(0,191,255,0.1)",
+                borderColor: "rgba(0,191,255,0.4)",
+                pointBackgroundColor: "rgba(0,191,255,0.6)",
+                pointBorderColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [52, 5, 6, 22, 45, 85, 12]
+                pointHighlightStroke: "rgba(255,255,0,1)",
+                data: [{{ $tabExpedition }}],
+            }, {
+                label: "Demandes",
+                backgroundColor: "rgba(0, 255, 0,0.1)",
+                borderColor: "rgba(0, 255, 0,0.4)",
+                pointBackgroundColor: "rgba(0, 255, 0,0.6)",
+                pointBorderColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(255,255,0,1)",
+                data: [{{ $tabDemande }}]
             }]
         };
-        new Chart(document.getElementById("linechart").getContext("2d")).Line(data, {
-            responsive: true,
-            maintainAspectRatio: false,
+        new Chart(document.getElementById("inscription").getContext("2d"), {
+            type: 'line',
+            data: data_inscription,
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+            }
+        });
+
+        var data_avis = {
+            labels: ["1 étoile", "2 étoiles", "3 étoiles", "4 étoiles", "5 étoiles"],
+            datasets: [{
+                label: "Note",
+                borderColor: "rgba(255, 255, 255,1)",
+                pointBackgroundColor: "rgba(255, 53, 139,0.6)",
+                pointBorderColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(255,255,0,1)",
+                data: [{{ $tabNote }}],
+                backgroundColor: [
+                    "#FF6384",
+                    "#4BC0C0",
+                    "#FFCE56",
+                    "#BB62FF",
+                    "#36A2EB"
+                ],
+            }]
+        };
+
+        new Chart(document.getElementById("avis").getContext("2d"), {
+            type: 'doughnut',
+            data: data_avis,
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
         });
 
     });

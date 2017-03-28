@@ -21,16 +21,52 @@ class BackOfficeController extends Controller
     
     public function getDashBoard()
     {
-        //$data = array_fill (1 , 14 , 0);
-        //dd($data);
+        $tabUser = array_fill (1 , 12 , 0);
         $data = DB::select( DB::raw('SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM users WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at)') );
-        dd($data);
+        foreach($data as $result) {
+            $tabUser[$result->MONTH] = $result->COUNT;
+        }
 
-        // SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM users WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at);
+        $tabTransport = array_fill (1 , 12 , 0);
+        $data = DB::select( DB::raw('SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM transports WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at)') );
+        foreach($data as $result) {
+            $tabTransport[$result->MONTH] = $result->COUNT;
+        }
+
+        $tabExpedition = array_fill (1 , 12 , 0);
+        $data = DB::select( DB::raw('SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM expeditions WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at)') );
+        foreach($data as $result) {
+            $tabExpedition[$result->MONTH] = $result->COUNT;
+        }
+
+        $tabDemande = array_fill (1 , 12 , 0);
+        $data = DB::select( DB::raw('SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM demande_expeditions WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at)') );
+        foreach($data as $result) {
+            $tabDemande[$result->MONTH] += $result->COUNT;
+        }
+        $data = DB::select( DB::raw('SELECT MONTH(created_at) MONTH, COUNT(*) COUNT FROM demande_transports WHERE YEAR(created_at) = "2017" GROUP BY MONTH(created_at)') );
+        foreach($data as $result) {
+            $tabDemande[$result->MONTH] += $result->COUNT;
+        }
+
+        $tabNote = array_fill (1 , 5 , 0);
+        $data = DB::select( DB::raw('SELECT note as NOTE, COUNT(*) COUNT FROM notation_expeditions WHERE YEAR(created_at) = "2017" GROUP BY note') );
+        foreach($data as $result) {
+            $tabNote[$result->NOTE] = $result->COUNT;
+        }
+        $data = DB::select( DB::raw('SELECT note as NOTE, COUNT(*) COUNT FROM notation_transports WHERE YEAR(created_at) = "2017" GROUP BY note') );
+        foreach($data as $result) {
+            $tabNote[$result->NOTE] += $result->COUNT;
+        }
 
         $data = array(
-        "user" => Auth::user(),
-        "userCount" => User::all()->count(),
+            "user" => Auth::user(),
+            "userCount" => User::all()->count(),
+            "tabUser" => implode(',', $tabUser),
+            "tabTransport" => implode(',', $tabTransport),
+            "tabExpedition" => implode(',', $tabExpedition),
+            "tabDemande" => implode(',', $tabDemande),
+            "tabNote" => implode(',', $tabNote),
         );
         return view('back.pages.dash.home', $data);
     }
