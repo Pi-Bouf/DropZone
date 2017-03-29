@@ -213,7 +213,7 @@
                               <div class="right">Note attribuée : {{$demande->notationUser->note}}/5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i></div>
                             @else
                               <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class=" waves-effect blue waves-light btn">Afficher</a>
-                              @if($demande->transport->natureTransport == 1)
+                              @if($demande->transport->natureTransport == 0)
                                 @if($demande->transport->beginningDate < date('Y-m-d H:i:s'))
                                 <div class="hide-on-med-and-up mg-t20"></div>
                                   <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class=" waves-effect green waves-light btn">Noter</a>
