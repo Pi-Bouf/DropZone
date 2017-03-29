@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call('DemandeTransportsTableSeeder');
         $this->call('ExpeditionsTableSeeder');
         $this->call('DemandeExpeditionsTableSeeder');
+        $this->call('NotationExpeditionsTableSeeder');
+        $this->call('NotationTransportsTableSeeder');
     }
 
         /*
