@@ -27,13 +27,13 @@
                             <td>{{ mb_strimwidth($transport->text, 0, 200, "...") }}</td>
                             <td>{{ $transport->cost }}€</td>
                             <td>
-                                @if($demande->isAccepted == 0)
+                                @if($transport->isAccepted == 0)
                                 <span class="badge bg-orange">En attente</span>
-                                @elseif($demande->isAccepted == 1)
+                                @elseif($transport->isAccepted == 1)
                                 <span class="badge bg-red">Refusé</span>
-                                @elseif($demande->isAccepted == 2)
+                                @elseif($transport->isAccepted == 2)
                                 <span class="badge bg-green">Accepté</span>
-                                @elseif($demande->isAccepted == 3)
+                                @elseif($transport->isAccepted == 3)
                                 <span class="badge bg-blue">Effectué</span>
                                 @endif
                             </td>
