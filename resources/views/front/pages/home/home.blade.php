@@ -1,4 +1,4 @@
-@extends('layouts.app', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => ['/js/search.js'], 'includesCss' => ['/css/home.css']] ) @section('content')
+@extends('layouts.appIndex', [ 'menu_style' => 'scroll', 'page_title' => 'DropZone - Ajout transport', 'includesJs' => ['/js/search.js'], 'includesCss' => ['/css/home.css']] ) @section('content')
 
 <section>
     <section id="home" class="scroll-section root-sec grey lighten-5 home-wrap">
@@ -37,7 +37,7 @@
                                                             <div class="col l12 m12 s6 center-align">
                                                                 <button class="btn-floating btn-large waves-effect waves-light white"><i class="mdi mdi-search-web" style="color: dodgerblue !important;"></i></button>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </form>
                                                 </div>
@@ -135,7 +135,7 @@
             <i class="mdi mdi-car icon blue-text large"></i><br><h3 class="grey-text text-darken-2">Transport</h3>
             <br>
             <div class="text-center grey-text text-darken-1">
-                Vous faites un voyage et vous avez encore de la place ? Des colis à déposer sont peut-être sur votre chemin. Vous pourrez, grâce à ça, amortir le prix du trajet sans effort ! 
+                Vous faites un voyage et vous avez encore de la place ? Des colis à déposer sont peut-être sur votre chemin. Vous pourrez, grâce à ça, amortir le prix du trajet sans effort !
             </div>
         </div>
         <div class="col s12 m4">
