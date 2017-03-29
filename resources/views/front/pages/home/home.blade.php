@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             @if(Auth::user())
-                                <a class="btn waves-effect blue white-text darken-text-2" style="position: absolute; bottom: 50px; left: 50%; margin-left: -60px;" href="/transport/{{$transport->id}}">Détail</a>
+                                <a class="btn waves-effect blue white-text darken-text-2" style="position: absolute; bottom: 50px; left: 50%; margin-left: -60px;" href="/expedition/{{$expedition->id}}">Détail</a>
                             @else
                                 <a class="loginLink btn waves-effect blue white-text darken-text-2" style="position: absolute; bottom: 50px; left: 50%; margin-left: -60px;" href="#">Détail</a>
                             @endif
