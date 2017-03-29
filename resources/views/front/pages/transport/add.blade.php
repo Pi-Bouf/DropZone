@@ -56,7 +56,21 @@
         <br>
 
         @if ($nbVehicule==0)
-            <h2 class="center">Vous n'avez pas encore de véhicule. Veuillez en ajouter ici : <a href="{{url('/user/myvehicules/add')}}">Ajouter un véhicule</a></h2>
+        <div class="row" style="min-height: 500px;">
+            <div class="col l6 m6 s12 offset-l3 offset-m3">
+                <div class="card white lighten-3">
+                    <div class="card-content grey-text">
+                        <div class="person-about">
+                            <h3 class="about-subtitle">Ajout de transport</h3>
+                            Pour pouvoir ajouter un transport, il faut au préalable ajouter un véhicule.
+                            <div class="center-align" style="margin-top: 25px;">
+                                <a class="btn blue lighten-2" href="/user/myvehicules/add">Ajouter un véhicule</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @else
         <div class="container">
             <form method="POST" id="formAjoutTransport" action="{{url('/postaddtransport')}}">

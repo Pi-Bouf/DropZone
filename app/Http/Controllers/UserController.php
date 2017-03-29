@@ -106,10 +106,10 @@ class UserController extends Controller
         'sexe' => 'in:h,f',
         'profil_email' => 'required|max:100|email',
         'phone' => 'required|max:9999999999|numeric',
-        'description' => 'required|string',
+        'description' => 'string',
       );
       $this->validate($request, $rules);
-
+      
       if(!empty($request->input('reg_birthday'))) {
         $birthdate = explode("/", $request->input('reg_birthday'));
         $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];
