@@ -26,7 +26,17 @@
                             <td><a target="_blank" href="{{ route('admin_user_detail', array('user' => $transport->user->id)) }}">{{ $transport->user->login }}</a></td>
                             <td>{{ mb_strimwidth($transport->text, 0, 200, "...") }}</td>
                             <td>{{ $transport->cost }}€</td>
-                            <td>@if($transport->isAccepted) <span class="badge bg-green">Accepté</span> @else <span class="badge bg-blue">En attente</span> @endif
+                            <td>
+                                @if($demande->isAccepted == 0)
+                                <span class="badge bg-orange">En attente</span>
+                                @elseif($demande->isAccepted == 1)
+                                <span class="badge bg-red">Refusé</span>
+                                @elseif($demande->isAccepted == 2)
+                                <span class="badge bg-green">Accepté</span>
+                                @elseif($demande->isAccepted == 3)
+                                <span class="badge bg-blue">Effectué</span>
+                                @endif
+                            </td>
                         </tr>
                         <div class="modal fade" id="del_demande_transport_{{ $transport->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                             <div class="modal-dialog" role="document">
