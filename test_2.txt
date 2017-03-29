@@ -1,94 +1,334 @@
-@extends('layouts.app', [ 'menu_style' => 'static', 'page_title' => 'DropZone - Rechercher un colis ou un transport', 'includesJs' => ['/js/search.js'], 'includesCss' => ['/css/pages/search.css']] ) @section('content')
+<div class="row">
 
-<section id="search" class="scroll-section root-sec padd-tb-60 team-wrap">
-    <div class="row">
-        <div class="col m6 s10 offset-m3 offset-s1 center-align">
-            <h2><b><i>{{ $expeditions->count() }}</i></b> expeditions interessantes !</h2>
-            <h3>ok <span style="margin: 10px">&#8620;</span> ok</h3>
-            <div class="row">
-                <form class="col s12" method="post" action="{{ route('search_expedition_post') }}">
-                    {{ csrf_field() }}
-                    <div class="row">
-                        <div class="input-field col m4">
-                            <input id="departExpedition" name="departExpedition" type="text" class="validate dontSubmit auPif" hiddenId="departExpeHidden" placeholder="Indiquez un lieu" required="required">
-                            <input type="hidden" name="departExpeHidden" id="departExpeHidden">
-                            <label for="departExpedition">Départ</label>
+    <div class="col-md-8">
+        <section class="panel">
+            <header class="panel-heading">
+                Work Progress
+            </header>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Project</th>
+                            <th>Manager</th>
+                            <!-- <th>Client</th> -->
+                            <th>Deadline</th>
+                            <!-- <th>Price</th> -->
+                            <th>Status</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Facebook</td>
+                            <td>Mark</td>
+                            <!-- <td>Steve</td> -->
+                            <td>10/10/2014</td>
+                            <!-- <td>$1500</td> -->
+                            <td><span class="label label-danger">in progress</span></td>
+                            <td><span class="badge badge-info">50%</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Twitter</td>
+                            <td>Evan</td>
+                            <!-- <td>Darren</td> -->
+                            <td>10/8/2014</td>
+                            <!-- <td>$1500</td> -->
+                            <td><span class="label label-success">completed</span></td>
+                            <td><span class="badge badge-success">100%</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Google</td>
+                            <td>Larry</td>
+                            <!-- <td>Nick</td> -->
+                            <td>10/12/2014</td>
+                            <!-- <td>$2000</td> -->
+                            <td><span class="label label-warning">in progress</span></td>
+                            <td><span class="badge badge-warning">75%</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>LinkedIn</td>
+                            <td>Allen</td>
+                            <!-- <td>Rock</td> -->
+                            <td>10/01/2015</td>
+                            <!-- <td>$2000</td> -->
+                            <td><span class="label label-info">in progress</span></td>
+                            <td><span class="badge badge-info">65%</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Tumblr</td>
+                            <td>David</td>
+                            <!-- <td>HHH</td> -->
+                            <td>01/11/2014</td>
+                            <!-- <td>$2000</td> -->
+                            <td><span class="label label-warning">in progress</span></td>
+                            <td><span class="badge badge-danger">95%</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Tesla</td>
+                            <td>Musk</td>
+                            <!-- <td>HHH</td> -->
+                            <td>01/11/2014</td>
+                            <!-- <td>$2000</td> -->
+                            <td><span class="label label-info">in progress</span></td>
+                            <td><span class="badge badge-success">95%</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Ghost</td>
+                            <td>XXX</td>
+                            <!-- <td>HHH</td> -->
+                            <td>01/11/2014</td>
+                            <!-- <td>$2000</td> -->
+                            <td><span class="label label-info">in progress</span></td>
+                            <td><span class="badge badge-success">95%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+    </div>
+    <!--end col-6 -->
+    <div class="col-md-4">
+        <section class="panel">
+            <header class="panel-heading">
+                Twitter Feed
+            </header>
+            <div class="panel-body">
+                <div class="twt-area">
+                    <form action="#" method="post">
+                        <textarea class="form-control" name="profile-tweet" placeholder="Share something on Twitter.." rows="3"></textarea>
+
+                        <div class="clearfix">
+                            <button class="btn btn-sm btn-primary pull-right" type="submit">
+                <i class="fa fa-twitter"></i> Tweet
+              </button>
+                            <a class="btn btn-link btn-icon fa fa-location-arrow" data-original-title="Add Location" data-placement="bottom" data-toggle="tooltip" href="#" style="text-decoration:none;" title=""></a>
+                            <a class="btn btn-link btn-icon fa fa-camera" data-original-title="Add Photo" data-placement="bottom" data-toggle="tooltip" href="#" style="text-decoration:none;" title=""></a>
                         </div>
-                        <div class="input-field col m4">
-                            <input id="arriveeExpedition" name="arriveeExpedition" type="text" class="validate dontSubmit auPif" hiddenId="arriveeExpeHidden" placeholder="Indiquez un lieu" required="required">
-                            <input type="hidden" name="arriveeExpeHidden" id="arriveeExpeHidden">
-                            <label for="icon_telephone">Arrivée</label>
+                    </form>
+                </div>
+                <ul class="media-list">
+                    <li class="media">
+                        <a href="#" class="pull-left">
+                            <img src="backoff/img/26115.jpg" alt="Avatar" class="img-circle" width="64" height="64">
+                        </a>
+                        <div class="media-body">
+                            <span class="text-muted pull-right">
+<small><em>30 min ago</em></small>
+</span>
+                            <a href="page_ready_user_profile.php">
+                                <strong>John Doe</strong>
+                            </a>
+                            <p>
+                                In hac <a href="#">habitasse</a> platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend.
+                                <a href="#" class="text-danger">
+                                    <strong>#dev</strong>
+                                </a>
+                            </p>
                         </div>
-                        <div class="input-field col m4 left-align">
-                            <input id="rangeKM" name="rangeKM" type="number" class="validate" placeholder="Nombre de kilomètre en détour" required="required">
-                            <label for="rangeKM">Détour KM</label>
+                    </li>
+                    <li class="media">
+                        <a href="#" class="pull-left">
+                            <img src="img/26115.jpg" alt="Avatar" class="img-circle" width="64" height="64">
+                        </a>
+                        <div class="media-body">
+                            <span class="text-muted pull-right">
+<small><em>30 min ago</em></small>
+</span>
+                            <a href="page_ready_user_profile.php">
+                                <strong>John Doe</strong>
+                            </a>
+                            <p>
+                                In hac <a href="#">habitasse</a> platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend.
+                                <a href="#" class="text-danger">
+                                    <strong>#design</strong>
+                                </a>
+                            </p>
                         </div>
-                        
-                        <div class="center-align">
-                            <button class="waves-effect waves-light btn red"><i class="right mdi mdi-search-web"></i>Rechercher</button>
-                        </div>
-                    </div>
-                </form>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <div class="panel">
+            <header class="panel-heading">
+                Teammates
+            </header>
+
+            <ul class="list-group teammates">
+                <li class="list-group-item">
+                    <a href=""><img src="img/26115.jpg" width="50" height="50"></a>
+                    <span class="pull-right label label-danger inline m-t-15">Admin</span>
+                    <a href="">Damon Parker</a>
+                </li>
+                <li class="list-group-item">
+                    <a href=""><img src="img/26115.jpg" width="50" height="50"></a>
+                    <span class="pull-right label label-info inline m-t-15">Member</span>
+                    <a href="">Joe Waston</a>
+                </li>
+                <li class="list-group-item">
+                    <a href=""><img src="img/26115.jpg" width="50" height="50"></a>
+                    <span class="pull-right label label-warning inline m-t-15">Editor</span>
+                    <a href="">Jannie Dvis</a>
+                </li>
+                <li class="list-group-item">
+                    <a href=""><img src="img/26115.jpg" width="50" height="50"></a>
+                    <span class="pull-right label label-warning inline m-t-15">Editor</span>
+                    <a href="">Emma Welson</a>
+                </li>
+                <li class="list-group-item">
+                    <a href=""><img src="img/26115.jpg" width="50" height="50"></a>
+                    <span class="pull-right label label-success inline m-t-15">Subscriber</span>
+                    <a href="">Emma Welson</a>
+                </li>
+            </ul>
+            <div class="panel-footer bg-white">
+                <!-- <span class="pull-right badge badge-info">32</span> -->
+                <button class="btn btn-primary btn-addon btn-sm">
+          <i class="fa fa-plus"></i> Add Teammate
+        </button>
             </div>
         </div>
     </div>
-</section>
+    <div class="col-md-7">
+        <section class="panel tasks-widget">
+            <header class="panel-heading">
+                Todo list
+            </header>
+            <div class="panel-body">
 
-<section id="expeditionSearch" class="padd-tb-60 team-wrap" style="height: auto!important;">
-    <div class="row">
-        <div class="col m5 offset-m1 s12" id="transportsList" style="max-height: 400px;">
-        <script>
-        var tabCoordsExpe = Array();
-        </script>
-        @for ($i = 0; $i < $expeditions->count(); $i++)
-        <script>
-        tabCoordsExpe[{{ $expeditions[$i]->id }}] = [{lat: {{ $expeditions[$i]->villeDep->latitude }}, lng: {{ $expeditions[$i]->villeDep->longitude }}}, {lat: {{ $expeditions[$i]->villeArr->latitude }}, lng: {{ $expeditions[$i]->villeArr->longitude }}}];
-        </script>
-            <div class="row">
-                <div class="col m12 s12 Item" id="item_{{ $expeditions[$i]->id }}" onclick="loadPath({{ $expeditions[$i]->id }})">
-                    <div class="center-align">
-                        <h3 class="blue-text">{{ $expeditions[$i]->costMax }}€</h3>
-                        <i>{{ $expeditions[$i]->description }}</i>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col m6 s12">
-                            <div class="center-align">
-                            @if($expeditions[$i]->user->picLink)
-                            <img src="{{$expeditions[$i]->user->picLink}}" width="40%" class="responsive-img circle" alt="">
-                            @else
-                            <img src="/images/profile/icon-{{$expeditions[$i]->user->sexe}}.png" width="40%" class="responsive-img circle" alt="">
-                            @endif
+                <div class="task-content">
+
+                    <ul class="task-list">
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey list-child" />
+                                <!-- <input type="checkbox" class="square-grey"/> -->
                             </div>
-                        </div>
-                        <div class="col m6 s12">
-                            <div class="center-align">
-                                <a target="_blank" href="{{ route('user_profile', array('user_id' => $expeditions[$i]->user->id)) }}">{{$expeditions[$i]->user->login}}</a>
-                                <br>
-                                <b>Déposé: <i>{{ Date::parse($expeditions[$i]->created_at)->format('l j F') }}</i></b><br />
-                                <b>Adresse départ: <i>{{ $expeditions[$i]->villeDep->name }}</i></b><br />
-                                <b>Adresse arrivée: <i>{{ $expeditions[$i]->villeArr->name }}</i></b><br />
+                            <div class="task-title">
+                                <span class="task-title-sp">Director is Modern Dashboard</span>
+                                <span class="label label-success">2 Days</span>
+                                <div class="pull-right hidden-phone">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">Fully Responsive & Bootstrap 3.0.2 Compatible</span>
+                                <span class="label label-danger">Done</span>
+                                <div class="pull-right hidden-phone">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">Latest Design Concept</span>
+                                <span class="label label-warning">Company</span>
+                                <div class="pull-right hidden-phone">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">Write well documentation for this theme</span>
+                                <span class="label label-primary">3 Days</span>
+                                <div class="pull-right hidden-phone">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">Don't bother to download this Dashbord</span>
+                                <span class="label label-inverse">Now</span>
+                                <div class="pull-right">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">Give feedback for the template</span>
+                                <span class="label label-success">2 Days</span>
+                                <div class="pull-right hidden-phone">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="task-checkbox">
+                                <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                <input type="checkbox" class="flat-grey" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">Tell your friends about this admin template</span>
+                                <span class="label label-danger">Now</span>
+                                <div class="pull-right hidden-phone">
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class=" add-task-row">
+                    <a class="btn btn-success btn-sm pull-left" href="#">Add New Tasks</a>
+                    <a class="btn btn-default btn-sm pull-right" href="#">See All Tasks</a>
                 </div>
             </div>
-        @endfor
-        </div>
-        <div class="col m5 s10 offset-s1 z-depth-4" id="map" style="height: 400px; border: 2px solid white;">
-            Chargement map Google...
-        </div>
+        </section>
     </div>
-    <div id="selectExpedition" class="center-align" style="margin-top: 25px; display: none;">
-        <a id="expeditionSelect" target="_blank" href="" class="waves-effect waves-light btn green">Je demande cette expedition</a>
-    </div>
-</section>
-
-<script>
-    var target = "expedition";
-    var depTab = [{{ $latDep }}, {{ $lngDep }}];
-    var arrTab = [{{ $latArr }}, {{ $lngArr }}]
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&sensor=false&amp;libraries=places&callback=initMap&key=AIzaSyCVpvFQSuDA3GaSh4dj15u5IoXTHLLsqDY" async defer></script>
-
-@endsection
+</div>
