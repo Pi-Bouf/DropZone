@@ -92,7 +92,7 @@
                                         <label for="poids" class="input-label">Poids (kg) :</label>
                                     </div>
                                     <div class="input-field">
-                                        <input id="volume" type="number" name="volume" class="validate input-box" step="0.01" required>
+                                        <input id="volume" type="number" name="volume" class="validate input-box" step="0.00000001" required>
                                         <label for="volume" class="input-label">Volume (m³) :</label>
                                     </div>
                                 </div>

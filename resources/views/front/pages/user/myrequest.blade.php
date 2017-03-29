@@ -39,6 +39,15 @@
 
                       <div class="col s12 m6 l6 mg-t20">
                         Expediteur : <a href="/user/{{$demande->expedition->user->id}}">{{$demande->expedition->user->login}}</a>
+                        @if($demande->isAccepted === 3 || $demande->isAccepted === 2)
+                          <p class="grey-text">
+                            @if($demande->expedition->user->phone)
+                              {{$demande->expedition->user->phone}}
+                            @else
+                              {{$demande->expedition->user->email}}
+                            @endif
+                          </p>
+                        @endif
                       </div>
                       <div class="col s12 m6 l6 mg-t20">
                         Prix proposé : {{$demande->prixAsked}} €
@@ -140,14 +149,14 @@
                 <li>
                   <div class="collapsible-header  ">
                     <span style="margin: 10px">{{ $demande->transport->villeDepart->ville->name }}</span> &#10142; <span style="margin: 10px"> {{ $demande->transport->villeArrivee->ville->name }} </span>
-                    @if($demande->isAccepted === 1)
-                    <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
-                    @elseif($demande->isAccepted === 0)
+                    @if($demande->isAccepted === 0)
+                    <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
+                    @elseif($demande->isAccepted === 1)
                     <span class="right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
                     @elseif($demande->isAccepted === 2)
+                    <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
+                    @elseif($demande->isAccepted === 3)
                     <span class="right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
-                    @else
-                    <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
                     @endif
 
                   </div>
@@ -155,6 +164,15 @@
                     <div class="row">
                       <div class="col s12 m6 l6 ">
                         Transporteur : <a href="/user/{{$demande->transport->user->id}}">{{$demande->transport->user->login}}</a>
+                        @if($demande->isAccepted == 2 || $demande->isAccepted == 3)
+                          <p class="grey-text">
+                            @if($demande->transport->user->phone)
+                              {{$demande->transport->user->phone}}
+                            @else
+                              {{$demande->transport->user->email}}
+                            @endif
+                          </p>
+                        @endif
                       </div>
                       <div class="col s12 m6 l6">
                         Prix proposé : {{$demande->cost}} €

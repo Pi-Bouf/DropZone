@@ -136,6 +136,7 @@
                       </span>
                     </div>
                     <div class="col s12 m6 l6 right-align">
+                        <a href="{{url('/expedition/'.$expedition->id)}}" class="mg-t20 waves-effect waves-light btn green"><i class="mdi mdi-information-variant white-text left"></i>Détail</a>
                         <a href="#delete_{{ $expedition->id }}" class="mg-t20 waves-effect waves-light btn red"><i class="mdi mdi-delete white-text left"></i>Supprimer</a>
                     </div>
                     <div id="delete_{{ $expedition->id }}" class="modal">
@@ -206,13 +207,20 @@
                                         <img src="{{$demande->user->picLink}}" width="50%" class="circle" alt="">
                                       @endif
                                     </div>
-                                    <div class="col s6 m2 l2">
+                                    <div class="col s6 m2 l3">
                                       <a href="/user/{{$demande->user->id}}">
                                         {{ $demande->user->login }}
                                       </a>
                                       <p>
                                           <i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
                                            {{$demande->user->note()}}/5 - {{$demande->user->nbNotes()}} avis
+                                      </p>
+                                      <p>
+                                        @if($demande->user->phone)
+                                          {{$demande->user->phone}}
+                                        @else
+                                          {{$demande->user->email}}
+                                        @endif
                                       </p>
                                     </div>
                                     <div class="col s6 m4 l4">
@@ -225,7 +233,7 @@
                                       </p>
                                     </div>
                                       @if($demande->isAccepted==3 && !is_null($expedition->notation))
-                                        <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                        <div class="col s6 m4 l3 center-align" style="margin-top: 15px;">
                                           Votre note :<br>
                                               {{$expedition->notation->note}}
                                              /5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i>
@@ -233,7 +241,7 @@
                                       @else
                                         @if($demande->beginDate < date('Y-m-d H:i:s'))
 
-                                        <div class="col s6 m4 l4 center-align" style="margin-top: 15px;">
+                                        <div class="col s6 m4 l3 center-align" style="margin-top: 15px;">
                                           <a href="#note_{{ $demande->id }}" title="Noter ce transport" class="btn-floating btn-large waves-effect waves-light purple lighten-1"><i class="mdi mdi-account-star"></i></a>
                                         </div>
                                         @endif

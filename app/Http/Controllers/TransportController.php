@@ -203,7 +203,7 @@ class TransportController extends Controller
         $demande->text= $request->input('message');
         $demande->user_id = Auth::user()->id;
         $demande->cost = $request->input('prix');
-        $demande->isAccepted = NULL;
+        $demande->isAccepted = 0;
 
         $demande->save();
 
@@ -214,7 +214,7 @@ class TransportController extends Controller
     }
 
     public function confirmTransport(DemandeTransport $demande){
-      $demande->isAccepted = true;
+      $demande->isAccepted = 2;
       $demande->save();
 
       $demande->user->notify(new StatusDemandeTransport($demande->transport->user, $demande->transport, true));
@@ -223,7 +223,7 @@ class TransportController extends Controller
     }
 
     public function cancelTransport(DemandeTransport $demande){
-      $demande->isAccepted = false;
+      $demande->isAccepted = 1;
       $demande->save();
 
     $demande->user->notify(new StatusDemandeTransport($demande->transport->user, $demande->transport, false));
@@ -248,7 +248,7 @@ class TransportController extends Controller
         
 
         if($nt->save()){
-            $demande->isAccepted = 2;
+            $demande->isAccepted = 3;
             if($demande->save()){
                 return redirect()->back()->with('note', 'ok');
             } else {
@@ -276,7 +276,7 @@ class TransportController extends Controller
         
 
         if($nt->save()){
-            $demande->isAccepted = 2;
+            $demande->isAccepted = 3;
             if($demande->save()){
                 return redirect()->back()->with('note', 'ok');
             } else {

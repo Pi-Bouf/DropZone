@@ -207,7 +207,7 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field">
-                    <textarea id="message" name="message" class="validate materialize-textarea blue-text blued" data-length="255" required></textarea>
+                    <textarea id="message" name="message" class="validate materialize-textarea grey-text blued" data-length="255" required></textarea>
                     <label for="message" class="blue-text ">Poser votre question ici</label>
                 </div>
                 <input id="idT" name="idT" type="hidden" value="{{$transport->id}}">
@@ -238,7 +238,7 @@
                                 <br><br>
                         </div>
                         <div class="col s8 m10">
-                                <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
+                                <div id="date" class=" left-align grey-text">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
                                 <div class="left-align grey-text">{{$qu->text}}</div>
 
                         </div>
@@ -261,7 +261,7 @@
                                             <br><br>
                                     </div>
                                     <div class="col s8 m10">
-                                            <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
+                                            <div id="date" class=" left-align grey-text">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
                                             <div class="left-align grey-text">{{$rep->text}}</div>
 
                                     </div>

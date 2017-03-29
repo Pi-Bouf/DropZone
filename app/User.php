@@ -41,8 +41,8 @@ class User extends Authenticatable
 
     public function transportsWaiting() {
         return $this->hasMany('App\Transport')
-        ->where('beginningDate', '>', date( 'Y-m-d H:i:s'))
-        ->orWhere('regularyEndingDate', '>', date( 'Y-m-d H:i:s'))
+        ->where('beginningDate', '>=', date( 'Y-m-d 00:00:00'))
+        ->orWhere('regularyEndingDate', '>=', date( 'Y-m-d 00:00:00'))
         ->where('user_id', $this->id);
 
         /* ############ On pose ça là, au cas où
@@ -58,8 +58,8 @@ class User extends Authenticatable
 
     public function transportsOK() {
         return $this->hasMany('App\Transport')
-        ->where('beginningDate', '<', date( 'Y-m-d H:i:s'))
-        ->orWhere('regularyEndingDate', '<', date( 'Y-m-d H:i:s'))
+        ->where('beginningDate', '<', date( 'Y-m-d 00:00:00'))
+        ->orWhere('regularyEndingDate', '<', date( 'Y-m-d 00:00:00'))
         ->where('user_id', $this->id);
     }
 

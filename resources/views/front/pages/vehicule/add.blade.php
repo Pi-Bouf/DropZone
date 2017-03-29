@@ -53,14 +53,14 @@
 
                                 <div class="input-field col s12">
                                     <input id="poidMax" name="poidMax" type="number" class="validate" value="{{ old('poidMax') }}">
-                                    <label for="poidMax">Poid Max. (kg)</label>
+                                    <label for="poidMax">Poids Max. (kg)</label>
                                     @if ($errors->has('poidMax'))
                                     <strong style="color: brown;">{{ $errors->first('poidMax') }}</strong>
                                     @endif
                                 </div>
 
                                 <div class="input-field col s12">
-                                    <input id="volume" name="volume" type="number" class="validate" value="{{ old('volume') }}">
+                                    <input id="volume" name="volume" type="number" class="validate" value="{{ old('volume') }}" step="0.00000001">
                                     <label for="volume">Volume (m³)</label>
                                     @if ($errors->has('volume'))
                                     <strong style="color: brown;">{{ $errors->first('volume') }}</strong>
@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="input-field col s12 center-align">
-                                    <button class="waves-effect waves-light btn"><i class="mdi mdi-send"></i>button</button>
+                                    <button class="waves-effect waves-light btn"><i class="mdi mdi-send"></i>Ajouter</button>
                                 </div>
                             </form>
                         </div>

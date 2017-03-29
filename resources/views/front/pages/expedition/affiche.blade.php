@@ -167,6 +167,12 @@
     </section>
     @endif
 
+    @if($expedition->isAccepted)
+        <section class="scroll-section root-sec padd-tb-60 team-wrap  center-align" id="reservBG">
+            <h3 class="reservation white-text">Ce colis est déjà livré.</h3>
+        </section>
+    @endif
+
     <section class="scroll-section root-sec padd-tb-60 team-wrap white center-align">
         <div class="row">
             <h2 class="reservation ">Questions : </h2>
@@ -174,12 +180,12 @@
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="input-field">
-                        <textarea id="message" name="message" class="validate materialize-textarea  deep-orange-text lighten-2 oranged"></textarea>
-                        <label for="message" class=" deep-orange-text lighten-2 ">Poser votre question ici</label>
+                        <textarea id="message" name="message" class="validate materialize-textarea grey-text  oranged"></textarea>
+                        <label for="message" class=" deep-orange-text ">Poser votre question ici</label>
                     </div>
                     <input id="idE" name="idE" type="hidden" value="{{$expedition->id}}">
                 </div>
-                <p class="center-align"><button id="btProposer" type="submit" class=" btn-large  deep-orange lighten-2">Envoyer</button></p>
+                <p class="center-align"><button id="btProposer" type="submit" class=" btn-large  deep-orange">Envoyer</button></p>
             </form>
         </div>
         <br><br>
@@ -199,7 +205,7 @@
                                 <br><br>
                             </div>
                             <div class="col s8 m10">
-                                <div id="date" class="left-align">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
+                                <div id="date" class="left-align grey-text">Publié le <span class="bold">{{Date::parse($qu->created_at)->format('l j F') }}</span></div>
                                 <div class="grey-text left-align">{{$qu->question}}</div>
                             </div>
                         </div>
@@ -218,7 +224,7 @@
                                                 <br><br>
                                         </div>
                                         <div class="col s8 m10">
-                                                <div id="date" class=" left-align">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
+                                                <div id="date" class=" left-align grey-text">Publié le <span class="bold">{{Date::parse($rep->created_at)->format('l j F') }}</span></div>
                                                 <div class="left-align grey-text">{{$rep->question}}</div>
 
                                         </div>
@@ -244,7 +250,7 @@
                                             <label for="reponse" class="deep-orange-text left-align">Votre réponse</label>
                                         </div>
                                         <input id="idT" name="idT" type="hidden" value="{{$expedition->id}}">
-                                        <p class="center-align addRep"><button id="btRépondre" type="submit" class=" btn-small deep-orange white-text">Répondre</button></p>
+                                        <p class="center-align addRep"><button id="btRépondre" type="submit" class="waves-effect waves-light btn deep-orange white-text">Répondre</button></p>
                                     </form>
                                     
                                 </div>

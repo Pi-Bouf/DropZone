@@ -65,30 +65,32 @@ $(document).ready(function() {
 function marqueur(){
     
     var directionsService = new google.maps.DirectionsService();
-    if(document.getElementById('villeDepart').value!="" && document.getElementById('villeArrivee').value!="")
-    {
-        //document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
-        //document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
-        
-        document.getElementById('btProposer').disabled  = false;
-        var depart = new google.maps.LatLng($("#villeDepartHidden").val().split(";")[0], $("#villeDepartHidden").val().split(";")[1]);
-        var arrivee = new google.maps.LatLng($("#villeArriveeHidden").val().split(";")[0], $("#villeArriveeHidden").val().split(";")[1]);
-        var request = {
-            destination: arrivee,
-            avoidHighways: true,
-            origin: depart,
-            travelMode: 'DRIVING'
-        };
+    setTimeout(function(){
+        if(document.getElementById('villeDepart').value!="" && document.getElementById('villeArrivee').value!="")
+        {
+            //document.getElementById('villeDepartHidden').value = latDepart+";"+lngDepart;
+            //document.getElementById('villeArriveeHidden').value = latArrivee+";"+lngArrivee;
+            
+            document.getElementById('btProposer').disabled  = false;
+            var depart = new google.maps.LatLng($("#villeDepartHidden").val().split(";")[0], $("#villeDepartHidden").val().split(";")[1]);
+            var arrivee = new google.maps.LatLng($("#villeArriveeHidden").val().split(";")[0], $("#villeArriveeHidden").val().split(";")[1]);
+            var request = {
+                destination: arrivee,
+                avoidHighways: true,
+                origin: depart,
+                travelMode: 'DRIVING'
+            };
 
-        // Pass the directions request to the directions service.
-        directionsService.route(request, function(response, status) {
-            if (status === google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-            } else{
-            }
-        });
-    } else {
-        document.getElementById('btProposer').disabled  = true;
-    }
+            // Pass the directions request to the directions service.
+            directionsService.route(request, function(response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else{
+                }
+            });
+        } else {
+            document.getElementById('btProposer').disabled  = true;
+        }
+    }, 300);
 }
 

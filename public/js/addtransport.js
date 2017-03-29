@@ -160,39 +160,41 @@ function marqueur() {
     waypts = [];
     var directionsService = new google.maps.DirectionsService();
     var etape;
-    if (document.getElementById('villeDepart').value != "" && document.getElementById('villeArrivee').value != "") {
-        //document.getElementById('villeDepartHidden').value = latDepart + ";" + lngDepart;
-        //document.getElementById('villeArriveeHidden').value = latArrivee + ";" + lngArrivee;
-        var e;
-        for (var i = 0; i < name; i++) {
-            e = i + 1;
-            etape = document.getElementById('villeEtape' + e);
-            if (etape.value != "") {
-                //document.getElementById('villeEtapeHidden' + e).value = tabLatEtape[e] + ';' + tabLngEtape[e];
-                waypts.push({
-                    location: etape.value
-                });
+    setTimeout(function(){
+        if (document.getElementById('villeDepart').value != "" && document.getElementById('villeArrivee').value != "") {
+            //document.getElementById('villeDepartHidden').value = latDepart + ";" + lngDepart;
+            //document.getElementById('villeArriveeHidden').value = latArrivee + ";" + lngArrivee;
+            var e;
+            for (var i = 0; i < name; i++) {
+                e = i + 1;
+                etape = document.getElementById('villeEtape' + e);
+                if (etape.value != "") {
+                    //document.getElementById('villeEtapeHidden' + e).value = tabLatEtape[e] + ';' + tabLngEtape[e];
+                    waypts.push({
+                        location: etape.value
+                    });
+                }
             }
+
+            document.getElementById('btProposer').disabled = false;
+            var depart = new google.maps.LatLng($("#villeDepartHidden").val().split(";")[0], $("#villeDepartHidden").val().split(";")[1]);
+            var arrivee = new google.maps.LatLng($("#villeArriveeHidden").val().split(";")[0], $("#villeArriveeHidden").val().split(";")[1]);
+            var request = {
+                destination: arrivee,
+                avoidHighways: autoroute,
+                origin: depart,
+                waypoints: waypts,
+                travelMode: 'DRIVING'
+            };
+
+            // Pass the directions request to the directions service.
+            directionsService.route(request, function(response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else {}
+            });
+        } else {
+            document.getElementById('btProposer').disabled = true;
         }
-
-        document.getElementById('btProposer').disabled = false;
-        var depart = new google.maps.LatLng($("#villeDepartHidden").val().split(";")[0], $("#villeDepartHidden").val().split(";")[1]);
-        var arrivee = new google.maps.LatLng($("#villeArriveeHidden").val().split(";")[0], $("#villeArriveeHidden").val().split(";")[1]);
-        var request = {
-            destination: arrivee,
-            avoidHighways: autoroute,
-            origin: depart,
-            waypoints: waypts,
-            travelMode: 'DRIVING'
-        };
-
-        // Pass the directions request to the directions service.
-        directionsService.route(request, function(response, status) {
-            if (status === google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-            } else {}
-        });
-    } else {
-        document.getElementById('btProposer').disabled = true;
-    }
+     }, 300);
 }

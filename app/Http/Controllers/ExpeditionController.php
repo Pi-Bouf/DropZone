@@ -176,6 +176,7 @@ class ExpeditionController extends Controller
         );
         $this->validate($request, $rules);
         $demande = new DemandeExpedition();
+        $demande->isAccepted = 0;
         $demande->expedition_id= $request->input('idE');
         $demande->propositionText= $request->input('message');
         $demande->user_id = Auth::user()->id;
