@@ -13,22 +13,33 @@
               <ul class="collapsible" data-collapsible="accordion">
                 @foreach(Auth::user()->demandesExpedition->sortBy('created_at') as $demande)
                 <li>
-                  <div class="collapsible-header  ">
-                    <span style="margin: 10px">{{ $demande->expedition->villeDep->name }}</span> &#10142; <span style="margin: 10px"> {{ $demande->expedition->villeArr->name }} </span>
+                  <div class="collapsible-header">
+                    <span style="margin: 5px">{{ $demande->expedition->villeDep->name }}</span> &#10142; <span style="margin: 5px"> {{ $demande->expedition->villeArr->name }} </span>
 
                     @if($demande->isAccepted === 0)
-                    <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
+                    <span class="hide-on-small-only right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
                     @elseif($demande->isAccepted === 1)
-                    <span class="right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
+                    <span class="hide-on-small-only right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
                     @elseif($demande->isAccepted === 2)
-                    <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
+                    <span class="hide-on-small-only right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
                     @elseif($demande->isAccepted === 3)
-                    <span class="right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
+                    <span class="hide-on-small-only right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
                     @endif
 
                   </div>
                   <div class="collapsible-body grey lighten-5">
                     <div class="row">
+                      <div class="col s12 m12 l12 hide-on-med-and-up" style="margin-bottom:15px;">
+                        @if($demande->isAccepted === 0)
+                        <span class="left orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
+                        @elseif($demande->isAccepted === 1)
+                        <span class="left red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
+                        @elseif($demande->isAccepted === 2)
+                        <span class="left green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
+                        @elseif($demande->isAccepted === 3)
+                        <span class="left blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
+                        @endif
+                      </div>
                       <div class="col s12 m12 l12">
                         @if($demande->beginDate == $demande->endDate)
                         <span class="black-text date-depart-transport">Départ le <span class="bold">{{ Date::parse($demande->beginDate)->format('l j F') }}</span>.</span>
@@ -68,19 +79,23 @@
                             </div>
                           @else
                             <div class="col s12 m12 l12 mg-t20">
-                              <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
+                              <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class=" waves-effect blue waves-light btn">Afficher</a>
                               @if($demande->beginDate < date('Y-m-d H:i:s'))
-                                <a href="#note_expe_{{ $demande->id }}" title="Noter l'expedition" class="right waves-effect green waves-light btn">Noter</a>
+                              <div class="hide-on-med-and-up mg-t20"></div>
+
+                                <a href="#note_expe_{{ $demande->id }}" title="Noter l'expedition" class=" waves-effect green waves-light btn">Noter</a>
                               @else
-                                <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                              <div class="hide-on-med-and-up mg-t20"></div>
+                                <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class=" waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
                               @endif
                             </div>
                           @endif
 
                         @else
                           <div class="col s12 m12 l12 mg-t20">
-                            <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class="left waves-effect blue waves-light btn">Afficher</a>
-                            <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                            <a href="/expedition/{{$demande->expedition->id}}" title="Afficher l'expedition" class=" waves-effect blue waves-light btn">Afficher</a>
+                            <div class="hide-on-med-and-up mg-t20"></div>
+                            <a href="#delete_expe{{$demande->id}}" title="Supprimer ma demande" class=" waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
                           </div>
                         @endif
                       </div>
@@ -150,18 +165,29 @@
                   <div class="collapsible-header  ">
                     <span style="margin: 10px">{{ $demande->transport->villeDepart->ville->name }}</span> &#10142; <span style="margin: 10px"> {{ $demande->transport->villeArrivee->ville->name }} </span>
                     @if($demande->isAccepted === 0)
-                    <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
+                    <span class="hide-on-small-only right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
                     @elseif($demande->isAccepted === 1)
-                    <span class="right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
+                    <span class="hide-on-small-only right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
                     @elseif($demande->isAccepted === 2)
-                    <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
+                    <span class="hide-on-small-only right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
                     @elseif($demande->isAccepted === 3)
-                    <span class="right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
+                    <span class="hide-on-small-only right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
                     @endif
 
                   </div>
                   <div class="collapsible-body grey lighten-5">
                     <div class="row">
+                      <div class="col s12 m12 l12 hide-on-med-and-up" style="margin-bottom:15px;">
+                        @if($demande->isAccepted === 0)
+                        <span class="left orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
+                        @elseif($demande->isAccepted === 1)
+                        <span class="left red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
+                        @elseif($demande->isAccepted === 2)
+                        <span class="left green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
+                        @elseif($demande->isAccepted === 3)
+                        <span class="left blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
+                        @endif
+                      </div>
                       <div class="col s12 m6 l6 ">
                         Transporteur : <a href="/user/{{$demande->transport->user->id}}">{{$demande->transport->user->login}}</a>
                         @if($demande->isAccepted == 2 || $demande->isAccepted == 3)
@@ -186,24 +212,29 @@
                               <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
                               <div class="right">Note attribuée : {{$demande->notationUser->note}}/5<i class="mdi mdi-star icon-size yellow-text" aria-hidden="true"></i></div>
                             @else
-                              <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
+                              <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class=" waves-effect blue waves-light btn">Afficher</a>
                               @if($demande->transport->natureTransport == 1)
                                 @if($demande->transport->beginningDate < date('Y-m-d H:i:s'))
-                                  <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class="right waves-effect green waves-light btn">Noter</a>
+                                <div class="hide-on-med-and-up mg-t20"></div>
+                                  <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class=" waves-effect green waves-light btn">Noter</a>
                                 @else
-                                  <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                                  <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class=" waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
                                 @endif
                               @else
                                 @if($demande->transport->regularyBeginningDate < date('Y-m-d H:i:s'))
-                                  <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class="right waves-effect green waves-light btn">Noter</a>
+                                <div class="hide-on-med-and-up mg-t20"></div>
+
+                                  <a href="#note_trans_{{ $demande->id }}" title="Noter cette expéditeur" class=" waves-effect green waves-light btn">Noter</a>
                                 @else
-                                  <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                                <div class="hide-on-med-and-up mg-t20"></div>
+                                  <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class=" waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
                                 @endif
                               @endif
                             @endif
                           @else
-                            <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class="left waves-effect blue waves-light btn">Afficher</a>
-                            <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class="right waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
+                            <a href="/transport/{{$demande->transport->id}}" title="Afficher le transport" class=" waves-effect blue waves-light btn">Afficher</a>
+                            <div class="hide-on-med-and-up mg-t20"></div>
+                            <a href="#delete_{{$demande->id}}" title="Supprimer ma demande" class=" waves-effect red waves-light btn"><i class="mdi mdi-delete right white-text"></i>Supprimer</a>
                           @endif
                         </div>
 
