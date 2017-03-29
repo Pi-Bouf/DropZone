@@ -15,7 +15,7 @@
                             <th>Utilisateur</th>
                             <th>Texte</th>
                             <th>Cout</th>
-                            <th>Status</th>
+                            <th>Statut</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,6 +82,7 @@
                             <th>Utilisateur</th>
                             <th>Texte</th>
                             <th>Prix proposé</th>
+                            <th>Statut</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +93,17 @@
                             <td><a target="_blank" href="{{ route('admin_user_detail', array('user' => $expedition->user->id)) }}">{{ $expedition->user->login }}</a></td>
                             <td>{{ mb_strimwidth($expedition->propositionText, 0, 200, "...") }}</td>
                             <td>{{ $expedition->prixAsked }}€</td>
+                            <td>
+                                @if($expedition->isAccepted == 0)
+                                <span class="badge bg-orange">En attente</span>
+                                @elseif($expedition->isAccepted == 1)
+                                <span class="badge bg-red">Refusé</span>
+                                @elseif($expedition->isAccepted == 2)
+                                <span class="badge bg-green">Accepté</span>
+                                @elseif($expedition->isAccepted == 3)
+                                <span class="badge bg-blue">Effectué</span>
+                                @endif
+                            </td>
                         </tr>
                         <div class="modal fade" id="del_demande_expedition_{{ $expedition->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
                             <div class="modal-dialog" role="document">
