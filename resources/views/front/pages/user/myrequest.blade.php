@@ -16,13 +16,13 @@
                   <div class="collapsible-header">
                     <span style="margin: 5px">{{ $demande->expedition->villeDep->name }}</span> &#10142; <span style="margin: 5px"> {{ $demande->expedition->villeArr->name }} </span>
 
-                    @if($demande->isAccepted === 0)
+                    @if($demande->isAccepted == 0)
                     <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
-                    @elseif($demande->isAccepted === 1)
+                    @elseif($demande->isAccepted == 1)
                     <span class="right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
-                    @elseif($demande->isAccepted === 2)
+                    @elseif($demande->isAccepted == 2)
                     <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
-                    @elseif($demande->isAccepted === 3)
+                    @elseif($demande->isAccepted == 3)
                     <span class="right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
                     @endif
 
@@ -30,13 +30,13 @@
                   <div class="collapsible-body grey lighten-5">
                     <div class="row">
                       <div class="col s12 m12 l12 hide-on-med-and-up" style="margin-bottom:15px;">
-                        @if($demande->isAccepted === 0)
+                        @if($demande->isAccepted == 0)
                         <span class="left orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
-                        @elseif($demande->isAccepted === 1)
+                        @elseif($demande->isAccepted == 1)
                         <span class="left red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
-                        @elseif($demande->isAccepted === 2)
+                        @elseif($demande->isAccepted == 2)
                         <span class="left green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
-                        @elseif($demande->isAccepted === 3)
+                        @elseif($demande->isAccepted == 3)
                         <span class="left blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
                         @endif
                       </div>
@@ -50,7 +50,7 @@
 
                       <div class="col s12 m6 l6 mg-t20">
                         Expediteur : <a href="/user/{{$demande->expedition->user->id}}">{{$demande->expedition->user->login}}</a>
-                        @if($demande->isAccepted === 3 || $demande->isAccepted === 2)
+                        @if($demande->isAccepted == 3 || $demande->isAccepted == 2)
                           <p class="grey-text">
                             @if($demande->expedition->user->phone)
                               {{$demande->expedition->user->phone}}
@@ -68,8 +68,8 @@
                       </div>
 
                       <div class="col s12 m12 l12 mg-t20">
-                        @if($demande->isAccepted === 3 || $demande->isAccepted === 2)
-                          @if($demande->isAccepted === 3 && !is_null($demande->expedition->notationTransporter))
+                        @if($demande->isAccepted == 3 || $demande->isAccepted == 2)
+                          @if($demande->isAccepted == 3 && !is_null($demande->expedition->notationTransporter))
                             <div class="col s6 m4 l4 center-align" >
 
                             </div>
@@ -164,13 +164,13 @@
                 <li>
                   <div class="collapsible-header  ">
                     <span style="margin: 10px">{{ $demande->transport->villeDepart->ville->name }}</span> &#10142; <span style="margin: 10px"> {{ $demande->transport->villeArrivee->ville->name }} </span>
-                    @if($demande->isAccepted === 0)
+                    @if($demande->isAccepted == 0)
                     <span class="right orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
-                    @elseif($demande->isAccepted === 1)
+                    @elseif($demande->isAccepted == 1)
                     <span class="right red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
-                    @elseif($demande->isAccepted === 2)
+                    @elseif($demande->isAccepted == 2)
                     <span class="right green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
-                    @elseif($demande->isAccepted === 3)
+                    @elseif($demande->isAccepted == 3)
                     <span class="right blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
                     @endif
 
@@ -178,13 +178,13 @@
                   <div class="collapsible-body grey lighten-5">
                     <div class="row">
                       <div class="col s12 m12 l12 hide-on-med-and-up" style="margin-bottom:15px;">
-                        @if($demande->isAccepted === 0)
+                        @if($demande->isAccepted == 0)
                         <span class="left orange white-text new badge" style="font-weight:bold;" data-badge-caption="En attente"></span>
-                        @elseif($demande->isAccepted === 1)
+                        @elseif($demande->isAccepted == 1)
                         <span class="left red white-text new badge" style="font-weight:bold;" data-badge-caption="Refusée"></span>
-                        @elseif($demande->isAccepted === 2)
+                        @elseif($demande->isAccepted == 2)
                         <span class="left green white-text new badge" style="font-weight:bold;" data-badge-caption="Acceptée"></span>
-                        @elseif($demande->isAccepted === 3)
+                        @elseif($demande->isAccepted == 3)
                         <span class="left blue white-text new badge" style="font-weight:bold;" data-badge-caption="Effectuée"></span>
                         @endif
                       </div>
