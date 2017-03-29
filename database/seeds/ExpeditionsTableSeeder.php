@@ -58,7 +58,7 @@ class ExpeditionsTableSeeder extends Seeder
             2 => 
             array (
                 'id' => 3,
-                'user_id' => 4,
+                'user_id' => 1,
                 'costMax' => 120,
                 'isAccepted' => 0,
                 'costFixed' => 120,
@@ -77,7 +77,7 @@ class ExpeditionsTableSeeder extends Seeder
             3 => 
             array (
                 'id' => 4,
-                'user_id' => 4,
+                'user_id' => 1,
                 'costMax' => 5,
                 'isAccepted' => 0,
                 'costFixed' => 5,
@@ -115,7 +115,7 @@ class ExpeditionsTableSeeder extends Seeder
             5 => 
             array (
                 'id' => 6,
-                'user_id' => 3,
+                'user_id' => 1,
                 'costMax' => 20,
                 'isAccepted' => 0,
                 'costFixed' => 20,

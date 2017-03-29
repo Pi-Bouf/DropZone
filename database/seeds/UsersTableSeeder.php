@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
 				'login'=> 'pBouffier',
 				'phone'=> '0666666666',
 				'created_at' => date("Y-m-d"),
-        		'picLink' => 'pb.jpg',
+        		'picLink' => 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/15134762_10211712753678204_4060198869380090249_n.jpg?oh=3a6e393654a2963e8d5d271917f4812f&oe=5965C17D',
 				'description'=> 'Coucou, moi c\'est Pierre et j\'adore la voiture !'
 				]);
 
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
 				'sexe'=> 'h',
 				'login'=> 'tVieux',
 				'phone'=> '0666666666',
-        		'picLink' => 'tv.jpg',
+        		'picLink' => 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/931_793832527410541_6567285052905223525_n.jpg?oh=519eaa19da98398b595d294ec2ab078e&oe=5968C3CB',
 				'created_at' => date("Y-m-d"),
 				'description'=> "Campagnard dans l'âme, j'aime souvent rentrer dans mon pays ! :D",
 				]);
