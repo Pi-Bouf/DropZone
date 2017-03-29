@@ -269,20 +269,20 @@
                       <label for="note">Note : </label>
                       <span class="rating">
                         <input type="radio" class="rating-input"
-                                id="rating-{{$demande->id}}-input-1-5" name="rating-input-1" value="5" required/>
-                        <label for="rating-{{$demande->id}}-input-1-5" class="rating-star"></label>
+                                id="rating-tra-{{$demande->id}}-input-1-5" name="rating-input-1" value="5" required/>
+                        <label for="rating-tra-{{$demande->id}}-input-1-5" class="rating-star"></label>
                         <input type="radio" class="rating-input"
-                                id="rating-{{$demande->id}}-input-1-4" name="rating-input-1" value="4"/>
-                        <label for="rating-{{$demande->id}}-input-1-4" class="rating-star"></label>
+                                id="rating-tra-{{$demande->id}}-input-1-4" name="rating-input-1" value="4"/>
+                        <label for="rating-tra-{{$demande->id}}-input-1-4" class="rating-star"></label>
                         <input type="radio" class="rating-input"
-                                id="rating-{{$demande->id}}-input-1-3" name="rating-input-1" value="3"/>
-                        <label for="rating-{{$demande->id}}-input-1-3" class="rating-star"></label>
+                                id="rating-tra-{{$demande->id}}-input-1-3" name="rating-input-1" value="3"/>
+                        <label for="rating-tra-{{$demande->id}}-input-1-3" class="rating-star"></label>
                         <input type="radio" class="rating-input"
-                                id="rating-{{$demande->id}}-input-1-2" name="rating-input-1" value="2"/>
-                        <label for="rating-{{$demande->id}}-input-1-2" class="rating-star"></label>
+                                id="rating-tra-{{$demande->id}}-input-1-2" name="rating-input-1" value="2"/>
+                        <label for="rating-tra-{{$demande->id}}-input-1-2" class="rating-star"></label>
                         <input type="radio" class="rating-input"
-                                id="rating-{{$demande->id}}-input-1-1" name="rating-input-1" value="1"/>
-                        <label for="rating-{{$demande->id}}-input-1-1" class="rating-star"></label>
+                                id="rating-tra-{{$demande->id}}-input-1-1" name="rating-input-1" value="1"/>
+                        <label for="rating-tra-{{$demande->id}}-input-1-1" class="rating-star"></label>
                       </span>
                     </div>
                     <div class="modal-footer">
